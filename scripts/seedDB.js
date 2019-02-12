@@ -9,7 +9,14 @@ mongoose.connect(
   process.env.MONGODB_URI ||
   "mongodb://localhost/reactreadinglist"
 );
-
+// {
+//   firstName:"Anthony",
+//   lastName:"C",
+//   userName:"hiMan",
+//   email:"someeail@gmail.com",
+//   password:"nope",
+//   isAdmin:true
+// }
 const bookSeed = [
   {
     title: "The Dead Zone",

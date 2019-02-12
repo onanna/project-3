@@ -1,11 +1,10 @@
 import React from "react";
-import Sidenav from "./components/sidenav/sidenav";
+import StuDirectory from "./pages/studentDirectory";
 
 function App() {
   return (
     <div>
-      <h1>Hello Team!</h1>
-      <Sidenav />
+      <StuDirectory />
     </div>
   );
 }

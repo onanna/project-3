@@ -15,11 +15,10 @@ if (process.env.NODE_ENV === "production") {
 // Add routes, both API and view
 app.use(routes);
 
-
 // Connect to the Mongo DB
-// mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/courseCreator");
-// const user = require("./controllers/userController");
-// user.addUser();
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/courseCreator",{ useNewUrlParser: true });
+// const student = require("./controllers/studentController");
+// student.addStu();
 
 // Start the API server
 app.listen(PORT, function() {

@@ -1,5 +1,5 @@
 module.exports = {
-  user:require("./user")
-  // ,
-  // course:require('./course')
+  student:require("./student"),
+  instructor:require("./instructor"),
+  course:require("./course")
 };

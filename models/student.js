@@ -6,7 +6,7 @@ validateEmail = (email)=>{
     return re.test(email)
 };
 
-const userSchema = new Schema({
+const stuSchema = new Schema({
     firstName:{
         type: String,
         required:true,
@@ -18,12 +18,12 @@ const userSchema = new Schema({
     },
     userName:{
         type: String,
-        required:true
+        required:true,
+        unique:true
     },
     password:{
         type:String,
-        required:true,
-        unique:true
+        required:true
     },
     email:{
         unique:true,
@@ -41,5 +41,5 @@ const userSchema = new Schema({
 
 
 //look here for image info https://stackoverflow.com/questions/46631906/how-to-upload-save-and-show-pictures-with-mongoose-express-angular-4-and-nodejs 
-const user = mongoose.model("user", userSchema);
-module.exports = user;
+const student = mongoose.model("student", stuSchema);
+module.exports = student;
