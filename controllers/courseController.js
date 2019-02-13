@@ -2,7 +2,7 @@ const db = require("../models/index");
 
 // Defining methods for the courseController
 module.exports = {
-    addCourse:function(req,res){
+    add:function(req,res){
 
         db.course.create(req.body)
         .then(result=>{
@@ -12,7 +12,14 @@ module.exports = {
         .catch(error=>{
             console.log(`you tried adding a course, but it's invalid: ${error}`)
         })
+    },
+    getAll:function(req,res){
+        db.course.find(req.query)
+        // .sort({ date: -1 })
+        .then(dbModel => res.json(dbModel))
+        .catch(err => res.status(422).json(err));
     }
+
 
     // addCourse:function(req,res){
     //     db.user.create(req.body)

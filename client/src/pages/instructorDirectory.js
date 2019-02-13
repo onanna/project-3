@@ -1,31 +1,32 @@
 import React, { Component } from "react";
 import Pagecontainer from "../components/pageContainer"
-import API from "../utils/API";
+import API from "../utils/API"
 
-class Home extends Component{
+class instructors extends Component{
     state={
-        allCourses:[]
+        instructors:[]
     }
 
     componentDidMount(){
-        this.getCourses();
+        this.getInstructors();
     }
 
-    getCourses=()=>{
-        API.getAllCourses()
-            .then(res => this.setState({allCourses:res.data}))
+    getInstructors=()=>{
+
+        API.getAllInstructors()
+            .then(res => this.setState({ instructors: res.data }))
             .catch(err => console.log(err));
-        }
-   
-   render(){
+    
+    }
+
+    render(){
         return(
             <Pagecontainer>
-                <h1>Hi Team!</h1>
-                <h2>Number of Courses:{this.state.allCourses.length}</h2>
-                <h3>All Courses:</h3>
+                <h1>All instructors</h1>
+                <h2>Number of instructors: {this.state.instructors.length}</h2>
                 <ul className="collection">
                     {
-                        this.state.allCourses.map((current,i)=>{
+                        this.state.instructors.map((current,i)=>{
                             return(
                                 <li key={i} className="collection-item">{JSON.stringify(current)}</li>
                             )
@@ -34,8 +35,7 @@ class Home extends Component{
                 </ul>
             </Pagecontainer>
         )
-   }
-
+    }
 }
 
-export default Home;
+export default instructors;

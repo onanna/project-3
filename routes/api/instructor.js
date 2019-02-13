@@ -3,6 +3,7 @@ const instructor = require("../../controllers/instructorController");
 
 //matches with "/api/instructors" 
 router.route("/")
+    .get(instructor.getAll);
 
 
 

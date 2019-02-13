@@ -40,4 +40,7 @@ const courseSchema = new Schema({
     //     students:[],
     // }
     
-})
+},{collection:"courses"})
+
+const course = mongoose.model("course", courseSchema);
+module.exports = course;

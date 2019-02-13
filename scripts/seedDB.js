@@ -53,6 +53,36 @@ const instructorSeed = [
   },
 ];
 
+const courseSeed=[
+  {
+  name:"Biology",
+  startDate:new Date(),
+  endDate:new Date(),
+  startTime:"06:30PM",
+  endTime:"08:30PM",
+  location:"134 sip ave. Jersey City NJ, 07109",
+  instructor:"Tommy"
+  },
+  {
+    name:"Math",
+    startDate:new Date(),
+    endDate:new Date(),
+    startTime:"07:30PM",
+    endTime:"09:30PM",
+    location:"145 sip ave. Jersey City NJ, 07109",
+    instructor:"Billy"
+  },
+  {
+    name:"History",
+    startDate:new Date(),
+    endDate:new Date(),
+    startTime:"08:30PM",
+    endTime:"10:30PM",
+    location:"15 taco st. Jersey City NJ, 07109",
+    instructor:"Steph"
+  }
+]
+
 insertStudents=()=>{
   db.student
     .remove({})
@@ -83,5 +113,21 @@ insertInstructors=()=>{
   });
 }
 
+insertCourses=()=>{
+  db.course
+  .remove({})
+  .then(() => db.course.collection.insertMany(courseSeed))
+  .then(data => {
+    console.log(data)
+    console.log(data.result.n + " records inserted!");
+    process.exit(0);
+  })
+  .catch(err => {
+    console.error(err);
+    process.exit(1);
+  });
+}
+
 insertStudents();
 insertInstructors();
+insertCourses();
