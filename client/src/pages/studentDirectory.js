@@ -25,11 +25,11 @@ class Home extends Component{
             <Pagecontainer>
                 <h1>All Students</h1>
                 <h2>Number of students: {this.state.students.length}</h2>
-                <ul>
+                <ul className="collection">
                     {
                         this.state.students.map((current,i)=>{
                         return (
-                            <li key={i}>{JSON.stringify(current)}</li>
+                            <li key={i} className="collection-item">{JSON.stringify(current)}</li>
                         )
                         })
                     }

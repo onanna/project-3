@@ -12,5 +12,11 @@ module.exports = {
             console.log(`you tried adding a user, but it's invalid: ${error}`)
         })
      
+    },
+    getAll:function(req,res){
+        db.instructor.find(req.query)
+        // .sort({ date: -1 })
+        .then(dbModel => res.json(dbModel))
+        .catch(err => res.status(422).json(err));
     }
 };
