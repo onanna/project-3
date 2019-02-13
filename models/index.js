@@ -1,3 +1,5 @@
 module.exports = {
-  Book: require("./book")
+  student:require("./student"),
+  instructor:require("./instructor"),
+  course:require("./course")
 };
