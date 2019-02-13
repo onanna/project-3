@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Sidenav from "../components/sidenav/sidenav";
+import Pagecontainer from "../components/pageContainer"
 import API from "../utils/API"
-import Sidebasic from "../components/sideBasic";
 
 class Home extends Component{
     state={
@@ -22,7 +22,7 @@ class Home extends Component{
 
     render(){
         return(
-            <div>
+            <Pagecontainer>
                 <h1>All Students</h1>
                 <h2>Number of students: {this.state.students.length}</h2>
                 <ul>
@@ -34,8 +34,8 @@ class Home extends Component{
                         })
                     }
                 </ul>
-                <Sidenav />
-            </div>
+                {/* <Sidenav /> */}
+            </Pagecontainer>
         )
     }
 }

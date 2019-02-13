@@ -2,11 +2,15 @@ import React from "react";
 import "./style.css";
 
 function sidenav(){
+
     return(
-        <ul id="slide-out" className="sidenav sidenav-fixed">
-            <li><a href="/api/students">Test Students api</a></li>
-            <li><a href="#!">Second Sidebar Link</a></li>
-        </ul>
+        <div>
+            <ul id="slide-out" className="sidenav sidenav-fixed">
+                <li className=" sidenav-close"><a href="/">Go Back Home</a></li>
+                <li className="sidenav-close"><a href="/students">View All Students</a></li>
+            </ul>
+            <a href="#" data-target="slide-out" className="sidenav-trigger"><i className="material-icons">menu</i></a>
+        </div>
     )
 }
 
