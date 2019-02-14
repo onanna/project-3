@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Sidenav from "../components/sidenav/sidenav";
 import Pagecontainer from "../components/pageContainer"
 import API from "../utils/API"
+import { Icon } from "react-materialize";
 
 class Home extends Component{
     state={
@@ -13,11 +14,15 @@ class Home extends Component{
     }
 
     getAllStudents=()=>{
-
         API.getAllStudents()
             .then(res => this.setState({ students: res.data }))
             .catch(err => console.log(err));
-    
+    }
+
+    deleteStudent=(idToDelete)=>{
+        console.log(idToDelete)
+        API.deleteStudent(idToDelete)
+            .then(this.getAllStudents())
     }
 
     render(){
@@ -29,7 +34,7 @@ class Home extends Component{
                     {
                         this.state.students.map((current,i)=>{
                         return (
-                            <li key={i} className="collection-item">{JSON.stringify(current)}</li>
+                            <li onClick={()=>this.deleteStudent(current._id)} key={i} className="collection-item"> {JSON.stringify(current)}</li>
                         )
                         })
                     }
