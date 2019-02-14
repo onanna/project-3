@@ -13,10 +13,10 @@ export default {
     return axios.get("/api/students");
   },
   //need
-  updateStudent:function(query,whatToChange,newValue){
-    return axios.put(`api/students/${query}`,newValue,whatToChange)
+  updateStudent:function(idToChange,whatToChange,newValue){
+    let relevantData={newValue:newValue,whatToChange:whatToChange}
+    return axios.put(`api/students/${idToChange}`,[relevantData])
   },
-  //need
   deleteStudent:function(id){
     return axios.delete(`api/students/${id}`)
   },
@@ -31,8 +31,8 @@ export default {
   getAllInstructors:function(){
     return axios.get("/api/instructors")
   },
-  deleteInstructor:function(query){
-    return axios.delete(`api/instructors/${query}`)
+  deleteInstructor:function(id){
+    return axios.delete(`api/instructors/${id}`)
   },
 
 

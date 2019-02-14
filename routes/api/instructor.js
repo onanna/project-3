@@ -5,6 +5,11 @@ const instructor = require("../../controllers/instructorController");
 router.route("/")
     .get(instructor.getAll);
 
+router.route("/:id")
+    .delete((req,res)=>{
+        instructor.delete({"_id":req.params.id})
+    })
+
 
 
 module.exports=router;

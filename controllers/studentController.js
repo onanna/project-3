@@ -22,8 +22,15 @@ module.exports = {
         .then(dbModel => res.json(dbModel))
         .catch(err => res.status(422).json(err));
     },
-    delete:function(idToDelete,response){
+    delete:function(idToDelete){
         db.student.remove({_id:idToDelete})
         .then(result=>{console.log("student deleted! "+result)})
+    },
+    update:function(filter,update,res){
+        console.log(filter,update)
+        db.student.findOneAndUpdate(filter,update)
+        .then(result=>console.log(result))
+        // .then(this.getAll(""))
+
     }
 };

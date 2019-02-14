@@ -12,11 +12,15 @@ class instructors extends Component{
     }
 
     getInstructors=()=>{
-
         API.getAllInstructors()
-            .then(res => this.setState({ instructors: res.data }))
-            .catch(err => console.log(err));
-    
+        .then(res => this.setState({ instructors: res.data }))
+        .catch(err => console.log(err));
+    }
+
+    deleteInstructor=(idToDelete)=>{
+        console.log(idToDelete)
+        API.deleteInstructor(idToDelete)
+        .then(this.getInstructors())
     }
 
     render(){
@@ -28,7 +32,7 @@ class instructors extends Component{
                     {
                         this.state.instructors.map((current,i)=>{
                             return(
-                                <li key={i} className="collection-item">{JSON.stringify(current)}</li>
+                                <li onClick={()=>this.deleteInstructor(current._id)} key={i} className="collection-item">{JSON.stringify(current)}</li>
                             )
                         })
                     }

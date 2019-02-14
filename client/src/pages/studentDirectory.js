@@ -13,6 +13,11 @@ class Home extends Component{
         this.getAllStudents();
     }
 
+    updateStudent=(idOfStudentToUpdate,whatToChange,newValue)=>{
+        API.updateStudent(idOfStudentToUpdate,whatToChange,newValue)
+            .then(this.getAllStudents);
+    }
+
     getAllStudents=()=>{
         API.getAllStudents()
             .then(res => this.setState({ students: res.data }))
@@ -22,7 +27,7 @@ class Home extends Component{
     deleteStudent=(idToDelete)=>{
         console.log(idToDelete)
         API.deleteStudent(idToDelete)
-            .then(this.getAllStudents())
+            .then(response=> this.setState({students:response.data}))
     }
 
     render(){
@@ -34,7 +39,7 @@ class Home extends Component{
                     {
                         this.state.students.map((current,i)=>{
                         return (
-                            <li onClick={()=>this.deleteStudent(current._id)} key={i} className="collection-item"> {JSON.stringify(current)}</li>
+                            <li onClick={()=>this.updateStudent(current._id,"lastName","Tommy")} key={i} className="collection-item"> {JSON.stringify(current)}</li>
                         )
                         })
                     }
