@@ -5,17 +5,12 @@ export default {
   addStudent:function(query,req){
     return axios.post(`api/students/${query}`,req.body);
   },
-  //need
-  getStudent:function(query){
-    return axios.get(`api/students/${query}`)
-  },
   getAllStudents: function() {
     return axios.get("/api/students");
   },
-  //need
   updateStudent:function(idToChange,whatToChange,newValue){
-    let relevantData={newValue:newValue,whatToChange:whatToChange}
-    return axios.put(`api/students/${idToChange}`,[relevantData])
+    let dataToSendToBackend={newValue:newValue,whatToChange:whatToChange}
+    return axios.put(`api/students/${idToChange}`,[dataToSendToBackend])
   },
   deleteStudent:function(id){
     return axios.delete(`api/students/${id}`)
@@ -34,6 +29,7 @@ export default {
   deleteInstructor:function(id){
     return axios.delete(`api/instructors/${id}`)
   },
+  
 
 
 

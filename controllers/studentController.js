@@ -11,7 +11,6 @@ module.exports = {
         .catch(error=>{
             console.log(`you tried adding a student, but it's invalid: ${error}`)
             .catch(err => res.status(422).json(err));
-            
         })
 
     },

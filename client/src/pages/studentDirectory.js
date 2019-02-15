@@ -1,12 +1,11 @@
 import React, { Component } from "react";
-import Sidenav from "../components/sidenav/sidenav";
 import Pagecontainer from "../components/pageContainer"
 import API from "../utils/API"
-import { Icon } from "react-materialize";
 
 class Home extends Component{
     state={
-        students:[]
+        students:[],
+        chosenStudent:""
     }
 
     componentDidMount(){
@@ -15,19 +14,28 @@ class Home extends Component{
 
     updateStudent=(idOfStudentToUpdate,whatToChange,newValue)=>{
         API.updateStudent(idOfStudentToUpdate,whatToChange,newValue)
-            .then(this.getAllStudents);
+            .then(this.getAllStudents())
+            .catch(err => console.log(err));
     }
 
+    getAStudent=(idOfStudentToGet)=>{
+        this.state.students.filter((current,i)=>{
+            if(current._id==idOfStudentToGet){
+                alert( JSON.stringify(current));
+                return current;
+            }
+        })
+    }
     getAllStudents=()=>{
         API.getAllStudents()
             .then(res => this.setState({ students: res.data }))
             .catch(err => console.log(err));
     }
-
     deleteStudent=(idToDelete)=>{
         console.log(idToDelete)
         API.deleteStudent(idToDelete)
-            .then(response=> this.setState({students:response.data}))
+            // .then(response=> this.setState({students:response.data}))
+            .then(this.getAllStudents());
     }
 
     render(){
@@ -39,12 +47,11 @@ class Home extends Component{
                     {
                         this.state.students.map((current,i)=>{
                         return (
-                            <li onClick={()=>this.updateStudent(current._id,"lastName","Tommy")} key={i} className="collection-item"> {JSON.stringify(current)}</li>
+                            <li onClick={()=>this.getAStudent(current._id)} key={i} className="collection-item"> {JSON.stringify(current)}</li>
                         )
                         })
                     }
                 </ul>
-                {/* <Sidenav /> */}
             </Pagecontainer>
         )
     }
