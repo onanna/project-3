@@ -4,6 +4,7 @@ const student = require("../../controllers/studentController");
 //matches with "/api/students" 
 router.route("/")
   .get(student.getAll)
+  .post((data)=>student.add(data))
 
 // matches with '/api/students/:id'
 router.route("/:id")

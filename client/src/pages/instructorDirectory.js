@@ -2,17 +2,37 @@ import React, { Component } from "react";
 import Pagecontainer from "../components/pageContainer"
 import API from "../utils/API"
 
+let newInstructorTest = {
+    firstName:"new",
+    lastName:"stude22nt!",
+    userName:"dddrf",
+    password:"wiffllprobablynotexist",
+    email:"f2ff@gmail.com"
+}
+
 class instructors extends Component{
     state={
         instructors:[]
     }
 
     componentDidMount(){
-        this.getInstructors();
+        this.getAllInstructors();
     }
 
-    getInstructors=()=>{
-        API.getAllInstructors()
+    updateInstructor=(idOfInstructorToUpdate,whatToChange,newValue)=>{
+        API.updateInstructor(idOfInstructorToUpdate,whatToChange,newValue)
+            .then(this.getAllInstructors())
+            .catch(err => console.log(err));
+    }
+    
+    addInstructor=(InstructorToAdd)=>{
+        API.addInstructor(InstructorToAdd)
+            // .then(res=>console.log("student added" + res))
+            .then(this.getAllInstructors())
+    }
+
+    getAllInstructors=()=>{
+        API.getInstructors()
         .then(res => this.setState({ instructors: res.data }))
         .catch(err => console.log(err));
     }
@@ -32,7 +52,7 @@ class instructors extends Component{
                     {
                         this.state.instructors.map((current,i)=>{
                             return(
-                                <li onClick={()=>this.deleteInstructor(current._id)} key={i} className="collection-item">{JSON.stringify(current)}</li>
+                                <li onClick={()=>this.updateInstructor(current._id,"firstName","tester")} key={i} className="collection-item">{JSON.stringify(current)}</li>
                             )
                         })
                     }
