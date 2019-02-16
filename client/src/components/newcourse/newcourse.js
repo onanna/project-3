@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import "./newcourse.css";
-import DatePicker from "react-datepicker";
-import TimePicker from 'react-time-picker';
 import "react-datepicker/dist/react-datepicker.css";
-
+import Newinstructor from "../newinstructor/Newinstructor."
 
 class Newcourse extends Component {
   // Setting the component's initial state
@@ -48,6 +46,8 @@ class Newcourse extends Component {
   handleChange(date) {
 
     this.setState({
+
+
       startDate: date
     })
    
@@ -96,22 +96,37 @@ class Newcourse extends Component {
             type="number" 
             min="0"
              max="25"
-            onChange= {(e) => this.handleInputChange(e)}
+             onChange={this.handleInputChange}
           /> 
           <label>
               Date:
               </label>  
-            <DatePicker
-        selected={this.state.startDate}
-        onChange={ (e) => this.handleChange(e)}
-        showTimeSelect
-        dateFormat="Pp"
-      /> 
-         
-         
-         
+              <input type="text"
+              class="datepicker" 
+              value={this.state.startDate}
+              onChange={this.handleInputChange} />
           <button onClick={this.handleFormSubmit}>Submit</button>
         </form>
+        <div>
+          
+  
+           <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Add New Instructor</a>
+
+  
+            <div id="modal1" class="modal">
+              <div class="modal-content">
+               <Newinstructor />
+              </div>
+    
+            </div>
+        </div>
+        <select>
+  <option value="Jake">Jake</option>
+  <option value="Albert">Albert</option>
+  <option value="Linda">Linda</option>
+  <option value="Van">Van</option>
+          </select>
+
       </div>
     );
   }

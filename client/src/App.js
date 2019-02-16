@@ -11,7 +11,7 @@ function App() {
   return (
       <Router>
         <div>
-          <Sidenav />
+          
           <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/students" component={StuDirectory} />
