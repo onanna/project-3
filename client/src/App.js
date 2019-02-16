@@ -1,8 +1,10 @@
 import React from "react";
-
+import Newcourse from "./components/newcourse/newcourse"
 function App() {
   return (
-    <div><h1>Hello Team!</h1></div>
+    <div>
+      <Newcourse />
+    </div>
   );
 }
 
