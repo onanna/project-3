@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Pagecontainer from "../components/pageContainer"
+import Pagecontainer from "../components/pageContainer/index"
 import API from "../utils/API"
 
 class instructors extends Component{
