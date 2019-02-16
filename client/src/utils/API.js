@@ -1,20 +1,41 @@
-// import axios from "axios";
+import axios from "axios";
 
-// export default {
-//   // Gets all books
-//   getBooks: function() {
-//     return axios.get("/api/books");
-//   },
-//   // Gets the book with the given id
-//   getBook: function(id) {
-//     return axios.get("/api/books/" + id);
-//   },
-//   // Deletes the book with the given id
-//   deleteBook: function(id) {
-//     return axios.delete("/api/books/" + id);
-//   },
-//   // Saves a book to the database
-//   saveBook: function(bookData) {
-//     return axios.post("/api/books", bookData);
-//   }
-// };
+export default {
+  addStudent:function(query,req){
+    return axios.post(`api/students/${query}`,req.body);
+  },
+  getStudent:function(query){
+    return axios.get(`api/students/: ${query}`)
+  },
+  getAllStudents: function() {
+    return axios.get("/api/students");
+  },
+  updateStudent:function(query,whatToChange,newValue){
+    return axios.put(`api/students/:${query}`,newValue,whatToChange)
+  },
+  deleteStudent:function(query){
+    return axios.delete(`api/students/: ${query}`)
+  },
+
+
+  getInstructor:function(query){
+    return axios.get(`api/instructors/: ${query}`)
+  },
+  getAllInstructors:function(){
+    return axios.get("/api/instructors")
+  },
+  deleteInstructor:function(query){
+    return axios.delete(`api/instructors/: ${query}`)
+  },
+  
+  
+  getCourse:function(query){
+    return axios.get(`api/courses/: ${query}`)
+  },
+  getAllCourses:function(){
+    return axios.get("/api/courses")
+  },
+  deleteCourse:function(query){
+    return axios.delete(`api/courses/: ${query}`)
+  }
+};
