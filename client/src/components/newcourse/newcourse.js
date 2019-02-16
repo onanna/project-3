@@ -58,7 +58,7 @@ class Newcourse extends Component {
   render() {
     // Notice how each input has a `value`, `name`, and `onChange` prop
     return (
-      <div>
+      <div className="container">
         <h1>
            {this.state.course}
         </h1>
@@ -102,7 +102,7 @@ class Newcourse extends Component {
               Date:
               </label>  
               <input type="text"
-              class="datepicker" 
+              className="datepicker" 
               value={this.state.startDate}
               onChange={this.handleInputChange} />
           <button onClick={this.handleFormSubmit}>Submit</button>
@@ -110,11 +110,11 @@ class Newcourse extends Component {
         <div>
           
   
-           <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Add New Instructor</a>
+           <a className="waves-effect waves-light btn modal-trigger" href="#modal1">Add New Instructor</a>
 
   
-            <div id="modal1" class="modal">
-              <div class="modal-content">
+            <div id="modal1" className="modal">
+              <div className="modal-content">
                <Newinstructor />
               </div>
     
