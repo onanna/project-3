@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./newcourse.css";
 import "react-datepicker/dist/react-datepicker.css";
 import Newinstructor from "../newinstructor/Newinstructor."
-
+import PageContainer from "../pageContainer/index"
 class Newcourse extends Component {
   // Setting the component's initial state
   state = {
@@ -58,7 +58,7 @@ class Newcourse extends Component {
   render() {
     // Notice how each input has a `value`, `name`, and `onChange` prop
     return (
-      <div className="container">
+      <PageContainer>
         <h1>
            {this.state.course}
         </h1>
@@ -127,7 +127,7 @@ class Newcourse extends Component {
   <option value="Van">Van</option>
           </select>
 
-      </div>
+      </PageContainer>
     );
   }
 }

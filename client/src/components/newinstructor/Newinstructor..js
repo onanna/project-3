@@ -26,7 +26,7 @@ class Newinstructor extends Component {
 
   handleFormSubmit = event => {
     // Preventing the default behavior of the form submit (which is to refresh the page)
-   
+   event.preventdefault();
 
     // Alert the user their first and last name, clear `this.state.firstName` and `this.state.lastName`, clearing the inputs
     alert(`Course Instructor ${this.state.name} \n  has the following email ${this.state.email}  \n and phone number ${this.state.phone} `);
@@ -36,7 +36,7 @@ class Newinstructor extends Component {
 
 
   
-   
+
   
 
  
@@ -99,8 +99,8 @@ class Newinstructor extends Component {
         </div>
     );
   }
-    
 }
+
 
 
 
