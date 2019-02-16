@@ -1,5 +1,8 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+const student = require("./student")
+const instructor = require("./instructor")
+
 
 const courseSchema = new Schema({
     name:{
@@ -31,14 +34,20 @@ const courseSchema = new Schema({
         trim:true
         //going to be the full address. Formatting can be done front-end
     },
-    instructor:{
-        type: String,
-        trim: true
-        //going to be like library exercise where we reference one book from another collection
-    }
-    //, roster:{
-    //     students:[],
-    // }
+    instructors: [
+        { 
+            type: Schema.Types.ObjectId, 
+            ref: instructor,
+            required:true
+        }
+    ],
+    students: [
+        { 
+            type: Schema.Types.ObjectId, 
+            ref: student,
+            required:true
+        }
+    ]
     
 },{collection:"courses"})
 

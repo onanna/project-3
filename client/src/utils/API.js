@@ -1,41 +1,46 @@
 import axios from "axios";
 
 export default {
-  addStudent:function(query,req){
-    return axios.post(`api/students/${query}`,req.body);
-  },
-  getStudent:function(query){
-    return axios.get(`api/students/: ${query}`)
+// ---------------------------STUDENT FUNCTIONS---------------------------
+  addStudent:function(stuObject){
+    return axios.post(`api/students/`,stuObject);
   },
   getAllStudents: function() {
     return axios.get("/api/students");
   },
-  updateStudent:function(query,whatToChange,newValue){
-    return axios.put(`api/students/:${query}`,newValue,whatToChange)
+  updateStudent:function(idToChange,whatToChange,newValue){
+    let dataToSendToBackend={newValue:newValue,whatToChange:whatToChange}
+    return axios.put(`api/students/${idToChange}`,[dataToSendToBackend])
   },
-  deleteStudent:function(query){
-    return axios.delete(`api/students/: ${query}`)
+  deleteStudent:function(id){
+    return axios.delete(`api/students/${id}`)
   },
 
-
-  getInstructor:function(query){
-    return axios.get(`api/instructors/: ${query}`)
+// ---------------------------INSTRUCTOR FUNCTIONS---------------------------
+  addInstructor:function(insObject){
+    return axios.post(`api/instructors/`,insObject);
   },
-  getAllInstructors:function(){
+  getInstructors:function(){
     return axios.get("/api/instructors")
   },
-  deleteInstructor:function(query){
-    return axios.delete(`api/instructors/: ${query}`)
+  updateInstructor:function(idToChange,whatToChange,newValue){
+    let dataToSendToBackend={newValue:newValue,whatToChange:whatToChange}
+    return axios.put(`api/instructors/${idToChange}`,[dataToSendToBackend])
+  },
+  deleteInstructor:function(id){
+    return axios.delete(`api/instructors/${id}`)
   },
   
-  
+// ---------------------------INSTRUCTOR FUNCTIONS---------------------------
+  //need
   getCourse:function(query){
-    return axios.get(`api/courses/: ${query}`)
+    return axios.get(`api/courses/${query}`)
   },
   getAllCourses:function(){
     return axios.get("/api/courses")
   },
+  //need
   deleteCourse:function(query){
-    return axios.delete(`api/courses/: ${query}`)
+    return axios.delete(`api/courses/${query}`)
   }
 };

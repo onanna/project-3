@@ -2,12 +2,27 @@ const router = require("express").Router();
 const student = require("../../controllers/studentController");
 
 //matches with "/api/students" 
-// router.get("/",(req,res)=>{
-//     console.log("welcome to /api/students GET!")
-//     return student.getAll() ;
-// })
-
 router.route("/")
   .get(student.getAll)
+  .post((data)=>student.add(data))
+
+// matches with '/api/students/:id'
+router.route("/:id")
+  .delete((req,res)=>{
+    console.log(req.params.id)
+    student.delete({"_id":req.params.id})
+  })
+  .put((req,res)=>{
+    let {newValue,whatToChange} = req.body[0]
+
+    let filter={_id:req.params.id}
+    let update={[whatToChange]:newValue}
+    
+    // switch(whatToChange){
+    //   case "firstName":
+    //   case "lastName":
+    // }
+    student.update(filter,update);
+  })
 
 module.exports=router;
