@@ -61,7 +61,8 @@ const courseSeed=[
   startTime:"06:30PM",
   endTime:"08:30PM",
   location:"134 sip ave. Jersey City NJ, 07109",
-  instructor:"Tommy"
+  instructors:[],
+  students:[]
   },
   {
     name:"Math",
@@ -70,7 +71,8 @@ const courseSeed=[
     startTime:"07:30PM",
     endTime:"09:30PM",
     location:"145 sip ave. Jersey City NJ, 07109",
-    instructor:"Billy"
+    instructors:[],
+    students:[]
   },
   {
     name:"History",
@@ -79,7 +81,8 @@ const courseSeed=[
     startTime:"08:30PM",
     endTime:"10:30PM",
     location:"15 taco st. Jersey City NJ, 07109",
-    instructor:"Steph"
+    instructors:[],
+    students:[]
   }
 ]
 

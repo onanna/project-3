@@ -52,7 +52,7 @@ class instructors extends Component{
                     {
                         this.state.instructors.map((current,i)=>{
                             return(
-                                <li onClick={()=>this.updateInstructor(current._id,"firstName","tester")} key={i} className="collection-item">{JSON.stringify(current)}</li>
+                                <li onClick={()=>this.updateInstructor(current._id,"lastName","tester")} key={i} className="collection-item">{JSON.stringify(current)}</li>
                             )
                         })
                     }
