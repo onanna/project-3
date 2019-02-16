@@ -5,6 +5,9 @@ const course = require("../../controllers/courseController");
 router.route("/")
     .get(course.getAll)
 
+router.route("/:courseId")
+    .post((data)=>course.addStu(data));
+
 
     
 module.exports=router;

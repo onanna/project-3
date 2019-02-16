@@ -30,8 +30,8 @@ export default {
   deleteInstructor:function(id){
     return axios.delete(`api/instructors/${id}`)
   },
-  
-// ---------------------------INSTRUCTOR FUNCTIONS---------------------------
+   
+// ---------------------------COURSE FUNCTIONS---------------------------
   //need
   getCourse:function(query){
     return axios.get(`api/courses/${query}`)
@@ -42,5 +42,11 @@ export default {
   //need
   deleteCourse:function(query){
     return axios.delete(`api/courses/${query}`)
-  }
+  },
+
+
+  
+  addStuToCourse:function(stuIds, courseId){
+    return axios.post(`/api/courses/${courseId}`,stuIds)
+  },
 };
