@@ -37,15 +37,18 @@ const courseSchema = new Schema({
     instructors: [
         { 
             type: Schema.Types.ObjectId, 
-            ref: instructor,
-            required:true
+            ref: "instructor",
+            required:true,
+            default:[]
         }
     ],
     students: [
         { 
             type: Schema.Types.ObjectId, 
-            ref: student,
-            required:true
+            ref: "student",
+            required:true,
+            default:[]
+            // unique:true
         }
     ]
     

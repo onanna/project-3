@@ -55,6 +55,16 @@ const instructorSeed = [
 
 const courseSeed=[
   {
+    name:"History",
+    startDate:new Date(),
+    endDate:new Date(),
+    startTime:"08:30PM",
+    endTime:"10:30PM",
+    location:"15 taco st. Jersey City NJ, 07109",
+    instructors:[],
+    students:[]
+  },
+  {
   name:"Biology",
   startDate:new Date(),
   endDate:new Date(),
@@ -92,7 +102,7 @@ insertStudents=()=>{
     .then(() => db.student.collection.insertMany(studentSeed))
     .then(data => {
     console.log(data)
-      console.log(data.result.n + " records inserted!");
+      console.log(data.result.n + " students inserted!");
       process.exit(0);
     })
     .catch(err => {
@@ -107,7 +117,7 @@ insertInstructors=()=>{
   .then(() => db.instructor.collection.insertMany(instructorSeed))
   .then(data => {
     console.log(data)
-    console.log(data.result.n + " records inserted!");
+    console.log(data.result.n + " instructors inserted!");
     process.exit(0);
   })
   .catch(err => {
@@ -122,7 +132,7 @@ insertCourses=()=>{
   .then(() => db.course.collection.insertMany(courseSeed))
   .then(data => {
     console.log(data)
-    console.log(data.result.n + " records inserted!");
+    console.log(data.result.n + " courses inserted!");
     process.exit(0);
   })
   .catch(err => {
@@ -131,6 +141,6 @@ insertCourses=()=>{
   });
 }
 
-insertStudents();
-insertInstructors();
+// insertStudents();
+// insertInstructors();
 insertCourses();

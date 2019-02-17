@@ -16,8 +16,25 @@ module.exports = {
     getAll:function(req,res){
         db.course.find(req.query)
         // .sort({ date: -1 })
+        .populate('students')
         .then(dbModel => res.json(dbModel))
         .catch(err => res.status(422).json(err));
+    },
+    addStu:function(studentsToAdd,courseId){
+        console.log(courseId)
+
+        
+        db.course.
+            findOne({_id:courseId},(err,course)=>{
+                if(err) throw err;
+                console.log("entered the addStu findOne bracket. studentIds length= "+studentsToAdd.length)
+                studentsToAdd.forEach(current => {
+                    course.students.push(current._id)
+                });
+                course.save();
+            })       
+       
+
     }
 
 

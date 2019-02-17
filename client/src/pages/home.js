@@ -4,18 +4,31 @@ import API from "../utils/API";
 
 class Home extends Component{
     state={
-        allCourses:[]
+        allCourses:[],
+        students:[]
     }
 
     componentDidMount(){
         this.getCourses();
+        this.getAllStudents();
     }
-
+    getAllStudents=()=>{
+        API.getAllStudents()
+            .then(res => this.setState({ students: res.data }))
+            .catch(err => console.log(err));
+    }
     getCourses=()=>{
         API.getAllCourses()
             .then(res => this.setState({allCourses:res.data}))
             .catch(err => console.log(err));
-        }
+    }
+
+    addStudentToCourse=(studentIdsToAdd,courseId)=>{
+        alert(courseId)
+        API.addStuToCourse(studentIdsToAdd,courseId)
+            .then(res=>console.log(res))
+            .catch(err => console.log(err));
+    }
    
    render(){
         return(
@@ -27,7 +40,7 @@ class Home extends Component{
                     {
                         this.state.allCourses.map((current,i)=>{
                             return(
-                                <li key={i} className="collection-item">{JSON.stringify(current)}</li>
+                                <li onClick={()=>this.addStudentToCourse(this.state.students,current._id)} key={i} className="collection-item">{JSON.stringify(current)}</li>
                             )
                         })
                     }

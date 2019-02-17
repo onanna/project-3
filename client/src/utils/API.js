@@ -45,8 +45,15 @@ export default {
   },
 
 
-  
+  //need
   addStuToCourse:function(stuIds, courseId){
     return axios.post(`/api/courses/${courseId}`,stuIds)
   },
+  //need
+  addInstToCourse:function(instIds, courseId){
+    return axios.post(`/api/courses/${courseId}`,instIds)
+  },
+  // addRosterToCourse:function(stuIds, courseId){
+  //   return axios.post(`/api/courses/${courseId}`,stuIds)
+  // },
 };

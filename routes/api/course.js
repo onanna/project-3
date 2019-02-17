@@ -6,7 +6,7 @@ router.route("/")
     .get(course.getAll)
 
 router.route("/:courseId")
-    .post((data)=>course.addStu(data));
+    .post((data)=>course.addStu(data.body,data.params.courseId));
 
 
     

@@ -25,24 +25,20 @@ class Home extends Component{
             // .then(res=>console.log("student added" + res))
             .then(this.getAllStudents())
     }
-
     updateStudent=(idOfStudentToUpdate,whatToChange,newValue)=>{
         API.updateStudent(idOfStudentToUpdate,whatToChange,newValue)
             .then(this.getAllStudents())
             .catch(err => console.log(err));
     }
-
     getAStudent=(indexOfStudentToGet)=>{
       alert( JSON.stringify( this.state.students[indexOfStudentToGet]))
       let chosen=this.state.students[indexOfStudentToGet];
     }
-
     getAllStudents=()=>{
         API.getAllStudents()
             .then(res => this.setState({ students: res.data }))
             .catch(err => console.log(err));
     }
-
     deleteStudent=(idToDelete)=>{
         console.log(idToDelete)
         API.deleteStudent(idToDelete)
