@@ -32,10 +32,7 @@ export default {
   },
    
 // ---------------------------COURSE FUNCTIONS---------------------------
-  //need
-  getCourse:function(query){
-    return axios.get(`api/courses/${query}`)
-  },
+
   getAllCourses:function(){
     return axios.get("/api/courses")
   },
@@ -43,17 +40,27 @@ export default {
   deleteCourse:function(query){
     return axios.delete(`api/courses/${query}`)
   },
-
-
-  //need
-  addStuToCourse:function(stuIds, courseId){
-    return axios.post(`/api/courses/${courseId}`,stuIds)
+  addToCourse:function(collection,dataToAdd, courseId){
+    let dataToSendToBackend={collection:collection,dataToAdd:dataToAdd}    
+    return axios.post(`/api/courses/${courseId}`,dataToSendToBackend)
   },
   //need
-  addInstToCourse:function(instIds, courseId){
-    return axios.post(`/api/courses/${courseId}`,instIds)
-  },
-  // addRosterToCourse:function(stuIds, courseId){
-  //   return axios.post(`/api/courses/${courseId}`,stuIds)
-  // },
+
+  //gonna be complicated bc can only have one .put request at this route. so all updates
+  //need to be done through one function. 
+
+  //OR I can just make
+  //courses/:collection/:id
+  //PUT - TO ADD REMOVE STUDENT
+  //GET - TO GET INDIVIDUAL 
+
+
+
+
+
+
+  // removeFromCourse:function(collection,whatToRemove,courseId){
+  //   let dataToSendToBackend={collection:collection,whatToRemove:whatToRemove}    
+  //   return axios.put(`/api/courses/${courseId}`,dataToSendToBackend)
+  // }
 };

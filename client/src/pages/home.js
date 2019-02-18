@@ -30,6 +30,18 @@ class Home extends Component{
             .then(res=>console.log(res))
             .catch(err => console.log(err));
     }
+    addToCourse=(collection,data,courseId)=>{
+        alert(collection+data+courseId)
+        API.addToCourse(collection,data,courseId)
+            .then(this.getCourses())
+            .catch(err => console.log(err));
+    }
+    removeFromCourse=(collection,data,courseId)=>{
+        alert(collection+data+courseId)
+        API.removeFromCourse(collection,data,courseId)
+            .then(this.getCourses())
+            .catch(err => console.log(err));
+    }
    
    render(){
         return(
@@ -41,7 +53,7 @@ class Home extends Component{
                     {
                         this.state.allCourses.map((current,i)=>{
                             return(
-                                <li onClick={()=>this.addStudentToCourse(this.state.students,current._id)} key={i} className="collection-item">{JSON.stringify(current)}</li>
+                                <li onClick={()=>this.removeFromCourse("students",this.state.students[1],current._id)} key={i} className="collection-item">{JSON.stringify(current)}</li>
                             )
                         })
                     }
