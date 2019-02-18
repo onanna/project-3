@@ -41,46 +41,35 @@ export default {
     return axios.post('api/courses',courseInfo);
   },
   //need
-  deleteCourse:function(id){
-    return axios.delete(`api/courses/${id}`)
+  deleteCourse:function(courseId){
+    return axios.delete(`api/courses/${courseId}`)
   },
   //need
-  updateCourse:function(id,data){
-    return axios.put(`api/courses/${id}`,data)
+  updateCourse:function(courseId,data){
+    return axios.put(`api/courses/${courseId}`,data)
   },
-  //need to deprecate
+  //need to deprecate and make addNew
   addToCourseRoster:function(collection,dataToAdd, courseId){
     let dataToSendToBackend={collection:collection,dataToAdd:dataToAdd}    
     return axios.post(`/api/courses/${courseId}`,dataToSendToBackend)
   }, 
     // --------------Student Roster Functions--------------
       //need
-      removeStudentsFromCourse:function(id,studentsToRemove){
-        return axios.put(`/api/courses/${id}/students`,studentsToRemove)
+      removeStudentsFromCourse:function(courseId,studentsToRemove){
+        return axios.put(`/api/courses/${courseId}/students`,studentsToRemove)
       },
       //need
-      addStudentsToCourse:function(id,studentsToAdd){
-        return axios.post(`/api/courses/${id}/students`,studentsToAdd)
+      addStudentsToCourse:function(courseId,studentsToAdd){
+        return axios.post(`/api/courses/${courseId}/students`,studentsToAdd)
       },
     // --------------Instructor Roster Functions--------------
       //need
-      removeInstructorsFromCourse:function(id,instructorsToRemove){
-        return axios.put(`/api/courses/${id}/instructors`,instructorsToRemove)
+      removeInstructorsFromCourse:function(courseId,instructorsToRemove){
+        return axios.put(`/api/courses/${courseId}/instructors`,instructorsToRemove)
       },
       //need
-      addInstructorsToCourse:function(id,instructorsToAdd){
-        return axios.post(`/api/courses/${id}/instructors`,instructorsToAdd)
+      addInstructorsToCourse:function(courseId,instructorsToAdd){
+        return axios.post(`/api/courses/${courseId}/instructors`,instructorsToAdd)
       },
     // ----------------------------------------------------
-
-
-//put
-//get
-//post
-//delete
-
-  // removeFromCourse:function(collection,whatToRemove,courseId){
-  //   let dataToSendToBackend={collection:collection,whatToRemove:whatToRemove}    
-  //   return axios.put(`/api/courses/${courseId}`,dataToSendToBackend)
-  // }
 };
