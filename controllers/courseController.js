@@ -14,6 +14,7 @@ module.exports = {
         })
     },
     getAll:function(req,res){
+        console.log("inside getAll function to get courses")
         db.course.find(req.query)
         // .sort({ date: -1 })
         .then(dbModel => res.json(dbModel))

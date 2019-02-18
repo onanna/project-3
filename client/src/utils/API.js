@@ -37,6 +37,7 @@ export default {
     return axios.get(`api/courses/${query}`)
   },
   getAllCourses:function(){
+    console.log("inside the getAllCourses function of src/utils/API.js")
     return axios.get("/api/courses")
   },
   //need

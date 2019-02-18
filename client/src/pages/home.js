@@ -12,6 +12,7 @@ class Home extends Component{
     }
 
     getCourses=()=>{
+        console.log("inside home.js getCourses function")
         API.getAllCourses()
             .then(res => this.setState({allCourses:res.data}))
             .catch(err => console.log(err));
