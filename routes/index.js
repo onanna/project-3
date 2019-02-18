@@ -6,7 +6,7 @@ const apiRoutes = require("./api");
 router.use("/api", apiRoutes);
 
 router.get("/",(req,res)=>{
-  console.log(res)
+  console.log("in the router.get function for index.js with ",res)
 })
 
 // If no API routes are hit, send the React app

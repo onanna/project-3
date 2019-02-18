@@ -3,11 +3,13 @@ const express = require("express");
 const mongoose = require("mongoose");
 const routes = require("./routes");
 const app = express();
-const PORT = process.env.PORT || 3001;
+// const PORT = process.env.PORT || 3001;
 
 //=====================================================
 // body parser added by Jemall for passport function
 const bodyParser = require("body-parser");
+const passport = require("passport")
+const users = require("./routes/api/users")
 //=====================================================
 
 // Define middleware here
@@ -39,10 +41,11 @@ if (process.env.NODE_ENV === "production") {
 
 
 // DB Config
-// const db = require("./config/keys").mongoURI;
-// const db = "mongodb+srv://tester:testerpassword@cluster0-dqkhu.mongodb.net/test?retryWrites=true"
+const db = require("./config/keys").mongoURI;
 
-const db = "mongodb://tester:testerpassword@cluster0-shard-00-00-dqkhu.mongodb.net:27017,cluster0-shard-00-01-dqkhu.mongodb.net:27017,cluster0-shard-00-02-dqkhu.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true"
+// const db = "mongodb://tester:testerpassword@cluster0-shard-00-00-dqkhu.mongodb.net:27017,cluster0-shard-00-01-dqkhu.mongodb.net:27017,cluster0-shard-00-02-dqkhu.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true"
+
+
 
 // Connect to MongoDB
 mongoose
@@ -52,9 +55,22 @@ mongoose
   )
   .then(() => console.log("MongoDB successfully connected"))
   .catch(err => console.log("Error connecting mongo database",err));
-const port = process.env.PORT || 5000; // process.env.port is Heroku's port if you choose to deploy the app there
-app.listen(port, () => console.log(`Server up and running on port ${port} !`));
-//=====================================================
+  
+  //=====================================================
+  //
+  // added by Jemall for passport operation
+  // Passport middleware
+  app.use(passport.initialize());
+  // Passport config
+  require("./config/passport")(passport);
+  // Routes
+  app.use("/api/users", users);
+  //
+  //=====================================================
+  
+  const port = process.env.PORT || 3001; // process.env.port is Heroku's port if you choose to deploy the app there
+  app.listen(port, () => console.log(`🌎  ==> API Server now up and running on port ${port} !`));
+  //=====================================================
 
   
 
