@@ -37,27 +37,47 @@ export default {
     return axios.get("/api/courses")
   },
   //need
-  deleteCourse:function(query){
-    return axios.delete(`api/courses/${query}`)
-  },
-  addToCourse:function(collection,dataToAdd, courseId){
-    let dataToSendToBackend={collection:collection,dataToAdd:dataToAdd}    
-    return axios.post(`/api/courses/${courseId}`,dataToSendToBackend)
+  addCourse:function(courseInfo){
+    return axios.post('api/courses',courseInfo);
   },
   //need
+  deleteCourse:function(id){
+    return axios.delete(`api/courses/${id}`)
+  },
+  //need
+  updateCourse:function(id,data){
+    return axios.put(`api/courses/${id}`,data)
+  },
+  //need to deprecate
+  addToCourseRoster:function(collection,dataToAdd, courseId){
+    let dataToSendToBackend={collection:collection,dataToAdd:dataToAdd}    
+    return axios.post(`/api/courses/${courseId}`,dataToSendToBackend)
+  }, 
+    // --------------Student Roster Functions--------------
+      //need
+      removeStudentsFromCourse:function(id,studentsToRemove){
+        return axios.put(`/api/courses/${id}/students`,studentsToRemove)
+      },
+      //need
+      addStudentsToCourse:function(id,studentsToAdd){
+        return axios.post(`/api/courses/${id}/students`,studentsToAdd)
+      },
+    // --------------Instructor Roster Functions--------------
+      //need
+      removeInstructorsFromCourse:function(id,instructorsToRemove){
+        return axios.put(`/api/courses/${id}/instructors`,instructorsToRemove)
+      },
+      //need
+      addInstructorsToCourse:function(id,instructorsToAdd){
+        return axios.post(`/api/courses/${id}/instructors`,instructorsToAdd)
+      },
+    // ----------------------------------------------------
 
-  //gonna be complicated bc can only have one .put request at this route. so all updates
-  //need to be done through one function. 
 
-  //OR I can just make
-  //courses/:collection/:id
-  //PUT - TO ADD REMOVE STUDENT
-  //GET - TO GET INDIVIDUAL 
-
-
-
-
-
+//put
+//get
+//post
+//delete
 
   // removeFromCourse:function(collection,whatToRemove,courseId){
   //   let dataToSendToBackend={collection:collection,whatToRemove:whatToRemove}    

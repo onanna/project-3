@@ -32,7 +32,7 @@ class Home extends Component{
     }
     addToCourse=(collection,data,courseId)=>{
         alert(collection+data+courseId)
-        API.addToCourse(collection,data,courseId)
+        API.addToCourseRoster(collection,data,courseId)
             .then(this.getCourses())
             .catch(err => console.log(err));
     }
