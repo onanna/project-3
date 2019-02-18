@@ -5,12 +5,20 @@ import API from "../utils/API";
 class Home extends Component{
     state={
         allCourses:[],
-        students:[]
+        students:[],
+        instructors:[]
     }
 
     componentDidMount(){
         this.getCourses();
         this.getAllStudents();
+        this.getInstructors();
+    }
+    
+    getInstructors=()=>{
+        API.getInstructors()
+            .then(res => this.setState({ instructors: res.data }))
+            .catch(err => console.log(err));
     }
     getAllStudents=()=>{
         API.getAllStudents()
@@ -24,23 +32,76 @@ class Home extends Component{
             .catch(err => console.log(err));
     }
 
-    addStudentToCourse=(studentIdsToAdd,courseId)=>{
-        alert(courseId)
-        API.addStuToCourse(studentIdsToAdd,courseId)
-            .then(res=>console.log(res))
+
+    addNewCourse=(courseObject)=>{
+        // let testCourse={
+        //     name:"newCdfourse2",
+        //     startDate:new Date(),
+        //     endDate: new Date(),
+        //     startTime:"no",
+        //     endTime:"10pm",
+        //     location:"heyyy at newark nj",
+        //     instructors:[],
+        //     students:[]
+        // }
+
+        API.addCourse(courseObject)
+            .then( this.getCourses())
             .catch(err => console.log(err));
     }
-    addToCourse=(collection,data,courseId)=>{
-        alert(collection+data+courseId)
-        API.addToCourseRoster(collection,data,courseId)
+    deleteCourse=(courseId)=>{
+        API.deleteCourse(courseId)
             .then(this.getCourses())
             .catch(err => console.log(err));
     }
-    removeFromCourse=(collection,data,courseId)=>{
-        alert(collection+data+courseId)
-        API.removeFromCourse(collection,data,courseId)
+    updateCourse=(courseId,whatToChange,newValue)=>{
+        //validate
+
+        API.updateCourse(courseId,whatToChange,newValue)
             .then(this.getCourses())
             .catch(err => console.log(err));
+    }
+
+
+
+    addStudentsToCourse=(courseId,studentsToAdd)=>{
+        let arrayToSend = this.arrayPassOrMake(studentsToAdd);
+        API.addStudentsToCourse(courseId,arrayToSend)
+            .then(this.getCourses())
+            .catch(err => console.log(err));
+    }
+    removeStudentsFromCourse=(courseId,studentsToRemove)=>{
+        let arrayToSend = this.arrayPassOrMake(studentsToRemove);
+        API.removeStudentsFromCourse(courseId,arrayToSend)
+            .then(this.getCourses())
+            .catch(err => console.log(err));
+    }
+    addInstructorsToCourse=(courseId,instructorsToAdd)=>{
+        alert(instructorsToAdd)
+        let arrayToSend = this.arrayPassOrMake(instructorsToAdd);
+        alert("sending the array "+JSON.stringify(arrayToSend))
+        API.addInstructorsToCourse(courseId,instructorsToAdd)
+            .then(this.getCourses())
+            .catch(err => console.log(err));
+    }
+    removeInstructorsFromCourse=(courseId,instructorsToRemove)=>{
+        let arrayToSend = this.arrayPassOrMake(instructorsToRemove);
+        alert("what to delete: "+JSON.stringify(arrayToSend))
+        API.removeInstructorsFromCourse(courseId,arrayToSend)
+            .then(this.getCourses())
+            .catch(err => console.log(err));
+    }
+   
+
+    arrayPassOrMake=(data)=>{
+        let arrayToReturn=[];
+
+        Array.isArray(data)?
+        arrayToReturn=data
+        :
+        arrayToReturn.push(data);
+
+        return arrayToReturn
     }
    
    render(){
@@ -53,7 +114,8 @@ class Home extends Component{
                     {
                         this.state.allCourses.map((current,i)=>{
                             return(
-                                <li onClick={()=>this.removeFromCourse("students",this.state.students[1],current._id)} key={i} className="collection-item">{JSON.stringify(current)}</li>
+                                // <li onClick={()=>this.addToCourse("students",this.state.students,current._id)} key={i} className="collection-item">{JSON.stringify(current)}</li>
+                                <li onClick={()=>this.addInstructorsToCourse(current._id,this.state.instructors[0])} key={i} className="collection-item">{JSON.stringify(current)}</li>           
                             )
                         })
                     }

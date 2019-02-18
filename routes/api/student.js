@@ -14,7 +14,7 @@ router.route("/:id")
   })
   .put((req,res)=>{
     let {newValue,whatToChange} = req.body[0]
-
+    //need to validate
     let filter={_id:req.params.id}
     let update={[whatToChange]:newValue}
     

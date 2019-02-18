@@ -6,7 +6,7 @@ validateEmail = (email)=>{
     return re.test(email)
 };
 
-const stuSchema = new Schema({
+const userSchema = new Schema({
     firstName:{
         type: String,
         required:true,
@@ -25,20 +25,23 @@ const stuSchema = new Schema({
         validate: [validateEmail, 'Please fill a valid email address'],
         match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address']
     },
-    currentlyEnrolled:[{
-        type: Schema.Types.ObjectId, 
-        ref: "course",
+    userName:{
+        trim:true,
+        unique:true,
+        type:String,
+        required: true,
+        minlength:3
+    },
+    password:{
+        trim:true,
+        type:String,
         required:true,
-    }],
-    pastCourses:[{
-        type: Schema.Types.ObjectId, 
-        ref: "course",
-        required:true
-    }]
+        minlength:2
+    },
 
-},{ collection : 'students' });
+},{ collection : 'users' });
 
 
 //look here for image info https://stackoverflow.com/questions/46631906/how-to-upload-save-and-show-pictures-with-mongoose-express-angular-4-and-nodejs 
-const student = mongoose.model("student", stuSchema);
-module.exports = student;
+const user = mongoose.model("user", userSchema);
+module.exports = user;

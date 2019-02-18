@@ -8,7 +8,8 @@ const courseSchema = new Schema({
     name:{
         type:String,
         required:true,
-        trim:true
+        trim:true,
+        unique:true
     }, 
     
     startDate:{
@@ -39,7 +40,7 @@ const courseSchema = new Schema({
             type: Schema.Types.ObjectId, 
             ref: "instructor",
             required:true,
-            unique:true
+            // unique:true
         }
     ],
     students: [
@@ -47,7 +48,7 @@ const courseSchema = new Schema({
             type: Schema.Types.ObjectId, 
             ref: "student",
             required:true,
-            unique:true
+            // unique:true
         }
     ]
     

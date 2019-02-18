@@ -4,50 +4,40 @@ const course = require("../../controllers/courseController");
 //matches with "/api/courses" 
 router.route("/")
     .get(course.getAll)
-    //.post(course.new)
-
+    .post(course.new)
 
 router.route("/:courseId")
-    .post((data)=>{
-        let {collection,dataToAdd,courseId}=data
-        course.add(collection,dataToAdd,courseId)
-    })
-    .delete((data)=>{
-        //course.delete
-    })
-    .put((data)=>{
-        // course.update
+    .delete((req)=>course.delete(req.params.courseId))
+    .put((req)=>{
+        let {whatToChange,newValue}=req.body
+        let update={[whatToChange]:newValue}
+        course.update(req.params.courseId,update)
     });
 
 router.route("/:courseId/:roster")
     .post((data)=>{
         switch(data.params.roster){
-            case "students": course.addStudents()
+            case "students": 
+                course.addToRoster(data.params.courseId,"students",data.body)
             break;
 
-            case "instructors":course.addInstructors()
+            case "instructors":
+                course.addToRoster(data.params.courseId,"instructors",data.body)
             break;
-
-            default:
-            break
         }
     })
     .put((data)=>{
           switch(data.params.roster){
             case "students":
-                course.removeStudents();
+                // console.log("data.params.courseId="+data.params.courseId)
+                // console.log("data.body="+JSON.stringify(data.body))
+                course.removeFromRoster(data.params.courseId,'students',data.body);
             break;
 
-            case "instructors":course.removeInstructors();
+            case "instructors":
+                course.removeFromRoster(data.params.courseId,'instructors',data.body);                
             break;
-
-            default:
-            break
         }
     });
 
-
-
-
-    
 module.exports=router;
