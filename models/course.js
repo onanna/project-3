@@ -39,7 +39,7 @@ const courseSchema = new Schema({
             type: Schema.Types.ObjectId, 
             ref: "instructor",
             required:true,
-            default:[]
+            // default:[]
         }
     ],
     students: [
@@ -47,7 +47,7 @@ const courseSchema = new Schema({
             type: Schema.Types.ObjectId, 
             ref: "student",
             required:true,
-            default:[]
+            // default:[]
             // unique:true
         }
     ]

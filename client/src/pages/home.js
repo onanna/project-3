@@ -18,6 +18,7 @@ class Home extends Component{
             .catch(err => console.log(err));
     }
     getCourses=()=>{
+        console.log("about to get all courses in home.js")
         API.getAllCourses()
             .then(res => this.setState({allCourses:res.data}))
             .catch(err => console.log(err));

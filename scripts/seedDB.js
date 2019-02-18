@@ -141,6 +141,6 @@ insertCourses=()=>{
   });
 }
 
-// insertStudents();
-// insertInstructors();
+insertStudents();
+insertInstructors();
 insertCourses();
