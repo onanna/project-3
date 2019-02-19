@@ -5,7 +5,7 @@ const courseRoutes = require("./course");
 
 //this is where we tell the code which router to use for which routes
 
-// Book routes
+// API routes
 router.use("/students",studentRoutes);
 router.use("/instructors",instructorRoutes);
 router.use("/courses",courseRoutes);
