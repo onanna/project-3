@@ -9,23 +9,23 @@ const studentSeed = [
   {
     firstName:"Tony",
     lastName:"See",
-    userName:"veryFirst",
     email:"someemail@gmail.com",
-    password:"nope"
+    currentlyEnrolled:[],
+    pastCourses:[]
   },
   {
     firstName:"David",
     lastName:"jack",
-    userName:"secondUser",
     email:"someOtheremail@yahoo.com",
-    password:"hello"
+    currentlyEnrolled:[],
+    pastCourses:[]
   },
   {
     firstName:"Sallie",
     lastName:"Mae",
-    userName:"highlyInterested",
     email:"notbroke@aol.com",
-    password:"tester"
+    currentlyEnrolled:[],
+    pastCourses:[]
   },      
 ];
 
@@ -33,23 +33,23 @@ const instructorSeed = [
   {
     firstName:"First",
     lastName:"Instructor",
-    userName:"veryFirst",
     email:"something@gmail.com",
-    password:"nope"
+    currentlyTeaching:[],
+    pastCourses:[]
   },
   {
     firstName:"numbah",
     lastName:"two",
-    userName:"secondUser",
     email:"someOtherthing@yahoo.com",
-    password:"hello"
+    currentlyTeaching:[],
+    pastCourses:[]
   },
   {
     firstName:"Noel",
     lastName:"Holiday",
-    userName:"HappyGuy",
     email:"nice@aol.com",
-    password:"tester"
+    currentlyTeaching:[],
+    pastCourses:[]
   },
 ];
 
@@ -86,14 +86,91 @@ const courseSeed=[
   }
 ]
 
+const userSeed=[
+  {
+    firstName:"first",
+    lastName:"last",
+    email:"1as@gmail.com",
+    userName:"user1",
+    password:"test1"
+  },
+  {
+    firstName:"yuiy",
+    lastName:"asdf",
+    email:"fdf@yahoo.com",
+    userName:"user2",
+    password:"test2"
+  },
+  {
+    firstName:"sssss",
+    lastName:"fffd",
+    email:"afsdf@aol.com",
+    userName:"user3",
+    password:"test3"
+  },
+]
+// insertStudents=()=>{
+//   db.student
+//     .remove({})
+//     .then(() => db.student.collection.insertMany(studentSeed))
+//     .then(data => {
+//       console.log(data.result.n + " students inserted!");
+//       process.exit(0);
+//     })
+//     .catch(err => {
+//       console.error(err);
+//       process.exit(1);
+//     });
+// }
+
+// insertInstructors=()=>{
+//   db.instructor
+//   .remove({})
+//   .then(() => db.instructor.collection.insertMany(instructorSeed))
+//   .then(data => {
+//     console.log(data.result.n + " instructors inserted!");
+//     process.exit(0);
+//   })
+//   .catch(err => {
+//     console.error(err);
+//     process.exit(1);
+//   });
+// }
+
+// insertCourses=()=>{
+//   db.course
+//   .remove({})
+//   .then(() => db.course.collection.insertMany(courseSeed))
+//   .then(data => {
+//     console.log(data.result.n + " courses inserted!");
+//     process.exit(0);
+//   })
+//   .catch(err => {
+//     console.error(err);
+//     process.exit(1);
+//   });
+// }
+
+// insertUsers=()=>{
+//   db.user
+//   .remove({})
+//   .then(() => db.user.collection.insertMany(userSeed))
+//   .then(data => {
+//     console.log(data.result.n + " users inserted!");
+//     process.exit(0);
+//   })
+//   .catch(err => {
+//     console.error(err);
+//     process.exit(1);
+//   });
+// }
+
 insertStudents=()=>{
   db.student
     .remove({})
     .then(() => db.student.collection.insertMany(studentSeed))
     .then(data => {
-    console.log(data)
-      console.log(data.result.n + " records inserted!");
-      process.exit(0);
+      insertInstructors();
     })
     .catch(err => {
       console.error(err);
@@ -106,9 +183,7 @@ insertInstructors=()=>{
   .remove({})
   .then(() => db.instructor.collection.insertMany(instructorSeed))
   .then(data => {
-    console.log(data)
-    console.log(data.result.n + " records inserted!");
-    process.exit(0);
+    insertCourses();
   })
   .catch(err => {
     console.error(err);
@@ -121,8 +196,20 @@ insertCourses=()=>{
   .remove({})
   .then(() => db.course.collection.insertMany(courseSeed))
   .then(data => {
-    console.log(data)
-    console.log(data.result.n + " records inserted!");
+    insertUsers();
+  })
+  .catch(err => {
+    console.error(err);
+    process.exit(1);
+  });
+}
+
+insertUsers=()=>{
+  db.user
+  .remove({})
+  .then(() => db.user.collection.insertMany(userSeed))
+  .then(data => {
+    console.log(data.result.n + " users inserted!");
     process.exit(0);
   })
   .catch(err => {
@@ -131,6 +218,40 @@ insertCourses=()=>{
   });
 }
 
+// insertCourses();
 insertStudents();
-insertInstructors();
-insertCourses();
+// insertInstructors();
+// insertUsers();
+
+// insertSeeds();
+
+  // insertSeeds=()=>{
+  //   db.student.remove({})
+  //   .then(
+  //     db.student.collection.insertMany(courseSeed)
+  //   )
+  
+  //   db.instructor.remove({})
+  //   .then(
+  //     db.instructor.collection.insertMany(instructorSeed)
+  //   )
+  
+  //   db.course.remove({})
+  //   .then(
+  //     db.course.collection.insertMany(courseSeed)
+  //   )
+  //     // .then(() => {
+  //     //   console.log("supposedly all collections have been removed")
+  //     //   db.student.collection.insertMany(studentSeed)
+  //     // }) 
+  //     // .then(()=>{
+  //     //   db.instructor.collection.insertMany(instructorSeed)
+  //     // })
+  //     // .then(()=>{
+  //     //   db.course.collection.insertMany(courseSeed)
+  //     // })
+  //     // .catch(err => {
+  //     //   console.error(err);
+  //     //   process.exit(1);
+  //     // });
+  // }

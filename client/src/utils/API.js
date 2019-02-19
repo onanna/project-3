@@ -30,17 +30,35 @@ export default {
   deleteInstructor:function(id){
     return axios.delete(`api/instructors/${id}`)
   },
-  
-// ---------------------------INSTRUCTOR FUNCTIONS---------------------------
-  //need
-  getCourse:function(query){
-    return axios.get(`api/courses/${query}`)
-  },
+   
+// ---------------------------COURSE FUNCTIONS---------------------------
+
   getAllCourses:function(){
     return axios.get("/api/courses")
   },
-  //need
-  deleteCourse:function(query){
-    return axios.delete(`api/courses/${query}`)
-  }
+  addCourse:function(courseInfo){
+    return axios.post('api/courses',courseInfo);
+  },
+  deleteCourse:function(courseId){
+    return axios.delete(`api/courses/${courseId}`)
+  },
+  updateCourse:function(courseId,whatToChange,newValue){
+    let data={whatToChange:whatToChange,newValue:newValue}
+    return axios.put(`api/courses/${courseId}`,data)
+  },
+    // --------------Student Roster Functions--------------
+      removeStudentsFromCourse:function(courseId,studentsToRemove){
+        return axios.put(`/api/courses/${courseId}/students`,studentsToRemove)
+      },
+      addStudentsToCourse:function(courseId,studentsToAdd){
+        return axios.post(`/api/courses/${courseId}/students`,studentsToAdd)
+      },
+    // --------------Instructor Roster Functions--------------
+      removeInstructorsFromCourse:function(courseId,instructorsToRemove){
+        return axios.put(`/api/courses/${courseId}/instructors`,instructorsToRemove)
+      },
+      addInstructorsToCourse:function(courseId,instructorsToAdd){
+        return axios.post(`/api/courses/${courseId}/instructors`,instructorsToAdd)
+      },
+    // ----------------------------------------------------
 };
