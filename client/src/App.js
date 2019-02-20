@@ -6,6 +6,7 @@ import InstDirectory from "./pages/instructorDirectory"
 import StuDirectory from "./pages/studentDirectory";
 import Home from "./pages/home"
 import "./App.css";
+import Course from "./components/savedCourse/savedCourse";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
             <Route exact path="/students" component={StuDirectory} />
             <Route exact path="/instructors" component={InstDirectory} />
             <Route  exact path="/newcourse" component={Newcourse}  />
+            <Route exact path="/savedCourse" component={Course} />
           </Switch>
         </div>
       </Router>
