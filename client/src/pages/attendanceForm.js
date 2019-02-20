@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import Pagecontainer from "../components/pageContainer/index"
 import SubmitButton from "../components/submitButton"
 import {Row, Col, Input} from 'react-materialize';
-import API from "../utils/API"
+import API from "../utils/API";
+import Header from "../components/h1withDivider"
 
 class attendanceForm extends Component{
     state={
@@ -94,8 +95,9 @@ class attendanceForm extends Component{
     render(){
         return(
             <Pagecontainer>
-                <h1 className="attendance-header center-align">{this.state.course.name}</h1>
-                <div className="divider"></div>
+                {/* <h1 className="attendance-header center-align">{this.state.course.name}</h1>
+                <div className="divider"></div> */}
+                <Header align="center-align">attendance</Header>
                 <h4 className="attendanceDate center-align">March 6th, 2019</h4>
                 <div className="divider"></div>
                 {
