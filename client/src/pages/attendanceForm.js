@@ -95,7 +95,8 @@ class attendanceForm extends Component{
         return(
             <Pagecontainer>
                 <h1 className="attendance-header center-align">{this.state.course.name}</h1>
-                <h4 className="attendanceDate center-align">{JSON.stringify(this.state.date)}</h4>
+                <div className="divider"></div>
+                <h4 className="attendanceDate center-align">March 6th, 2019</h4>
                 <div className="divider"></div>
                 {
                     this.state.course.students.map((current,i)=>{
