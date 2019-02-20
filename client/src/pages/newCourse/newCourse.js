@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import "./newcourse.css";
-import Newinstructor from "../newinstructor/Newinstructor."
-import PageContainer from "../pageContainer/index"
+import "./style.css";
+import Newinstructor from "../../components/newInstructorForm/newInstructorForm"
+import PageContainer from "../../components/pageContainer";
+
 class Newcourse extends Component {
   // Setting the component's initial state
   state = {

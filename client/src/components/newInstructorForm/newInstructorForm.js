@@ -1,6 +1,6 @@
 
 import React, { Component } from "react";
-import "./newinstructor.css";
+import "./style.css";
 
 
 
@@ -34,12 +34,6 @@ class Newinstructor extends Component {
     console.log(this.state)
 };
 
-
-  
-
-  
-
- 
 
   render() {
   

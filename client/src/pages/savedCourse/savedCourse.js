@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import "./savedCourse.css";
-import PageContainer from "../pageContainer";
+import "./style.css";
+import PageContainer from "../../components/pageContainer";
 import {Col,Card,CardTitle} from "react-materialize";
 
 

@@ -1,12 +1,14 @@
 import React from "react";
-import Newcourse from "./components/newcourse/newcourse"
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Sidenav from "./components/sidenav/sidenav";
+import "./App.css";
+
+import Home from "./pages/home"
+import NewCourse from "./pages/newCourse/newCourse"
 import InstDirectory from "./pages/instructorDirectory"
 import StuDirectory from "./pages/studentDirectory";
-import Home from "./pages/home"
-import "./App.css";
-import Course from "./components/savedCourse/savedCourse";
+import Course from "./pages/savedCourse/savedCourse";
+import NewInstructor from "./components/newInstructorForm/newInstructorForm";
 
 function App() {
   return (
@@ -17,8 +19,9 @@ function App() {
             <Route exact path="/" component={Home} />
             <Route exact path="/students" component={StuDirectory} />
             <Route exact path="/instructors" component={InstDirectory} />
-            <Route  exact path="/newcourse" component={Newcourse}  />
-            <Route exact path="/savedCourse" component={Course} />
+            <Route exact path="/newcourse" component={NewCourse}  />
+            <Route exact path="/newinstructorform" component={NewInstructor}  />
+            <Route exact path="/savedcourse" component={Course} />
           </Switch>
         </div>
       </Router>
