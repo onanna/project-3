@@ -4,7 +4,7 @@ import "./style.css";
 
 export default function pageContainer({children}){
     return(
-        <Row className="page-container container">
+        <Row className="page-container">
             <Col s={12}>
 
                 {children}
