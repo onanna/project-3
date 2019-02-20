@@ -33,20 +33,21 @@ class attendanceForm extends Component{
                     "pastCourses" : []
                 },
                 {
-                    "_id" : "5c6b731193c50c39a88c50b4",
-                    "firstName" : "Tony",
-                    "lastName" : "See",
-                    "email" : "someemail@gmail.com",
+                    "_id" : "5c6c8a180cc6804a0c2bc7c4",
+                    "firstName" : "Sallie",
+                    "lastName" : "Mae",
+                    "email" : "notbroke@aol.com",
                     "currentlyEnrolled" : [],
                     "pastCourses" : []
                 },
                 {
-                    "_id" : "5c6b731193c50c39a88c50b5",
-                    "firstName" : "David",
-                    "lastName" : "jack",
-                    "email" : "someOtheremail@yahoo.com",
+                    "_id" : "5c6c8a51644de70730c1d9aa",
                     "currentlyEnrolled" : [],
-                    "pastCourses" : []
+                    "pastCourses" : [],
+                    "firstName" : "new",
+                    "lastName" : "stude22nt!",
+                    "email" : "funtsfimes2@gmail.com",
+                    "__v" : 0
                 }
             ]
         },
@@ -59,19 +60,43 @@ class attendanceForm extends Component{
     componentDidMount(){
     }
 
-    handleAttendanceToggle(){
+    handleAttendanceToggle(stuId){
+        console.log(stuId)
+        let tempStudents=this.state.studentsinAttendance;
+
+        if(tempStudents.includes(stuId)){
+            let indexToRemove = tempStudents.indexOf(stuId)
+            if (indexToRemove != -1) {
+                tempStudents.splice(indexToRemove, 1);
+            }
+        }else{
+            tempStudents.push(stuId)
+        };
+
+        this.setState({studentsinAttendance:tempStudents})
+        console.log(this.state.studentsinAttendance)
         //update state everytime one is toggled to prepare for send to backend
     }
 
     sendAttendanceForm(){
-        alert("send form now")
-        //API.sendAttendance --> axios.post(/course-attendance/courseId/date)
+        
+        let data={
+            course:this.state.course._id,
+            inAttendance:this.state.studentsinAttendance,
+            date: this.state.date
+        }
+
+        alert("send form now"+JSON.stringify(data))
+        API.sendAttendance(data); 
+        // API.signedTest(data);     
     }
 
     render(){
         return(
             <Pagecontainer>
-                <h1 className="attendance-header center-align">Students in this Class</h1>
+                <h1 className="attendance-header center-align">{this.state.course.name}</h1>
+                <h4 className="attendanceDate center-align">{JSON.stringify(this.state.date)}</h4>
+                <div className="divider"></div>
                 {
                     this.state.course.students.map((current,i)=>{
                         return(
@@ -82,7 +107,7 @@ class attendanceForm extends Component{
                                 <Col s={4}>
                                     <div className="switch right-align">
                                         <label>
-                                            <input type="checkbox" />
+                                            <input onInput={()=>this.handleAttendanceToggle(current._id)} type="checkbox" />
                                             <span className="lever"></span>
                                         </label>
                                     </div>

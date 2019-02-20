@@ -3,8 +3,15 @@
     margin:0 10%;
 }
 
+.divider{
+    margin: 40px 0;
+}
+
 .attendance-header{
     color:#448aff ;
+}
+.attendanceDate{
+    color:#bdbdbd;
 }
 .switch label input[type=checkbox]:checked+.lever{
     background-color: #448aff ;

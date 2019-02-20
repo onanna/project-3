@@ -1,4 +1,5 @@
 import axios from "axios";
+import signed from 'signed';
 
 export default {
 // ---------------------------STUDENT FUNCTIONS---------------------------
@@ -60,5 +61,19 @@ export default {
       addInstructorsToCourse:function(courseId,instructorsToAdd){
         return axios.post(`/api/courses/${courseId}/instructors`,instructorsToAdd)
       },
-    // ----------------------------------------------------
+  // --------------Attendance Routes--------------
+  sendAttendance:function(data){
+    return axios.post(`course-attendance/${data.course}`,data)
+  },
+  signedTest:function(data){
+    // const signature = signed({
+    //   secret: 'secret string'
+    // });
+
+
+    // const signedUrl = signature.sign(`course-attendance/${data.course}`);
+    // console.log(signedUrl);
+    // return axios.post(signedUrl,data)
+  }
+
 };

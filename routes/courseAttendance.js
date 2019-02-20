@@ -8,10 +8,11 @@ router.route("/")
         console.log(data)
     });
 
-router.route("/:id")
+router.route("/:courseId")
     .post((req,res)=>{
-        // console.log(req.params.id)
-        return (req.body)
+        console.log(req.params.courseId)
+        console.log(req.body)
+        res.json(req.body)
     })
     .delete((req,res)=>{
         
