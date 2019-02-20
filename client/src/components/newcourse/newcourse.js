@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import "./newcourse.css";
-import "react-datepicker/dist/react-datepicker.css";
 import Newinstructor from "../newinstructor/Newinstructor."
 import PageContainer from "../pageContainer/index"
 class Newcourse extends Component {
