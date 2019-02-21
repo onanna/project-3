@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Pagecontainer from "../components/pageContainer"
 import API from "../utils/API";
+import Header from "../components/h1withDivider"
 
 class Home extends Component{
     state={
