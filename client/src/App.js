@@ -17,8 +17,8 @@ function App() {
           <Sidenav />
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route exact path="/students" component={StuDirectory} />
-            <Route exact path="/instructors" component={InstDirectory} />
+            <Route exact path="/api/students" component={StuDirectory} />
+            <Route exact path="/api/instructors" component={InstDirectory} />
             <Route exact path="/newcourse" component={NewCourse}  />
             <Route exact path="/newinstructorform" component={NewInstructor}  />
             <Route exact path="/savedcourse" component={Course} />
