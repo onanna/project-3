@@ -7,7 +7,12 @@ router.route("/")
     .post(course.new)
 
 router.route("/:courseId")
-    .delete((req)=>course.delete(req.params.courseId))
+    .delete((req,res)=>{
+        course.delete(req.params.courseId)
+        .then((response)=>res.json(response))
+        .catch(res=>console.log(res))
+        // console.log("heres the response" + res)
+    })
     .put((req)=>{
         let {whatToChange,newValue}=req.body
         let update={[whatToChange]:newValue}
