@@ -11,7 +11,7 @@ class Course extends Component {
         return(
             <PageContainer>
 
-                <h1>Courses</h1>
+                <h1>Courses2</h1>
 
                 <Col m={7} s={12}>
                     <Card horizontal header={<CardTitle></CardTitle>}>
