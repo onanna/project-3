@@ -76,15 +76,41 @@ class attendanceForm extends Component{
 
         this.setState({studentsinAttendance:tempStudents})
         console.log(this.state.studentsinAttendance)
-        //update state everytime one is toggled to prepare for send to backend
+    }
+
+    makeRecord=(student,attendance)=>{
+        return {
+            student:student._id,
+            inAttendance: attendance
+        }
     }
 
     sendAttendanceForm(){
         
+        // let data={
+        //     course:this.state.course._id,
+        //     inAttendance:this.state.studentsinAttendance,
+        //     date: this.state.date
+        // }
+        let studentRoster=this.state.course.students
+        let inAttendance= this.state.studentsinAttendance
+
+        let records =[]
+
+        let inClassOrNot;
+        studentRoster.forEach((current,i)=>{
+            if(inAttendance.includes(current._id)){
+                inClassOrNot=true;
+            }else{
+                inClassOrNot=false;                
+            }
+            records.push(this.makeRecord(current,inClassOrNot));
+        })
+
         let data={
             course:this.state.course._id,
-            inAttendance:this.state.studentsinAttendance,
-            date: this.state.date
+            date: this.state.date,
+            students:records,
         }
 
         alert("send form now"+JSON.stringify(data))
