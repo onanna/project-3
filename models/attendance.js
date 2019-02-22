@@ -23,8 +23,15 @@ const attendanceSchema = new Schema({
     },
     students:[
         {
-          type:Object,
-          unique:true
+            student:{
+                type:Schema.Types.ObjectId,
+                ref:'student',
+                require:true
+            },
+            inAttendance:{
+                type:Boolean,
+                require:true
+            }
         }
     ]
 },{ collection : 'attendance' });

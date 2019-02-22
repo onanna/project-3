@@ -50,6 +50,13 @@ const courseSchema = new Schema({
             required:true,
             // unique:true
         }
+    ],
+    attendanceRecords:[
+        { 
+            type: Schema.Types.ObjectId, 
+            ref: "attendance",
+            required:true,
+        }
     ]
     
 },{collection:"courses"})

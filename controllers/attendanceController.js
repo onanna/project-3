@@ -13,13 +13,42 @@ module.exports = {
      
     },
     new:function(data){
-        db.attendRecord.create(data.students[0])
-        // db.attendance.create(data)
+        // let attendRecords = []
+        // for(let i=0;i<data.students.length;i++){
+        //     db.attendRecord.create(data.students[i])
+        //     .then(result =>{
+        //         console.log("new record is "+result)
+        //         attendRecords.push(result)
+        //         if(i===data.students.length-1){
+        //             db.attendance.create({
+        //                 course:data.course,
+        //                 date:data.date,
+        //                 students:attendRecords
+        //             })
+        //             .then(result=>{
+        //                 console.log(`congrats on adding a record!: ${result}`)
+        //             })
+        //             .catch(error=>{
+        //                 console.log(`you tried adding an attendance object, but it's invalid: ${error}`)
+        //             })
+        //         }
+        //     })
+        //     .catch(error=>{
+        //         console.log(error)
+        //     })
+        // }
+        db.attendance.create(data)
         .then(result=>{
-            console.log(`congrats on adding a record!: ${result}`)
+            console.log(`congrats on adding an attendance object!: ${result}`)
+            let course =data.course;
+            console.log("course to update is "+course)
+            db.course.findByIdAndUpdate(course,{$addToSet:{"attendanceRecords":result}})
+            .then(result=>{
+                console.log("result of attendance in course is "+result)
+            })
         })
         .catch(error=>{
-            console.log(`you tried adding a record, but it's invalid: ${error}`)
+            console.log(`you tried adding an attendance object, but it's invalid: ${error}`)
         })
     },
     getAll:function(req,res){

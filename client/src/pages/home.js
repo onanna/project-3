@@ -31,6 +31,12 @@ class Home extends Component{
             .then(res => this.setState({allCourses:res.data}))
             .catch(err => console.log(err));
     }
+    getACourse=(courseId)=>{
+        console.log("about to get all courses in home.js")
+        API.getACourse(courseId)
+            .then(res => this.setState({allCourses:res.data}))
+            .catch(err => console.log(err));
+    }
 
 
     addNewCourse=(courseObject)=>{
