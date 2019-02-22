@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import "./newcourse.css";
-import "react-datepicker/dist/react-datepicker.css";
-import Newinstructor from "../newinstructor/Newinstructor."
-import PageContainer from "../pageContainer/index"
+import "./style.css";
+import Newinstructor from "../../components/newInstructorForm/newInstructorForm"
+import PageContainer from "../../components/pageContainer";
+import API from "../../utils/API"
 class Newcourse extends Component {
   // Setting the component's initial state
   state = {
@@ -13,26 +13,55 @@ class Newcourse extends Component {
     spotsLeft:2
   };
   
+  componentDidMount=()=>{
+  }
 
-  handleInputChange = event => {
+  handleDateChange = (newValue) => {
     // Getting the value and name of the input which triggered the change
-    const { name, value } = event.target;
+    // const { name, value } = event.target;
+
+    // console.log(newValue)
+    let x = document.getElementsByClassName("datepicker")
+    console.log(x.value);
 
     // Updating the input's state
-    this.setState({
-      [name]: value
-    });
+    // this.setState({
+    //   [name]: value
+    // });
   };
 
   handleFormSubmit = event => {
     // Preventing the default behavior of the form submit (which is to refresh the page)
     event.preventDefault();
 
-    // Alert the user their first and last name, clear `this.state.firstName` and `this.state.lastName`, clearing the inputs
-    alert(`A course titled ${this.state.course} \n  and is scheduled for ${this.state.startDate}  \n Located at ${this.state.location}
-     with ${this.state.numberofAvailablespots} spots available `);
+    let x = document.getElementsByClassName("datepicker")
+    let dateChosen = x[0].value;
+    console.log(dateChosen)
+    this.setState({
+      startDate:dateChosen
+    })
 
-    console.log(this.state)
+    let dataToSend={
+      name:"someNamsdfe",
+      numberOfSeats:20,
+      startDate: new Date(),
+      endDate: 48,
+      startTime: "some time",
+      endTime: "end time",
+      location:"some address",
+      instructors:[],
+      students:[]
+    }
+
+    //add validation
+
+
+    API.addCourse(dataToSend)
+
+    // // Alert the user their first and last name, clear `this.state.firstName` and `this.state.lastName`, clearing the inputs
+    // alert(`A course titled ${this.state.course} \n  and is scheduled for ${this.state.startDate}  \n Located at ${this.state.location}
+    //  with ${this.state.numberofAvailablespots} spots available `);
+    // console.log(this.state)
     
     // ({
     //     course: "",
@@ -98,13 +127,9 @@ class Newcourse extends Component {
              max="25"
              onChange={this.handleInputChange}
           /> 
-          <label>
-              Date:
-              </label>  
-              <input type="text"
-              className="datepicker" 
-              value={this.state.startDate}
-              onChange={this.handleInputChange} />
+          <label>Date:</label>  
+          <input type="text" className="datepicker" value={this.state.startDate} onChange={()=>this.handleDateChange()} />
+          
           <button onClick={this.handleFormSubmit}>Submit</button>
         </form>
         <div>

@@ -1,6 +1,6 @@
 
 import React, { Component } from "react";
-import "./newinstructor.css";
+import "./style.css";
 
 
 
@@ -34,12 +34,6 @@ class Newinstructor extends Component {
     console.log(this.state)
 };
 
-
-  
-
-  
-
- 
 
   render() {
   
@@ -76,7 +70,7 @@ class Newinstructor extends Component {
           <label>
                Phone Number:
           </label>
-          <span class="note">Format: 123-456-7890</span>
+          <span className="note">Format: 123-456-7890</span>
           <input 
           type="tel"
            id="phone" 

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Pagecontainer from "../components/pageContainer"
 import API from "../utils/API";
+import Header from "../components/h1withDivider"
 
 class Home extends Component{
     state={
@@ -115,7 +116,7 @@ class Home extends Component{
                         this.state.allCourses.map((current,i)=>{
                             return(
                                 // <li onClick={()=>this.addToCourse("students",this.state.students,current._id)} key={i} className="collection-item">{JSON.stringify(current)}</li>
-                                <li onClick={()=>this.addInstructorsToCourse(current._id,this.state.instructors[0])} key={i} className="collection-item">{JSON.stringify(current)}</li>           
+                                <li onClick={()=>this.removeInstructorsFromCourse(current._id,this.state.instructors[0])} key={i} className="collection-item">{JSON.stringify(current)}</li>           
                             )
                         })
                     }

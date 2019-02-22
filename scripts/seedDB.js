@@ -56,6 +56,7 @@ const instructorSeed = [
 const courseSeed=[
   {
   name:"Biology",
+  numberOfSeats:5,
   startDate:new Date(),
   endDate:new Date(),
   startTime:"06:30PM",
@@ -66,6 +67,7 @@ const courseSeed=[
   },
   {
     name:"Math",
+    numberOfSeats:7,
     startDate:new Date(),
     endDate:new Date(),
     startTime:"07:30PM",
@@ -76,6 +78,7 @@ const courseSeed=[
   },
   {
     name:"History",
+    numberOfSeats:97,
     startDate:new Date(),
     endDate:new Date(),
     startTime:"08:30PM",
@@ -209,7 +212,7 @@ insertUsers=()=>{
   .remove({})
   .then(() => db.user.collection.insertMany(userSeed))
   .then(data => {
-    console.log(data.result.n + " users inserted!");
+    console.log("users, courses, instructors, & students inserted!");
     process.exit(0);
   })
   .catch(err => {
