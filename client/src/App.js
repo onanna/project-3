@@ -9,6 +9,7 @@ import InstDirectory from "./pages/instructorDirectory"
 import StuDirectory from "./pages/studentDirectory";
 import Course from "./pages/savedCourse/savedCourse";
 import NewInstructor from "./components/newInstructorForm/newInstructorForm";
+import Login from "./pages/login";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
             <Route exact path="/newcourse" component={NewCourse}  />
             <Route exact path="/newinstructorform" component={NewInstructor}  />
             <Route exact path="/savedcourse" component={Course} />
+            <Route exact path="/auth/login" component={Login} />
           </Switch>
         </div>
       </Router>
