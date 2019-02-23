@@ -7,8 +7,8 @@ function sidenav(){
         <div>
             <ul id="slide-out" className="sidenav sidenav-fixed">
                 <li className=" sidenav-close"><a href="/">Go Back Home</a></li>
-                <li className="sidenav-close"><a href="/students">View All Students</a></li>
-                <li className="sidenav-close"><a href="/instructors">View All Instructors</a></li>
+                <li className="sidenav-close"><a href="/all-students">View All Students</a></li>
+                <li className="sidenav-close"><a href="/all-instructors">View All Instructors</a></li>
                 <li className="sidenav-close"><a href="/newcourse">Add New Course</a></li>
                 {/* <li className="sidenav-close"><a href="/savedCourse">View Courses</a></li> */}
             </ul>

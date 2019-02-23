@@ -24,9 +24,9 @@ function App() {
             {/* <Route exact path="/api/instructors" component={InstDirectory} /> */}
             {/* <Route exact path="/savedcourse" component={Course} />   */}
 
-            <Route exact path="/students" component={StuDirectory} />
+            <Route exact path="/all-students" component={StuDirectory} />
             {/* <Route exact path="/students/:id" component={StuDirectory} /> */}
-            <Route exact path="/instructors" component={InstDirectory} />            
+            <Route exact path="/all-instructors" component={InstDirectory} />            
             {/* <Route exact path="/instructors/:id" component={InstDirectory} /> */}
             {/* <Route exact path="/courses" component={Course} /> */}
             <Route exact path="/courses/detail/:id" component={Course} />
