@@ -4,10 +4,10 @@ import API from "../utils/API"
 class Login extends Component{
 
     componentDidMount=()=>{
-        API.getLogin()
-            .then(res=>{
-                console.log("login page got "+res)
-            })
+        // API.getLogin()
+        //     .then(res=>{
+        //         console.log("login page got "+res)
+        //     })
     }
 
     formSubmit=()=>{
