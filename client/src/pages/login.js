@@ -3,23 +3,23 @@ import API from "../utils/API"
 
 class Login extends Component{
 
-    componentDidMount=()=>{
-        // API.getLogin()
-        //     .then(res=>{
-        //         console.log("login page got "+res)
-        //     })
-    }
+    // componentDidMount=()=>{
+    //     // API.getLogin()
+    //     //     .then(res=>{
+    //     //         console.log("login page got "+res)
+    //     //     })
+    // }
 
-    formSubmit=()=>{
-        //prevent default
+    // formSubmit=()=>{
+    //     //prevent default
 
-        //get .value of all input fields
-        //format it however data requires
-        //user={ name: "steve", }
+    //     //get .value of all input fields
+    //     //format it however data requires
+    //     //user={ name: "steve", }
 
-        //API.submitLogin(user)
+    //     //API.submitLogin(user)
 
-    }
+    // }
     
     render(){
         return(

@@ -7,6 +7,7 @@ const router = require("express").Router();
 //     console.log("getting the /auth/login")
 // })
 
+
 router.route("/login")
     .get((req,res)=>{
          console.log('inside GET /auth/login')
