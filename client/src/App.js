@@ -36,7 +36,7 @@ function App() {
             <Route exact path="/newcourse" component={NewCourse}  />
             <Route exact path="/newinstructorform" component={NewInstructor}  />
             <Route exact path="/savedcourse" component={Course} />
-            <Route exact path="/auth/login" component={Login} />
+            <Route path="/auth/login" component={Login} />
             <Route exact path="/auth/newlogin" component={Newloginform}/>
           </Switch>
         </div>
