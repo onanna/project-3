@@ -1,11 +1,8 @@
 import React, { Component } from "react";
-import Pagecontainer from "../components/pageContainer/index"
-import API from "../utils/API"
 
 class Login extends Component{
     render(){
         return(
-            <Pagecontainer>
         <div>
         <nav>
             <ul>
@@ -23,7 +20,6 @@ class Login extends Component{
         <a class="facebook-btn" href="/auth/facebook">Facebook</a><br></br>
         <a class="create-new-btn" href="/auth/newlogin">Create Account</a>
         </div>
-            </Pagecontainer>
         )
     }
 }
