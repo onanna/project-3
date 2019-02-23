@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import {Link} from "react-router-dom";
 import Pagecontainer from "../components/pageContainer"
 import API from "../utils/API";
 import Header from "../components/h1withDivider"
@@ -127,7 +128,7 @@ class Home extends Component{
                         this.state.allCourses.map((current,i)=>{
                             return(
                                 // <li onClick={()=>this.addToCourse("students",this.state.students,current._id)} key={i} className="collection-item">{JSON.stringify(current)}</li>
-                                <li onClick={()=>this.addCourse(current._id)} key={i} className="collection-item">{JSON.stringify(current)}</li>           
+                                <li key={i} className="collection-item"><Link to={`/courses/${current._id}`} fullCourse={current}>{JSON.stringify(current)}</Link></li>       
                             )
                         })
                     }
