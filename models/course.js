@@ -11,7 +11,11 @@ const courseSchema = new Schema({
         trim:true,
         unique:true
     }, 
-    
+    numberOfSeats:{
+        type:Number,
+        required:true,
+        trim:true
+    },    
     startDate:{
         type:Date,
         required:true,
@@ -48,6 +52,7 @@ const courseSchema = new Schema({
             type: Schema.Types.ObjectId, 
             ref: "student",
             required:true,
+            maxlength:this.numberOfSeats
             // unique:true
         }
     ],
