@@ -1,15 +1,22 @@
 import React from "react";
+import Sidenav from "../sidenav/sidenav"
 import {Col,Row} from "react-materialize";
 import "./style.css";
 
 export default function pageContainer({children}){
     return(
-        <Row className="page-container">
-            <Col s={12}>
 
-                {children}
-            
-            </Col>
-        </Row>
+        <div>
+
+            <Sidenav />     
+            <Row className="page-container">
+                <Col s={12}>
+
+                    {children}
+                
+                </Col>
+            </Row>
+        </div>
+
     )
 }
