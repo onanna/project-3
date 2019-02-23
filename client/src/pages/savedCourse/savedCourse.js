@@ -9,7 +9,8 @@ class Course extends Component {
   
     constructor(props){
         super(props);
-        //API GET A COURSE AND SET TO THIS STATE
+        // API.getOneCourse(courseId)
+        // .then(response=> this.setState({course:response}))
         this.state={
             course:props.match.params.id
         }
