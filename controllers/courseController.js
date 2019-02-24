@@ -60,9 +60,7 @@ module.exports = {
         })
     },
     delete:function(courseId){
-        db.course.findByIdAndDelete(courseId)
-        .then(res=>console.log(res))
-        .catch(res=>console.log(res))
+        return db.course.findByIdAndDelete(courseId)
     },
     update:function(courseId,update){
         db.course.findByIdAndUpdate(courseId,update)

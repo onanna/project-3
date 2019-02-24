@@ -5,8 +5,6 @@ import API from "../utils/API"
 let newStudentTest = {
     firstName:"new",
     lastName:"stude22nt!",
-    userName:"doefsMatter",
-    password:"willprobablynotexist",
     email:"funtsfimes2@gmail.com"
 }
 

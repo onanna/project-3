@@ -44,6 +44,7 @@ export default {
     return axios.post(`/api/courses`,courseInfo);
   },
   deleteCourse:function(courseId){
+    console.log("deleting "+courseId)
     return axios.delete(`/api/courses/${courseId}`)
   },
   updateCourse:function(courseId,whatToChange,newValue){
@@ -77,6 +78,10 @@ export default {
     // const signedUrl = signature.sign(`course-attendance/${data.course}`);
     // console.log(signedUrl);
     // return axios.post(signedUrl,data)
-  }
+  },
 
+    // ----------------------------------------------------
+    getLogin:function(){
+      return axios.get(`/auth/login`);
+    }
 };

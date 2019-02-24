@@ -41,25 +41,36 @@ class Home extends Component{
     }
 
 
-    addNewCourse=(courseObject)=>{
-        // let testCourse={
-        //     name:"newCdfourse2",
-        //     startDate:new Date(),
-        //     endDate: new Date(),
-        //     startTime:"no",
-        //     endTime:"10pm",
-        //     location:"heyyy at newark nj",
-        //     instructors:[],
-        //     students:[]
-        // }
-
-        API.addCourse(courseObject)
-            .then( this.getCourses())
+    // addNewCourse=(courseObject)=>{
+    addNewCourse=()=>{
+    
+        let testCourse={
+            name:"newCdfosdsfurse2",
+            startDate:new Date(),
+            endDate: new Date(),
+            startTime:"no",
+            endTime:"10pm",
+            numberOfSeats:9,
+            location:"heyyy at newark nj",
+            instructors:[],
+            students:[]
+        }
+        API.addCourse(testCourse)
+            .then((response)=>{
+                let tempCourses=this.state.allCourses;
+                tempCourses.push(response.data);
+                this.setState({allCourses:tempCourses})
+            })
             .catch(err => console.log(err));
     }
     deleteCourse=(courseId)=>{
+        let tempCourses=this.state.allCourses
+       
         API.deleteCourse(courseId)
-            .then(this.getCourses())
+            .then((res)=>{
+                tempCourses.splice(tempCourses.indexOf(courseId),1)
+                this.setState({allCourses:tempCourses})
+            })
             .catch(err => console.log(err));
     }
     updateCourse=(courseId,whatToChange,newValue)=>{
@@ -124,13 +135,8 @@ class Home extends Component{
                     {
                         this.state.allCourses.map((current,i)=>{
                             return(
-                                <div>
-                                    {/* // <li onClick={()=>this.addToCourse("students",this.state.students,current._id)} key={i} className="collection-item">{JSON.stringify(current)}</li> */}
-                                    <Link to={'/courses/'+current._id}>
-                                    
-                                    <li onClick={()=>this.addInstructorsToCourse(current._id,this.state.instructors[0])} key={i} className="collection-item">{JSON.stringify(current)}</li>         
-                                    </Link>    
-                                </div>
+                                // <li onClick={()=>this.addToCourse("students",this.state.students,current._id)} key={i} className="collection-item">{JSON.stringify(current)}</li>
+                                <li key={i} className="collection-item"><Link to={`/courses/detail/${current._id}`} fullCourse={current}>{JSON.stringify(current)}</Link></li>       
                             )
                         })
                     }
