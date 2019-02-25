@@ -2,6 +2,10 @@
 import React, { Component } from "react";
 import "./newinstructor.css";
 import InputFile from "../inputFile/inputFile"
+import "./style.css";
+
+
+
 class Newinstructor extends Component {
   // Setting the component's initial state
   state = {
@@ -32,12 +36,6 @@ class Newinstructor extends Component {
     console.log(this.state)
 };
 
-
-  
-
-  
-
- 
 
   render() {
   
