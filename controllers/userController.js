@@ -1,6 +1,15 @@
 const db = require("../models/index");
 
 module.exports = {
+    checkLogin:function(userInfoToCheck){
+        db.user.find({"userName":userInfoToCheck.username})
+        .then(result=>{
+            console.log("result of the search is: "+result)
+        })
+        .catch(error=>{
+            console.log(`sorry, that was invalid input ${error}`)
+        })
+    },
     add:function(req){
 
         db.user.create(req.body)
