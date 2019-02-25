@@ -67,5 +67,8 @@ export default {
 
     getLogin:function(){
       return axios.get(`/auth/login`);
+    },
+    submitUserLogin:function(userLoginInfo){
+      return axios.post(`/auth/login/`,userLoginInfo)
     }
 };
