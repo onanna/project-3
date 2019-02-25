@@ -1,6 +1,14 @@
 import React, { Component } from "react";
+import API from "../utils/API";
 
 class Login extends Component{
+
+    componentDidMount=()=>{
+        API.getLogin()
+            .then(res => {
+                    console.log('inside login.js LOGIN component')
+            })
+    }
     render(){
         return(
         <div>

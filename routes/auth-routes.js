@@ -1,9 +1,18 @@
 const router = require("express").Router();
 
-//matches with "/auth/login" 
-router.get("/login",(req,res)=> { 
-    res.render('login');
-})
+// //matches with "/auth/login" 
+// router.get("/login",(req,res)=> { 
+//     // res.render('login');
+// })
+
+
+router.route('/login')
+    .get((req,res) => {
+            console.log("inside the /auth/login route")
+    })
+    .post((req,res)=> {
+
+    })
 
 //matches with 
 router.get("/newloginform", (req,res)=> {
