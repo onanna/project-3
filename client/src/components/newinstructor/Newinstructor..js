@@ -1,9 +1,7 @@
 
 import React, { Component } from "react";
 import "./newinstructor.css";
-
-
-
+import InputFile from "../inputFile/inputFile"
 class Newinstructor extends Component {
   // Setting the component's initial state
   state = {
@@ -56,7 +54,7 @@ class Newinstructor extends Component {
           <input
         
             value={this.state.name}
-            name="Name"
+            name="name"
             onChange={this.handleInputChange}
             type="text"
         
@@ -66,17 +64,12 @@ class Newinstructor extends Component {
         <label> 
             Image:
         </label>
-        <input type="image"
-         src={this.state.image} 
-         alt="Submit"
-          width="48" 
-          height="48" 
-          value={this.state.image}
-          onChange={this.handleInputChange}/>
-          <label>
+        
+        
+        <label>
                Phone Number:
           </label>
-          <span class="note">Format: 123-456-7890</span>
+          <span className="note">Format: 123-456-7890</span>
           <input 
           type="tel"
            id="phone" 
@@ -94,8 +87,15 @@ class Newinstructor extends Component {
               size="30" 
               value={this.state.email}
               onChange={this.handleInputChange} />
-          <button onClick={()=> this.handleFormSubmit()}>Submit</button>
+         
+         </form>
+
+       <InputFile />
+       
+      <form>
+      <button onClick={()=> this.handleFormSubmit()}>Submit</button>
         </form>
+        
         </div>
     );
   }

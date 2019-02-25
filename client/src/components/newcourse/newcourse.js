@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./newcourse.css";
 import Newinstructor from "../newinstructor/Newinstructor."
 import PageContainer from "../pageContainer/index"
+import Select from "../select/select"
 class Newcourse extends Component {
   // Setting the component's initial state
   state = {
@@ -104,8 +105,14 @@ class Newcourse extends Component {
               className="datepicker" 
               value={this.state.startDate}
               onChange={this.handleInputChange} />
+          
+          
+          <Select />
           <button onClick={this.handleFormSubmit}>Submit</button>
+       
+       
         </form>
+         
         <div>
           
   
@@ -119,12 +126,7 @@ class Newcourse extends Component {
     
             </div>
         </div>
-        <select>
-  <option value="Jake">Jake</option>
-  <option value="Albert">Albert</option>
-  <option value="Linda">Linda</option>
-  <option value="Van">Van</option>
-          </select>
+       
 
       </PageContainer>
     );
