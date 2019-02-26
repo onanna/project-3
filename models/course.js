@@ -5,7 +5,7 @@ const instructor = require("./instructor")
 
 
 const courseSchema = new Schema({
-    name:{
+    course:{
         type:String,
         required:true,
         trim:true,

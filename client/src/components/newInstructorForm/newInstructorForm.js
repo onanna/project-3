@@ -1,6 +1,6 @@
 
 import React, { Component } from "react";
-import "./newinstructor.css";
+// import "./newinstructor.css";
 import InputFile from "../inputFile/inputFile"
 import "./style.css";
 
@@ -9,10 +9,13 @@ import "./style.css";
 class Newinstructor extends Component {
   // Setting the component's initial state
   state = {
-    name: "",
-    image: "",
+   firstName: "",
+   lastName: "",
+    // image: "",
     phone: 0,
-    email:""
+    email:"",
+    currentlyTeaching: [],
+    pastCourses: []
   };
   
 
@@ -59,14 +62,12 @@ class Newinstructor extends Component {
           />
           
      
-        <label> 
+        {/* <label> 
             Image:
-        </label>
+        </label> */}
         
         
-        <label>
-               Phone Number:
-          </label>
+        <label>Phone Number: </label>
           <span className="note">Format: 123-456-7890</span>
           <input 
           type="tel"
@@ -77,10 +78,8 @@ class Newinstructor extends Component {
            onChange={this.handleInputChange}
           />
            
-          <label>
-              Email:
-              </label>  
-              <input type="email"
+          <label>Email:</label>  
+          <input type="email"
                id="email"
               size="30" 
               value={this.state.email}
@@ -88,7 +87,7 @@ class Newinstructor extends Component {
          
          </form>
 
-       <InputFile />
+       {/* <InputFile /> */}
        
       <form>
       <button onClick={()=> this.handleFormSubmit()}>Submit</button>
