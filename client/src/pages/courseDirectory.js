@@ -128,7 +128,7 @@ class Home extends Component{
                         this.state.allCourses.map((current,i)=>{
                             return(
                                 // <li onClick={()=>this.addToCourse("students",this.state.students,current._id)} key={i} className="collection-item">{JSON.stringify(current)}</li>
-                                <li key={i} className="collection-item"><Link to={`/courses/detail/${current._id}`} fullCourse={current}>{JSON.stringify(current)}</Link></li>       
+                                <li key={i} className="collection-item"> <Link to={`/courses/detail/${current._id}`} fullcourse={current}>{JSON.stringify(current)}</Link></li>       
                             )
                         })
                     }

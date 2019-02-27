@@ -7,10 +7,10 @@ import API from "../../utils/API"
 
 class Newloginform extends Component {
 
-  constructor(props){
-    super(props);
-    console.log("props are "+JSON.stringify(this.props))
-  }
+  // constructor(props){
+  //   super(props);
+  //   console.log("props are "+JSON.stringify(this.props))
+  // }
 
   // Setting the component's initial state
   state = {
@@ -45,15 +45,22 @@ class Newloginform extends Component {
     // console.log(userLoginInfo)
     API.submitUserLogin(userLoginInfo)
     .then(res=>{
-      res.data.error?
+      // res.data.error?
+      //   console.log("error is"+JSON.stringify(res.data.error))
+      // :
+      //   console.log("session id is "+JSON.stringify(res.data._id))
+      //   this.props.setSessionToken(res.data._id);
+      // ;
+
+      if(res.data.error){
         console.log("error is"+JSON.stringify(res.data.error))
-      :
+      }else{
         console.log("session id is "+JSON.stringify(res.data._id))
-        this.props.updateLogin(res.data._id);
-        ;
+        this.props.setSessionToken(res.data);
+      }
     })
     .catch(error=>{
-      console.log("ERROR IS "+error)
+      console.log("ERROR IS IN loginForm "+error)
     })
 
     //clear the state

@@ -11,6 +11,7 @@ module.exports = {
                 
                 db.userSession.create(user._id)
                 .then(session=>{
+                    console.log("session in backend is "+session)
                     res.send(session);
                 })    
                 .catch(error=>{
@@ -24,14 +25,23 @@ module.exports = {
             console.log(`sorry, that was invalid input ${error}`)
         })
     },
-    checkToken:function(token){
+    checkToken:function(token,res){
         db.userSession.findById(token)
         .then((session)=>{
             let {_id, date, isLoggedIn} = session;
-            console.log("new session is "+_id)
+            console.log("existing session is "+_id+" and it is valid!")
+            res.send(session)
         })
         .catch(error=>{
+            res.send();
             console.log(`sorry ${error}`)
+        })
+    },
+    deleteToken:function(token){
+        db.userSession.findByIdAndRemove(token)
+        .then(result=>{
+            console.log("session deleted! "+result)
+            return
         })
     },
     add:function(req){

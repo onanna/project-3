@@ -8,7 +8,9 @@
       padding-left: 0;
     }
 }
-
+.spinnerDiv{
+    margin-top:15%
+}
 .firstItem{
     margin-top:20%;
 }

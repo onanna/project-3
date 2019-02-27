@@ -70,5 +70,12 @@ export default {
     },
     submitUserLogin:function(userLoginInfo){
       return axios.post(`/auth/login/`,userLoginInfo)
+    },
+    checkToken:function(token){
+      console.log("about to make call "+token)
+      return axios.get(`/auth/token/${token}`)
+    },
+    deleteToken:function(token){
+      return axios.delete(`/auth/token/${token}`)
     }
 };

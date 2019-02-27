@@ -5,10 +5,10 @@ import NewLoginForm from "../components/newLoginForm/newLoginForm"
 
 class Login extends Component{
 // function Login(props){
-    constructor(props){
-        super(props)
-        console.log("login props are "+JSON.stringify(props))
-    }
+    // constructor(props){
+    //     super(props)
+    //     console.log("login props are "+JSON.stringify(this.props))
+    // }
     
     render(){
         return(
@@ -29,7 +29,8 @@ class Login extends Component{
             <a className="facebook-btn" href="/auth/facebook">Facebook</a><br></br>
             <a className="create-new-btn" href="/auth/newlogin">Create Account</a>
 
-            <NewLoginForm loginUpdate={this.props.loginUpdate}/>
+            {console.log("login props "+JSON.stringify(this.props))}
+            <NewLoginForm setSessionToken={this.props.setSessionToken}/>
         </div>
         )
     }

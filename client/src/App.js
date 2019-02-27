@@ -11,42 +11,80 @@ import NewInstructor from "./components/newInstructorForm/newInstructorForm";
 import Login from "./pages/login";
 import NewLoginform from "./components/newLoginForm/newLoginForm";
 import API from "./utils/API";
+import Loader from 'react-loader-spinner'
+import { Z_FIXED } from "zlib";
+import { AutoComplete } from "material-ui";
 
 class App extends Component{
   
   state={
     token:'',
-    isLoggedIn:false
+    isLoading:true
   }
   
   componentDidMount=()=>{
     if(localStorage.getItem("course-creator-token")){
       let token=localStorage.getItem("course-creator-token");
-
-      //check database for token
-
-      this.setState({token: token})
+      console.log("token found in local storage "+token)
+      this.checkToken(token);
     }
   }
 
-  setSessionToken=(session)=>{
-    alert("SETTING SESSION TOKEN!!")
-    this.setState({
-      token:session._id,
-      isLoggedIn:true
+  checkToken=(token)=>{
+    API.checkToken(token)
+    .then(result=>{
+      // alert("TOKEN SEARCHED. RESULT IS "+JSON.stringify(result.data))
+      this.setState((previousState)=>({
+        token: result.data._id,
+        isLoading:false
+      }));
     })
-    
+    .catch(err=>alert("error! "+err))
+  }
+  setSessionToken=(session)=>{
+      // alert("SETTING SESSION TOKEN! to "+JSON.stringify(session))
+      localStorage.setItem('course-creator-token', session._id)
+      
+      this.setState((previousState)=>({
+        token:session,
+        isLoading:false
+      }));  
+  }
+  deleteToken=()=>{
+    let token = localStorage.getItem("course-creator-token");
+    API.deleteToken(token)
+    .then(result=>{
+    })
+    localStorage.removeItem("course-creator-token")
+
+    // alert("about to set state to empty")
+    this.setState((prevState)=>({
+      token:''
+    }))
   }
 
   render(){
 
-    if(!this.state.token){
-      return <Login loginUpdate={(token)=>this.setSessionToken(token)}/>
-    }else{
+    if(!this.state.token && !this.state.isLoading){
+      return <Login setSessionToken={this.setSessionToken}/>
+    }
+
+    if(this.state.isLoading===true){
+
+      return(
+        <div className="row">
+          <div className="spinnerDiv col s12 center-align">
+            <Loader type="Oval" color="#0d47a1"/>
+          </div>
+        </div>
+      )
+    }
+    
+    if(this.state.token && this.state.isLoading===false){
       return (
           <Router>
             <div>
-              {/* <Sidenav /> */}
+              <Sidenav deleteToken={this.deleteToken} />
               <Switch>
                 <Route exact path="/" component={AllCourses} />
                 {/* <Route path="/login" component={Login} /> */}
