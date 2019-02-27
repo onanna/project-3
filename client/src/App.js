@@ -29,10 +29,19 @@ class App extends Component{
     }
   }
 
+  setSessionToken=(session)=>{
+    alert("SETTING SESSION TOKEN!!")
+    this.setState({
+      token:session._id,
+      isLoggedIn:true
+    })
+    
+  }
+
   render(){
 
     if(!this.state.token){
-      return <Login />
+      return <Login loginUpdate={()=>this.setSessionToken()}/>
     }else{
       return (
           <Router>
@@ -40,8 +49,8 @@ class App extends Component{
               {/* <Sidenav /> */}
               <Switch>
                 <Route exact path="/" component={AllCourses} />
-                <Route path="/login" component={Login} />
-                <Route exact path="/user/new" component={NewLoginform}/>
+                {/* <Route path="/login" component={Login} /> */}
+                {/* <Route exact path="/user/new" component={NewLoginform}/> */}
                 
                 {/* <Route exact path="/api/students" component={StuDirectory} /> */}
                 {/* <Route exact path="/api/instructors" component={InstDirectory} /> */}

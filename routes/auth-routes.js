@@ -16,7 +16,7 @@ router.route("/login")
     .post((req,res)=>{
         console.log("user login info entered on front end is: "+JSON.stringify(req.body))
         //here is where you would use the userController.js functions to actually check the database
-        user.checkLogin(req.body)
+        user.checkLogin(req.body,res)
     })
 
 

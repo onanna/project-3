@@ -6,6 +6,12 @@ import API from "../../utils/API"
 
 
 class Newloginform extends Component {
+
+  constructor(props){
+    super(props);
+    console.log("props are "+JSON.stringify(this.props))
+  }
+
   // Setting the component's initial state
   state = {
     username: "",
@@ -36,8 +42,20 @@ class Newloginform extends Component {
     // Alert the user their first and last name, clear `this.state.firstName` and `this.state.lastName`, clearing the inputs
     // alert(`Course Instructor ${this.state.name} \n  has the following email ${this.state.email}  \n and phone number ${this.state.phone} `);
 
-    console.log(userLoginInfo)
+    // console.log(userLoginInfo)
     API.submitUserLogin(userLoginInfo)
+    .then(res=>{
+      res.data.error?
+        console.log("error is"+JSON.stringify(res.data.error))
+      :
+        console.log("session id is "+JSON.stringify(res.data._id))
+        // this.props.updateLogin(res.data._id);
+        ;
+
+    })
+    .catch(error=>{
+      console.log("ERROR IS "+error)
+    })
 
     //clear the state
 };
@@ -61,7 +79,7 @@ class Newloginform extends Component {
 
                             <div className="input-field">
                                 <input onChange={this.handleInputChange} id="lastName" type="password" name="password" />
-                                <label htmlFor="last_name">Password</label>
+                                <label className="active" htmlFor="last_name">Password</label>
                             </div>
 
                             <SubmitButton submitFunction={this.handleFormSubmit} />

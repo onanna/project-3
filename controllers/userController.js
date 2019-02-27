@@ -1,13 +1,37 @@
 const db = require("../models/index");
 
 module.exports = {
-    checkLogin:function(userInfoToCheck){
-        db.user.find({"userName":userInfoToCheck.username})
-        .then(result=>{
-            console.log("result of the search is: "+result)
+    checkLogin:function(userInfoToCheck,res){
+        db.user.findOne({"userName":userInfoToCheck.username})
+        .then((user)=>{
+            if(user){
+                console.log("SUcCESS! "+user)
+                //check password
+                
+                
+                db.userSession.create(user._id)
+                .then(session=>{
+                    res.send(session);
+                })    
+                .catch(error=>{
+                    res.send(error);
+                })
+            }else{
+                res.send({error:"user not found"});
+            } 
         })
         .catch(error=>{
             console.log(`sorry, that was invalid input ${error}`)
+        })
+    },
+    checkToken:function(token){
+        db.userSession.findById(token)
+        .then((session)=>{
+            let {_id, date, isLoggedIn} = session;
+            console.log("new session is "+_id)
+        })
+        .catch(error=>{
+            console.log(`sorry ${error}`)
         })
     },
     add:function(req){
