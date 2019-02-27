@@ -3,14 +3,14 @@ import API from "../utils/API"
 import NewLoginForm from "../components/newLoginForm/newLoginForm"
 
 
-// class Login extends Component{
-function Login(props){
-    // constructor(){
-    //     super()
+class Login extends Component{
+// function Login(props){
+    constructor(props){
+        super(props)
         console.log("login props are "+JSON.stringify(props))
-    // }
+    }
     
-    // render(){
+    render(){
         return(
         <div>
             <nav>
@@ -29,10 +29,10 @@ function Login(props){
             <a className="facebook-btn" href="/auth/facebook">Facebook</a><br></br>
             <a className="create-new-btn" href="/auth/newlogin">Create Account</a>
 
-            <NewLoginForm loginUpdate={props.loginUpdate}/>
+            <NewLoginForm loginUpdate={this.props.loginUpdate}/>
         </div>
         )
-    // }
+    }
 }
 
 export default Login;

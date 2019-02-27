@@ -49,9 +49,8 @@ class Newloginform extends Component {
         console.log("error is"+JSON.stringify(res.data.error))
       :
         console.log("session id is "+JSON.stringify(res.data._id))
-        // this.props.updateLogin(res.data._id);
+        this.props.updateLogin(res.data._id);
         ;
-
     })
     .catch(error=>{
       console.log("ERROR IS "+error)
@@ -60,7 +59,6 @@ class Newloginform extends Component {
     //clear the state
 };
   render() {
-  
         return (
             <div>
 

@@ -41,7 +41,7 @@ class App extends Component{
   render(){
 
     if(!this.state.token){
-      return <Login loginUpdate={()=>this.setSessionToken()}/>
+      return <Login loginUpdate={(token)=>this.setSessionToken(token)}/>
     }else{
       return (
           <Router>
