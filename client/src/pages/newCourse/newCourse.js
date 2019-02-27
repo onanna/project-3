@@ -138,7 +138,7 @@ class Newcourse extends Component {
           <label>Date:</label>  
           <input type="text" className="datepicker" value={this.state.startDate} onChange={()=>this.handleDateChange()} />
           
-          <button onClick={this.handleFormSubmit}>Submit</button>
+          
        
        
         </form>
@@ -158,6 +158,9 @@ class Newcourse extends Component {
         </div>
        <SelectInstructor />
       <SelectStudent />
+      <form>
+      <button onClick={this.handleFormSubmit}>Submit</button>
+      </form>
       </PageContainer>
     );
   }

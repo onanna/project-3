@@ -86,10 +86,11 @@ const courseSeed=[
     location:"15 taco st. Jersey City NJ, 07109",
     instructors:[],
     students:[]
-  }
-]
+  },
+];
 
-const userSeed=[
+const userSeed=
+[
   {
     firstName:"first",
     lastName:"last",
@@ -111,7 +112,7 @@ const userSeed=[
     userName:"user3",
     password:"test3"
   },
-]
+];
 // insertStudents=()=>{
 //   db.student
 //     .remove({})
