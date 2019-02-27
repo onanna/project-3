@@ -63,4 +63,12 @@ export default {
         return axios.post(`/api/courses/${courseId}/instructors`,instructorsToAdd)
       },
     // ----------------------------------------------------
+
+
+    getLogin:function(){
+      return axios.get(`/auth/login`);
+    },
+    submitUserLogin:function(userLoginInfo){
+      return axios.post(`/auth/login/`,userLoginInfo)
+    }
 };
