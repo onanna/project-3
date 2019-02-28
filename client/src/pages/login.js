@@ -1,14 +1,28 @@
 import React, { Component } from "react";
-import API from "../utils/API";
+import API from "../utils/API"
+import NewLoginForm from "../components/newLoginForm/newLoginForm"
+
 
 class Login extends Component{
 
-    componentDidMount=()=>{
-        API.getLogin()
-            .then(res => {
-                    console.log('inside login.js LOGIN component')
-            })
-    }
+    // componentDidMount=()=>{
+    //     // API.getLogin()
+    //     //     .then(res=>{
+    //     //         console.log("login page got "+res)
+    //     //     })
+    // }
+
+    // formSubmit=()=>{
+    //     //prevent default
+
+    //     //get .value of all input fields
+    //     //format it however data requires
+    //     //user={ name: "steve", }
+
+    //     //API.submitLogin(user)
+
+    // }
+    
     render(){
         return(
         <div>
