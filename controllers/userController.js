@@ -7,8 +7,9 @@ module.exports = {
             if(user){
                 console.log("SUcCESS! "+user)
                 //check password
-                
-                
+                let potentialUser = new db.user(user)
+                console.log("password check "+potentialUser.validPassword(userInfoToCheck.password))
+
                 db.userSession.create(user._id)
                 .then(session=>{
                     console.log("session in backend is "+session)
@@ -46,7 +47,13 @@ module.exports = {
     },
     add:function(req){
 
-        db.user.create(req.body)
+        // db.user.create(req.body)
+        let newUser = new db.user();
+        newUser.userName = req.body.userName
+        newUser.password = newUser.generateHash(req.body.password)
+        newUser.email = req.body.email
+        newUser.firstName = req.body.firstName
+        newUser.lastName = req.body.lastName
         .then(result=>{
             console.log(`congrats on adding an user!: ${result}`)
         })

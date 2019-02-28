@@ -20,7 +20,7 @@ class App extends Component{
   
   state={
     token:'',
-    isLoading:true
+    isLoading:false
   }
   
   componentDidMount=()=>{
@@ -70,7 +70,7 @@ class App extends Component{
   render(){
 
     // if(!this.state.token){
-    if(!this.state.token && !this.state.isLoading){
+    if(this.state.token==="" && !this.state.isLoading){
       return <Login setSessionToken={this.setSessionToken}/>
     }
 
