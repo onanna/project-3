@@ -6,18 +6,17 @@ import H1 from "../../components/h1withDivider";
 
 
 class Course extends Component {
+    state={
+        course:{}
+    }
   
     constructor(props){
         super(props);
-        // API.getOneCourse(courseId)
-        // .then(response=> this.setState({course:response}))
-        // this.state={
-        //     course:props.match.params.id
-        // }
-        console.log(JSON.stringify("the props are" +JSON.stringify(this.props)))
-        this.state = {
-            course:props.fullCourse
-        }
+        console.log(JSON.stringify(this.props.match.params.id))
+        
+        API.getOneCourse(this.props.match.params.id)
+        .then(response=> this.setState({course:response.data}))
+        .catch(err => console.log("ERROR ERROR ERROR "+err))
 
     }
 
@@ -30,7 +29,15 @@ class Course extends Component {
 
         return(
             <PageContainer>
-                <H1>Hello!</H1>
+
+                <h1>Courses</h1>
+
+                <Col m={7} s={12}>
+                    <Card horizontal >
+                    <p>This is a card!</p>
+                    <p>{this.state.course.name}</p>
+                    </Card>
+                </Col>
             </PageContainer>    
         )
 

@@ -37,9 +37,9 @@ export default {
   getAllCourses:function(){
     return axios.get("/api/courses")
   },
-  // getACourse:function(id){
-  //   return axios.get(`/api/courses/${id}`)
-  // },
+  getOneCourse:function(id){
+    return axios.get(`/api/courses/${id}`)
+  },
   addCourse:function(courseInfo){
     return axios.post(`/api/courses`,courseInfo);
   },

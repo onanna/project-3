@@ -74,6 +74,12 @@ module.exports = {
         .then(data => res.json(data))
         .catch(err => res.status(422).json(err));
     },
+    getOne:function(req,res){
+        console.log("COURSE TO GET "+JSON.stringify(req))
+        db.course.findById(req)
+        .then(data => res.json(data))
+        .catch(err => res.status(422).json(err));
+    },
     addToRoster:function(courseId,roster,dataToAdd){
         if(roster&&courseId){
             db.course.findByIdAndUpdate(courseId,{$addToSet:{[roster]:dataToAdd}},{new:true})
