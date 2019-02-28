@@ -5,7 +5,8 @@ import API from "../utils/API"
 let newStudentTest = {
     firstName:"new",
     lastName:"stude22nt!",
-    email:"funtsfimes2@gmail.com"
+    email:"funtsfimes2@gmail.com",
+    phone:"+19732233733"
 }
 
 class Home extends Component{
