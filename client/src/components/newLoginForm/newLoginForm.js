@@ -46,7 +46,7 @@ class Newloginform extends Component {
         return (
             <div>
 
-                <div id="modal1" class="modal">
+                {/* <div id="modal1" class="modal">
                     <div class="modal-content">
                         <div className="input-field">
                             <input onChange={this.handleInputChange} name="username" id="username" type="text" />
@@ -61,13 +61,13 @@ class Newloginform extends Component {
                     <div class="modal-footer">
                         <SubmitButton class="modal-close waves-effect waves-green btn-flat" submitFunction={this.handleFormSubmit} />
                     </div>
-                </div>
+                </div> */}
 
-              {/* <div className="container">
+              <div className="container">
 
-                <div className="row"> */}
+                <div className="row">
                   {/* <div className="col s6 offset-s6 center-align"> */}
-                  {/* <div className="col s6 center-align">
+                  <div className="col s6 center-align">
                     <div className="card hoverable">
                     <div className="card-content">
                     
@@ -87,7 +87,7 @@ class Newloginform extends Component {
                     </div>
                 </div>
               
-              </div> */}
+              </div>
                 {/* <form className="form container">
                         <div className="card">
                             <div className="card-action teal lighten-1 white-text">
