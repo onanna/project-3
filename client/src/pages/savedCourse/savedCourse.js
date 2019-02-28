@@ -6,14 +6,17 @@ import API from "../../utils/API";
 
 
 class Course extends Component {
+    state={
+        course:{}
+    }
   
     constructor(props){
         super(props);
-        // API.getOneCourse(courseId)
-        // .then(response=> this.setState({course:response}))
-        this.state={
-            course:props.match.params.id
-        }
+        console.log(JSON.stringify(this.props.match.params.id))
+        
+        API.getOneCourse(this.props.match.params.id)
+        .then(response=> this.setState({course:response.data}))
+        .catch(err => console.log("ERROR ERROR ERROR "+err))
     }
 
 
@@ -27,6 +30,7 @@ class Course extends Component {
                 <Col m={7} s={12}>
                     <Card horizontal >
                     <p>This is a card!</p>
+                    <p>{this.state.course.name}</p>
                     </Card>
                 </Col>
             </PageContainer>    
