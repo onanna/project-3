@@ -47,6 +47,23 @@ class Newloginform extends Component {
         return (
             <div>
 
+                {/* <div id="modal1" class="modal">
+                    <div class="modal-content">
+                        <div className="input-field">
+                            <input onChange={this.handleInputChange} name="username" id="username" type="text" />
+                            <label className="active" htmlFor="last_name">Username</label>
+                        </div>
+
+                        <div className="input-field">
+                            <input onChange={this.handleInputChange} id="lastName" type="password" name="password" />
+                            <label htmlFor="last_name">Password</label>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <SubmitButton class="modal-close waves-effect waves-green btn-flat" submitFunction={this.handleFormSubmit} />
+                    </div>
+                </div> */}
+
               <div className="container">
 
                 <div className="row">

@@ -70,7 +70,13 @@ module.exports = {
     getAll:function(req,res){
         db.course.find(req.query)
         // .sort({ : -1 })
-        // .populate('students')
+        .populate('students')
+        .then(data => res.json(data))
+        .catch(err => res.status(422).json(err));
+    },
+    getOne:function(req,res){
+        console.log("COURSE TO GET "+JSON.stringify(req))
+        db.course.findById(req)
         .then(data => res.json(data))
         .catch(err => res.status(422).json(err));
     },

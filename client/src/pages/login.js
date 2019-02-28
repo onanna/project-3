@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import API from "../utils/API"
 import NewLoginForm from "../components/newLoginForm/newLoginForm"
 import styles from "./login.css"
+import NewLoginButton from "../components/newLoginButton/newLoginButton.js"
 
 
 class Login extends Component{
