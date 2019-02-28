@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import API from "../utils/API"
-import NewLoginButton from "../components/newLoginButton/newLoginButton"
+import NewLoginButton from "../components/newLoginButton/newLoginButton.js"
 
 
 class Login extends Component{
@@ -29,7 +29,7 @@ class Login extends Component{
             <nav>
                 <ul>
                     <li><a href="/">Homepage</a></li>
-                    <li><a href="/auth/newlogin">Create Account</a></li>
+                    <li><a href="/user/new">Create Account</a></li>
                     <li><a href="/auth/logout">Logout</a></li>
                     <li><a href="/auth/login">Login</a></li>
                 </ul>
@@ -40,7 +40,7 @@ class Login extends Component{
             <a class="user-id-btn" href="/auth/userid">User ID</a><br></br>
             <a class="google-btn" href="/auth/google">Google+</a><br></br>
             <a class="facebook-btn" href="/auth/facebook">Facebook</a><br></br>
-            <a class="create-new-btn" href="/auth/newlogin">Create Account</a>
+            <a class="create-new-btn" href="/user/new">Create Account</a>
 
             <NewLoginButton />
         </div>
