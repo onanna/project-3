@@ -14,6 +14,7 @@ import API from "./utils/API";
 import Loader from 'react-loader-spinner'
 import { Z_FIXED } from "zlib";
 import { AutoComplete } from "material-ui";
+import TouchRipple from "material-ui/internal/TouchRipple";
 
 class App extends Component{
   
@@ -31,6 +32,9 @@ class App extends Component{
   }
 
   checkToken=(token)=>{
+    this.setState((prevState)=>({
+      isLoading:true 
+    }))
     API.checkToken(token)
     .then(result=>{
       // alert("TOKEN SEARCHED. RESULT IS "+JSON.stringify(result.data))
@@ -65,6 +69,7 @@ class App extends Component{
 
   render(){
 
+    // if(!this.state.token){
     if(!this.state.token && !this.state.isLoading){
       return <Login setSessionToken={this.setSessionToken}/>
     }

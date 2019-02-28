@@ -14,10 +14,9 @@ class Course extends Component {
         // this.state={
         //     course:props.match.params.id
         // }
-        console.log(JSON.stringify(props))
+        console.log(JSON.stringify("the props are" +JSON.stringify(this.props)))
         this.state = {
             course:props.fullCourse
-
         }
 
     }
