@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import "./style.css";
 import PageContainer from "../../components/pageContainer";
-import {Col,Card,CardTitle} from "react-materialize";
 import API from "../../utils/API";
+import H1 from "../../components/h1withDivider";
 
 
 class Course extends Component {
@@ -17,6 +17,11 @@ class Course extends Component {
         API.getOneCourse(this.props.match.params.id)
         .then(response=> this.setState({course:response.data}))
         .catch(err => console.log("ERROR ERROR ERROR "+err))
+
+    }
+
+    componentDidMount=()=>{
+        console.log("full course: " + this.state.course)
     }
 
 
