@@ -1,19 +1,37 @@
 const router = require("express").Router();
+const user = require("../controllers/userController")
 
-//matches with "/auth/login" 
 // router.get("/login",(req,res)=> { 
-//     // res.render('login');
-// //     return console.log('inside GET /auth/login')
-//     console.log("getting the /auth/login")
-// })
-
-
+    //     // res.render('login');
+    // //     return console.log('inside GET /auth/login')
+    //     console.log("getting the /auth/login")
+    // })
+    
+    
+//matches with "/auth/login" 
 router.route("/login")
     .get((req,res)=>{
          console.log('inside GET /auth/login')
     })
     .post((req,res)=>{
-        
+        console.log("user login info entered on front end is: "+JSON.stringify(req.body))
+        //here is where you would use the userController.js functions to actually check the database
+        user.checkLogin(req.body,res)
+    })
+
+router.route("/token/:token")
+    .post((req,res)=>{
+        console.log("inside token post route")
+        user.checkToken(req.body,res)
+    })
+    .get((req,res)=>{
+        console.log("inside token check GET")
+        console.log("token is "+req.params.token)
+        // res.send(req.body)
+        user.checkToken(req.params.token,res)
+    })
+    .delete((req,res)=>{
+        user.deleteToken(req.params.token)
     })
 
 

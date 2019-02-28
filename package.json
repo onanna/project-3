@@ -21,12 +21,14 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "bcrypt": "^3.0.4",
     "express": "^4.16.3",
     "if-env": "^1.0.4",
     "material-ui": "^0.20.2",
     "materialize-css": "^1.0.0-rc.2",
     "mongodb": "^3.1.13",
     "mongoose": "^5.3.16",
+    "react-loader-spinner": "^2.3.0",
     "react-materialize": "^2.6.0",
     "react-tap-event-plugin": "^3.0.3"
   }

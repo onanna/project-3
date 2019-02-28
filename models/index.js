@@ -4,5 +4,6 @@ module.exports = {
   course:require("./course"),
   user:require("./user"),
   attendance:require("./attendance").attendance,
-  attendRecord:require("./attendance").attendRecord
+  attendRecord:require("./attendance").attendRecord,
+  userSession:require("./userSession")
 };
