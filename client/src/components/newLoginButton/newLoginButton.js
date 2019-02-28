@@ -1,8 +1,7 @@
 import React from "react";
 import "./newLoginButton.css";
-import "../testingModal/testingModal"
 
-function signUp(props){
+function newLoginButton(props){
 
     return(
         <button data-target="modal1" class="btn modal-trigger">

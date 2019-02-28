@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import API from "../utils/API"
-import NewLoginForm from "../components/newLoginButton/newLoginButton"
+import NewLoginButton from "../components/newLoginButton/newLoginButton"
 
 
 class Login extends Component{
