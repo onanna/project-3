@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import API from "../utils/API"
-import NewLoginForm from "../components/newLoginForm/newLoginForm"
+import NewLoginButton from "../components/newLoginButton/newLoginButton"
 
 
 class Login extends Component{
@@ -42,7 +42,7 @@ class Login extends Component{
             <a class="facebook-btn" href="/auth/facebook">Facebook</a><br></br>
             <a class="create-new-btn" href="/auth/newlogin">Create Account</a>
 
-            <NewLoginForm />
+            <NewLoginButton />
         </div>
         )
     }

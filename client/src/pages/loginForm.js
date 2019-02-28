@@ -1,13 +1,17 @@
 import React, { Component } from "react";
-import Pagecontainer from "../components/pageContainer/index"
+// import Pagecontainer from "../components/pageContainer/index"
 import NewLoginForm from "../components/newLoginForm/newLoginForm"
 
 class NewLoginForm extends Component{
     render(){
         return(
-            <Pagecontainer>
-                <NewLoginForm></NewLoginForm>
-            </Pagecontainer>
+            // <Pagecontainer>
+            <div id="modal1" class="modal">
+                <div class="modal-content">
+                    <NewLoginForm></NewLoginForm>
+                </div>
+            </div>
+            // </Pagecontainer>
         )
     }
 }
