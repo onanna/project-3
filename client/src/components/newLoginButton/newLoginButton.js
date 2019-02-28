@@ -1,7 +1,7 @@
 import React from "react";
 import "./newLoginButton.css";
 
-function newLoginButton(props){
+function NewLoginButton(props){
 
     return(
         <button data-target="modal1" class="btn modal-trigger">
@@ -10,4 +10,4 @@ function newLoginButton(props){
     )
 }
 
-export default newLoginButton;
+export default NewLoginButton;
