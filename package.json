@@ -27,6 +27,9 @@
     "materialize-css": "^1.0.0-rc.2",
     "mongodb": "^3.1.13",
     "mongoose": "^5.3.16",
+    "passport": "^0.4.0",
+    "passport-google-oauth20": "^1.0.0",
+    "passport-local": "^1.0.0",
     "react-materialize": "^2.6.0",
     "react-tap-event-plugin": "^3.0.3"
   }
