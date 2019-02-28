@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import "./newLoginForm.css";
 import SubmitButton from "../submitButton"
 import API from "../../utils/API"
+import styles from "./newLoginForm.css"
 
 
 class Newloginform extends Component {
@@ -49,17 +50,18 @@ class Newloginform extends Component {
               <div className="container">
 
                 <div className="row">
-                  {/* <div className="col s6 offset-s6 center-align"> */}
                   <div className="col s6 center-align">
-                    <div className="card hoverable">
+                    <div className="card hoverable newloginclass z-depth-5">
                     <div className="card-content">
                     
                             <div className="input-field">
+                                <i className="material-icons prefix">person</i>
                                 <input onChange={this.handleInputChange} name="username" id="username" type="text" />
                                 <label className="active" htmlFor="last_name">Username</label>
                             </div>
 
                             <div className="input-field">
+                                <i className="material-icons prefix">lock</i>
                                 <input onChange={this.handleInputChange} id="lastName" type="password" name="password" />
                                 <label htmlFor="last_name">Password</label>
                             </div>
@@ -71,29 +73,6 @@ class Newloginform extends Component {
                 </div>
               
               </div>
-                {/* <form className="form container">
-                        <div className="card">
-                            <div className="card-action teal lighten-1 white-text">
-                                <h3>Login Form</h3>
-                            </div>
-                            
-                            <div className="card-content">
-                                <div className="form-field">
-                                    <label for="username">Username</label>
-                                    <input type="text" value={this.state.name} name="Name" onChange={this.handleInputChange}></input>
-                                </div>
-                            </div>
-
-                            <div className="form-field">
-                                <label for="password">Password</label>
-                                <input type="password" value={this.state.password} name="Password" onChange={this.handleInputChange}></input>
-                            </div>
-                
-                            <div className="form-field">
-                              <button onClick={()=> this.handleFormSubmit()}>Submit</button>
-                            </div>
-                        </div>
-                </form> */}
             </div>
         );
     }
