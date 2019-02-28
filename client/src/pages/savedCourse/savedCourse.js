@@ -31,7 +31,6 @@ class Course extends Component {
         return(
             <PageContainer>
                 <H1>Hello!</H1>
-    
             </PageContainer>    
         )
 
