@@ -9,6 +9,7 @@ import {Col, Card} from "react-materialize"
 class Course extends Component {
     state={
         course:{}
+
     }
   
     constructor(props){
@@ -30,15 +31,33 @@ class Course extends Component {
 
         return(
             <PageContainer>
+                <div className="row"> 
+                    <div className="col s12 m6">
+                        <div className="card">
+                            <div className="card-image">
 
-                <h1>Courses</h1>
+                                <img src="" />
 
-                <Col m={7} s={12}>
-                    <Card horizontal >
-                    <p>This is a card!</p>
-                    <p>{this.state.course.name}</p>
-                    </Card>
-                </Col>
+                                <span className="card-title">Card Title</span>
+                                
+                                <a className="btn-floating halfway-fab waves-effect waves-light red"><i className="material-icons">Add</i></a>
+
+                                <div className="card-content">
+                                    <p>{this.state.course.name}</p>
+                                    <p>{this.state.course.numberOfSeats}</p>
+                                    <p>{this.state.course.startDate}</p>
+                                    <p>{this.state.course.endDate}</p>
+                                    <p>{this.state.course.startTime}</p>
+                                    <p>{this.state.course.endTime}</p>
+                                    <p>{this.state.course.location}</p>
+                                    <p>{this.state.course.instructors}</p>
+                                    <p>{this.state.course.students}</p>            
+                                </div>
+                            
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </PageContainer>    
         )
 
