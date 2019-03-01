@@ -3,6 +3,7 @@ import "./style.css";
 import PageContainer from "../../components/pageContainer";
 import API from "../../utils/API";
 import H1 from "../../components/h1withDivider";
+import {Col, Card} from 'react-materialize';
 
 
 class Course extends Component {

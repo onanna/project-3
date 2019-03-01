@@ -1,0 +1,40 @@
+.mainClass{
+    display:flex
+  }
+  .left-pane-course{
+  /*   min-height: 100vh !important; */
+    /* height: 100vh; */
+    background-color:#446ca8;
+    position:relative;
+    bottom:0
+  }
+  .classTimeLocation{
+    font-weight:bold;
+  }
+  .card-content{
+    height:100%;
+  }
+  .classDate{
+    margin-top:0;
+    margin-bottom:0;
+  }
+  
+  .classStudents,.classUntil{
+    color:#0d47a1;
+  }
+  
+  .softContainer{
+    margin-left:10%;
+  }
+  
+  
+  /* To make card responsive as sizes down */
+  .card.small {
+    height: auto;
+  }
+  .card.small .card-content {
+    height: auto;
+  }
+  .card.small .card-action {
+    position: relative;
+  }
