@@ -3,6 +3,8 @@ import "./style.css";
 import PageContainer from "../../components/pageContainer";
 import API from "../../utils/API";
 import H1 from "../../components/h1withDivider";
+import {Card, Col} from 'react-materialize';
+import Send from "../../components/sendAttendance/sendAttendance"
 
 
 class Course extends Component {
@@ -32,12 +34,14 @@ class Course extends Component {
 
                 <h1>Courses</h1>
 
-                <Col m={7} s={12}>
+                {/* <Col m={7} s={12}>
                     <Card horizontal >
                     <p>This is a card!</p>
                     <p>{this.state.course.name}</p>
                     </Card>
-                </Col>
+                </Col> */}
+
+                    <Send />
             </PageContainer>    
         )
 

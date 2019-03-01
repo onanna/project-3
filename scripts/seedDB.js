@@ -11,21 +11,24 @@ const studentSeed = [
     lastName:"See",
     email:"someemail@gmail.com",
     currentlyEnrolled:[],
-    pastCourses:[]
+    pastCourses:[],
+    phone:"+19732233733"
   },
   {
     firstName:"David",
     lastName:"jack",
     email:"someOtheremail@yahoo.com",
     currentlyEnrolled:[],
-    pastCourses:[]
+    pastCourses:[],
+    phone:"+1someRandomNumber"
   },
   {
     firstName:"Sallie",
     lastName:"Mae",
     email:"notbroke@aol.com",
     currentlyEnrolled:[],
-    pastCourses:[]
+    pastCourses:[],
+    phone:"+1someRandomNumber"
   },      
 ];
 
@@ -35,21 +38,24 @@ const instructorSeed = [
     lastName:"Instructor",
     email:"something@gmail.com",
     currentlyTeaching:[],
-    pastCourses:[]
+    pastCourses:[],
+    phone:"+1someRandomNumber"
   },
   {
     firstName:"numbah",
     lastName:"two",
     email:"someOtherthing@yahoo.com",
     currentlyTeaching:[],
-    pastCourses:[]
+    pastCourses:[],
+    phone:"+19732233733"
   },
   {
     firstName:"Noel",
     lastName:"Holiday",
     email:"nice@aol.com",
     currentlyTeaching:[],
-    pastCourses:[]
+    pastCourses:[],
+    phone:"+1someRandomNumber"
   },
 ];
 
