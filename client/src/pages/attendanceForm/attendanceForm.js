@@ -1,9 +1,10 @@
+import './style.css';
 import React, { Component } from "react";
-import Pagecontainer from "../components/pageContainer/index"
-import SubmitButton from "../components/submitButton"
+import Pagecontainer from "../../components/pageContainer/index"
+import SubmitButton from "../../components/submitButton"
 import {Row, Col, Input} from 'react-materialize';
-import API from "../utils/API";
-import Header from "../components/h1withDivider"
+import API from "../../utils/API";
+import Header from "../../components/h1withDivider"
 
 class attendanceForm extends Component{
     state={
