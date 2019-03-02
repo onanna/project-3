@@ -8,7 +8,7 @@ import "./style.css";
 //need function to show date
 
 // $(".datepicker").datepicker({
-//     format: "yyyy-mm-dd",
+//     format: "mm-dd-yyyy",
 //     maxDate: new Date(),
 //     autoClose: true,
 //     onClose: function(datePicked) {
@@ -39,12 +39,12 @@ function courseCard(props){
                     </div>
                     <div className='row'>
                         {/* <div className="col s6 classMonth white-text right-align flow-text"><p>March</p></div> */}
-                        <div className="col s12 classMonth center-align white-text flow-text"><p>March</p></div>
+                        <div className="col s12 classMonth center-align white-text flow-text"><p>March </p></div>
                         {/* <div className="col s6 classYear white-text left-align flow-text"><p> 1993</p></div>  */}
                     </div>
 
                     <div className='row'>
-                        <div className='col s12 center-align white-text flow-text'><p> 1993</p></div>
+                        <div className='col s12 center-align white-text flow-text'><p>2019</p></div>
                     </div>
                     
                     <div className='row'>
@@ -69,7 +69,7 @@ function courseCard(props){
                         </div>
 
                         <div className='col s12 m12 l12'>
-                            <p className='flow-text'><span className='classUntil'>To</span> {props.course.endDate}</p>
+                            <p className='flow-text'><span className='classUntil'>To </span>{readDate(props.course.endDate)}</p>
                         </div>
                     </div>
                     
@@ -105,22 +105,32 @@ function courseCard(props){
 
 //make date more readable
 function readDate(dateToRead){
+    let date = dateToRead;
+    let mm = date.split("-")[0];
+    let dd = date.split("-")[1];
+    let yyyy = date.split("-")[2];
+
     let suffix="th";
     let newMonth;
-    let newDay;
+    let newDay = dd;
 
-    let date = dateToRead;
-    let mm = date.split("-")[1];
-    let dd = date.split("-")[2];
-    let yyyy = date.split("-")[0];
+    console.log(date)
+    console.log(mm)
+    console.log(dd)
+    console.log(yyyy)
+    
+
+
   
-    //if the date is from 01-09, get rid of "0"
+    //not necessary because date not saving with 0 in front of 1-9
     if(dd.charAt(0)==="0"){
       newDay=dd.charAt(1);
     }
   
+    console.log(dd)
+
     //if dd is 11, 12, or 13, suffix remains as "th". If not, check second number for 1, 2, or 3 to change the suffix
-    if(dd!="11"&&dd!="12"&&dd!="13"){
+    if(dd==="11"||dd==="12"||dd==="13"){
       switch(dd.charAt(1)){
         case "1":
         suffix="st"
@@ -137,33 +147,33 @@ function readDate(dateToRead){
     }
   
     switch(mm){
-      case "01":
+      case "1":
       newMonth="January"
       break;
   
-      case "02":
+      case "2":
       newMonth="February"
       break;
   
-      case "03":
+      case "3":
       newMonth="March"
       break;
-      case "04":
+      case "4":
       newMonth="April"
       break;
-      case "05":
+      case "5":
       newMonth="May"
       break;
-      case "06":
+      case "6":
       newMonth="June"
       break;
-      case "07":
+      case "7":
       newMonth="July"
       break;
-      case "08":
+      case "8":
       newMonth="August"
       break;
-      case "09":
+      case "9":
       newMonth="September"
       break;
       case "10":
