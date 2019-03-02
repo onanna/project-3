@@ -12,6 +12,7 @@ router.route("/")
         console.log(data)
     });
 
+// route for posting attendance
 router.route("/:courseId")
     .post((req,res)=>{
         console.log(req.params.courseId)
@@ -30,16 +31,26 @@ router.route("/:courseId")
         
     })
 
+router.route('/')
+    .get((req,res)=>{
+        
+    })
+
+// route to send the text
+//matches with "/course-attendance/send/:courseId"
 router.route("/send/:courseId")
     .post((req,res)=>{
         console.log("inside sms test route!")
-        client.messages
-        .create({
-            body: 'testing the sms send feature',
-            from: '+18622175206',
-            to: '+19732233733'
-        })
-        .then(message => console.log(message.sid));
+        console.log("token is: "+req.params.token)
+        console.log('course is '+ req.params.courseId)
+
+        // client.messages
+        // .create({
+        //     body: 'testing the sms send feature',
+        //     from: '+18622175206',
+        //     to: '+19732233733'
+        // })
+        // .then(message => console.log(message.sid));
     })
 
 module.exports=router;

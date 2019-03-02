@@ -12,40 +12,18 @@ class sendAttendance extends Component{
         super(props)
     }
 
-    sendAttendanceForm=(url)=>{
+    
 
+    sendAttendanceForm=()=>{
+
+        let url=`courses/`
         let chosen = document.getElementById('sendSelect').value
         console.log("chosen is "+chosen)
+        console.log(`url to send is `)
 
         // API.sendAttendanceForm()
     }
 
-    test = [
-        {
-          firstName:"First",
-          lastName:"Instructor",
-          email:"something@gmail.com",
-          currentlyTeaching:[],
-          pastCourses:[],
-          phone:"+1someRandomNumber"
-        },
-        {
-          firstName:"numbah",
-          lastName:"two",
-          email:"someOtherthing@yahoo.com",
-          currentlyTeaching:[],
-          pastCourses:[],
-          phone:"+19732233733"
-        },
-        {
-          firstName:"Noel",
-          lastName:"Holiday",
-          email:"nice@aol.com",
-          currentlyTeaching:[],
-          pastCourses:[],
-          phone:"+1someRandomNumber"
-        },
-      ];
     render(){
         return(
             <div className="row">
@@ -54,8 +32,8 @@ class sendAttendance extends Component{
                         <select id="sendSelect">
                             <option value="" disabled></option>
                              {
-                                // this.props.instructors.map((current,i)=>{
-                                this.test.map((current,i)=>{
+                                this.props.instructors.map((current,i)=>{
+                                // this.test.map((current,i)=>{
                                     return <option value={current.phone} key={i}>{current.firstName} {current.lastName}</option>
                                 })
                             }

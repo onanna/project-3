@@ -6,7 +6,7 @@ import AllCourses from "./pages/courseDirectory"
 import NewCourse from "./pages/newCourse/newCourse"
 import InstDirectory from "./pages/instructorDirectory"
 import StuDirectory from "./pages/studentDirectory";
-import AttendanceForm from "./pages/attendanceForm"
+import AttendanceForm from "./pages/attendanceForm/attendanceForm"
 import Courses from "./pages/courseDirectory"
 import "./App.css";
 import Course from "./pages/savedCourse/savedCourse";
@@ -72,7 +72,6 @@ class App extends Component{
 
   render(){
 
-    // if(!this.state.token){
     if(this.state.token==="" && !this.state.isLoading){
       return <Login setSessionToken={this.setSessionToken}/>
     }
@@ -108,7 +107,7 @@ class App extends Component{
                 {/* <Route exact path="/instructors/:id" component={InstDirectory} /> */}
                 {/* <Route exact path="/courses" component={Course} /> */}
                 <Route exact path="/courses/detail/:id" component={Course} />
-                <Route exact path="/courses/attendance/:id/:date" component={AttendanceForm} />
+                <Route exact path="/courses/attendance/temp362019?token=?:token/:courseId" component={AttendanceForm} />
                 
                 <Route exact path="/newcourse" component={NewCourse}  />
                 <Route exact path="/newinstructorform" component={NewInstructor}  />

@@ -9,7 +9,33 @@ import Send from "../../components/sendAttendance/sendAttendance"
 
 class Course extends Component {
     state={
-        course:{}
+        course:{},
+        testStudents:[
+            {
+              firstName:"First",
+              lastName:"Instructor",
+              email:"something@gmail.com",
+              currentlyTeaching:[],
+              pastCourses:[],
+              phone:"+1someRandomNumber"
+            },
+            {
+              firstName:"numbah",
+              lastName:"two",
+              email:"someOtherthing@yahoo.com",
+              currentlyTeaching:[],
+              pastCourses:[],
+              phone:"+19732233733"
+            },
+            {
+              firstName:"Noel",
+              lastName:"Holiday",
+              email:"nice@aol.com",
+              currentlyTeaching:[],
+              pastCourses:[],
+              phone:"+1someRandomNumber"
+            },
+        ]
     }
   
     constructor(props){
@@ -19,13 +45,11 @@ class Course extends Component {
         API.getOneCourse(this.props.match.params.id)
         .then(response=> this.setState({course:response.data}))
         .catch(err => console.log("ERROR ERROR ERROR "+err))
-
     }
 
     componentDidMount=()=>{
         console.log("full course: " + this.state.course)
     }
-
 
     render(){
 
@@ -41,7 +65,8 @@ class Course extends Component {
                     </Card>
                 </Col> */}
 
-                    <Send />
+                    <Send instructors={this.state.testStudents}/>
+                    <a href={`/courses/attendance/temp362019?token=?$testToken/sdfasdfasdf`}>Attendance</a>
             </PageContainer>    
         )
 

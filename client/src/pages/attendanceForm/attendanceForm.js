@@ -7,6 +7,13 @@ import API from "../../utils/API";
 import Header from "../../components/h1withDivider"
 
 class attendanceForm extends Component{
+
+    constructor(props){
+        super(props)
+
+        console.log('match.params.id '+this.props.match.params.id)
+    }
+
     state={
         // course:{
         //     "_id" : "5c6b65cfb6799b38f4a2d943",
@@ -61,16 +68,17 @@ class attendanceForm extends Component{
     //need API.getCourse() unless course gets passed from allCourses home page
 
     componentDidMount(){
-        API.getAllCourses()
-            .then(courses=>{
-                console.log("one course is "+JSON.stringify(courses.data[0]))
-                API.getAllStudents()
-                    .then(students=>{
-                        API.addStudentsToCourse(courses.data[0]._id,students.data)
-                        .then(res=>{this.setState({course:res})})
-                        console.log(this.state.course)
-                    })
-            })
+
+        // API.getAllCourses()
+        //     .then(courses=>{
+        //         console.log("one course is "+JSON.stringify(courses.data[0]))
+        //         API.getAllStudents()
+        //             .then(students=>{
+        //                 API.addStudentsToCourse(courses.data[0]._id,students.data)
+        //                 .then(res=>{this.setState({course:res})})
+        //                 console.log(this.state.course)
+        //             })
+        //     })
     }
 
     handleAttendanceToggle(stuId){
