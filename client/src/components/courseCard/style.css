@@ -1,87 +1,57 @@
 .mainClass{
-    display:flex
-  }
-  .left-pane-course{
-  /*   min-height: 100vh !important; */
-    /* height: 100vh; */
-    background-color:#446ca8;
-    position:relative;
-    bottom:0
-  }
-  .classTimeLocation{
-    font-weight:bold;
-  }
-  .card-content{
-    height:100%;
-  }
-  .classDate{
-    font-weight: bolder;
-    margin-top:20%;
-    margin-bottom:0;
-  }
-
-  .classEnd{
-    margin-top:20%;
-    font-weight: 200;
-    
-  }
-  
-  .classStudents,.classUntil,.className{
-    color:#446ca8;
-  }
-  
-  .softContainer{
-    margin-left:5%;
-  }
-  
-  .classStudents,.classRemaining,.classTimeLocation{
-    font-size: 2.1vh;
-  }
-  
-  /* To make card responsive as sizes down */
-  .card.small {
-    height: auto;
-  }
-  .card.small .card-content {
-    height: auto;
-  }
-  .card.small .card-action {
-    position: relative;
-  }
-
-  /* .mainCourseCard{
-    max-height:397px;
-    max-width:590.906px;
-  } */
-
-
-
-  @media only screen and (min-width : 992px) {
-    .mainCourseCard{
-      /* height:397px; */
-      /* width:590.906px; */
-  
-      /* min-width:300px;
-      max-height: 650px; */
-  
-      height:387px;
-      width:330px;
-    }
+  display:flex
 }
-
-@media only screen and (max-width : 992px) {
-  .mainCourseCard{
-
-
-    height:400px;
-    width:280px;
-  }
-}
-
-  .mainCourseCard:hover{
-    cursor:pointer
-  }
-  
 .left-pane-course{
-  max-width: 150px;
+/*   min-height: 100vh !important; */
+  /* height: 100vh; */
+  background-color:#446ca8;
+  position:relative;
+  bottom:0
+}
+.classTimeLocation{
+  font-weight:bold;
+}
+.card-content{
+  height:100%;
+}
+.classDate{
+  font-weight: bolder;
+  /* margin-top:20%; */
+  margin-bottom:0;
+}
+
+.classEnd{
+  /* margin-top:20%; */
+  font-weight: 200; 
+}
+
+.classStudents,.classUntil,.className{
+  color:#446ca8;
+}
+
+.softContainer{
+  margin-left:5%;
+}
+
+/* .classStudents,.classRemaining{
+  font-size: 2.1vh;
+} */
+
+/* To make card responsive as sizes down */
+/* .card.small {
+  height: auto;
+}
+.card.small .card-content {
+  height: auto;
+}
+.card.small .card-action {
+  position: relative;
+} */
+
+
+.left-pane-course{
+  max-width: 220px;
+}
+.mainCourseCard:hover{
+  cursor:pointer
 }

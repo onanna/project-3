@@ -129,20 +129,19 @@ class Home extends Component{
             <Pagecontainer>
                 <Header align='left' text="All Courses"/>
                 {/* <ul className="collection"> */}
-                <div className='mainClass row'>
                     {
                         this.state.allCourses.map((current,i)=>{
                             return(
-                                <div className='left col s12 m6 mainCourseCol'>
-                                    <div onClick={()=>this.goToCourse(current._id)} className="mainCourseCard card small hoverable">
-                                        <CourseCard course={current}/>
+                                <div className='mainClass row'>
+                                    <div className='left col s12 m6 mainCourseCol'>
+                                        <div onClick={()=>this.goToCourse(current._id)} className="mainCourseCard card hoverable">
+                                            <CourseCard course={current}/>
+                                        </div>
                                     </div>
                                 </div>
-                            
                             )
                         })
                     }
-                </div>
                 {/* </ul> */}
             </Pagecontainer>
         )

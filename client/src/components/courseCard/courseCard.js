@@ -1,14 +1,6 @@
 import React from "react";
 import "./style.css";
 
-//need function to break down day, month, year of startDate
-//let startMonth
-//let startYear
-//let startDay
-//need function to show date
-
-
-
 function courseCard(props){
 
     return(
@@ -51,8 +43,9 @@ function courseCard(props){
                         <div className='col s12'>
                             <p className='flow-text classTimeLocation'>{props.course.location}</p>
                         </div>
+                    </div>
 
-                        <br/>
+                    <div className='row'>
                         <div className='col s12 m12 l12'>
                             <p className='flow-text classEnd'><span className='classUntil'>To </span>{readDate(props.course.endDate)}</p>
                         </div>
@@ -67,16 +60,13 @@ function courseCard(props){
                     <div className='row'>
                         <div className='col s12'>
                             <p className='flow-text classStudents'>Students Enrolled: {props.course.students.length}</p>
-                        </div>
+                        </div>                 
+                    </div>
 
+                    <div className='row'>
                         <div className='col s12'>
                             <p className='flow-text classRemaining'>Seats Remaining: {props.course.numberOfSeats - props.course.students.length}</p>
                         </div>
-                    </div>
-                    <div className='row'>
-                        {/* <div className='col s12'>
-                            <p className='flow-text classRemaining'>Seats Remaining: {props.course.numberOfSeats - props.course.students.length}</p>
-                        </div> */}
                     </div>
         
                 </div>
@@ -137,7 +127,7 @@ function readMonth(month){
         newMonth="December"
         break;
     }
-    return newMonth.substring(0,3);
+    return newMonth;
 }
 function readDay(dd){
 
