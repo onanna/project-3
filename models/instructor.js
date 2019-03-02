@@ -25,15 +25,21 @@ const instructorSchema = new Schema({
         validate: [validateEmail, 'Please fill a valid email address'],
         match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address']
     },
+    phone:{
+        trim:true,
+        type: String
+    },
     currentlyTeaching:[{
         type: Schema.Types.ObjectId, 
         ref: "course",
         required:true,
+        default:[]
     }],
     pastCourses:[{
         type: Schema.Types.ObjectId, 
         ref: "course",
-        required:true
+        required:true,
+        default:[]
     }]
 
 },{ collection : 'instructors' });

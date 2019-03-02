@@ -36,6 +36,9 @@ export default {
   getAllCourses:function(){
     return axios.get("/api/courses")
   },
+  getOneCourse:function(id){
+    return axios.get(`/api/courses/${id}`)
+  },
   addCourse:function(courseInfo){
     alert("received request. bouta send it ")
     return axios.post(`/api/courses`,courseInfo);

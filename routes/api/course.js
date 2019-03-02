@@ -21,7 +21,11 @@ router.route("/:courseId")
         let {whatToChange,newValue}=req.body
         let update={[whatToChange]:newValue}
         course.update(req.params.courseId,update)
-    });
+    })
+    .get((req,res)=>{
+        console.log("courseeeeee "+ req.params.courseId)
+        course.getOne(req.params.courseId,res)
+    })
 
 router.route("/:courseId/:roster")
     .post((data)=>{

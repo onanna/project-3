@@ -1,22 +1,4 @@
-.page-container{
-    padding-left: 300px;
-    margin:0 10%;
-}
-
-@media only screen and (max-width : 992px) {
-    .page-container {
-      padding-left: 0;
-    }
-}
-
-.firstItem{
-    margin-top:20%;
-}
-
-.sidenav{
-    background-image:url("https://previews.123rf.com/images/irrrina/irrrina1412/irrrina141200031/34663463-notebook-lined-paper-background-or-texture.jpg");
-    /* background-image:url("https://allfreedesigns.com/wp-content/uploads/2017/04/lined-paper-texture-4.jpg"); */
-}
+/* This code is to fix issues where clicking inside of the text field for forms does not activate the field */
 input[type="text"] + label {
     pointer-events: none;
     }
