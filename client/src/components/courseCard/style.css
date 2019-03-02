@@ -15,7 +15,8 @@
     height:100%;
   }
   .classDate{
-    margin-top:0;
+    font-weight: bolder;
+    margin-top:10%;
     margin-bottom:0;
   }
   
@@ -24,7 +25,7 @@
   }
   
   .softContainer{
-    margin-left:10%;
+    margin-left:5%;
   }
   
   
@@ -38,3 +39,21 @@
   .card.small .card-action {
     position: relative;
   }
+
+  /* .mainCourseCard{
+    max-height:397px;
+    max-width:590.906px;
+  } */
+/* 
+  .mainCourseCard{
+    height:397px;
+    width:590.906px;
+  } */
+
+  .mainCourseCard:hover{
+    cursor:pointer
+  }
+  
+.left-pane-course{
+  max-width: 225px;
+}

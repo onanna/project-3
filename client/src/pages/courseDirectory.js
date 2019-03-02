@@ -105,6 +105,12 @@ class Home extends Component{
             .then(this.getCourses())
             .catch(err => console.log(err));
     }
+
+    goToCourse=(courseId)=>{
+        console.log("going to go to ")
+        // window.location.replace(`/courses/detail/${courseId}`);
+        window.location.href=`/courses/detail/${courseId}`;
+    }
    
 
     arrayPassOrMake=(data)=>{
@@ -121,23 +127,22 @@ class Home extends Component{
    render(){
         return(
             <Pagecontainer>
-                <h1>Hi Team!</h1>
-                <h2>Number of Courses:{this.state.allCourses.length}</h2>
-                <h3>All Courses:</h3>
+                <Header align='left' text="All Courses"/>
                 {/* <ul className="collection"> */}
+                <div className='mainClass row'>
                     {
                         this.state.allCourses.map((current,i)=>{
                             return(
-                                // <li onClick={()=>this.addToCourse("students",this.state.students,current._id)} key={i} className="collection-item">{JSON.stringify(current)}</li>
-                                // <li key={i} className="collection-item"><Link to={`/courses/detail/${current._id}`} fullCourse={current}>{JSON.stringify(current)}</Link></li>       
-                                <div className='row'>
-                                    <div key={i} className='col s6'>
+                                <div className='left col s12 m6 mainCourseCol'>
+                                    <div onClick={()=>this.goToCourse(current._id)} className="mainCourseCard card small hoverable">
                                         <CourseCard course={current}/>
                                     </div>
                                 </div>
+                            
                             )
                         })
                     }
+                </div>
                 {/* </ul> */}
             </Pagecontainer>
         )
