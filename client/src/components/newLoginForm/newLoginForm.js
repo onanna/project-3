@@ -47,24 +47,11 @@ class Newloginform extends Component {
         return (
             <div>
 
-                {/* <div id="modal1" class="modal">
-                    <div class="modal-content">
-                        <div className="input-field">
-                            <input onChange={this.handleInputChange} name="username" id="username" type="text" />
-                            <label className="active" htmlFor="last_name">Username</label>
-                        </div>
-
-                        <div className="input-field">
-                            <input onChange={this.handleInputChange} id="lastName" type="password" name="password" />
-                            <label htmlFor="last_name">Password</label>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <SubmitButton class="modal-close waves-effect waves-green btn-flat" submitFunction={this.handleFormSubmit} />
-                    </div>
-                </div> */}
-
               <div className="container">
+
+                <header className="col s6 center-align">
+                    <h1>Create New Login</h1>
+                </header>
 
                 <div className="row">
                   <div className="col s6 center-align">
@@ -84,6 +71,9 @@ class Newloginform extends Component {
                             </div>
 
                             <SubmitButton submitFunction={this.handleFormSubmit} />
+
+                            <a class="btn-large waves-effect waves-light z-depth-5 submitbtnclass go-back-btn" href="/login">Have a login already?</a>
+
                         </div>
                       </div>
                     </div>
