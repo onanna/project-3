@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import "./../savedCourse/savedCourse.css";
 import PageContainer from "../../components/pageContainer";
+import Register from "../../components/registerStudentForm/registerStudent";
 import API from "../../utils/API";
-import booksImg from "../../images/books1.jpg"
+import booksImg from "../../images/books1.jpg";
 
 class Course extends Component {
     state={
@@ -34,10 +35,22 @@ class Course extends Component {
                         <div className="card" id="courseCard">
                             <div className="card-image">
 
-                                <img src={booksImg} alt="books" />    
+                                <img src={booksImg} alt="books" /> 
 
-                                <a className="btn tooltipped btn-large btn-floating halfway-fab waves-effect waves-light red" data-position="right" data-tooltip="Add Student"><i className="material-icons">add</i></a>
+                                {/* Register Student Button */}
+                                <a className="btn modal-trigger tooltipped btn-large btn-floating halfway-fab waves-effect waves-light red" href="#registerStudent" data-target="registerStudent" data-position="right" data-tooltip="Add Student"><i className="material-icons">add</i></a>
 
+
+                                {/* Register Student Modal */}
+                                <div id="registerStudent" className="modal">
+                                    <div className="modal-content">
+                                        {/* <Register 
+                                        
+                                        /> */}
+                                    </div>
+                                </div>                            
+
+                                {/* Course Content Card */}
                                 <div className="card-content" id="courseContent">
                                     <h4>{this.state.course.name}</h4>   
                                     <p><b> Number of Seats Available:</b> {this.state.course.numberOfSeats}</p>
@@ -46,10 +59,8 @@ class Course extends Component {
                                     <p><b>Start Time:</b> {this.state.course.startTime}</p>
                                     <p><b>End Time:</b> {this.state.course.endTime}</p>
                                     <p><b>Location:</b> {this.state.course.location}</p>
-                                    <p><b>Instructor:</b> {this.state.course.instructors}</p>
-                                    <p><b>Students Registered:</b> {this.state.course.students}</p>
                                 </div>
-                            
+                                                               
                             </div>
                         </div>
                     </div>
