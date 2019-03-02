@@ -4,7 +4,10 @@ const user = require("../controllers/userController");
 //matches with "/user" 
 router.route("/")
     .get(user.getAll)
-    .post((data)=>user.add(data));
+    .post((data)=>{
+        console.log("data passed to backend is "+ JSON.stringify(data.body))
+        user.add(data.body)
+    });
 
 router.route("/:id")
     .delete((req,res)=>{

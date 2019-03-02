@@ -4,39 +4,58 @@ module.exports = {
     checkLogin:function(userInfoToCheck,res){
         db.user.findOne({"userName":userInfoToCheck.username})
         .then((user)=>{
-            if(user){
+            if(user._id){
                 console.log("SUcCESS! "+user)
                 //check password
                 let potentialUser = new db.user(user)
-                console.log("password check "+potentialUser.validPassword(userInfoToCheck.password))
+                console.log("password to check "+userInfoToCheck.password)
+                console.log('correct password '+user.password)
 
-                db.userSession.create(user._id)
-                .then(session=>{
-                    console.log("session in backend is "+session)
-                    res.send(session);
-                })    
-                .catch(error=>{
-                    res.send(error);
-                })
+                
+                if(potentialUser.validPassword(userInfoToCheck.password)===true){
+                    console.log('creating new session')
+                    db.userSession.create(user._id)
+                    .then(session=>{
+                        console.log("session in backend is "+session)
+                        res.send(session);
+                    })    
+                    .catch(error=>{
+                        res.send(error);
+                    })
+                }else{
+                    console.log('password is wrong af')
+                    res.end();
+                }
             }else{
                 res.send({error:"user not found"});
             } 
         })
         .catch(error=>{
+            console.log('failed at findOne')
             console.log(`sorry, that was invalid input ${error}`)
         })
     },
     checkToken:function(token,res){
-        db.userSession.findById(token)
-        .then((session)=>{
-            let {_id, date, isLoggedIn} = session;
-            console.log("existing session is "+_id+" and it is valid!")
-            res.send(session)
-        })
-        .catch(error=>{
-            res.send();
-            console.log(`sorry ${error}`)
-        })
+        if(token==='undefined'||token===''){
+            console.log('token passed is undefined')
+            res.send('token is invalid')
+        }else{
+            console.log('token to check exists. running check')
+            db.userSession.findById(token)
+            .then((session)=>{
+                let {_id, date, isLoggedIn} = session;
+                console.log("existing session is "+_id+" and it is valid!")
+                if(session){
+                    res.send(session)
+                }else{
+                    res.send('ERROR TOKEN NOT VALID')
+                }
+            })
+            .catch(error=>{
+                res.send('error no token');
+                console.log(`sorry ${error}`)
+            })
+        }
     },
     deleteToken:function(token){
         db.userSession.findByIdAndRemove(token)
@@ -45,21 +64,39 @@ module.exports = {
             return
         })
     },
-    add:function(req){
+    newToken:function(){
 
-        // db.user.create(req.body)
+    },
+    add:function(data){
+
+        //different way of creating and adding mongoose model. 
+        //used because of bcrypt and the necessity of password encryption
         let newUser = new db.user();
-        newUser.userName = req.body.userName
-        newUser.password = newUser.generateHash(req.body.password)
-        newUser.email = req.body.email
-        newUser.firstName = req.body.firstName
-        newUser.lastName = req.body.lastName
-        .then(result=>{
-            console.log(`congrats on adding an user!: ${result}`)
-        })
-        .catch(error=>{
-            console.log(`you tried adding an user, but it's invalid: ${error}`)
-        })
+        newUser.userName = data.userName
+        newUser.password = newUser.generateHash(data.password)
+        newUser.email = data.email
+        newUser.firstName = data.firstName
+        newUser.lastName = data.lastName;
+        if(newUser.userName&&newUser.password&&newUser.email&&newUser.firstName&&newUser.lastName){
+            newUser.save()
+            .then(result=>{
+                console.log(`congrats on adding an user!: ${result}`)
+                //create token for new user
+                // db.userSession.create(result._id)
+                // .then(session=>{
+                //     console.log("session in backend is "+session)
+                //     res.send(session);
+                // })    
+                // .catch(error=>{
+                //     res.send(error);
+                // })
+            })
+            .catch(error=>{
+                console.log(`you tried adding an user, but it's invalid: ${error}`)
+            })
+        }else{
+            
+        }
      
     },
     getAll:function(req,res){

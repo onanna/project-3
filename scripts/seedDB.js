@@ -112,61 +112,7 @@ const userSeed=[
     password:"test3"
   },
 ]
-// insertStudents=()=>{
-//   db.student
-//     .remove({})
-//     .then(() => db.student.collection.insertMany(studentSeed))
-//     .then(data => {
-//       console.log(data.result.n + " students inserted!");
-//       process.exit(0);
-//     })
-//     .catch(err => {
-//       console.error(err);
-//       process.exit(1);
-//     });
-// }
 
-// insertInstructors=()=>{
-//   db.instructor
-//   .remove({})
-//   .then(() => db.instructor.collection.insertMany(instructorSeed))
-//   .then(data => {
-//     console.log(data.result.n + " instructors inserted!");
-//     process.exit(0);
-//   })
-//   .catch(err => {
-//     console.error(err);
-//     process.exit(1);
-//   });
-// }
-
-// insertCourses=()=>{
-//   db.course
-//   .remove({})
-//   .then(() => db.course.collection.insertMany(courseSeed))
-//   .then(data => {
-//     console.log(data.result.n + " courses inserted!");
-//     process.exit(0);
-//   })
-//   .catch(err => {
-//     console.error(err);
-//     process.exit(1);
-//   });
-// }
-
-// insertUsers=()=>{
-//   db.user
-//   .remove({})
-//   .then(() => db.user.collection.insertMany(userSeed))
-//   .then(data => {
-//     console.log(data.result.n + " users inserted!");
-//     process.exit(0);
-//   })
-//   .catch(err => {
-//     console.error(err);
-//     process.exit(1);
-//   });
-// }
 
 insertStudents=()=>{
   db.student

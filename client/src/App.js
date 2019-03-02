@@ -20,7 +20,8 @@ class App extends Component{
   
   state={
     token:'',
-    isLoading:false
+    isLoading:false,
+    tokenStatus:''
   }
   
   componentDidMount=()=>{
@@ -35,22 +36,26 @@ class App extends Component{
     this.setState((prevState)=>({
       isLoading:true 
     }))
+
     API.checkToken(token)
     .then(result=>{
-      // alert("TOKEN SEARCHED. RESULT IS "+JSON.stringify(result.data))
-      this.setState((previousState)=>({
-        token: result.data._id,
-        isLoading:false
-      }));
+      console.log('result of token is '+JSON.stringify(result.data))
+      if(result.data!='token is invalid'){
+        console.log('setting token to '+ result.data_id)
+        this.setState((previousState)=>({
+          token: result.data._id,
+          isLoading:false
+        }));
+      }
     })
     .catch(err=>alert("error! "+err))
   }
   setSessionToken=(session)=>{
-      // alert("SETTING SESSION TOKEN! to "+JSON.stringify(session))
+      alert("SETTING SESSION TOKEN! to "+JSON.stringify(session._id))
       localStorage.setItem('course-creator-token', session._id)
       
       this.setState((previousState)=>({
-        token:session,
+        token:session._id,
         isLoading:false
       }));  
   }
@@ -70,12 +75,16 @@ class App extends Component{
   render(){
 
     // if(!this.state.token){
-    if(this.state.token==="" && !this.state.isLoading){
-      return <Login setSessionToken={this.setSessionToken}/>
+    // if(this.state.token==="" && this.state.isLoading===false){
+    // if(this.state.token==="" || !this.state.token && this.state.isLoading===false){
+    if(this.state.token==="" || !this.state.token && this.state.isLoading!=true){
+    // if(this.state.token===""){ 
+      return (
+        <Login setSessionToken={this.setSessionToken}/>
+      )
     }
 
     if(this.state.isLoading===true){
-
       return(
         <div className="row">
           <div className="spinnerDiv col s12 center-align">

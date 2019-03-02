@@ -20,12 +20,13 @@ router.route("/login")
     })
 
 router.route("/token/:token")
-    .post((req,res)=>{
-        console.log("inside token post route")
-        user.checkToken(req.body,res)
-    })
+    // .post((req,res)=>{
+    //     console.log("inside token post route")
+    //     user.checkToken(req.body,res)
+    // })
     .get((req,res)=>{
         console.log("inside token check GET")
+        console.log('params '+req.params.token)
         console.log("token is "+req.params.token)
         // res.send(req.body)
         user.checkToken(req.params.token,res)
