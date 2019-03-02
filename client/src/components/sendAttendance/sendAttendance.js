@@ -17,7 +17,6 @@ class sendAttendance extends Component{
         let chosen = document.getElementById('sendSelect').value
         console.log("chosen is "+chosen)
 
-        
         // API.sendAttendanceForm()
     }
 
