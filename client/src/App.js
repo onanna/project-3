@@ -74,11 +74,15 @@ class App extends Component{
 
   render(){
 
-    // if(!this.state.token){
-    // if(this.state.token==="" && this.state.isLoading===false){
-    // if(this.state.token==="" || !this.state.token && this.state.isLoading===false){
-    if(this.state.token==="" || !this.state.token && this.state.isLoading!=true){
-    // if(this.state.token===""){ 
+    //for when page changes and app is stateless for some milliseconds
+    if(!this.state.token && !this.state.isLoading){
+      return (
+        <Login setSessionToken={this.setSessionToken}/>
+      )
+    }
+    
+    //for when the token is empty
+    if(this.state.token==="" && !this.state.isLoading ){
       return (
         <Login setSessionToken={this.setSessionToken}/>
       )

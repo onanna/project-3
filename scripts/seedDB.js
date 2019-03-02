@@ -156,7 +156,7 @@ insertCourses=()=>{
 insertUsers=()=>{
   db.user
   .remove({})
-  .then(() => db.user.collection.insertMany(userSeed))
+  .then((data)=>db.user.collection.insertMany(userSeed))
   .then(data => {
     console.log("users, courses, instructors, & students inserted!");
     process.exit(0);
