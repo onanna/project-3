@@ -1,0 +1,65 @@
+.mainClass{
+    display:flex
+  }
+  .left-pane-course{
+  /*   min-height: 100vh !important; */
+    /* height: 100vh; */
+    background-color:#446ca8;
+    position:relative;
+    bottom:0
+  }
+  .classTimeLocation{
+    font-weight:bold;
+  }
+  .card-content{
+    height:100%;
+  }
+  .classDate{
+    font-weight: bolder;
+    margin-top:10%;
+    margin-bottom:0;
+  }
+  
+  .classStudents,.classUntil,.className{
+    color:#446ca8;
+  }
+  
+  .softContainer{
+    margin-left:5%;
+  }
+  
+  
+  /* To make card responsive as sizes down */
+  .card.small {
+    height: auto;
+  }
+  .card.small .card-content {
+    height: auto;
+  }
+  .card.small .card-action {
+    position: relative;
+  }
+
+  /* .mainCourseCard{
+    max-height:397px;
+    max-width:590.906px;
+  } */
+
+  .mainCourseCard{
+    /* height:397px; */
+    /* width:590.906px; */
+
+    min-width:300px;
+    max-height: 650px;
+/* 
+    height:398px;
+    width:319px; */
+  }
+
+  .mainCourseCard:hover{
+    cursor:pointer
+  }
+  
+.left-pane-course{
+  max-width: 150px;
+}

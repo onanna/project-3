@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import "./../savedCourse/savedCourse.css";
 import PageContainer from "../../components/pageContainer";
 import API from "../../utils/API";
+import H1 from "../../components/h1withDivider";
+import {Col, Card} from 'react-materialize';
 import booksImg from "../../images/books1.jpg"
 
 class Course extends Component {

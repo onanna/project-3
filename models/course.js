@@ -17,12 +17,12 @@ const courseSchema = new Schema({
         trim:true
     },    
     startDate:{
-        type:Date,
+        type:String,
         required:true,
         trim:true
     },
     endDate:{
-        type:Date,
+        type:String,
         required:true,
         trim:true
     },
