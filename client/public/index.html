@@ -25,7 +25,12 @@
           $('.sidenav').sidenav();
           $('.collapsible').collapsible();
           $('.modal').modal();
-          $('.datepicker').datepicker();
+          // $('.datepicker').datepicker();
+          $(".datepicker").datepicker({
+            format: "mm-dd-yyyy",
+            autoClose: true
+          });
+          $('select').formSelect();  
           $('.tooltipped').tooltip();
         });
     </script>

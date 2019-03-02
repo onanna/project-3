@@ -5,7 +5,7 @@ const instructor = require("./instructor")
 
 
 const courseSchema = new Schema({
-    name:{
+    course:{
         type:String,
         required:true,
         trim:true,
@@ -39,7 +39,7 @@ const courseSchema = new Schema({
         trim:true
         //going to be the full address. Formatting can be done front-end
     },
-    instructors: [
+    selectInstructors: [
         { 
             type: Schema.Types.ObjectId, 
             ref: "instructor",
@@ -47,7 +47,7 @@ const courseSchema = new Schema({
             // unique:true
         }
     ],
-    students: [
+    selectStudents: [
         { 
             type: Schema.Types.ObjectId, 
             ref: "student",
