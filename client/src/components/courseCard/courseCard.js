@@ -52,8 +52,9 @@ function courseCard(props){
                             <p className='flow-text classTimeLocation'>{props.course.location}</p>
                         </div>
 
+                        <br/>
                         <div className='col s12 m12 l12'>
-                            <p className='flow-text'><span className='classUntil'>To </span>{readDate(props.course.endDate)}</p>
+                            <p className='flow-text classEnd'><span className='classUntil'>To </span>{readDate(props.course.endDate)}</p>
                         </div>
                     </div>
                     
