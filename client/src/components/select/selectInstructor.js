@@ -4,34 +4,39 @@ import API from '../../utils/API'
 
 
 class SelectInstructor extends Component{
+      constructor (props) {
+          super(props)
       
-    state={
+this.state={
         instructors:[]
     }
 
-    componentDidMount=()=>{
+this.componentDidMount=()=>{
         this.getAllInstructors();
     }
 
-    getAllInstructors=()=>{
+this.getAllInstructors=()=>{
         API.getInstructors()
-        .then(res => this.setState({ instructors: res.data }))
+        .then(res =>{ this.setState({ instructors: res.data })
+            console.log(JSON.stringify(res.data))
+        })
+        
         .catch(err => console.log(err));
     }
-    
+}
  render (){
     return(
         <Row>
             <Col>
        <form>
            <label>Select Instructor</label>
-       <div class="input-field col s12">
+       <div className="input-field col s12">
     <select multiple>
-      <option value="" disabled selected>Choose your option</option>
+      <option value="" >Choose your option</option>
      
         {
             this.state.instructors.map((currentInstructor,i)=>{
-                return <option value="1">{currentInstructor.name}</option>
+                return <option key={currentInstructor.id} value="1">{currentInstructor.firstName}, {currentInstructor.lastName}</option>
             })
         }
       

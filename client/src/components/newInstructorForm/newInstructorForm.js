@@ -7,19 +7,20 @@ import "./style.css";
 
 
 class Newinstructor extends Component {
+
+  constructor(props){
+    super(props);
+  
   // Setting the component's initial state
-  state = {
+  this.state = {
    firstName: "",
    lastName: "",
     // image: "",
     phone: 0,
-    email:"",
-    currentlyTeaching: [],
-    pastCourses: []
-  };
-  
+    email:""
+  }
 
-  handleInputChange = event => {
+  this.handleInputChange = event => {
     // Getting the value and name of the input which triggered the change
     const { name, value } = event.target;
 
@@ -29,7 +30,7 @@ class Newinstructor extends Component {
     });
   };
 
-  handleFormSubmit = event => {
+  this.handleFormSubmit = event => {
     // Preventing the default behavior of the form submit (which is to refresh the page)
    event.preventdefault();
 
@@ -38,7 +39,7 @@ class Newinstructor extends Component {
 
     console.log(this.state)
 };
-
+  }
 
   render() {
   
