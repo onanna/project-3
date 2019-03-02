@@ -1,11 +1,12 @@
 import React from "react";
 import "./style.css";
+import { PromiseProvider } from "mongoose";
 
-function headerWithDivider({children}){
+function headerWithDivider(props){
 
     return(
         <div>
-            <h1 id="pageHeader" className="center-align">{children}</h1>
+            <h1 id="pageHeader" className={`${props.align}-align`}>{props.text}</h1>
             <div className="divider"></div>
         </div>
     )
