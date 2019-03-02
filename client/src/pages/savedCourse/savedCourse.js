@@ -1,10 +1,8 @@
 import React, { Component } from "react";
-import "./style.css";
+import "./../savedCourse/savedCourse.css";
 import PageContainer from "../../components/pageContainer";
 import API from "../../utils/API";
-import H1 from "../../components/h1withDivider";
-import {Col, Card} from "react-materialize"
-
+import booksImg from "../../images/books1.jpg"
 
 class Course extends Component {
     state={
@@ -33,25 +31,23 @@ class Course extends Component {
             <PageContainer>
                 <div className="row"> 
                     <div className="col s12 m6">
-                        <div className="card">
+                        <div className="card" id="courseCard">
                             <div className="card-image">
 
-                                <img src="" />
+                                <img src={booksImg} alt="books" />    
 
-                                <span className="card-title">Card Title</span>
-                                
-                                <a className="btn-floating halfway-fab waves-effect waves-light red"><i className="material-icons">Add</i></a>
+                                <a className="btn tooltipped btn-large btn-floating halfway-fab waves-effect waves-light red" data-position="right" data-tooltip="Add Student"><i className="material-icons">add</i></a>
 
-                                <div className="card-content">
-                                    <p>{this.state.course.name}</p>
-                                    <p>{this.state.course.numberOfSeats}</p>
-                                    <p>{this.state.course.startDate}</p>
-                                    <p>{this.state.course.endDate}</p>
-                                    <p>{this.state.course.startTime}</p>
-                                    <p>{this.state.course.endTime}</p>
-                                    <p>{this.state.course.location}</p>
-                                    <p>{this.state.course.instructors}</p>
-                                    <p>{this.state.course.students}</p>            
+                                <div className="card-content" id="courseContent">
+                                    <h4>{this.state.course.name}</h4>   
+                                    <p><b> Number of Seats Available:</b> {this.state.course.numberOfSeats}</p>
+                                    <p><b>Start Date:</b> {this.state.course.startDate}</p>
+                                    <p><b>End Date:</b> {this.state.course.endDate}</p>
+                                    <p><b>Start Time:</b> {this.state.course.startTime}</p>
+                                    <p><b>End Time:</b> {this.state.course.endTime}</p>
+                                    <p><b>Location:</b> {this.state.course.location}</p>
+                                    <p><b>Instructor:</b> {this.state.course.instructors}</p>
+                                    <p><b>Students Registered:</b> {this.state.course.students}</p>
                                 </div>
                             
                             </div>
