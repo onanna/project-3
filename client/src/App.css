@@ -26,3 +26,10 @@ input[type="text"] + label {
 input[type="password"] + label {
     pointer-events: none;
     }
+
+
+.app-container {
+    height: 100vh;
+    widows: 100vw;
+}
+
