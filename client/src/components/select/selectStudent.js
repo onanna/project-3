@@ -31,18 +31,30 @@ class SelectStudent extends Component{
             <Col>
        <form>
            <label>Select Students</label>
-       <div class="input-field col s12">
-    <select multiple>
-      <option value="">Choose your option</option>
+       <div className="input-field col s12">
+    <select multiple onChange={this.props.onChange} name="selectStudents">
+      <option value="" defaultValue>Choose your option</option>
      
         {
             this.state.students.map((current,i)=>{
-                return <option key={current.id} value="1">{current.firstName}, {current.lastName}</option>
+                return <option key={current._id} value={current._id}>{current.firstName}, {current.lastName}</option>
             })
         }
       
     </select>
+    {/* <form>
+           <label>Select Instructor</label>
+       <div className="input-field col s12">
+    <select multiple onChange={this.props.onChange} name="selectInstructors">
+      <option value="" defaultValue  >Choose your option</option>
     
+        {
+            this.state.instructors.map((currentInstructor,i)=>{
+                return <option  key={currentInstructor._id} value={currentInstructor._id}>{currentInstructor.firstName}, {currentInstructor.lastName}</option>
+            })
+        }
+      
+    </select> */}
   </div>
   </form>
   </Col>

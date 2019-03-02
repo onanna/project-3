@@ -31,12 +31,12 @@ this.getAllInstructors=()=>{
        <form>
            <label>Select Instructor</label>
        <div className="input-field col s12">
-    <select multiple>
-      <option value="" >Choose your option</option>
-     
+    <select multiple onChange={this.props.onChange} name="selectInstructors">
+      <option value="" defaultValue  >Choose your option</option>
+    
         {
             this.state.instructors.map((currentInstructor,i)=>{
-                return <option key={currentInstructor.id} value="1">{currentInstructor.firstName}, {currentInstructor.lastName}</option>
+                return <option  key={currentInstructor._id} value={currentInstructor._id}>{currentInstructor.firstName}, {currentInstructor.lastName}</option>
             })
         }
       

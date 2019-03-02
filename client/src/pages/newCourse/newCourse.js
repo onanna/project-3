@@ -5,6 +5,7 @@ import PageContainer from "../../components/pageContainer";
 import API from "../../utils/API"
 import SelectInstructor from "../../components/select/selectInstructor";
 import SelectStudent from "../../components/select/selectStudent"
+import $ from "jquery"
 
 class Newcourse extends Component {
   constructor(props) {
@@ -13,73 +14,127 @@ class Newcourse extends Component {
 
   this.state = {
     course: "",
-     numberOfSeats: 25,
-    startDate:Date,
-    endDate: Date,
+    numberOfSeats:25,
+    startDate:"",
+    endDate:"",
     startTime:"",
     endTime: "",
-    location: ""
-    
-   
+    location: "",
+    selectInstructors: [],
+    selectStudents:[]
   };
 
  
   this.componentDidMount=()=>{
+    // $(".datepicker").datepicker({
+    //       format: "mm-dd-yyyy",
+    //       // maxDate: new Date(),
+    //       autoClose: true,
+    //       onClose: function(datePicked) {
+      
+    //         let date = $(".datepicker")[0].value;
+    //         let mm = date.split("-")[0];
+    //         let dd = date.split("-")[1];
+    //         let yyyy = date.split("-")[2];
+      
+    //       }
+    //   });
   }
-  this.handleInputChange = event => {
-    const { name, value } = event.target;
-   
-    // Updating the input's state 
+  this.handleInputChange = event =>{
+    const {name, value} = event.target
+
     this.setState({
       [name]: value
-    });
+    })
+  }
+  this.handleSelectedInstructorsChange = event => {
 
-  
+
+    const { name, options } = event.target;
+    var value = [];
+    for (var i = 0, l = options.length; i < l; i++) {
+      if (options[i].selected) {
+        value.push(options[i].value);
+      }
+    }
+
+    this.setState({
+      [name]: value
+    }, ()=>    console.log(this.state.selectInstructors)  
+    );
+
+  }
+  this.handleSelectedStudentsChange = event => {
+
+
+    const { name, options } = event.target;
+    var value = [];
+    for (var i = 0, l = options.length; i < l; i++) {
+      if (options[i].selected) {
+        value.push(options[i].value);
+      }
+    }
+
+    this.setState({
+      [name]: value
+    }, ()=>    console.log(this.state.selectStudents)  
+    );
+
   }
   
   this.onChange = time => this.setState({ time })
 
-  this.handleDateChange =() => {
-    // Getting the value and name of the input which triggered the change
+  // this.handleDateChange =() => {
+  //   // Getting the value and name of the input which triggered the change
     
-    let x = document.getElementsByClassName("datepicker")
-    let dateChosen = x[0].value;
-    console.log("val: " + x[0].value);
-    console.log(dateChosen)
-    this.setState({
-      startDate:dateChosen,
-      endDate: dateChosen
-    })
+  //   let x = document.getElementById("startDatePicker")
+  //   let y = document.getElementById("endDatePicker")
+  //   console.log('datepicker is '+ x)
+  //   let startdateChosen = x.value;
+  //   let enddateChosen = y.value;
     
-  };
 
-  this.ddInstructors = () => {
-    let x = []
+  
+   
+   
+  //   this.setState({
+  //     startDate:startdateChosen,
+  //     endDate: enddateChosen
+  //   })
     
-  }
+  // };
+
+  
   this.handleFormSubmit = event => {
     // Preventing the default behavior of the form submit (which is to refresh the page)
     event.preventDefault();
 
-    
-    
+
+    let x = document.getElementById("startDatePicker")
+    let y = document.getElementById("endDatePicker")
+    console.log('datepicker is '+ x.value)
+    console.log('datepicker is '+ y.value)
+
+    let startdateChosen = x.value;
+    let enddateChosen = y.value;
 
     let dataToSend={
       course: this.state.course,
       numberOfSeats: this.state.numberOfSeats,
-      startDate: this.state.startDate,
-      endDate: this.state.endDate,
+      startDate: startdateChosen,
+      endDate: enddateChosen,
       startTime: this.state.startTime,
       endTime: this.state.endTime,
       location: this.state.location,
-      instructors:[],
-      students:[]
+      selectInstructors: this.state.selectInstructors,
+      selectStudents:this.state.selectStudents
     }
 
     //add validation
 
+    // debugger
 
-    // API.addCourse(dataToSend)
+   API.addCourse(dataToSend)
     console.log(dataToSend)
     console.log(this.state)
 
@@ -144,8 +199,8 @@ class Newcourse extends Component {
               Spots Available: 
           </label>
               <input
-            value={this.state.spotsLeft}
-            name="spotsLeft"
+            value={this.state.numberOfSeats}
+            name="numberOfSeats"
             
             type="number" 
             min="0"
@@ -202,10 +257,14 @@ class Newcourse extends Component {
           />
           
           <label> Start Date:</label>  
-          <input type="text" className="datepicker" value={this.state.startDate} onChange={this.handleDateChange} />
+          <input type="text" id='startDatePicker' className="datepicker" value={this.state.startDate}
+            // onChange={this.handleDateChange} 
+          />
           
           <label> End Date:</label>  
-          <input type="text" className="datepicker" value={this.state.endDate} onChange={this.handleDateChange} />
+          <input type="text" id='endDatePicker' className="datepicker" value={this.state.endDate}
+          //  onChange={this.handleDateChange}
+            />
        
          
         </form>
@@ -223,8 +282,8 @@ class Newcourse extends Component {
     
             </div>
         </div>
-       <SelectInstructor />
-      <SelectStudent />
+       <SelectInstructor value={this.state.instructors} onChange={this.handleSelectedInstructorsChange} />
+      <SelectStudent value={this.state.students} onChange={this.handleSelectedStudentsChange} />
       <form>
       <button onClick={this.handleFormSubmit}>Submit</button>
       </form>
