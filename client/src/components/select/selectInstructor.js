@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import {Col,Row} from "react-materialize";
 import API from '../../utils/API'
+const $ = window.$;
 
 
 class SelectInstructor extends Component{
@@ -12,6 +13,7 @@ this.state={
     }
 
 this.componentDidMount=()=>{
+        $('select').formSelect();  
         this.getAllInstructors();
     }
 
@@ -36,7 +38,7 @@ this.getAllInstructors=()=>{
     
         {
             this.state.instructors.map((currentInstructor,i)=>{
-                return <option  key={currentInstructor._id} value={currentInstructor._id}>{currentInstructor.firstName}, {currentInstructor.lastName}</option>
+                return <option  key={currentInstructor._id} accessKey={currentInstructor._id} value={currentInstructor.firstName}>{currentInstructor.firstName}, {currentInstructor.lastName}</option>
             })
         }
       

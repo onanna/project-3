@@ -5,7 +5,7 @@ const instructor = require("./instructor")
 
 
 const courseSchema = new Schema({
-    course:{
+    name:{
         type:String,
         required:true,
         trim:true,
@@ -39,21 +39,36 @@ const courseSchema = new Schema({
         trim:true
         //going to be the full address. Formatting can be done front-end
     },
-    selectInstructors: [
-        { 
-            type: Schema.Types.ObjectId, 
+    // selectInstructors: [
+    //     { 
+    //         type: Schema.Types.ObjectId, 
+    //         ref: "instructor",
+    //         required:true,
+    //         // unique:true
+    //     }
+    // ],
+    // SelectStudents: [
+    //     { 
+    //         type: Schema.Types.ObjectId, 
+    //         ref: "student",
+    //         required:true,
+    //         maxlength:this.numberOfSeats
+    //         // unique:true
+    //     }
+    // ],
+    instructors: [
+        {
+            type: Schema.Types.ObjectId,
             ref: "instructor",
-            required:true,
-            // unique:true
+            required:true
         }
     ],
-    selectStudents: [
-        { 
-            type: Schema.Types.ObjectId, 
+    students: [
+        {
+            type: Schema.Types.ObjectId,
             ref: "student",
             required:true,
             maxlength:this.numberOfSeats
-            // unique:true
         }
     ],
     attendanceRecords:[
@@ -63,6 +78,7 @@ const courseSchema = new Schema({
             required:true,
         }
     ]
+
     
 },{collection:"courses"})
 

@@ -2,6 +2,7 @@
 import React, { Component } from "react";
 import {Col,Row} from "react-materialize";
 import API from '../../utils/API'
+const $=window.$;
 
 
 class SelectStudent extends Component{
@@ -13,6 +14,7 @@ class SelectStudent extends Component{
     }
 
     this.componentDidMount=()=>{
+        $('select').formSelect();  
         this.getAllStudents();
     
     }
@@ -37,7 +39,7 @@ class SelectStudent extends Component{
      
         {
             this.state.students.map((current,i)=>{
-                return <option key={current._id} value={current._id}>{current.firstName}, {current.lastName}</option>
+                return <option key={current._id} accessKey={current._id} value={current.firstName}>{current.firstName}, {current.lastName}</option>
             })
         }
       

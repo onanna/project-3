@@ -6,6 +6,7 @@ import API from "../../utils/API"
 import SelectInstructor from "../../components/select/selectInstructor";
 import SelectStudent from "../../components/select/selectStudent"
 //import $ from "jquery"
+const $ = window.$;
 
 class Newcourse extends Component {
   constructor(props) {
@@ -13,7 +14,7 @@ class Newcourse extends Component {
   // Setting the component's initial state
 
   this.state = {
-    course: "",
+    name: "",
     numberOfSeats:25,
     startDate:"",
     endDate:"",
@@ -21,24 +22,17 @@ class Newcourse extends Component {
     endTime: "",
     location: "",
     selectInstructors: [],
-    selectStudents:[]
+    selectStudents:[],
+    instructors:[],
+    students:[]
   };
 
  
   this.componentDidMount=()=>{
-    // $(".datepicker").datepicker({
-    //       format: "mm-dd-yyyy",
-    //       // maxDate: new Date(),
-    //       autoClose: true,
-    //       onClose: function(datePicked) {
-      
-    //         let date = $(".datepicker")[0].value;
-    //         let mm = date.split("-")[0];
-    //         let dd = date.split("-")[1];
-    //         let yyyy = date.split("-")[2];
-      
-    //       }
-    //   });
+    $(".datepicker").datepicker({
+      format: "mm-dd-yyyy",
+      autoClose: true
+    });
   }
   this.handleInputChange = event =>{
     const {name, value} = event.target
@@ -50,36 +44,58 @@ class Newcourse extends Component {
   this.handleSelectedInstructorsChange = event => {
 
 
-    const { name, options } = event.target;
-    var value = [];
+    const { name, options} = event.target;
+    
+    var lem = [];
+    var value2 =[];
+    
+  
     for (var i = 0, l = options.length; i < l; i++) {
       if (options[i].selected) {
-        value.push(options[i].value);
+        lem.push(options[i].value);
       }
-    }
+      if(options[i].selected){
+        value2.push(options[i].accessKey)
+      }
+        }
+    
 
     this.setState({
-      [name]: value
-    }, ()=>    console.log(this.state.selectInstructors)  
-    );
+      selectInstructors: value2,
+      instructors:lem
+    }, ()=>   { 
+      console.log(this.state.selectInstructors);
+      console.log(this.state.instructors);
+    })
+    
 
   }
+  
   this.handleSelectedStudentsChange = event => {
 
-
-    const { name, options } = event.target;
-    var value = [];
+    const { name, options} = event.target;
+    
+    var lem = [];
+    var value2 =[];
+    
+  
     for (var i = 0, l = options.length; i < l; i++) {
       if (options[i].selected) {
-        value.push(options[i].value);
+        lem.push(options[i].value);
       }
-    }
+      if(options[i].selected){
+        value2.push(options[i].accessKey)
+      }
+        }
+    
 
     this.setState({
-      [name]: value
-    }, ()=>    console.log(this.state.selectStudents)  
-    );
-
+      selectStudents: value2,
+      students:lem
+    }, ()=>   { 
+      console.log(this.state.selectStudents);
+      console.log(this.state.students);
+    })
   }
   
   this.onChange = time => this.setState({ time })
@@ -119,15 +135,15 @@ class Newcourse extends Component {
     let enddateChosen = y.value;
 
     let dataToSend={
-      course: this.state.course,
+      name: this.state.name,
       numberOfSeats: this.state.numberOfSeats,
       startDate: startdateChosen,
       endDate: enddateChosen,
       startTime: this.state.startTime,
       endTime: this.state.endTime,
       location: this.state.location,
-      selectInstructors: this.state.selectInstructors,
-      selectStudents:this.state.selectStudents
+      instructors: this.state.instructors,
+      students:this.state.students
     }
 
     //add validation
@@ -169,7 +185,7 @@ class Newcourse extends Component {
     return (
       <PageContainer>
         <h1>
-           {this.state.course}
+           {this.state.name}
         </h1>
     
         <form className="form container">
@@ -177,8 +193,8 @@ class Newcourse extends Component {
             Course: 
         </label>
           <input
-            value={this.state.course}
-            name="course"
+            value={this.state.name}
+            name="name"
             onChange={this.handleInputChange}
             type="text"
             placeholder="Course"
