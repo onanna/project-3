@@ -1,23 +1,20 @@
 import React, {Component} from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Sidenav from "./components/sidenav/sidenav";
-import "./App.css";
 import AllCourses from "./pages/courseDirectory"
 import NewCourse from "./pages/newCourse/newCourse"
 import InstDirectory from "./pages/instructorDirectory"
 import StuDirectory from "./pages/studentDirectory";
 import AttendanceForm from "./pages/attendanceForm/attendanceForm"
-import Courses from "./pages/courseDirectory"
-import "./App.css";
 import Course from "./pages/savedCourse/savedCourse";
 import NewInstructor from "./components/newInstructorForm/newInstructorForm";
-import Login from "./pages/login";
-import NewLoginform from "./components/newLoginForm/newLoginForm";
+import Login from "./pages/login/login";
 import API from "./utils/API";
 import Loader from 'react-loader-spinner'
-import { Z_FIXED } from "zlib";
-import { AutoComplete } from "material-ui";
-import TouchRipple from "material-ui/internal/TouchRipple";
+import "./App.css";
+// import { Z_FIXED } from "zlib";
+// import { AutoComplete } from "material-ui";
+// import TouchRipple from "material-ui/internal/TouchRipple";
 
 class App extends Component{
   

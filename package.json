@@ -30,15 +30,15 @@
     "materialize-css": "^1.0.0-rc.2",
     "mongodb": "^3.1.13",
     "mongoose": "^5.3.16",
-    "react-loader-spinner": "^2.3.0",
-    "react-materialize": "^2.6.0",
-    "react-tap-event-plugin": "^3.0.3",
-    "twilio": "^3.28.1",
     "passport": "^0.4.0",
     "passport-google-oauth20": "^1.0.0",
     "passport-local": "^1.0.0",
+    "react-loader-spinner": "^2.3.0",
+    "react-materialize": "^2.6.0",
     "react-simple-timefield": "^2.0.1",
-    "react-time-picker": "^3.2.0"
+    "react-tap-event-plugin": "^3.0.3",
+    "react-time-picker": "^3.2.0",
+    "twilio": "^3.28.1"
   },
   "repository": {
     "type": "git",
