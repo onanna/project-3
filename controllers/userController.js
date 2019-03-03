@@ -45,29 +45,32 @@ module.exports = {
             return
         })
     },
-    add:function(req){
+    add:function(data,res){
 
         // db.user.create(req.body)
         let newUser = new db.user();
-        newUser.userName = req.body.userName
-        newUser.password = newUser.generateHash(req.body.password)
-        newUser.email = req.body.email
-        newUser.firstName = req.body.firstName
-        newUser.lastName = req.body.lastName
+        newUser.userName = data.userName
+        newUser.password = newUser.generateHash(data.password)
+        newUser.email = data.email
+        newUser.firstName = data.firstName
+        newUser.lastName = data.lastName
+        newUser.save()
         .then(result=>{
             console.log(`congrats on adding an user!: ${result}`)
+            res.send(result);
         })
         .catch(error=>{
             console.log(`you tried adding an user, but it's invalid: ${error}`)
+            res.send(error)
         })
      
     },
-    getAll:function(req,res){
-        db.user.find(req.query)
-        // .sort({ date: -1 })
-        .then(dbModel => res.json(dbModel))
-        .catch(err => res.status(422).json(err));
-    },
+    // getAll:function(req,res){
+    //     db.user.find(req.query)
+    //     // .sort({ date: -1 })
+    //     .then(dbModel => res.json(dbModel))
+    //     .catch(err => res.status(422).json(err));
+    // },
     delete:function(idToDelete){
         db.user.remove({_id:idToDelete})
         .then(result=>{console.log("user deleted! "+result)})

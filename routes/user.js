@@ -3,7 +3,11 @@ const user = require("../controllers/userController");
 
 //matches with "/user" 
 router.route("/")
-    .post((data)=>user.add(data));
+    .post((req,res)=>{
+        console.log('inside correct route')
+        console.log(JSON.stringify(req.body))
+        user.add(req.body,res)
+    });
 
 router.route("/:id")
     .get((req,res)=>{
@@ -20,7 +24,7 @@ router.route("/:id")
         let update={[whatToChange]:newValue}
         
         user.update(filter,update);
-      })
+    })
 
 
 
