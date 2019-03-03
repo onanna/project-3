@@ -7,6 +7,10 @@ router.route("/")
     .post((data)=>instructor.add(data));
 
 router.route("/:id")
+    .get((req,res)=>{
+        console.log('instructor to get is '+req.params.id)
+        instructor.getOne(req.params.id,res)
+    })
     .delete((req,res)=>{
         instructor.delete({"_id":req.params.id})
     })
