@@ -1,0 +1,13 @@
+.attendance-header{
+    color:#448aff ;
+}
+.attendanceDate{
+    color:#bdbdbd;
+}
+.switch label input[type=checkbox]:checked+.lever{
+    background-color: #448aff ;
+}
+
+.switch label input[type=checkbox]:checked+.lever:after{
+    background-color:white;
+}

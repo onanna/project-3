@@ -27,7 +27,7 @@ const instructorSchema = new Schema({
     },
     phone:{
         trim:true,
-        type: String
+        type:String
     },
     currentlyTeaching:[{
         type: Schema.Types.ObjectId, 

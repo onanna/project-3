@@ -8,7 +8,7 @@ export default function pageContainer({children}){
 
         <div>
 
-            <Sidenav />     
+            {/* <Sidenav />      */}
             <Row className="page-container">
                 <Col s={12}>
 

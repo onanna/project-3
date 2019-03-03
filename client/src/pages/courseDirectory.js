@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, {Component } from "react";
 import {Link} from "react-router-dom";
 import Pagecontainer from "../components/pageContainer"
 import API from "../utils/API";
@@ -31,6 +31,12 @@ class Home extends Component{
     getCourses=()=>{
         console.log("about to get all courses in home.js")
         API.getAllCourses()
+            .then(res => this.setState({allCourses:res.data}))
+            .catch(err => console.log(err));
+    }
+    getACourse=(courseId)=>{
+        console.log("about to get all courses in home.js")
+        API.getACourse(courseId)
             .then(res => this.setState({allCourses:res.data}))
             .catch(err => console.log(err));
     }
@@ -112,6 +118,8 @@ class Home extends Component{
         window.location.href=`/courses/detail/${courseId}`;
     }
    
+    linkToCourse=(courseId)=>{
+    }
 
     arrayPassOrMake=(data)=>{
         let arrayToReturn=[];

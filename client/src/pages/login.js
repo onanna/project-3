@@ -5,6 +5,11 @@ import styles from "./login.css"
 
 
 class Login extends Component{
+// function Login(props){
+    // constructor(props){
+    //     super(props)
+    //     console.log("login props are "+JSON.stringify(this.props))
+    // }
     
     render(){
         return(
@@ -16,7 +21,8 @@ class Login extends Component{
                 <p>Access to this site requires a login</p>
             </header>
             <div className="scale-out">
-            <NewLoginForm />
+                {/* <NewLoginForm /> */}
+                <NewLoginForm setSessionToken={this.props.setSessionToken}/>
             </div>
             <br></br>
         </div>
