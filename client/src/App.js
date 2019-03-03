@@ -20,7 +20,8 @@ class App extends Component{
   
   state={
     token:'',
-    isLoading:false
+    isLoading:false,
+    isHome:true
   }
   
   componentDidMount=()=>{
@@ -33,6 +34,8 @@ class App extends Component{
       let token=localStorage.getItem("course-creator-token");
       console.log("token found in local storage "+token)
       this.checkToken(token);
+    }else{
+      // window.location.replace('/')
     }
   }
 
@@ -96,19 +99,10 @@ class App extends Component{
               <Sidenav deleteToken={this.deleteToken} />
               <Switch>
                 <Route exact path="/" component={AllCourses} />
-                {/* <Route path="/login" component={Login} /> */}
-                {/* <Route exact path="/user/new" component={NewLoginform}/> */}
-                
-                {/* <Route exact path="/api/students" component={StuDirectory} /> */}
-                {/* <Route exact path="/api/instructors" component={InstDirectory} /> */}
-                {/* <Route exact path="/savedcourse" component={Course} />   */}
-
                 <Route exact path="/students/all" component={StuDirectory} />
-                {/* <Route exact path="/students/:id" component={StuDirectory} /> */}
+                {/* <Route exact path="/students/detail" component={Student} /> */}
                 <Route exact path="/instructors/all" component={InstDirectory} />            
-                {/* <Route exact path="/instructors/:id" component={InstDirectory} /> */}
-                {/* <Route exact path="/courses" component={Course} /> */}
-                {/* <Route exact path="/courses/detail/:id" component={Course} /> */}
+                {/* <Route exact path="/instructors/detail" component={Instructor} /> */}
                 <Route exact path="/courses/detail/:id" render={(props)=><Course {...props} token={this.state.token}/>} />
                 <Route exact path="/attendance/temp362019/:token/:courseId" component={AttendanceForm} />
                 
