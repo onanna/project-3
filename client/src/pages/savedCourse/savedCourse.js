@@ -9,7 +9,6 @@ import booksImg from "../../images/books1.jpg";
 class Course extends Component {
     state={
         course:{}
-
     }
   
     constructor(props){
@@ -19,7 +18,6 @@ class Course extends Component {
         API.getOneCourse(this.props.match.params.id)
         .then(response=> this.setState({course:response.data}))
         .catch(err => console.log("ERROR ERROR ERROR "+err))
-
     }
 
     componentDidMount=()=>{
@@ -28,7 +26,6 @@ class Course extends Component {
 
 
     render(){
-
         return(
             <PageContainer>
                 <div className="row"> 
@@ -44,11 +41,8 @@ class Course extends Component {
 
                                 {/* Register Student Modal */}
                                 <div id="registerStudent" className="modal">
-                                    <div className="modal-content">
-                                        {/* <Register 
-                                        
-                                        /> */}
-                                    </div>
+                                    <h4 id="modalHeader">Register Students</h4>
+                                    <Register />                                       
                                 </div>                            
 
                                 {/* Course Content Card */}
@@ -61,7 +55,7 @@ class Course extends Component {
                                     <p><b>End Time:</b> {this.state.course.endTime}</p>
                                     <p><b>Location:</b> {this.state.course.location}</p>
                                 </div>
-                                                               
+
                             </div>
                         </div>
                     </div>
