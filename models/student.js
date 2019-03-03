@@ -33,11 +33,13 @@ const stuSchema = new Schema({
         type: Schema.Types.ObjectId, 
         ref: "course",
         required:true,
+        default:[]
     }],
     pastCourses:[{
         type: Schema.Types.ObjectId, 
         ref: "course",
-        required:true
+        required:true,
+        default:[]    
     }]
 
 },{ collection : 'students' });

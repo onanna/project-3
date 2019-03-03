@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .spinnerDiv{
     margin-top:15%
 }
@@ -7,3 +8,13 @@
 
 
 
+=======
+/* This code is to fix issues where clicking inside of the text field for forms does not activate the field */
+input[type="text"] + label {
+    pointer-events: none;
+    }
+
+input[type="password"] + label {
+    pointer-events: none;
+    }
+>>>>>>> master

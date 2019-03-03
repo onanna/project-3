@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import "./newLoginForm.css";
 import SubmitButton from "../submitButton"
 import API from "../../utils/API"
+import styles from "./newLoginForm.css"
 
 
 class Newloginform extends Component {
@@ -69,70 +70,38 @@ class Newloginform extends Component {
         return (
             <div>
 
-                {/* <div id="modal1" class="modal">
-                    <div class="modal-content">
-                        <div className="input-field">
-                            <input onChange={this.handleInputChange} name="username" id="username" type="text" />
-                            <label className="active" htmlFor="last_name">Username</label>
-                        </div>
-
-                        <div className="input-field">
-                            <input onChange={this.handleInputChange} id="lastName" type="password" name="password" />
-                            <label htmlFor="last_name">Password</label>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <SubmitButton class="modal-close waves-effect waves-green btn-flat" submitFunction={this.handleFormSubmit} />
-                    </div>
-                </div> */}
-
               <div className="container">
 
+                <header className="col s6 center-align">
+                    <h1>Create New Login</h1>
+                </header>
+
                 <div className="row">
-                   <div className="col s6 center-align">
-                    <div className="card hoverable">
-                      <div className="card-content">
+                  <div className="col s6 center-align">
+                    <div className="card hoverable newloginclass z-depth-5">
+                    <div className="card-content">
                     
                             <div className="input-field">
+                                <i className="material-icons prefix">person</i>
                                 <input onChange={this.handleInputChange} name="username" id="username" type="text" />
                                 <label className="active" htmlFor="last_name">Username</label>
                             </div>
 
                             <div className="input-field">
+                                <i className="material-icons prefix">lock</i>
                                 <input onChange={this.handleInputChange} id="lastName" type="password" name="password" />
                                 <label className="active" htmlFor="last_name">Password</label>
                             </div>
 
                             <SubmitButton submitFunction={this.handleFormSubmit} />
+
+                            <a class="btn-large waves-effect waves-light z-depth-5 submitbtnclass go-back-btn" href="/login">Have a login already?</a>
+
                         </div>
                       </div>
                     </div>
                 </div>
-              
-              </div> 
-                {/* <form className="form container">
-                        <div className="card">
-                            <div className="card-action teal lighten-1 white-text">
-                                <h3>Login Form</h3>
-                            </div>
-                            
-                            <div className="card-content">
-                                <div className="form-field">
-                                    <label for="username">Username</label>
-                                    <input type="text" value={this.state.name} name="Name" onChange={this.handleInputChange}></input>
-                                </div>
-                            </div>
-
-                            <div className="form-field">
-                                <label for="password">Password</label>
-                                <input type="password" value={this.state.password} name="Password" onChange={this.handleInputChange}></input>
-                            </div>
-                
-                            <div className="form-field">
-                              <button onClick={()=> this.handleFormSubmit()}>Submit</button>
-                            </div>
-                        </div>
-                </form> */}
+              </div>
             </div>
         );
     }

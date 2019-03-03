@@ -20,8 +20,8 @@
     margin-bottom:0;
   }
   
-  .classStudents,.classUntil{
-    color:#0d47a1;
+  .classStudents,.classUntil,.className{
+    color:#446ca8;
   }
   
   .softContainer{
@@ -44,16 +44,22 @@
     max-height:397px;
     max-width:590.906px;
   } */
-/* 
+
   .mainCourseCard{
-    height:397px;
-    width:590.906px;
-  } */
+    /* height:397px; */
+    /* width:590.906px; */
+
+    min-width:300px;
+    max-height: 650px;
+/* 
+    height:398px;
+    width:319px; */
+  }
 
   .mainCourseCard:hover{
     cursor:pointer
   }
   
 .left-pane-course{
-  max-width: 225px;
+  max-width: 150px;
 }

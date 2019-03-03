@@ -63,8 +63,8 @@ const courseSeed=[
   {
   name:"Biology",
   numberOfSeats:5,
-  startDate:new Date(),
-  endDate:new Date(),
+  startDate:"3-04-2019",
+  endDate:"3-08-2019",
   startTime:"06:30PM",
   endTime:"08:30PM",
   location:"134 sip ave. Jersey City NJ, 07109",
@@ -75,8 +75,8 @@ const courseSeed=[
   {
     name:"Math",
     numberOfSeats:7,
-    startDate:new Date(),
-    endDate:new Date(),
+    startDate:"1-14-2019",
+    endDate:"2-30-2019",
     startTime:"07:30PM",
     endTime:"09:30PM",
     location:"145 sip ave. Jersey City NJ, 07109",
@@ -87,8 +87,8 @@ const courseSeed=[
   {
     name:"History",
     numberOfSeats:97,
-    startDate:new Date(),
-    endDate:new Date(),
+    startDate:"2-14-2019",
+    endDate:"8-14-2019",
     startTime:"08:30PM",
     endTime:"10:30PM",
     location:"15 taco st. Jersey City NJ, 07109",
@@ -98,7 +98,8 @@ const courseSeed=[
   }
 ]
 
-const userSeed=[
+const userSeed=
+[
   {
     firstName:"first",
     lastName:"last",
@@ -120,7 +121,7 @@ const userSeed=[
     userName:"user3",
     password:"test3"
   },
-]
+];
 // insertStudents=()=>{
 //   db.student
 //     .remove({})

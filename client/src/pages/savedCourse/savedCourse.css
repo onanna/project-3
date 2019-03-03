@@ -1,0 +1,26 @@
+#courseContent {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background: rgb(250, 247, 247);
+    padding-left: 40px; 
+}
+
+#courseContent, h4{
+    margin-top: 0px;
+}
+
+#modalHeader {
+    font: white;
+    padding: 70px 0;
+}
+
+#registerStudent {
+    line-height: 5;
+    text-align: center;
+    width: 800px;
+    background-image: url(../../images/schoolkid.jpg);
+    background-repeat: no-repeat;
+    background-size: cover; 
+    opacity: 0.2; 
+    z-index: 1;
+}
+

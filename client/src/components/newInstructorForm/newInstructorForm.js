@@ -1,76 +1,79 @@
 
 import React, { Component } from "react";
+// import "./newinstructor.css";
+import InputFile from "../inputFile/inputFile"
 import "./style.css";
 
 
 
 class Newinstructor extends Component {
-  // Setting the component's initial state
-  state = {
-    name: "",
-    image: "",
-    phone: 0,
-    email:""
-  };
+
+  constructor(props){
+    super(props);
   
+  // Setting the component's initial state
+  this.state = {
+   firstName: "",
+   lastName: "",
+   email:"",
+   phone:""
+  }
 
-  handleInputChange = event => {
-    // Getting the value and name of the input which triggered the change
+  this.handleInputChange = event => {
     const { name, value } = event.target;
-
-    // Updating the input's state
+   
+    // Updating the input's state 
     this.setState({
       [name]: value
     });
-  };
 
-  handleFormSubmit = event => {
+  
+  }
+
+  this.handleFormSubmit = event => {
     // Preventing the default behavior of the form submit (which is to refresh the page)
    event.preventdefault();
 
     // Alert the user their first and last name, clear `this.state.firstName` and `this.state.lastName`, clearing the inputs
-    alert(`Course Instructor ${this.state.name} \n  has the following email ${this.state.email}  \n and phone number ${this.state.phone} `);
+    alert(`Course Instructor ${this.state.firstName} \n  has the following email ${this.state.email}  \n and phone number ${this.state.phone} `);
 
     console.log(this.state)
-};
-
+  };
+  }
 
   render() {
   
     return (
       <div >
         <h1>
-           {this.state.name}
+           {this.state.firstName} {this.state.lastName}
         </h1>
     
         <form className="form container">
-        <label>
-            Name: 
-        </label>
+        <label> FirstName: </label>
           <input
         
-            value={this.state.name}
-            name="Name"
+            value={this.state.firstName}
+            name="firstName"
+            onChange={this.handleInputChange}
+            type="text"
+        
+          />
+          <label>LastName: </label>
+          <input
+        
+            value={this.state.lastName}
+            name="lastName"
             onChange={this.handleInputChange}
             type="text"
         
           />
           
      
-        <label> 
-            Image:
-        </label>
-        <input type="image"
-         src={this.state.image} 
-         alt="Submit"
-          width="48" 
-          height="48" 
-          value={this.state.image}
-          onChange={this.handleInputChange}/>
-          <label>
-               Phone Number:
-          </label>
-          <span className="note">Format: 123-456-7890</span>
+        
+        
+        <label>Phone Number: </label>
+          
           <input 
           type="tel"
            id="phone" 
@@ -80,16 +83,21 @@ class Newinstructor extends Component {
            onChange={this.handleInputChange}
           />
            
-          <label>
-              Email:
-              </label>  
-              <input type="email"
-               id="email"
+          <label>Email:</label>  
+          <input type="email"
+               name="email"
               size="30" 
               value={this.state.email}
               onChange={this.handleInputChange} />
-          <button onClick={()=> this.handleFormSubmit()}>Submit</button>
+         
+         </form>
+
+       
+       
+      <form>
+      <button onClick={()=> this.handleFormSubmit()}>Submit</button>
         </form>
+        
         </div>
     );
   }

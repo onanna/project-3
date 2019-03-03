@@ -5,3 +5,7 @@
 .submitComp:hover{
     background-color: #446ca8 
 }
+
+.submitbtnclass {
+    border-radius: 10px;
+}
