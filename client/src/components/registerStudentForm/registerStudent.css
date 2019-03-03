@@ -1,0 +1,16 @@
+.collapsible-body {
+    background-color: white;
+}
+
+#collapDiv {
+    align-items: center;
+}
+
+#header1, #header2 {
+    font-size: 20px;
+}
+
+#submit-btn {
+    background: rgb(49, 49, 61);
+}
+

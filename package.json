@@ -1,7 +1,7 @@
 {
   "name": "mern",
   "version": "1.0.0",
-  "description": "",
+  "description": "adding link to our project github",
   "main": "server.js",
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run seed && npm run start:prod || npm run seed && npm run start:dev",
@@ -36,5 +36,13 @@
     "react-simple-timefield": "^2.0.1",
     "react-tap-event-plugin": "^3.0.3",
     "react-time-picker": "^3.2.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/onanna/project-3.git"
+  },
+  "bugs": {
+    "url": "https://github.com/onanna/project-3/issues"
+  },
+  "homepage": "https://github.com/onanna/project-3#readme"
 }

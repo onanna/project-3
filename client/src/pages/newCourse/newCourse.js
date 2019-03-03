@@ -5,7 +5,7 @@ import PageContainer from "../../components/pageContainer";
 import API from "../../utils/API"
 import SelectInstructor from "../../components/select/selectInstructor";
 import SelectStudent from "../../components/select/selectStudent"
-import $ from "jquery"
+//import $ from "jquery"
 
 class Newcourse extends Component {
   constructor(props) {
