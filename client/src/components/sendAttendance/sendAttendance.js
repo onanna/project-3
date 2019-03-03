@@ -21,7 +21,7 @@ class sendAttendance extends Component{
         let chosen = document.getElementById('sendSelect').value
         console.log("chosen is "+chosen)
         let dataToSend={
-            chosen:chosen,
+            number:chosen,
             urlToSend:this.props.attendLink
         }
         // console.log(`url to send is `+JSON.stringify(dataToSend)s)

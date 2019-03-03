@@ -71,18 +71,10 @@ export default {
   },
   sendAttendance:function(data){
     return axios.post(`/course-attendance/${data.course}`,data)
+  }, 
+  getAllAttendanceFromCourse(courseId){
+    return axios.get(`/course-attendance/${courseId}`)
   },
-  signedTest:function(data){
-    // const signature = signed({
-    //   secret: 'secret string'
-    // });
-
-
-    // const signedUrl = signature.sign(`course-attendance/${data.course}`);
-    // console.log(signedUrl);
-    // return axios.post(signedUrl,data)
-  },
-
     // ----------------------------------------------------
     getLogin:function(){
       return axios.get(`/auth/login`);

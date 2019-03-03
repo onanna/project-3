@@ -13,65 +13,18 @@ class attendanceForm extends Component{
 
         console.log('token '+JSON.stringify(this.props.match.params.token))
         console.log('courseId '+JSON.stringify(this.props.match.params.courseId))
-
         
+        API.getOneCourse(this.props.match.params.courseId)
+        .then(response=> this.setState({course:response.data}))
+        .catch(err => console.log("ERROR ERROR ERROR "+err))
     }
 
     state={
-        // course:{
-        //     "_id" : "5c6b65cfb6799b38f4a2d943",
-        //     "name" : "Biology",
-        //     "startDate" :"2019-02-19T02:11:24.885Z",
-        //     "endDate" : "2019-02-19T02:11:24.885Z",
-        //     "startTime" : "06:30PM",
-        //     "endTime" : "08:30PM",
-        //     "location" : "134 sip ave. Jersey City NJ, 07109",
-        //     "instructors" : [],
-        //     "students" : [
-        //         {
-        //             "_id" : "5c6b731193c50c39a88c50b4",
-        //             "firstName" : "Tony",
-        //             "lastName" : "See",
-        //             "email" : "someemail@gmail.com",
-        //             "currentlyEnrolled" : [],
-        //             "pastCourses" : []
-        //         },
-        //         {
-        //             "_id" : "5c6b731193c50c39a88c50b5",
-        //             "firstName" : "David",
-        //             "lastName" : "jack",
-        //             "email" : "someOtheremail@yahoo.com",
-        //             "currentlyEnrolled" : [],
-        //             "pastCourses" : []
-        //         },
-        //         {
-        //             "_id" : "5c6c8a180cc6804a0c2bc7c4",
-        //             "firstName" : "Sallie",
-        //             "lastName" : "Mae",
-        //             "email" : "notbroke@aol.com",
-        //             "currentlyEnrolled" : [],
-        //             "pastCourses" : []
-        //         },
-        //         {
-        //             "_id" : "5c6c8a51644de70730c1d9aa",
-        //             "currentlyEnrolled" : [],
-        //             "pastCourses" : [],
-        //             "firstName" : "new",
-        //             "lastName" : "stude22nt!",
-        //             "email" : "funtsfimes2@gmail.com",
-        //             "__v" : 0
-        //         }
-        //     ]
-        // },
-        course:{},
+        course:{
+            students:[]
+        },
         studentsinAttendance:[],
         date:new Date()
-    }
-
-    //need API.getCourse() unless course gets passed from allCourses home page
-
-    componentDidMount(){
-        
     }
 
     handleAttendanceToggle(stuId){
@@ -100,11 +53,6 @@ class attendanceForm extends Component{
 
     sendAttendanceForm(){
         
-        // let data={
-        //     course:this.state.course._id,
-        //     inAttendance:this.state.studentsinAttendance,
-        //     date: this.state.date
-        // }
         let studentRoster=this.state.course.students
         let inAttendance= this.state.studentsinAttendance
 
@@ -128,36 +76,33 @@ class attendanceForm extends Component{
 
         alert("send form now"+JSON.stringify(data))
         // API.sendAttendance(data); 
-        // API.signedTest(data);     
     }
 
     render(){
         return(
             <Pagecontainer>
-                {/* <h1 className="attendance-header center-align">{this.state.course.name}</h1>
-                <div className="divider"></div> */}
                 <Header align="center-align">attendance</Header>
                 <h4 className="attendanceDate center-align">March 6th, 2019</h4>
                 <div className="divider"></div>
-                {/* {
+                {
                     this.state.course.students.map((current,i)=>{
-                        return(
-                            <Row key={i}>
-                                <Col s={8}>
-                                    <p className="flow-text">{`${current.firstName} ${current.lastName}`}</p>
-                                </Col>
-                                <Col s={4}>
-                                    <div className="switch right-align">
-                                        <label>
-                                            <input onInput={()=>this.handleAttendanceToggle(current._id)} type="checkbox" />
-                                            <span className="lever"></span>
-                                        </label>
-                                    </div>
-                                </Col>
-                            </Row>
-                        )
-                    })
-                } */}
+                            return(
+                                <Row key={i}>
+                                    <Col s={8}>
+                                        <p className="flow-text">{`${current.firstName} ${current.lastName}`}</p>
+                                    </Col>
+                                    <Col s={4}>
+                                        <div className="switch right-align">
+                                            <label>
+                                                <input onInput={()=>this.handleAttendanceToggle(current._id)} type="checkbox" />
+                                                <span className="lever"></span>
+                                            </label>
+                                        </div>
+                                    </Col>
+                                </Row>
+                            )
+                    })               
+                }
                 <Row>
                     <SubmitButton submitFunction={()=>this.sendAttendanceForm()} />
                 </Row>

@@ -27,11 +27,9 @@ class App extends Component{
   }
   
   componentDidMount=()=>{
-    // alert(window.location.pathname)
     let currentPath = window.location.pathname.split('/');
     if (currentPath[1]==='attendance' && currentPath[2]==='temp362019'){
-      alert('you need to show attenance now using this token '+currentPath[3])
-      // this.checkToken(currentPath[3])
+      this.checkToken(currentPath[3])
     }
     
     if(localStorage.getItem("course-creator-token")){

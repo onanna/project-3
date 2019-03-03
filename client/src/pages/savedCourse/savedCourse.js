@@ -9,7 +9,9 @@ import Send from "../../components/sendAttendance/sendAttendance"
 
 class Course extends Component {
     state={
-        course:{},
+        course:{
+            instructors:[]
+        },
         testStudents:[
             {
               firstName:"First",
@@ -46,6 +48,12 @@ class Course extends Component {
         .catch(err => console.log("ERROR ERROR ERROR "+err))
     }
 
+    // componentDidMount=()=>{
+    //     API.getAllAttendanceFromCourse(this.state.course._id)
+    //     .then(response=> console.log('all attendance records are '+ JSON.stringify(response)))
+    //     .catch(err => console.log("ERROR ERROR ERROR "+err))
+    // }
+
     render(){
 
         return(
@@ -53,15 +61,17 @@ class Course extends Component {
 
                 <h1>Courses</h1>
 
-                {/* <Col m={7} s={12}>
+                <Col m={7} s={12}>
                     <Card horizontal >
                     <p>This is a card!</p>
                     <p>{this.state.course.name}</p>
                     </Card>
-                </Col> */}
+                </Col>
 
-                    <Send attendLink={`/attendance/temp362019/${this.props.token}/${this.state.course._id}`} instructors={this.state.testStudents}/>
-                    {/* <a href={`/attendance/temp362019/${this.props.token}/${this.state.course._id}`}>Attendance</a> */}
+
+
+                {/* <Send attendLink={`/attendance/temp362019/${this.props.token}/${this.state.course._id}`} instructors={this.state.course.instructors}/>
+                <a href={`/attendance/temp362019/${this.props.token}/${this.state.course._id}`}>Attendance Form</a> */}
             </PageContainer>    
         )
 
