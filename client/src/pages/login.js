@@ -21,8 +21,8 @@ class Login extends Component{
                 <p>Access to this site requires a login</p>
             </header>
             <div className="scale-out">
-                <NewLoginForm />
-                {/* <NewLoginForm setSessionToken={this.props.setSessionToken}/> */}
+                {/* <NewLoginForm /> */}
+                <NewLoginForm setSessionToken={this.props.setSessionToken}/>
             </div>
             <br></br>
         </div>
