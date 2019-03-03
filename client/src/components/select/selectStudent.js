@@ -37,7 +37,7 @@ class SelectStudent extends Component{
      
         {
             this.state.students.map((current,i)=>{
-                return <option key={current._id} value={current._id}>{current.firstName}, {current.lastName}</option>
+                return <option key={current._id} accessKey={current._id} value={current.firstName}>{current.firstName}, {current.lastName}</option>
             })
         }
       

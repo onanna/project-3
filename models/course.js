@@ -5,7 +5,7 @@ const instructor = require("./instructor")
 
 
 const courseSchema = new Schema({
-    course:{
+    name:{
         type:String,
         required:true,
         trim:true,
@@ -17,12 +17,12 @@ const courseSchema = new Schema({
         trim:true
     },    
     startDate:{
-        type:String,
+        type:Date,
         required:true,
         trim:true
     },
     endDate:{
-        type:String,
+        type:Date,
         required:true,
         trim:true
     },
@@ -47,13 +47,29 @@ const courseSchema = new Schema({
             // unique:true
         }
     ],
-    selectStudents: [
+    SelectStudents: [
         { 
             type: Schema.Types.ObjectId, 
             ref: "student",
             required:true,
             maxlength:this.numberOfSeats
             // unique:true
+        }
+    ],
+    instructors: [
+        {
+            type: Schema.Types.String,
+            ref: "instructor",
+            required:true
+            
+        }
+    ],
+    students: [
+        {
+            type: Schema.Types.String,
+            ref: "student",
+            required:true,
+            maxlength:this.numberOfSeats
         }
     ],
     attendanceRecords:[
@@ -63,6 +79,7 @@ const courseSchema = new Schema({
             required:true,
         }
     ]
+
     
 },{collection:"courses"})
 
