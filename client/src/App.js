@@ -12,6 +12,7 @@ import Login from "./pages/login/login";
 import API from "./utils/API";
 import Loader from 'react-loader-spinner'
 import "./App.css";
+const $ = window.$;
 // import { Z_FIXED } from "zlib";
 // import { AutoComplete } from "material-ui";
 // import TouchRipple from "material-ui/internal/TouchRipple";
@@ -25,6 +26,7 @@ class App extends Component{
   }
   
   componentDidMount=()=>{
+
     let currentPath = window.location.pathname.split('/');
     if (currentPath[1]==='attendance' && currentPath[2]==='temp362019'){
       this.checkToken(currentPath[3])
@@ -45,7 +47,9 @@ class App extends Component{
     }))
     API.checkToken(token)
     .then(result=>{
-      // alert("TOKEN SEARCHED. RESULT IS "+JSON.stringify(result.data))
+
+      $("body").hide()
+
       this.setState((previousState)=>({
         token: result.data._id,
         isLoading:false
@@ -54,9 +58,7 @@ class App extends Component{
     .catch(err=>alert("error! "+err))
   }
   setSessionToken=(session)=>{
-      // alert("SETTING SESSION TOKEN! to "+JSON.stringify(session))
-      localStorage.setItem('course-creator-token', session._id)
-      
+      localStorage.setItem('course-creator-token', session._id)      
       this.setState((previousState)=>({
         token:session,
         isLoading:false
@@ -93,6 +95,13 @@ class App extends Component{
     }
     
     if(this.state.token && this.state.isLoading===false){
+      // let counter=0;
+      // let fadeIn = setInterval(()=>{
+      //   $("body").css('opacity',`0.${counter}`)
+      //   counter++
+      //   if(counter===9) clearInterval(fadeIn);
+      // },50)
+      $("body").fadeIn(300)
       return (
           <Router>
             <div>
