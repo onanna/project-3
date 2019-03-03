@@ -33,7 +33,7 @@
     "react-loader-spinner": "^2.3.0",
     "react-materialize": "^2.6.0",
     "react-tap-event-plugin": "^3.0.3",
-    "twilio": "^3.28.1",  
+    "twilio": "^3.28.1",
     "passport": "^0.4.0",
     "passport-google-oauth20": "^1.0.0",
     "passport-local": "^1.0.0",
