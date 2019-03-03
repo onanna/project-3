@@ -71,6 +71,13 @@ const courseSchema = new Schema({
             required:true,
             maxlength:this.numberOfSeats
         }
+    ],
+    attendanceRecords:[
+        { 
+            type: Schema.Types.ObjectId, 
+            ref: "attendance",
+            required:true,
+        }
     ]
 
     

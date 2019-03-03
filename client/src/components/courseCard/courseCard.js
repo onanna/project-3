@@ -7,22 +7,6 @@ import "./style.css";
 //let startDay
 //need function to show date
 
-// $(".datepicker").datepicker({
-//     format: "mm-dd-yyyy",
-//     maxDate: new Date(),
-//     autoClose: true,
-//     onClose: function(datePicked) {
-    
-//       date = $(".datepicker")[0].value;
-//       mm = date.split("-")[1];
-//       dd = date.split("-")[2];
-//       yyyy = date.split("-")[0];
-  
-//     }
-// });
-
-
-
 
 
 function courseCard(props){
@@ -34,12 +18,12 @@ function courseCard(props){
                 <div className='left col s12 m3 center-align left-pane-course'>
                     <div className='row white-text center-align'>
                         <div className='col s12'>
-                            <h3 className=' classDate'>12</h3>
+                            <h3 className=' classDate'>{readDay(splitDate(props.course.startDate)[1])}</h3>
                         </div>
                     </div>
                     <div className='row'>
                         {/* <div className="col s6 classMonth white-text right-align flow-text"><p>March</p></div> */}
-                        <div className="col s12 classMonth center-align white-text flow-text"><p>March </p></div>
+                        <div className="col s12 classMonth center-align white-text flow-text"><p>{readMonth(splitDate(props.course.startDate)[0])} </p></div>
                         {/* <div className="col s6 classYear white-text left-align flow-text"><p> 1993</p></div>  */}
                     </div>
 
@@ -68,8 +52,9 @@ function courseCard(props){
                             <p className='flow-text classTimeLocation'>{props.course.location}</p>
                         </div>
 
+                        <br/>
                         <div className='col s12 m12 l12'>
-                            <p className='flow-text'><span className='classUntil'>To </span>{readDate(props.course.endDate)}</p>
+                            <p className='flow-text classEnd'><span className='classUntil'>To </span>{readDate(props.course.endDate)}</p>
                         </div>
                     </div>
                     
@@ -101,6 +86,85 @@ function courseCard(props){
             </div>
 
     )
+}
+
+function splitDate(date){
+    let mm = date.split("-")[0];
+    let dd = date.split("-")[1];
+    let yyyy = date.split("-")[2];
+
+    return [mm,dd,yyyy]
+}
+function readMonth(month){
+    let newMonth='';
+    switch(month){
+        case "1":
+        newMonth="January"
+        break;
+    
+        case "2":
+        newMonth="February"
+        break;
+    
+        case "3":
+        newMonth="March"
+        break;
+        case "4":
+        newMonth="April"
+        break;
+        case "5":
+        newMonth="May"
+        break;
+        case "6":
+        newMonth="June"
+        break;
+        case "7":
+        newMonth="July"
+        break;
+        case "8":
+        newMonth="August"
+        break;
+        case "9":
+        newMonth="September"
+        break;
+        case "10":
+        newMonth="October"
+        break;
+        case "11":
+        newMonth="November"
+        break;
+        case "12":
+        newMonth="December"
+        break;
+    }
+    return newMonth.substring(0,3);
+}
+function readDay(dd){
+
+    let neatDay=dd
+    let suffix="th";
+
+    if(dd.charAt(0)==="0"){
+        neatDay=dd.charAt(1);
+    }
+
+    if(dd==="11"||dd==="12"||dd==="13"){
+        switch(dd.charAt(1)){
+          case "1":
+          suffix="st"
+          break;
+    
+          case "2":
+          suffix="nd"
+          break;
+    
+          case "3":
+          suffix="rd"
+          break;
+        }
+    }
+
+    return neatDay
 }
 
 //make date more readable
@@ -189,6 +253,8 @@ function readDate(dateToRead){
     
     // return(newMonth+" "+newDay+suffix+", "+yyyy)
     return(`${newMonth} ${newDay+suffix}, ${yyyy}`)
-  }
+}
+
+
 
 export default courseCard;

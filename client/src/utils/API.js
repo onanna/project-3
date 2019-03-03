@@ -1,4 +1,5 @@
 import axios from "axios";
+// import signed from 'signed';
 
 export default {
 // ---------------------------STUDENT FUNCTIONS---------------------------
@@ -40,7 +41,6 @@ export default {
     return axios.get(`/api/courses/${id}`)
   },
   addCourse:function(courseInfo){
-    alert("received request. bouta send it ")
     return axios.post(`/api/courses`,courseInfo);
   },
   deleteCourse:function(courseId){
@@ -65,13 +65,28 @@ export default {
       addInstructorsToCourse:function(courseId,instructorsToAdd){
         return axios.post(`/api/courses/${courseId}/instructors`,instructorsToAdd)
       },
+  // --------------Attendance Routes--------------
+  sendAttendanceForm:function(urlToSend){
+    return axios.post(`/course-attendance/send/:courseId`,urlToSend)
+  },
+  sendAttendance:function(data){
+    return axios.post(`/course-attendance/${data.course}`,data)
+  }, 
+  getAllAttendanceFromCourse(courseId){
+    return axios.get(`/course-attendance/${courseId}`)
+  },
     // ----------------------------------------------------
-
-
     getLogin:function(){
       return axios.get(`/auth/login`);
     },
     submitUserLogin:function(userLoginInfo){
       return axios.post(`/auth/login/`,userLoginInfo)
+    },
+    checkToken:function(token){
+      console.log("about to make call "+token)
+      return axios.get(`/auth/token/${token}`)
+    },
+    deleteToken:function(token){
+      return axios.delete(`/auth/token/${token}`)
     }
 };
