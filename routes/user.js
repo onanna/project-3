@@ -3,10 +3,13 @@ const user = require("../controllers/userController");
 
 //matches with "/user" 
 router.route("/")
-    .get(user.getAll)
     .post((data)=>user.add(data));
 
 router.route("/:id")
+    .get((req,res)=>{
+        console.log('USER to get is '+req.params.id)
+        user.getOne(req.params.id,res)
+    })
     .delete((req,res)=>{
         user.delete({"_id":req.params.id})
     })
