@@ -11,7 +11,10 @@ class attendanceForm extends Component{
     constructor(props){
         super(props)
 
-        console.log('match.params.id '+this.props.match.params.id)
+        console.log('token '+JSON.stringify(this.props.match.params.token))
+        console.log('courseId '+JSON.stringify(this.props.match.params.courseId))
+
+        
     }
 
     state={
@@ -68,17 +71,7 @@ class attendanceForm extends Component{
     //need API.getCourse() unless course gets passed from allCourses home page
 
     componentDidMount(){
-
-        // API.getAllCourses()
-        //     .then(courses=>{
-        //         console.log("one course is "+JSON.stringify(courses.data[0]))
-        //         API.getAllStudents()
-        //             .then(students=>{
-        //                 API.addStudentsToCourse(courses.data[0]._id,students.data)
-        //                 .then(res=>{this.setState({course:res})})
-        //                 console.log(this.state.course)
-        //             })
-        //     })
+        
     }
 
     handleAttendanceToggle(stuId){
@@ -134,7 +127,7 @@ class attendanceForm extends Component{
         }
 
         alert("send form now"+JSON.stringify(data))
-        API.sendAttendance(data); 
+        // API.sendAttendance(data); 
         // API.signedTest(data);     
     }
 
@@ -146,7 +139,7 @@ class attendanceForm extends Component{
                 <Header align="center-align">attendance</Header>
                 <h4 className="attendanceDate center-align">March 6th, 2019</h4>
                 <div className="divider"></div>
-                {
+                {/* {
                     this.state.course.students.map((current,i)=>{
                         return(
                             <Row key={i}>
@@ -164,7 +157,7 @@ class attendanceForm extends Component{
                             </Row>
                         )
                     })
-                }
+                } */}
                 <Row>
                     <SubmitButton submitFunction={()=>this.sendAttendanceForm()} />
                 </Row>

@@ -27,6 +27,13 @@ class App extends Component{
   }
   
   componentDidMount=()=>{
+    // alert(window.location.pathname)
+    let currentPath = window.location.pathname.split('/');
+    if (currentPath[1]==='attendance' && currentPath[2]==='temp362019'){
+      alert('you need to show attenance now using this token '+currentPath[3])
+      // this.checkToken(currentPath[3])
+    }
+    
     if(localStorage.getItem("course-creator-token")){
       let token=localStorage.getItem("course-creator-token");
       console.log("token found in local storage "+token)
@@ -106,8 +113,9 @@ class App extends Component{
                 <Route exact path="/instructors/all" component={InstDirectory} />            
                 {/* <Route exact path="/instructors/:id" component={InstDirectory} /> */}
                 {/* <Route exact path="/courses" component={Course} /> */}
-                <Route exact path="/courses/detail/:id" component={Course} />
-                <Route exact path="/courses/attendance/temp362019?token=?:token/:courseId" component={AttendanceForm} />
+                {/* <Route exact path="/courses/detail/:id" component={Course} /> */}
+                <Route exact path="/courses/detail/:id" render={(props)=><Course {...props} token={this.state.token}/>} />
+                <Route exact path="/attendance/temp362019/:token/:courseId" component={AttendanceForm} />
                 
                 <Route exact path="/newcourse" component={NewCourse}  />
                 <Route exact path="/newinstructorform" component={NewInstructor}  />

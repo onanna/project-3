@@ -40,15 +40,10 @@ class Course extends Component {
   
     constructor(props){
         super(props);
-        console.log(JSON.stringify(this.props.match.params.id))
         
         API.getOneCourse(this.props.match.params.id)
         .then(response=> this.setState({course:response.data}))
         .catch(err => console.log("ERROR ERROR ERROR "+err))
-    }
-
-    componentDidMount=()=>{
-        console.log("full course: " + this.state.course)
     }
 
     render(){
@@ -65,8 +60,8 @@ class Course extends Component {
                     </Card>
                 </Col> */}
 
-                    <Send instructors={this.state.testStudents}/>
-                    <a href={`/courses/attendance/temp362019?token=?$testToken/sdfasdfasdf`}>Attendance</a>
+                    <Send attendLink={`/attendance/temp362019/${this.props.token}/${this.state.course._id}`} instructors={this.state.testStudents}/>
+                    {/* <a href={`/attendance/temp362019/${this.props.token}/${this.state.course._id}`}>Attendance</a> */}
             </PageContainer>    
         )
 

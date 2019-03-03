@@ -10,18 +10,23 @@ class sendAttendance extends Component{
 
     constructor(props){
         super(props)
+
+        alert('sendAttendance button is '+JSON.stringify(this.props))
     }
 
     
 
     sendAttendanceForm=()=>{
 
-        let url=`courses/`
         let chosen = document.getElementById('sendSelect').value
         console.log("chosen is "+chosen)
-        console.log(`url to send is `)
+        let dataToSend={
+            chosen:chosen,
+            urlToSend:this.props.attendLink
+        }
+        // console.log(`url to send is `+JSON.stringify(dataToSend)s)
 
-        // API.sendAttendanceForm()
+        API.sendAttendanceForm(dataToSend)
     }
 
     render(){

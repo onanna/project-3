@@ -31,7 +31,7 @@ router.route("/:courseId")
         
     })
 
-router.route('/')
+router.route('/course-attendance/')
     .get((req,res)=>{
         
     })
@@ -41,8 +41,9 @@ router.route('/')
 router.route("/send/:courseId")
     .post((req,res)=>{
         console.log("inside sms test route!")
-        console.log("token is: "+req.params.token)
+        // console.log("token is: "+req.params.token)
         console.log('course is '+ req.params.courseId)
+        console.log("url to send is "+req.body.urlToSend)
 
         // client.messages
         // .create({

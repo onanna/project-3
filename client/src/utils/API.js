@@ -66,8 +66,8 @@ export default {
         return axios.post(`/api/courses/${courseId}/instructors`,instructorsToAdd)
       },
   // --------------Attendance Routes--------------
-  sendAttendanceForm:function(){
-    
+  sendAttendanceForm:function(urlToSend){
+    return axios.post(`/course-attendance/send/:courseId`,urlToSend)
   },
   sendAttendance:function(data){
     return axios.post(`/course-attendance/${data.course}`,data)
