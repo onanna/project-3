@@ -2,7 +2,6 @@ const db = require("../models/index");
 
 module.exports = {
     add:function(req,res){
-       
         db.student.create(req.body)
         .then(result=>{
             console.log(`congrats on adding a student!: ${result}`)

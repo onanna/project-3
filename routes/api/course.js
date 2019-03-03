@@ -11,6 +11,11 @@ router.route("/")
 //     .post(course.new)
 
 router.route("/:courseId")
+    // .get((id)=>{
+    //     console.log("id to get is "+id)
+    // })
+    
+    // .delete((req)=>course.delete(req.params.courseId))
     .delete((req,res)=>{
         course.delete(req.params.courseId)
         .then((response)=>res.json(response))

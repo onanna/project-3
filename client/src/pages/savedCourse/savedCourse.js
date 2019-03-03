@@ -3,27 +3,58 @@ import "./../savedCourse/savedCourse.css";
 import PageContainer from "../../components/pageContainer";
 import Register from "../../components/registerStudentForm/registerStudent";
 import API from "../../utils/API";
+import H1 from "../../components/h1withDivider";
+import {Card, Col} from 'react-materialize';
+import Send from "../../components/sendAttendance/sendAttendance"
 import booksImg from "../../images/books1.jpg";
 
 
 class Course extends Component {
     state={
-        course:{}
+        course:{
+            instructors:[]
+        },
+        testStudents:[
+            {
+              firstName:"First",
+              lastName:"Instructor",
+              email:"something@gmail.com",
+              currentlyTeaching:[],
+              pastCourses:[],
+              phone:"+1someRandomNumber"
+            },
+            {
+              firstName:"numbah",
+              lastName:"two",
+              email:"someOtherthing@yahoo.com",
+              currentlyTeaching:[],
+              pastCourses:[],
+              phone:"+19732233733"
+            },
+            {
+              firstName:"Noel",
+              lastName:"Holiday",
+              email:"nice@aol.com",
+              currentlyTeaching:[],
+              pastCourses:[],
+              phone:"+1someRandomNumber"
+            },
+        ]
     }
   
     constructor(props){
         super(props);
-        console.log(JSON.stringify(this.props.match.params.id))
         
         API.getOneCourse(this.props.match.params.id)
         .then(response=> this.setState({course:response.data}))
         .catch(err => console.log("ERROR ERROR ERROR "+err))
     }
 
-    componentDidMount=()=>{
-        console.log("full course: " + this.state.course)
-    }
-
+    // componentDidMount=()=>{
+    //     API.getAllAttendanceFromCourse(this.state.course._id)
+    //     .then(response=> console.log('all attendance records are '+ JSON.stringify(response)))
+    //     .catch(err => console.log("ERROR ERROR ERROR "+err))
+    // }
 
     render(){
         return(
@@ -57,6 +88,10 @@ class Course extends Component {
                                 </div>
 
                             </div>
+
+                             {/* <Send attendLink={`/attendance/temp362019/${this.props.token}/${this.state.course._id}`} instructors={this.state.course.instructors}/>
+                            <a href={`/attendance/temp362019/${this.props.token}/${this.state.course._id}`}>Attendance Form</a> */}
+                        
                         </div>
                     </div>
                 </div>

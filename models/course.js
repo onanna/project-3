@@ -55,6 +55,13 @@ const courseSchema = new Schema({
             maxlength:this.numberOfSeats
             // unique:true
         }
+    ],
+    attendanceRecords:[
+        { 
+            type: Schema.Types.ObjectId, 
+            ref: "attendance",
+            required:true,
+        }
     ]
     
 },{collection:"courses"})

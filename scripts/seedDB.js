@@ -11,21 +11,24 @@ const studentSeed = [
     lastName:"See",
     email:"someemail@gmail.com",
     currentlyEnrolled:[],
-    pastCourses:[]
+    pastCourses:[],
+    phone:"+19732233733"
   },
   {
     firstName:"David",
     lastName:"jack",
     email:"someOtheremail@yahoo.com",
     currentlyEnrolled:[],
-    pastCourses:[]
+    pastCourses:[],
+    phone:"+1someRandomNumber"
   },
   {
     firstName:"Sallie",
     lastName:"Mae",
     email:"notbroke@aol.com",
     currentlyEnrolled:[],
-    pastCourses:[]
+    pastCourses:[],
+    phone:"+1someRandomNumber"
   },      
 ];
 
@@ -35,21 +38,24 @@ const instructorSeed = [
     lastName:"Instructor",
     email:"something@gmail.com",
     currentlyTeaching:[],
-    pastCourses:[]
+    pastCourses:[],
+    phone:"+1someRandomNumber"
   },
   {
     firstName:"numbah",
     lastName:"two",
     email:"someOtherthing@yahoo.com",
     currentlyTeaching:[],
-    pastCourses:[]
+    pastCourses:[],
+    phone:"+19732233733"
   },
   {
     firstName:"Noel",
     lastName:"Holiday",
     email:"nice@aol.com",
     currentlyTeaching:[],
-    pastCourses:[]
+    pastCourses:[],
+    phone:"+1someRandomNumber"
   },
 ];
 
@@ -63,7 +69,8 @@ const courseSeed=[
   endTime:"08:30PM",
   location:"134 sip ave. Jersey City NJ, 07109",
   instructors:[],
-  students:[]
+  students:[],
+  attendanceRecords:[]
   },
   {
     name:"Math",
@@ -74,7 +81,8 @@ const courseSeed=[
     endTime:"09:30PM",
     location:"145 sip ave. Jersey City NJ, 07109",
     instructors:[],
-    students:[]
+    students:[],
+    attendanceRecords:[]
   },
   {
     name:"History",
@@ -85,9 +93,10 @@ const courseSeed=[
     endTime:"10:30PM",
     location:"15 taco st. Jersey City NJ, 07109",
     instructors:[],
-    students:[]
-  },
-];
+    students:[],
+    attendanceRecords:[]
+  }
+]
 
 const userSeed=
 [
