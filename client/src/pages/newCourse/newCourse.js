@@ -6,6 +6,7 @@ import API from "../../utils/API"
 import SelectInstructor from "../../components/select/selectInstructor";
 import SelectStudent from "../../components/select/selectStudent"
 //import $ from "jquery"
+const $ = window.$;
 
 class Newcourse extends Component {
   constructor(props) {
@@ -28,19 +29,10 @@ class Newcourse extends Component {
 
  
   this.componentDidMount=()=>{
-    // $(".datepicker").datepicker({
-    //       format: "mm-dd-yyyy",
-    //       // maxDate: new Date(),
-    //       autoClose: true,
-    //       onClose: function(datePicked) {
-      
-    //         let date = $(".datepicker")[0].value;
-    //         let mm = date.split("-")[0];
-    //         let dd = date.split("-")[1];
-    //         let yyyy = date.split("-")[2];
-      
-    //       }
-    //   });
+    $(".datepicker").datepicker({
+      format: "mm-dd-yyyy",
+      autoClose: true
+    });
   }
   this.handleInputChange = event =>{
     const {name, value} = event.target

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import {Col,Row} from "react-materialize";
 import API from '../../utils/API'
+const $ = window.$;
 
 
 class SelectInstructor extends Component{
@@ -12,6 +13,7 @@ this.state={
     }
 
 this.componentDidMount=()=>{
+        $('select').formSelect();  
         this.getAllInstructors();
     }
 
