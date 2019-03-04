@@ -1,6 +1,17 @@
 const db = require("../models/index");
 
 module.exports = {
+    new:function(req,res){
+        console.log("about to add a new user to users: "+JSON.stringify(req.body))
+        db.user.create(req.body)
+        .then(result=>{
+            console.log(`congrats on adding a new user!: ${result}`)
+            res.json(result);
+        })
+        .catch(error=>{
+            console.log(`you tried adding a user, but it's invalid: ${error}`)
+        })
+    },
     checkLogin:function(userInfoToCheck,res){
         db.user.findOne({"userName":userInfoToCheck.username})
         .then((user)=>{

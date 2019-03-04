@@ -27,27 +27,6 @@ class Newloginform extends Component {
     createnewaccount: false
   };
   
-  addNewUser=()=>{
-    
-    let newUser={
-        name:"newCdfosdsfurse2",
-        startDate:new Date(),
-        endDate: new Date(),
-        startTime:"no",
-        endTime:"10pm",
-        numberOfSeats:9,
-        location:"heyyy at newark nj",
-        instructors:[],
-        students:[]
-    }
-    API.addUser(newUser)
-        .then((response)=>{
-            let tempCourses=this.state.allCourses;
-            tempCourses.push(response.data);
-            this.setState({allCourses:tempCourses})
-        })
-        .catch(err => console.log(err));
-}
 
   handleInputChange = event => {
     // Getting the value and name of the input which triggered the change
@@ -128,7 +107,7 @@ createnewaccountfunction = event => {
                                   <div className="createnewaccount" style={style}>
                                     <div className="input-field">
                                       <i className="material-icons prefix">person_outline</i>
-                                      <input onChange={this.handleInputChange} name="username" id="username" type="text" />
+                                      <input onChange={this.handleInputChange} name="firstname" id="firstname" type="text" />
                                       <label className="active" htmlFor="first_name">First Name</label>
                                     </div>
 
