@@ -1,8 +1,9 @@
-import React, { Component } from "react";
+import React, {Component } from "react";
 import {Link} from "react-router-dom";
 import Pagecontainer from "../components/pageContainer"
 import API from "../utils/API";
-import Header from "../components/h1withDivider"
+import Header from "../components/h1withDivider";
+import CourseCard from '../components/courseCard/courseCard'
 
 class Home extends Component{
     state={
@@ -30,6 +31,12 @@ class Home extends Component{
     getCourses=()=>{
         console.log("about to get all courses in home.js")
         API.getAllCourses()
+            .then(res => this.setState({allCourses:res.data}))
+            .catch(err => console.log(err));
+    }
+    getACourse=(courseId)=>{
+        console.log("about to get all courses in home.js")
+        API.getACourse(courseId)
             .then(res => this.setState({allCourses:res.data}))
             .catch(err => console.log(err));
     }
@@ -104,7 +111,15 @@ class Home extends Component{
             .then(this.getCourses())
             .catch(err => console.log(err));
     }
+
+    goToCourse=(courseId)=>{
+        console.log("going to go to ")
+        // window.location.replace(`/courses/detail/${courseId}`);
+        window.location.href=`/courses/detail/${courseId}`;
+    }
    
+    linkToCourse=(courseId)=>{
+    }
 
     arrayPassOrMake=(data)=>{
         let arrayToReturn=[];
@@ -120,19 +135,23 @@ class Home extends Component{
    render(){
         return(
             <Pagecontainer>
-                <h1>Hi Team!</h1>
-                <h2>Number of Courses:{this.state.allCourses.length}</h2>
-                <h3>All Courses:</h3>
-                <ul className="collection">
+                <Header align='left' text="All Courses"/>
+                {/* <ul className="collection"> */}
+                <div className='mainClass row'>
                     {
                         this.state.allCourses.map((current,i)=>{
                             return(
-                                // <li onClick={()=>this.addToCourse("students",this.state.students,current._id)} key={i} className="collection-item">{JSON.stringify(current)}</li>
-                                <li key={i} className="collection-item"><Link to={`/courses/detail/${current._id}`} fullCourse={current}>{JSON.stringify(current)}</Link></li>       
+                                <div className='left col s12 m6 mainCourseCol'>
+                                    <div onClick={()=>this.goToCourse(current._id)} className="mainCourseCard card small hoverable">
+                                        <CourseCard course={current}/>
+                                    </div>
+                                </div>
+                            
                             )
                         })
                     }
-                </ul>
+                </div>
+                {/* </ul> */}
             </Pagecontainer>
         )
    }

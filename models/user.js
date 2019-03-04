@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+const bcrypt = require("bcrypt")
 
 validateEmail = (email)=>{
     var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
@@ -41,6 +42,13 @@ const userSchema = new Schema({
 
 },{ collection : 'users' });
 
+userSchema.methods.generateHash=function(password){
+    return bcrypt.hashSync(password,bcrypt.genSaltSync(8),null);
+}
+
+userSchema.methods.validPassword=function(password){
+    return bcrypt.compareSync(password,this.password);
+}
 
 //look here for image info https://stackoverflow.com/questions/46631906/how-to-upload-save-and-show-pictures-with-mongoose-express-angular-4-and-nodejs 
 const user = mongoose.model("user", userSchema);

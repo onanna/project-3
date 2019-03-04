@@ -27,7 +27,7 @@ const stuSchema = new Schema({
     },
     phone:{
         trim:true,
-        type: String
+        type:String
     },
     currentlyEnrolled:[{
         type: Schema.Types.ObjectId, 

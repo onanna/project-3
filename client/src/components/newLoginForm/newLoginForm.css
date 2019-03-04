@@ -3,3 +3,17 @@
 .newloginclass {
     border-radius: 25px;
 }
+
+.btn-large{
+  width:100%;
+  background-color: #0d47a1
+}
+
+.btn-large:hover{
+  background-color: #446ca8 
+}
+
+.go-back-btn{
+  color: white !important;
+  margin-top: 20px
+}

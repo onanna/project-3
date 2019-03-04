@@ -16,14 +16,29 @@ router.route("/login")
     .post((req,res)=>{
         console.log("user login info entered on front end is: "+JSON.stringify(req.body))
         //here is where you would use the userController.js functions to actually check the database
-        user.checkLogin(req.body)
+        user.checkLogin(req.body,res)
+    })
+
+router.route("/token/:token")
+    .post((req,res)=>{
+        console.log("inside token post route")
+        user.checkToken(req.body,res)
+    })
+    .get((req,res)=>{
+        console.log("inside token check GET")
+        console.log("token is "+req.params.token)
+        // res.send(req.body)
+        user.checkToken(req.params.token,res)
+    })
+    .delete((req,res)=>{
+        user.deleteToken(req.params.token)
     })
 
 
 //matches with 
-router.get("/newloginform", (req,res)=> {
-    res.render('newloginform');
-})
+// router.get("/newloginform", (req,res)=> {
+//     res.render('newloginform');
+// })
 
 
 //logout route

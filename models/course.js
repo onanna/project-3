@@ -17,12 +17,12 @@ const courseSchema = new Schema({
         trim:true
     },    
     startDate:{
-        type:Date,
+        type:String,
         required:true,
         trim:true
     },
     endDate:{
-        type:Date,
+        type:String,
         required:true,
         trim:true
     },
@@ -39,23 +39,46 @@ const courseSchema = new Schema({
         trim:true
         //going to be the full address. Formatting can be done front-end
     },
+    // selectInstructors: [
+    //     { 
+    //         type: Schema.Types.ObjectId, 
+    //         ref: "instructor",
+    //         required:true,
+    //         // unique:true
+    //     }
+    // ],
+    // SelectStudents: [
+    //     { 
+    //         type: Schema.Types.ObjectId, 
+    //         ref: "student",
+    //         required:true,
+    //         maxlength:this.numberOfSeats
+    //         // unique:true
+    //     }
+    // ],
     instructors: [
-        { 
-            type: Schema.Types.ObjectId, 
+        {
+            type: Schema.Types.ObjectId,
             ref: "instructor",
-            required:true,
-            // unique:true
+            required:true
         }
     ],
     students: [
-        { 
-            type: Schema.Types.ObjectId, 
+        {
+            type: Schema.Types.ObjectId,
             ref: "student",
             required:true,
             maxlength:this.numberOfSeats
-            // unique:true
+        }
+    ],
+    attendanceRecords:[
+        { 
+            type: Schema.Types.ObjectId, 
+            ref: "attendance",
+            required:true,
         }
     ]
+
     
 },{collection:"courses"})
 
