@@ -298,8 +298,8 @@ class Newcourse extends Component {
     
             </div>
         </div>
-       <SelectInstructor value={this.state.instructors} onChange={this.handleSelectedInstructorsChange} />
-      <SelectStudent value={this.state.students} onChange={this.handleSelectedStudentsChange} />
+       <SelectInstructor onChange={this.handleSelectedInstructorsChange} />
+      <SelectStudent onChange={this.handleSelectedStudentsChange} />
       <form>
       <button onClick={this.handleFormSubmit}>Submit</button>
       </form>
