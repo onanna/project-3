@@ -89,7 +89,11 @@ export default {
   },
     // ----------------USER FUNCTIONS------------------------------------    
     addUser:function(newUserInfo){
-      return axios.post(`/api/users`,newUserInfo);
+      return axios.post(`/user`,newUserInfo);
+    },
+    editUser:function(userId,whatToChange,newValue){
+      let data={whatToChange:whatToChange,newValue:newValue}
+      return axios.put(`/user/${userId}`,data)
     },
     getLogin:function(){
       return axios.get(`/auth/login`);
@@ -103,9 +107,6 @@ export default {
     },
     deleteToken:function(token){
       return axios.delete(`/auth/token/${token}`)
-    },
-    editUser:function(userId,whatToChange,newValue){
-      let data={whatToChange:whatToChange,newValue:newValue}
-      return axios.put(`/user/${userId}`,data)
     }
+ 
 };
