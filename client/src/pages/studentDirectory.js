@@ -16,25 +16,25 @@ class Home extends Component{
     }
 
     componentDidMount(){
-        this.getAllStudents();
+        this.getOneStudent();
     }
 
     addStudent=(studentToAdd)=>{
         API.addStudent(studentToAdd)
             // .then(res=>console.log("student added" + res))
-            .then(this.getAllStudents())
+            .then(this.getOneStudent())
     }
     updateStudent=(idOfStudentToUpdate,whatToChange,newValue)=>{
         API.updateStudent(idOfStudentToUpdate,whatToChange,newValue)
-            .then(this.getAllStudents())
+            .then(this.getOneStudent())
             .catch(err => console.log(err));
     }
     getAStudent=(indexOfStudentToGet)=>{
       alert( JSON.stringify( this.state.students[indexOfStudentToGet]))
       let chosen=this.state.students[indexOfStudentToGet];
     }
-    getAllStudents=()=>{
-        API.getAllStudents()
+    getOneStudent=()=>{
+        API.getOneStudent()
             .then(res => this.setState({ students: res.data }))
             .catch(err => console.log(err));
     }
@@ -42,7 +42,7 @@ class Home extends Component{
         console.log(idToDelete)
         API.deleteStudent(idToDelete)
             // .then(response=> this.setState({students:response.data}))
-            .then(this.getAllStudents());
+            .then(this.getOneStudent());
     }
 
     render(){
@@ -50,15 +50,26 @@ class Home extends Component{
             <Pagecontainer>
                 <h1>All Students</h1>
                 <h2>Number of students: {this.state.students.length}</h2>
-                <ul className="collection">
-                    {
-                        this.state.students.map((current,i)=>{
-                        return (
-                            <li onClick={()=>this.addStudent(newStudentTest)} key={i} className="collection-item"> {JSON.stringify(current)}</li>
-                        )
-                        })
-                    }
-                </ul>
+                <div class="row">
+                    <div class="col s12 m5">
+                        <div class="card-panel teal">
+                            <ul className="collection">
+                                <h3>{this.state.students.firstName}</h3>
+                                <h4>{this.state.students.lastName}</h4>
+                                <p><b>Email: {this.state.students.email}</b></p>
+                                <p><b>Phone Number: {this.state.students.phone}</b></p>
+                                <p><b>Classes currently enrolled in: {this.state.students.currentlyEnrolled}</b></p>
+                                <p><b>Classes previously enrolled in: {this.state.students.pastCourses}</b></p>
+                                {/* {this.state.students.map((current,i)=>{
+                                    return (
+                                        <li onClick={()=>this.addStudent(newStudentTest)} key={i} className="collection-item"> {JSON.stringify(current)}</li>
+                                    )
+                                })
+                                } */}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </Pagecontainer>
         )
     }
