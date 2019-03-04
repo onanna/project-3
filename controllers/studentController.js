@@ -12,6 +12,11 @@ module.exports = {
         })
 
     },
+    getOne:function(id,res){
+        db.student.findById(id)
+        .then(dbModel => res.json(dbModel))
+        .catch(err => res.status(422).json(err));
+    },
     getAll:function(req,res){
 
         db.student.find(req.query)
