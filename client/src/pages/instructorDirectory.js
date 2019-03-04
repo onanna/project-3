@@ -49,13 +49,19 @@ class instructors extends Component{
                 <h1>All instructors</h1>
                 <h2>Number of instructors: {this.state.instructors.length}</h2>
                 <ul className="collection">
-                    {
+                    <h3>{this.state.instructors.firstName}</h3>
+                    <h4>{this.state.instructors.lastName}</h4>
+                    <p><b>Email: {this.state.instructors.email}</b></p>
+                    <p><b>Phone Number: {this.state.instructors.phone}</b></p>
+                    <p><b>Classes currently teaching in: {this.state.instructors.currentlyTeaching}</b></p>
+                    <p><b>Classes previously taught in: {this.state.instructors.pastCourses}</b></p>
+                    {/* {
                         this.state.instructors.map((current,i)=>{
                             return(
                                 <li onClick={()=>this.updateInstructor(current._id,"lastName","tester")} key={i} className="collection-item">{JSON.stringify(current)}</li>
                             )
                         })
-                    }
+                    } */}
                 </ul>
             </Pagecontainer>
         )

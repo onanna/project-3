@@ -16,17 +16,17 @@ class Home extends Component{
     }
 
     componentDidMount(){
-        this.getOneStudent();
+        this.getAllStudents();
     }
 
     addStudent=(studentToAdd)=>{
         API.addStudent(studentToAdd)
             // .then(res=>console.log("student added" + res))
-            .then(this.getOneStudent())
+            .then(this.getAllStudents())
     }
     updateStudent=(idOfStudentToUpdate,whatToChange,newValue)=>{
         API.updateStudent(idOfStudentToUpdate,whatToChange,newValue)
-            .then(this.getOneStudent())
+            .then(this.getAllStudents())
             .catch(err => console.log(err));
     }
     getAStudent=(indexOfStudentToGet)=>{
@@ -42,7 +42,7 @@ class Home extends Component{
         console.log(idToDelete)
         API.deleteStudent(idToDelete)
             // .then(response=> this.setState({students:response.data}))
-            .then(this.getOneStudent());
+            .then(this.getAllStudents());
     }
 
     render(){
