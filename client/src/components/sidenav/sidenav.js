@@ -7,12 +7,12 @@ function sidenav(props){
     return(
         <div>
             <ul id="slide-out" className="sidenav sidenav-fixed">
-                <li><div class="user-view">
+                <li><div className="user-view">
                     {/* <div class="background">
                         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNADC7o5R7BPr3GB4-xQSeTxm1VE2IW7c2nCtz0JPlj6Tg4edS" />>
                     </div> */}
-                    <a><img class="circle" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWDhoK42boDGGv75AmVqLRwBkHoplmu9dL2a-c3ui0JRurCo3Q"/></a>
-                    <a href={'/profile'}><span class="name">{props.userName}</span></a>
+                    <a><img className="circle" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWDhoK42boDGGv75AmVqLRwBkHoplmu9dL2a-c3ui0JRurCo3Q"/></a>
+                    <a href={'/profile'}><span className="name">{props.userName}</span></a>
                     <div className='divider'></div>
                     {/* <a href={`user/profile`}><span class="white-text email">jdandturk@gmail.com</span></a> */}
                     </div></li>
