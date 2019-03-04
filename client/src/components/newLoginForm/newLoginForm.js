@@ -42,6 +42,27 @@ class Newloginform extends Component {
     // Preventing the default behavior of the form submit (which is to refresh the page)
    event.preventDefault();
 
+  //  let userLoginInfo={
+  //    username:this.state.username,
+  //    password:this.state.password
+  //  }
+
+  //   API.submitUserLogin(userLoginInfo)
+  //   .then(res=>{
+
+  //     if(res.data.error){
+  //       console.log("error is"+JSON.stringify(res.data.error))
+
+  //     }else{
+  //       console.log("session id is "+JSON.stringify(res.data.session._id))
+  //       this.props.setSessionToken(res.data.session,res.data.user);
+  //     }
+  //   })
+  //   .catch(error=>{
+  //     console.log("ERROR IS IN loginForm "+error)
+  //   })
+
+    //clear the state
       if (this.state.createnewaccount) {
           console.log("entering handleFormSubmit with createnewaccount = true") 
           let newUserLoginInfo={

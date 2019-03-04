@@ -4,6 +4,7 @@ import Pagecontainer from "../components/pageContainer"
 import API from "../utils/API";
 import Header from "../components/h1withDivider";
 import CourseCard from '../components/courseCard/courseCard'
+const $=window.$
 
 class Home extends Component{
     state={
@@ -16,6 +17,10 @@ class Home extends Component{
         this.getCourses();
         this.getAllStudents();
         this.getInstructors();
+        // $("body").css("display","none");
+        // $("body").fadeIn();
+
+
     }
     
     getInstructors=()=>{
