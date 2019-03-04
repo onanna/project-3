@@ -77,6 +77,9 @@ module.exports = {
     getOne:function(req,res){
         console.log("COURSE TO GET "+JSON.stringify(req))
         db.course.findById(req)
+        .populate('students')
+        .populate('instructors')
+        .populate('attendanceRecords')
         .then(data => res.json(data))
         .catch(err => res.status(422).json(err));
     },
