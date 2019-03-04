@@ -84,14 +84,14 @@ class Newloginform extends Component {
                 }
 
                   // console.log(userLoginInfo)
-                  API.submitUserLogin(userLoginInfo)
+                  API.getLogin(userLoginInfo)
                   .then(res=>{
 
                     if(res.data.error){
                       console.log("error is"+JSON.stringify(res.data.error))
                     }else{
-                      console.log("session id is "+JSON.stringify(res.data._id))
-                      this.props.setSessionToken(res.data);
+                      console.log("session id is "+JSON.stringify(res.data.session._id))
+                      this.props.setSessionToken(res.data.session,res.data.user);
                     }
                   })
                   .catch(error=>{

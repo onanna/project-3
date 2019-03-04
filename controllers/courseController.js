@@ -53,7 +53,11 @@ module.exports = {
         db.course.create(req.body)
         .then(result=>{
             console.log(`congrats on adding a course!: ${result}`)
-            res.json(result);
+            if(result._id){
+                res.send(result);
+            }else{
+                res.send({error:result})
+            }
         })
         .catch(error=>{
             console.log(`you tried adding a course, but it's invalid: ${error}`)

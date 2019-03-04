@@ -52,15 +52,27 @@ class App extends Component{
     API.checkToken(token)
     .then(result=>{
 
+      console.log(JSON.stringify(result.data))
       $("body").hide()
 
-      this.setState((previousState)=>({
-        token: result.data.session._id,
-        user:result.data.user,
-        isLoading:false
-      }));
+      if(result.data.session){
+        this.setState((previousState)=>({
+          token: result.data.session._id,
+          user:result.data.user,
+          isLoading:false
+        }));
+      }else{
+        this.setState((previousState)=>({
+          isLoading:false
+        }));
+      }
     })
-    .catch(err=>alert("error! "+err))
+    .catch(err=>{
+      // alert("error! "+err)
+      // this.setState((previousState)=>({
+      //   isLoading:false
+      // }));
+    })
   }
   setSessionToken=(session,userData)=>{
       localStorage.setItem('course-creator-token', session._id)      

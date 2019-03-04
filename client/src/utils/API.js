@@ -95,14 +95,13 @@ export default {
       let data={whatToChange:whatToChange,newValue:newValue}
       return axios.put(`/user/${userId}`,data)
     },
-    getLogin:function(){
-      return axios.get(`/auth/login`);
+    getLogin:function(loginInfo){
+      return axios.post(`/auth/login`,loginInfo);
     },
-    submitUserLogin:function(userLoginInfo){
-      return axios.post(`/auth/login/`,userLoginInfo)
-    },
+    // submitUserLogin:function(userLoginInfo){
+    //   return axios.post(`/auth/login/`,userLoginInfo)
+    // },
     checkToken:function(token){
-      console.log("about to make call "+token)
       return axios.get(`/auth/token/${token}`)
     },
     deleteToken:function(token){
