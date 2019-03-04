@@ -4,37 +4,76 @@ module.exports = {
     checkLogin:function(userInfoToCheck,res){
         db.user.findOne({"userName":userInfoToCheck.username})
         .then((user)=>{
-            if(user){
+            if(user._id){
                 console.log("SUcCESS! "+user)
-                //check password
                 let potentialUser = new db.user(user)
                 console.log("password check "+potentialUser.validPassword(userInfoToCheck.password))
 
-                db.userSession.create(user._id)
-                .then(session=>{
-                    console.log("session in backend is "+session)
-                    res.send(session);
-                })    
-                .catch(error=>{
-                    res.send(error);
-                })
+                if(potentialUser.validPassword(userInfoToCheck.password)===true){
+                    // db.userSession.create(user._id)
+                    let newSession = new db.userSession();
+                    newSession.user=user._id;
+                    newSession.save()
+                    .then(session=>{
+                        console.log("session in backend is "+session)
+                        res.send({
+                            session:session,
+                            user:{
+                                id:user._id,
+                                firstName:user.firstName,
+                                lastName:user.lastName,
+                                email:user.email,
+                                userName:user.userName
+                            }
+                        });
+                    })    
+                    .catch(error=>{
+                        // res.send({error:"There was an error with your E-Mail/Password combination. Please try again."})
+                        res.send({error:"error making session "+ error})                        
+                    })
+                }else{
+                    res.send({error:"There was an error with your E-Mail/Password combination. Please try again."})
+                }
             }else{
-                res.send({error:"user not found"});
+                res.send({error:"There was an error with your E-Mail/Password combination. Please try again."});
             } 
         })
         .catch(error=>{
-            console.log(`sorry, that was invalid input ${error}`)
+            res.send({error:"There was an error with your E-Mail/Password combination. Please try again."});
         })
     },
     checkToken:function(token,res){
         db.userSession.findById(token)
         .then((session)=>{
-            let {_id, date, isLoggedIn} = session;
-            console.log("existing session is "+_id+" and it is valid!")
-            res.send(session)
+            let {_id, user} = session;
+            console.log("session found is "+_id)
+            if(_id){
+                db.user.findById(user)
+                .then(result=>{
+                    if(result._id){
+                        res.send({
+                            session:session,
+                            user:{
+                                id:result._id,
+                                firstName:result.firstName,
+                                lastName:result.lastName,
+                                email:result.email,
+                                userName:result.userName
+                            }
+                        })
+                    }else{
+                        res.send({error:'No Session Found'})
+                    }
+                })
+                // .catch(error=>{
+                //     console.log(`sorry ${error}`)
+                //     res.send(error);
+                // })
+            }
+            
         })
         .catch(error=>{
-            res.send();
+            res.send(error);
             console.log(`sorry ${error}`)
         })
     },

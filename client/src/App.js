@@ -9,6 +9,7 @@ import AttendanceForm from "./pages/attendanceForm/attendanceForm"
 import Course from "./pages/savedCourse/savedCourse";
 import NewInstructor from "./components/newInstructorForm/newInstructorForm";
 import Login from "./pages/login/login";
+import UserProfile from './pages/userProfile/userProfile'
 import API from "./utils/API";
 import Loader from 'react-loader-spinner'
 import "./App.css";
@@ -22,16 +23,19 @@ class App extends Component{
   state={
     token:'',
     isLoading:false,
-    isHome:true
+    isHome:true,
+    user:{}
   }
   
   componentDidMount=()=>{
 
+    //special check if this is an attendance form. if it is, use the 3rd parameter as the token to search
     let currentPath = window.location.pathname.split('/');
     if (currentPath[1]==='attendance' && currentPath[2]==='temp362019'){
       this.checkToken(currentPath[3])
     }
     
+    //check if there is a token in local storage. if there is, check it against database
     if(localStorage.getItem("course-creator-token")){
       let token=localStorage.getItem("course-creator-token");
       console.log("token found in local storage "+token)
@@ -51,17 +55,19 @@ class App extends Component{
       $("body").hide()
 
       this.setState((previousState)=>({
-        token: result.data._id,
+        token: result.data.session._id,
+        user:result.data.user,
         isLoading:false
       }));
     })
     .catch(err=>alert("error! "+err))
   }
-  setSessionToken=(session)=>{
+  setSessionToken=(session,userData)=>{
       localStorage.setItem('course-creator-token', session._id)      
       this.setState((previousState)=>({
         token:session,
-        isLoading:false
+        isLoading:false,
+        user:userData
       }));  
   }
   deleteToken=()=>{
@@ -79,8 +85,17 @@ class App extends Component{
 
   render(){
 
+    if(!this.state.token && !this.state.isLoading){
+      $("body").fadeIn(500)
+      return (
+        <Login setSessionToken={this.setSessionToken}/>
+      )
+    }
+
     if(this.state.token==="" && !this.state.isLoading){
-      return <Login setSessionToken={this.setSessionToken}/>
+      return (
+        <Login setSessionToken={this.setSessionToken}/>
+      )
     }
 
     if(this.state.isLoading===true){
@@ -95,19 +110,15 @@ class App extends Component{
     }
     
     if(this.state.token && this.state.isLoading===false){
-      // let counter=0;
-      // let fadeIn = setInterval(()=>{
-      //   $("body").css('opacity',`0.${counter}`)
-      //   counter++
-      //   if(counter===9) clearInterval(fadeIn);
-      // },50)
       $("body").fadeIn(300)
       return (
           <Router>
             <div>
-              <Sidenav deleteToken={this.deleteToken} />
+              <Sidenav userName={this.state.user.userName} deleteToken={this.deleteToken} />
               <Switch>
                 <Route exact path="/" component={AllCourses} />
+                <Route exact path="/profile" render={(props)=><UserProfile {...props} user={this.state.user}/>} />
+                
                 <Route exact path="/students/all" component={StuDirectory} />
                 {/* <Route exact path="/students/detail" component={Student} /> */}
                 <Route exact path="/instructors/all" component={InstDirectory} />            

@@ -81,7 +81,7 @@ export default {
   getAllAttendanceFromCourse(courseId){
     return axios.get(`/course-attendance/${courseId}`)
   },
-    // ----------------------------------------------------
+    // ----------------USER FUNCTIONS------------------------------------
     getLogin:function(){
       return axios.get(`/auth/login`);
     },
@@ -94,5 +94,9 @@ export default {
     },
     deleteToken:function(token){
       return axios.delete(`/auth/token/${token}`)
+    },
+    editUser:function(userId,whatToChange,newValue){
+      let data={whatToChange:whatToChange,newValue:newValue}
+      return axios.put(`/user/${userId}`,data)
     }
 };

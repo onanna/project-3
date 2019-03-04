@@ -40,24 +40,15 @@ class Newloginform extends Component {
      password:this.state.password
    }
 
-    // Alert the user their first and last name, clear `this.state.firstName` and `this.state.lastName`, clearing the inputs
-    // alert(`Course Instructor ${this.state.name} \n  has the following email ${this.state.email}  \n and phone number ${this.state.phone} `);
-
-    // console.log(userLoginInfo)
     API.submitUserLogin(userLoginInfo)
     .then(res=>{
-      // res.data.error?
-      //   console.log("error is"+JSON.stringify(res.data.error))
-      // :
-      //   console.log("session id is "+JSON.stringify(res.data._id))
-      //   this.props.setSessionToken(res.data._id);
-      // ;
 
       if(res.data.error){
         console.log("error is"+JSON.stringify(res.data.error))
+
       }else{
-        console.log("session id is "+JSON.stringify(res.data._id))
-        this.props.setSessionToken(res.data);
+        console.log("session id is "+JSON.stringify(res.data.session._id))
+        this.props.setSessionToken(res.data.session,res.data.user);
       }
     })
     .catch(error=>{

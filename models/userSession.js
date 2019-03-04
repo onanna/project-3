@@ -2,17 +2,14 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const userSessionSchema = new Schema({
-    userId:{
-        type: String,
+    user:{
+        type: Schema.Types.ObjectId,
+        ref:'users',
         trim:true
     },
     time:{
         type:Date,
         default:Date.now()
-    },
-    isLoggedIn:{
-        type:Boolean,
-        default:false
     }
 
 },{ collection : 'sessions' });
