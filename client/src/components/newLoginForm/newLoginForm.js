@@ -115,7 +115,7 @@ createnewaccountfunction = event => {
             <div className="container">
 
                       <header className="col s6 center-align">
-                          <h4 className="logintext" onClick={this.createnewaccountfunction}>Create New Account</h4>
+                          <a className="btn-small white-text waves-effect waves-light submitbtnclass submitComp" onClick={this.createnewaccountfunction}>Create New Account</a>
                       </header>
 
                 <div className="row">
