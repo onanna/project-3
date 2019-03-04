@@ -4,6 +4,8 @@
 
 #collapDiv {
     align-items: center;
+    padding-left: 40px;
+    padding-right: 40px; 
 }
 
 #header1, #header2 {
@@ -11,6 +13,6 @@
 }
 
 #submit-btn {
-    background: rgb(49, 49, 61);
+    font: black;
 }
 

@@ -1,7 +1,8 @@
 import React, { Component } from "react";
+import axios from "axios";
 import "./../registerStudentForm/registerStudent.css";
-import PageContainer from "../../components/pageContainer";
 import API from "../../utils/API";
+const $ = window.$;
 
 
 class Register extends Component {
@@ -26,12 +27,20 @@ class Register extends Component {
         this.handlePhoneChange=this.handlePhoneChange.bind(this)
 
         this.handleOnSubmit=this.handleOnSubmit.bind(this)
-        
-        // getAllStudents=()=>{
-        //     API.getAllStudents()
-        //         .then(res => this.setState({ students: res.data }))
-        //         .catch(err => console.log(err));
-        // }
+
+        this.componentDidMount=()=>{
+            $('select').formSelect();
+            $('.collapsible').collapsible();  
+            this.getAllStudents();
+        }
+
+        this.getAllStudents = ()=> {
+            API.getAllStudents()
+            .then(res =>{ this.setState({ students: res.data })
+                console.log(JSON.stringify(res.data))
+            })            
+            .catch(err => console.log(err));
+        }
 
     }
 
@@ -69,8 +78,8 @@ class Register extends Component {
 
     handleOnSubmit(e) {
         e.preventDefault()
-        // console.log("submit")
-        // console.log(e.target.value)
+        console.log("submit")
+        //console.log(e.target.value)
         var newStudent = {
             firstName: this.state.firstName,
             lastName: this.state.lastName,
@@ -79,13 +88,8 @@ class Register extends Component {
         }
         console.log(newStudent)
         //make an axios.post method
-        //axios.post(localhost:3001/api/students, newStudent)
+        //axios.post('localhost:3001/api/students', newStudent)
     }
-
-    componentDidMount=()=>{
-        console.log("All Students: " + this.state.students)
-    }
-
 
     render(){
         return(
@@ -95,7 +99,25 @@ class Register extends Component {
                         <li>
                             <div className="collapsible-header" id="header1"><i className="material-icons">person_add</i>Existing Student</div>
                             
-                            <div className="collapsible-body"><span>blah blah blah</span></div>
+                            <div className="collapsible-body">
+                                <span>
+                                    {/* <form>
+                                        <label>Select Students</label>
+                                        <div className="input-field col s12">
+                                            <select multiple onChange={this.props.onChange} name="selectStudents">
+                                            
+                                            <option value="" defaultValue>Choose your option</option>
+
+                                            {
+                                                this.state.students.map((current,i)=>{
+                                                    return <option key={current._id} accessKey={current._id} value={current.firstName}>{current.firstName}, {current.lastName}</option>
+                                                })
+                                            }
+                                            </select>
+                                        </div>
+                                    </form>                                     */}
+                                </span>
+                            </div>
                         </li>
 
                         <li>
@@ -128,13 +150,14 @@ class Register extends Component {
                                                     <input id="phone" type="text" placeholder="Phone" onChange={this.handlePhoneChange}></input>
                                                 </div>
                                             </div>
+                                            <button className="btn waves-effect waves-light" id="submit-btn" type="submit" name="action">Submit<i class="material-icons right">send</i></button> 
                                         </form>  
                                     </div>
                                 </span>
                             </div>
                         </li>
                     </ul>
-                <button className="btn waves-effect waves-light" id="submit-btn" type="submit" name="action">Submit<i class="material-icons right">send</i></button>        
+       
                 </div>
             </div>    
         )
