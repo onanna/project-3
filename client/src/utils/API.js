@@ -82,6 +82,10 @@ export default {
     return axios.get(`/course-attendance/${courseId}`)
   },
     // ----------------------------------------------------
+    
+    addUser:function(newUserInfo){
+      return axios.post(`/api/users`,newUserInfo);
+    },
     getLogin:function(){
       return axios.get(`/auth/login`);
     },

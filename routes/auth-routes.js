@@ -36,9 +36,9 @@ router.route("/token/:token")
 
 
 //matches with 
-router.get("/newloginform", (req,res)=> {
-    res.render('newloginform');
-})
+// router.get("/newloginform", (req,res)=> {
+//     res.render('newloginform');
+// })
 
 
 //logout route

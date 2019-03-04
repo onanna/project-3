@@ -26,9 +26,9 @@ class Login extends Component{
         <div className="container">
 
             <header>
-                <h1 className='white-text'>Course Creator</h1>
-                <h3 className='white-text'>Your Learning Managment Resource</h3>
-                <p className='white-text'>Access to this site requires a login</p>
+                <h1 className='logintext center-align'>Course Creator</h1>
+                <h3 className='logintext center-align'>Your Learning Managment Resource</h3>
+                <h6 className='logintext center-align'>Access to this site requires a login</h6>
             </header>
             <div className="scale-out">
                 {/* <NewLoginForm /> */}
