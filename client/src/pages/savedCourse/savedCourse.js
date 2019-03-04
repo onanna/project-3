@@ -7,6 +7,7 @@ import H1 from "../../components/h1withDivider";
 import {Card, Col} from 'react-materialize';
 import Send from "../../components/sendAttendance/sendAttendance"
 import booksImg from "../../images/books1.jpg";
+const $ = window.$;
 
 
 class Course extends Component {
@@ -50,6 +51,16 @@ class Course extends Component {
         .catch(err => console.log("ERROR ERROR ERROR "+err))
     }
 
+    componentDidMount=()=>{
+        $('.modal').modal();
+        $('.tooltipped').tooltip();
+        $('ul.tabs').tabs({
+            'swipeable': true,
+            'responsiveThreshold' : Infinity
+        });
+    }
+
+
     // componentDidMount=()=>{
     //     API.getAllAttendanceFromCourse(this.state.course._id)
     //     .then(response=> console.log('all attendance records are '+ JSON.stringify(response)))
@@ -59,9 +70,9 @@ class Course extends Component {
     render(){
         return(
             <PageContainer>
-                <div className="row"> 
+                <div className="row" id="courseCard"> 
                     <div className="col s12 m6">
-                        <div className="card" id="courseCard">
+                        <div className="card hoverable">
                             <div className="card-image">
 
                                 <img src={booksImg} alt="books" /> 
@@ -69,15 +80,19 @@ class Course extends Component {
                                 {/* Register Student Button */}
                                 <a className="btn modal-trigger tooltipped btn-large btn-floating halfway-fab waves-effect waves-light red" href="#registerStudent" data-target="registerStudent" data-position="right" data-tooltip="Add Student"><i className="material-icons">add</i></a>
 
-
                                 {/* Register Student Modal */}
                                 <div id="registerStudent" className="modal">
                                     <h4 id="modalHeader">Register Students</h4>
-                                    <Register />                                       
+                                    <Register />            
                                 </div>                            
+                                <ul id="tabs-swipe" className="tabs">
+                                    <li className="tab col s4"><a className="active" href="#courseContent">Course Details</a></li>
+                                    <li className="tab col s4"><a  href="#classRoster">Class Roster</a></li>
+                                    <li className="tab col s4"><a href="#test-swipe-3">Test 3</a></li>
+                                </ul>
 
-                                {/* Course Content Card */}
-                                <div className="card-content" id="courseContent">
+                                {/* Course Content & Student Roster in Tabs */}
+                                <div id="courseContent" className="col s12 grey lighten-3">               
                                     <h4>{this.state.course.name}</h4>   
                                     <p><b> Number of Seats Available:</b> {this.state.course.numberOfSeats}</p>
                                     <p><b>Start Date:</b> {this.state.course.startDate}</p>
@@ -85,8 +100,15 @@ class Course extends Component {
                                     <p><b>Start Time:</b> {this.state.course.startTime}</p>
                                     <p><b>End Time:</b> {this.state.course.endTime}</p>
                                     <p><b>Location:</b> {this.state.course.location}</p>
+                                </div> 
+
+                                <div id="classRoster" className="courseTab" className="col s12 grey lighten-3">
+                                    <h4>Class Roster</h4>
                                 </div>
 
+                                <div id="test-swipe-3" className="courseTab" className="col s12 grey lighten-3">
+                                    Test 3
+                                </div>
                             </div>
 
                              {/* <Send attendLink={`/attendance/temp362019/${this.props.token}/${this.state.course._id}`} instructors={this.state.course.instructors}/>

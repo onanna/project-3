@@ -1,16 +1,24 @@
-#courseContent {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    background: rgb(250, 247, 247);
-    padding-left: 40px; 
+#courseCard {
+    margin-top: 10px;
+    margin-bottom: 80%;
 }
 
-#courseContent, h4{
-    margin-top: 0px;
+.card {
+    height:775px;
+}
+
+#courseContent {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin-bottom: 10px;
+    padding-top: 10px;
+    padding-left: 20px; 
+    padding-bottom: 10px; 
+    line-height: 2;
 }
 
 #modalHeader {
-    font: white;
-    padding: 70px 0;
+    color: white;
+    margin-top: 50px;
 }
 
 #registerStudent {
@@ -18,9 +26,13 @@
     text-align: center;
     width: 800px;
     background-image: url(../../images/schoolkid.jpg);
+    opacity:0.2;
     background-repeat: no-repeat;
     background-size: cover; 
-    opacity: 0.2; 
-    z-index: 1;
+    z-index: -1;
 }
 
+#tabs-swipe {
+    font-weight: bold;
+    font-size: 30px;
+}
