@@ -9,6 +9,9 @@ export default {
   getAllStudents: function() {
     return axios.get("/api/students");
   },
+  getOneStudent:function(studentId){
+    return axios.get(`/api/students/${studentId}`)
+  },
   updateStudent:function(idToChange,whatToChange,newValue){
     let dataToSendToBackend={newValue:newValue,whatToChange:whatToChange}
     return axios.put(`/api/students/${idToChange}`,[dataToSendToBackend])
@@ -23,6 +26,9 @@ export default {
   },
   getInstructors:function(){
     return axios.get("/api/instructors")
+  },
+  getOneinstructor:function(instructorId){
+    return axios.get(`/api/instructors/${instructorId}`)
   },
   updateInstructor:function(idToChange,whatToChange,newValue){
     let dataToSendToBackend={newValue:newValue,whatToChange:whatToChange}
