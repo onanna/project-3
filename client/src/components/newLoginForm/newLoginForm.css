@@ -1,5 +1,14 @@
   /* label color */
 
+.errorNotice{
+  border-radius: 25px;
+  /* background-color: #ff5252 ; */
+}
+
+.errorMessage{
+  color:#ff5252;
+  font-weight: bold;
+}
 .newloginclass {
     border-radius: 25px;
 }
@@ -17,3 +26,4 @@
   color: white !important;
   margin-top: 20px
 }
+

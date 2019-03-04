@@ -1,7 +1,7 @@
 .spinnerDiv{
     margin-top:15%
 }
-/* This code is to fix issues where clicking inside of the text field for forms does not activate the field */
+/* This code is to fix the issue where clicking the label of a text field does not activate the field */
 input[type="text"] + label {
     pointer-events: none;
     }
@@ -10,9 +10,29 @@ input[type="password"] + label {
     pointer-events: none;
     }
 
+/* fixes problem where buttons turn green after being pressed */
+.btn-large:focus{
+    background-color: #446ca8
+}
+
+ /* label focus color */
+ .input-field input[type=text]:focus + label , .input-field input[type=password]:focus + label{
+    color: #446ca8 !important;
+  }
+  /* label underline focus color */
+  .input-field input[type=text]:focus, .input-field input[type=password]:focus{
+    border-bottom: 1px solid #446ca8 !important;
+    box-shadow: 0 1px 0 0 #446ca8 !important;
+  }
+
+  /* changes icon colors when highlighted  */
+  .input-field .prefix.active{
+    color:#446ca8 !important;
+  }
+
 
 /* .app-container {
-    height: 100vh;
+    height: 100vh;  
     widows: 100vw;
 } */
 
