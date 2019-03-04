@@ -76,16 +76,15 @@ module.exports = {
                         res.send({error:'No Session Found'})
                     }
                 })
-                // .catch(error=>{
-                //     console.log(`sorry ${error}`)
-                //     res.send(error);
-                // })
+                .catch(error=>{
+                    res.send({error:'error: the user associated with this token was not found'});
+                })
             }
             
         })
         .catch(error=>{
-            res.send(error);
-            console.log(`sorry ${error}`)
+            console.log(`token not found ${error}`)
+            res.send({error:'error '+error});
         })
     },
     deleteToken:function(token){

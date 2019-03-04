@@ -84,7 +84,7 @@ class Newloginform extends Component {
                 }
 
                   // console.log(userLoginInfo)
-                  API.submitUserLogin(userLoginInfo)
+                  API.getLogin(userLoginInfo)
                   .then(res=>{
 
                     if(res.data.error){
