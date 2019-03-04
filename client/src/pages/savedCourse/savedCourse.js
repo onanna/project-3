@@ -7,8 +7,10 @@ import H1 from "../../components/h1withDivider";
 import {Card, Col} from 'react-materialize';
 import Send from "../../components/sendAttendance/sendAttendance"
 import booksImg from "../../images/books1.jpg";
-const $ = window.$;
+import InstructorSelect from '../../components/selectInstructors/selectInstructors'
+import StudentSelect from '../../components/selectStudents/selectStudents'
 
+const $ = window.$;
 
 class Course extends Component {
     state={
@@ -40,7 +42,9 @@ class Course extends Component {
               pastCourses:[],
               phone:"+1someRandomNumber"
             },
-        ]
+        ],
+        instructorsToAdd:[],
+        studentsToAdd:[]
     }
   
     constructor(props){
@@ -51,6 +55,29 @@ class Course extends Component {
         .catch(err => console.log("ERROR ERROR ERROR "+err))
     }
 
+    getSelectedInstructors=(selected)=>{
+        console.log(selected)
+        let instructorsSelected =[]
+        selected.forEach((element,i) => {
+            instructorsSelected.push(element.value)
+        });
+        this.setState({
+            instructorsToAdd:instructorsSelected
+        })
+        // console.log($("#instructorSelect"))
+    }
+
+    getSelectedStudents=(selected)=>{
+        console.log(selected)
+        let studentsSelected =[]
+        selected.forEach((element,i) => {
+            studentsSelected.push(element.value)
+        });
+        this.setState({
+            studentsToAdd:studentsSelected
+        })
+        // console.log($("#instructorSelect"))
+    }
     componentDidMount=()=>{
         $('.modal').modal();
         $('.tooltipped').tooltip();
@@ -93,13 +120,16 @@ class Course extends Component {
 
                                 {/* Course Content & Student Roster in Tabs */}
                                 <div id="courseContent" className="col s12 grey lighten-3">               
-                                    <h4>{this.state.course.name}</h4>   
+                                    <h4 onClick={this.getSelectedInstructors}>{this.state.course.name}</h4>  
+                                    <StudentSelect onChange={this.getSelectedStudents} />
+                                    <InstructorSelect onChange={this.getSelectedStudents} />                                    
                                     <p><b> Number of Seats Available:</b> {this.state.course.numberOfSeats}</p>
                                     <p><b>Start Date:</b> {this.state.course.startDate}</p>
                                     <p><b>End Date:</b> {this.state.course.endDate}</p>
                                     <p><b>Start Time:</b> {this.state.course.startTime}</p>
                                     <p><b>End Time:</b> {this.state.course.endTime}</p>
                                     <p><b>Location:</b> {this.state.course.location}</p>
+                                    {/* <Select className="basic-multi-select" classNamePrefix="select" isMulti name="colors" options={testoptions}/> */}
                                 </div> 
 
                                 <div id="classRoster" className="courseTab" className="col s12 grey lighten-3">
