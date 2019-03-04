@@ -4,7 +4,7 @@ import "./newLoginForm.css";
 import SubmitButton from "../submitButton"
 import API from "../../utils/API"
 import styles from "./newLoginForm.css"
-
+const $ = window.$;
 
 class Newloginform extends Component {
 
@@ -13,11 +13,18 @@ class Newloginform extends Component {
   //   console.log("props are "+JSON.stringify(this.props))
   // }
 
+  componentDidMount=()=>{
+    $('.createnewaccount').css('display','none');
+  }
   // Setting the component's initial state
   state = {
+    firstname: "",
+    lastname: "",
+    email: "",
     username: "",
     password: "",
-    email:""
+    email:"",
+    createnewaccount: false
   };
   
 
@@ -35,65 +42,133 @@ class Newloginform extends Component {
     // Preventing the default behavior of the form submit (which is to refresh the page)
    event.preventDefault();
 
-   let userLoginInfo={
-     username:this.state.username,
-     password:this.state.password
-   }
+  //  let userLoginInfo={
+  //    username:this.state.username,
+  //    password:this.state.password
+  //  }
 
-    API.submitUserLogin(userLoginInfo)
-    .then(res=>{
+  //   API.submitUserLogin(userLoginInfo)
+  //   .then(res=>{
 
-      if(res.data.error){
-        console.log("error is"+JSON.stringify(res.data.error))
+  //     if(res.data.error){
+  //       console.log("error is"+JSON.stringify(res.data.error))
 
-      }else{
-        console.log("session id is "+JSON.stringify(res.data.session._id))
-        this.props.setSessionToken(res.data.session,res.data.user);
-      }
-    })
-    .catch(error=>{
-      console.log("ERROR IS IN loginForm "+error)
-    })
+  //     }else{
+  //       console.log("session id is "+JSON.stringify(res.data.session._id))
+  //       this.props.setSessionToken(res.data.session,res.data.user);
+  //     }
+  //   })
+  //   .catch(error=>{
+  //     console.log("ERROR IS IN loginForm "+error)
+  //   })
 
     //clear the state
+      if (this.state.createnewaccount) {
+          console.log("entering handleFormSubmit with createnewaccount = true") 
+          let newUserLoginInfo={
+            firstname: this.state.firstname,
+            lastname: this.state.lastname,
+            email: this.state.email,
+            username:this.state.username,
+            password:this.state.password
+          }
+          
+          API.addUser(newUserLoginInfo)
+          console.log(newUserLoginInfo)
+          console.log(this.state.allUsers)
+
+      } else {
+                let userLoginInfo={
+                  username:this.state.username,
+                  password:this.state.password
+                }
+
+                  // console.log(userLoginInfo)
+                  API.submitUserLogin(userLoginInfo)
+                  .then(res=>{
+
+                    if(res.data.error){
+                      console.log("error is"+JSON.stringify(res.data.error))
+                    }else{
+                      console.log("session id is "+JSON.stringify(res.data._id))
+                      this.props.setSessionToken(res.data);
+                    }
+                  })
+                  .catch(error=>{
+                    console.log("ERROR IS IN loginForm "+error)
+                  })
+
+              }}
+  
+createnewaccountfunction = event => {
+  console.log("clicked on create new account")
+  this.setState({createnewaccount: true})
+  
 };
+
   render() {
+
+        const style = this.state.createnewaccount ? {display: 'block'} : {display: 'none'};
+
         return (
-            <div>
+          <div>
+            <div className="container">
 
-              <div className="container">
-
-                <header className="col s6 center-align">
-                    <h1>Create New Login</h1>
-                </header>
+                      <header className="col s6 center-align">
+                          <a className="btn-small white-text waves-effect waves-light submitbtnclass submitComp" onClick={this.createnewaccountfunction}>Create New Account</a>
+                      </header>
 
                 <div className="row">
-                  <div className="col s6 center-align">
-                    <div className="card hoverable newloginclass z-depth-5">
-                    <div className="card-content">
-                    
-                            <div className="input-field">
-                                <i className="material-icons prefix">person</i>
-                                <input onChange={this.handleInputChange} name="username" id="username" type="text" />
-                                <label className="active" htmlFor="last_name">Username</label>
-                            </div>
+                    <div className="col s6 center-align">
+                          <div className="card hoverable newloginclass z-depth-5">
+                              <div className="card-content">
+                              {/* <a class="btn-large waves-effect waves-light z-depth-5 submitbtnclass go-back-btn" onClick={this.createnewaccountfunction}>Create New Account</a> */}
 
-                            <div className="input-field">
-                                <i className="material-icons prefix">lock</i>
-                                <input onChange={this.handleInputChange} id="lastName" type="password" name="password" />
-                                <label className="active" htmlFor="last_name">Password</label>
-                            </div>
+                                  {/* This section will appear only when the user clicks the create an account "click here" button */}
+                                  <div className="createnewaccount" style={style}>
+                                    <div className="input-field">
+                                      <i className="material-icons prefix">person_outline</i>
+                                      <input onChange={this.handleInputChange} name="firstname" id="firstname" type="text" />
+                                      <label className="active" htmlFor="first_name">First Name</label>
+                                    </div>
 
-                            <SubmitButton submitFunction={this.handleFormSubmit} />
+                                    <div className="input-field">
+                                        <i className="material-icons prefix">person</i>
+                                        <input onChange={this.handleInputChange} name="lastname" id="lastname" type="text" />
+                                        <label className="active" htmlFor="last_name">Last Name</label>
+                                    </div>
 
-                            <a class="btn-large waves-effect waves-light z-depth-5 submitbtnclass go-back-btn" href="/login">Have a login already?</a>
+                                    <div className="input-field">
+                                        <i className="material-icons prefix">email</i>
+                                        <input onChange={this.handleInputChange} name="email" id="email" type="text" />
+                                        <label className="active" htmlFor="email">Email</label>
+                                    </div>
+                                  </div>
 
-                        </div>
+                                  {/* These fields will appear regardless as they are part of both new account creation and existing user login */}
+                                  <div className="input-field">
+                                      <i className="material-icons prefix">account_box</i>
+                                      <input onChange={this.handleInputChange} name="username" id="username" type="text" />
+                                      <label className="active" htmlFor="last_name">Username</label>
+                                  </div>
+
+                                  <div className="input-field">
+                                      <i className="material-icons prefix">lock</i>
+                                      <input onChange={this.handleInputChange} id="lastName" type="password" name="password" />
+                                      <label className="active" htmlFor="last_name">Password</label>
+                                  </div>
+                                  
+
+                                  <SubmitButton submitFunction={this.handleFormSubmit} />
+
+                                  {/* <a class="btn-large waves-effect waves-light z-depth-5 submitbtnclass go-back-btn" onClick={this.toggleView}>Need a login?</a> */}
+
+                              </div>
+                          </div>
                       </div>
-                    </div>
                 </div>
-              </div>
             </div>
+          </div>
         );
     }
 }

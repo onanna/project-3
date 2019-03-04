@@ -57,21 +57,27 @@ export default {
     let data={whatToChange:whatToChange,newValue:newValue}
     return axios.put(`/api/courses/${courseId}`,data)
   },
-    // --------------Student Roster Functions--------------
-      removeStudentsFromCourse:function(courseId,studentsToRemove){
-        return axios.put(`/api/courses/${courseId}/students`,studentsToRemove)
-      },
-      addStudentsToCourse:function(courseId,studentsToAdd){
-        return axios.post(`/api/courses/${courseId}/students`,studentsToAdd)
-      },
-    // --------------Instructor Roster Functions--------------
-      removeInstructorsFromCourse:function(courseId,instructorsToRemove){
-        return axios.put(`/api/courses/${courseId}/instructors`,instructorsToRemove)
-      },
-      addInstructorsToCourse:function(courseId,instructorsToAdd){
-        return axios.post(`/api/courses/${courseId}/instructors`,instructorsToAdd)
-      },
+
+  // --------------Student Roster Functions--------------
+  
+    removeStudentsFromCourse:function(courseId,studentsToRemove){
+      return axios.put(`/api/courses/${courseId}/students`,studentsToRemove)
+    },
+    addStudentsToCourse:function(courseId,studentsToAdd){
+      return axios.post(`/api/courses/${courseId}/students`,studentsToAdd)
+    },
+
+  // --------------Instructor Roster Functions--------------
+
+    removeInstructorsFromCourse:function(courseId,instructorsToRemove){
+      return axios.put(`/api/courses/${courseId}/instructors`,instructorsToRemove)
+    },
+    addInstructorsToCourse:function(courseId,instructorsToAdd){
+      return axios.post(`/api/courses/${courseId}/instructors`,instructorsToAdd)
+    },
+
   // --------------Attendance Routes--------------
+  
   sendAttendanceForm:function(urlToSend){
     return axios.post(`/course-attendance/send/:courseId`,urlToSend)
   },
@@ -81,7 +87,10 @@ export default {
   getAllAttendanceFromCourse(courseId){
     return axios.get(`/course-attendance/${courseId}`)
   },
-    // ----------------USER FUNCTIONS------------------------------------
+    // ----------------USER FUNCTIONS------------------------------------    
+    addUser:function(newUserInfo){
+      return axios.post(`/api/users`,newUserInfo);
+    },
     getLogin:function(){
       return axios.get(`/auth/login`);
     },
