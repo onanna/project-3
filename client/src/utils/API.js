@@ -9,6 +9,9 @@ export default {
   getAllStudents: function() {
     return axios.get("/api/students");
   },
+  getOneStudent:function(studentId){
+    return axios.get(`/api/students/${studentId}`)
+  },
   updateStudent:function(idToChange,whatToChange,newValue){
     let dataToSendToBackend={newValue:newValue,whatToChange:whatToChange}
     return axios.put(`/api/students/${idToChange}`,[dataToSendToBackend])
@@ -23,6 +26,9 @@ export default {
   },
   getInstructors:function(){
     return axios.get("/api/instructors")
+  },
+  getOneinstructor:function(instructorId){
+    return axios.get(`/api/instructors/${instructorId}`)
   },
   updateInstructor:function(idToChange,whatToChange,newValue){
     let dataToSendToBackend={newValue:newValue,whatToChange:whatToChange}
@@ -51,21 +57,27 @@ export default {
     let data={whatToChange:whatToChange,newValue:newValue}
     return axios.put(`/api/courses/${courseId}`,data)
   },
-    // --------------Student Roster Functions--------------
-      removeStudentsFromCourse:function(courseId,studentsToRemove){
-        return axios.put(`/api/courses/${courseId}/students`,studentsToRemove)
-      },
-      addStudentsToCourse:function(courseId,studentsToAdd){
-        return axios.post(`/api/courses/${courseId}/students`,studentsToAdd)
-      },
-    // --------------Instructor Roster Functions--------------
-      removeInstructorsFromCourse:function(courseId,instructorsToRemove){
-        return axios.put(`/api/courses/${courseId}/instructors`,instructorsToRemove)
-      },
-      addInstructorsToCourse:function(courseId,instructorsToAdd){
-        return axios.post(`/api/courses/${courseId}/instructors`,instructorsToAdd)
-      },
+
+  // --------------Student Roster Functions--------------
+  
+    removeStudentsFromCourse:function(courseId,studentsToRemove){
+      return axios.put(`/api/courses/${courseId}/students`,studentsToRemove)
+    },
+    addStudentsToCourse:function(courseId,studentsToAdd){
+      return axios.post(`/api/courses/${courseId}/students`,studentsToAdd)
+    },
+
+  // --------------Instructor Roster Functions--------------
+
+    removeInstructorsFromCourse:function(courseId,instructorsToRemove){
+      return axios.put(`/api/courses/${courseId}/instructors`,instructorsToRemove)
+    },
+    addInstructorsToCourse:function(courseId,instructorsToAdd){
+      return axios.post(`/api/courses/${courseId}/instructors`,instructorsToAdd)
+    },
+
   // --------------Attendance Routes--------------
+  
   sendAttendanceForm:function(urlToSend){
     return axios.post(`/course-attendance/send/:courseId`,urlToSend)
   },
@@ -75,18 +87,25 @@ export default {
   getAllAttendanceFromCourse(courseId){
     return axios.get(`/course-attendance/${courseId}`)
   },
-    // ----------------------------------------------------
-    getLogin:function(){
-      return axios.get(`/auth/login`);
+    // ----------------USER FUNCTIONS------------------------------------    
+    addUser:function(newUserInfo){
+      return axios.post(`/user`,newUserInfo);
     },
-    submitUserLogin:function(userLoginInfo){
-      return axios.post(`/auth/login/`,userLoginInfo)
+    editUser:function(userId,whatToChange,newValue){
+      let data={whatToChange:whatToChange,newValue:newValue}
+      return axios.put(`/user/${userId}`,data)
     },
+    getLogin:function(loginInfo){
+      return axios.post(`/auth/login`,loginInfo);
+    },
+    // submitUserLogin:function(userLoginInfo){
+    //   return axios.post(`/auth/login/`,userLoginInfo)
+    // },
     checkToken:function(token){
-      console.log("about to make call "+token)
       return axios.get(`/auth/token/${token}`)
     },
     deleteToken:function(token){
       return axios.delete(`/auth/token/${token}`)
     }
+ 
 };

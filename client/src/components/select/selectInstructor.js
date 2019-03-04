@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import {Col,Row} from "react-materialize";
 import API from '../../utils/API'
+const $ = window.$;
 
 
 class SelectInstructor extends Component{
@@ -12,13 +13,14 @@ this.state={
     }
 
 this.componentDidMount=()=>{
+        $('select').formSelect();  
         this.getAllInstructors();
     }
 
 this.getAllInstructors=()=>{
         API.getInstructors()
         .then(res =>{ this.setState({ instructors: res.data })
-            console.log(JSON.stringify(res.data))
+            // console.log(JSON.stringify(res.data))
         })
         
         .catch(err => console.log(err));
@@ -28,10 +30,10 @@ this.getAllInstructors=()=>{
     return(
         <Row>
             <Col>
-       <form>
+       {/* <form> */}
            <label>Select Instructor</label>
        <div className="input-field col s12">
-    <select multiple onChange={this.props.onChange} name="selectInstructors">
+    <select multiple onChange={this.props.onChange} className='browser-default' name="selectInstructors">
       <option value="" defaultValue  >Choose your option</option>
     
         {
@@ -43,7 +45,7 @@ this.getAllInstructors=()=>{
     </select>
     
   </div>
-  </form>
+  {/* </form> */}
   </Col>
   </Row>
     )

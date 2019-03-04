@@ -26,9 +26,11 @@ router.route("/token/:token")
     })
     .get((req,res)=>{
         console.log("inside token check GET")
+        if(req.params.token){
+            user.checkToken(req.params.token,res)
+        }
         console.log("token is "+req.params.token)
         // res.send(req.body)
-        user.checkToken(req.params.token,res)
     })
     .delete((req,res)=>{
         user.deleteToken(req.params.token)
@@ -36,9 +38,9 @@ router.route("/token/:token")
 
 
 //matches with 
-router.get("/newloginform", (req,res)=> {
-    res.render('newloginform');
-})
+// router.get("/newloginform", (req,res)=> {
+//     res.render('newloginform');
+// })
 
 
 //logout route

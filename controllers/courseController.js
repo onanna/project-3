@@ -53,7 +53,11 @@ module.exports = {
         db.course.create(req.body)
         .then(result=>{
             console.log(`congrats on adding a course!: ${result}`)
-            res.json(result);
+            if(result._id){
+                res.send(result);
+            }else{
+                res.send({error:result})
+            }
         })
         .catch(error=>{
             console.log(`you tried adding a course, but it's invalid: ${error}`)
@@ -77,6 +81,9 @@ module.exports = {
     getOne:function(req,res){
         console.log("COURSE TO GET "+JSON.stringify(req))
         db.course.findById(req)
+        .populate('students')
+        .populate('instructors')
+        .populate('attendanceRecords')
         .then(data => res.json(data))
         .catch(err => res.status(422).json(err));
     },

@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import "./style.css";
 import API from "../../utils/API";
+const $ = window.$;
 
 //going to accept instructor objects (for #), and function to send object
 
@@ -10,11 +11,11 @@ class sendAttendance extends Component{
 
     constructor(props){
         super(props)
-
-        alert('sendAttendance button is '+JSON.stringify(this.props))
     }
 
-    
+    componentDidMount=()=>{
+        $('select').formSelect();          
+    }   
 
     sendAttendanceForm=()=>{
 

@@ -18,6 +18,11 @@ module.exports = {
         .then(dbModel => res.json(dbModel))
         .catch(err => res.status(422).json(err));
     },
+    getOne:function(id,res){
+        db.instructor.findById(id)
+        .then(dbModel => res.json(dbModel))
+        .catch(err => res.status(422).json(err));
+    },
     delete:function(idToDelete){
         db.instructor.remove({_id:idToDelete})
         .then(result=>{console.log("instructor deleted! "+result)})
