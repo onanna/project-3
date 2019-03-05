@@ -4,7 +4,7 @@ import "./style.css";
 function submitButton(props){
 
     return(
-        <button onClick={props.submitFunction} className="submitComp btn-large waves-effect waves-light z-depth-5 submitbtnclass " type="submit">
+        <button onClick={props.submitFunction} className="submitComp btn-large waves-effect waves-light submitbtnclass " type="submit">
             Submit
         </button>
     )

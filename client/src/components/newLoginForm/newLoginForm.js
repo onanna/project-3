@@ -265,9 +265,6 @@ class Newloginform extends Component {
                                 }
 
                                 <SubmitButton submitFunction={this.handleFormSubmit} />
-
-                                {/* <a class="btn-large waves-effect waves-light z-depth-5 submitbtnclass go-back-btn" onClick={this.toggleView}>Need a login?</a> */}
-
                             </div>
                         </div>
                     </div>
