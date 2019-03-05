@@ -122,7 +122,7 @@ class Course extends Component {
                                 <div id="courseContent" className="col s12 grey lighten-3">               
                                     <h4 onClick={this.getSelectedInstructors}>{this.state.course.name}</h4>  
                                     <StudentSelect onChange={this.getSelectedStudents} />
-                                    <InstructorSelect onChange={this.getSelectedStudents} />                                    
+                                    <InstructorSelect onChange={this.getSelectedInstructors} />                                    
                                     <p><b> Number of Seats Available:</b> {this.state.course.numberOfSeats}</p>
                                     <p><b>Start Date:</b> {this.state.course.startDate}</p>
                                     <p><b>End Date:</b> {this.state.course.endDate}</p>
