@@ -33,8 +33,8 @@ class Home extends Component{
       alert( JSON.stringify( this.state.students[indexOfStudentToGet]))
       let chosen=this.state.students[indexOfStudentToGet];
     }
-    getOneStudent=()=>{
-        API.getOneStudent()
+    getAllStudents=()=>{
+        API.getAllStudents()
             .then(res => this.setState({ students: res.data }))
             .catch(err => console.log(err));
     }
