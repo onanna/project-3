@@ -46,15 +46,13 @@ class Home extends Component{
                     <div className="col s12 m5 blue darken-4">
                         <div className="card-panel">
                             <h1>All Students</h1>
-                            <h2>Number of students: {this.state.students.length}</h2>
                         </div>
                         <div className="card-panel grey lighten-2">
                             <ul className="collection">
                                 {this.state.students.map((current,i)=>{
                                     return (
                                         <ul>
-                                            <li key={i}>Name: {current.firstName}</li>
-                                            <li key={i}>{current.lastName}</li>
+                                            <li key={i}>Name: {current.firstName} {current.lastName}</li>
                                             <li key={i}>Email: {current.email}</li>
                                             <li key={i}>Phone Number: {current.phone}</li>
                                             <li key={i}>Currently Enrolled: {current.currentlyEnrolled}</li>
