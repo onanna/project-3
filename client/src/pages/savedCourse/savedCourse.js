@@ -82,8 +82,8 @@ class Course extends Component {
         $('.modal').modal();
         $('.tooltipped').tooltip();
         $('ul.tabs').tabs({
-            'swipeable': true,
-            'responsiveThreshold' : Infinity
+            // 'swipeable': true,
+            // 'responsiveThreshold' : Infinity
         });
     }
 
@@ -104,9 +104,6 @@ class Course extends Component {
 
                                 <img src={booksImg} alt="books" /> 
 
-                                {/* Register Student Button */}
-                                <a className="btn modal-trigger tooltipped btn-large btn-floating halfway-fab waves-effect waves-light red" href="#registerStudent" data-target="registerStudent" data-position="right" data-tooltip="Add Student"><i className="material-icons">add</i></a>
-
                                 {/* Register Student Modal */}
                                 <div id="registerStudent" className="modal">
                                     <h4 id="modalHeader">Register Students</h4>
@@ -121,8 +118,8 @@ class Course extends Component {
                                 {/* Course Content & Student Roster in Tabs */}
                                 <div id="courseContent" className="col s12 grey lighten-3">               
                                     <h4 onClick={this.getSelectedInstructors}>{this.state.course.name}</h4>  
-                                    <StudentSelect onChange={this.getSelectedStudents} />
-                                    <InstructorSelect onChange={this.getSelectedInstructors} />                                    
+                                    {/* <StudentSelect onChange={this.getSelectedStudents} />
+                                    <InstructorSelect onChange={this.getSelectedInstructors} />                                     */}
                                     <p><b> Number of Seats Available:</b> {this.state.course.numberOfSeats}</p>
                                     <p><b>Start Date:</b> {this.state.course.startDate}</p>
                                     <p><b>End Date:</b> {this.state.course.endDate}</p>
@@ -145,6 +142,8 @@ class Course extends Component {
                             <a href={`/attendance/temp362019/${this.props.token}/${this.state.course._id}`}>Attendance Form</a> */}
                         
                         </div>
+                        {/* Register Student/ Add Instructor Button */}
+                        <a className="btn modal-trigger tooltipped btn-large btn-floating halfway-fab waves-effect waves-light red" href="#registerStudent" data-target="registerStudent" data-position="right" data-tooltip="Add Student &amp; Instructors"><i className="material-icons">Add Student</i></a>
                     </div>
                 </div>
             </PageContainer>    
