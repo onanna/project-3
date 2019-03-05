@@ -10,7 +10,7 @@ export default function pageContainer({children}){
         
         <div className='page-container'>
             <SideTrigger />
-            <div clasName='row'>
+            <div className='row'>
                 <div className='col s12'>
                     
                         {children}

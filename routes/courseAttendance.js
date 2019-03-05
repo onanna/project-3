@@ -1,13 +1,15 @@
 const router = require("express").Router();
 let attendance = require("../controllers/attendanceController")
-const accountSid = 'AC5f8b93503a7b2bbff25860abb4ecbb34';
-const authToken = 'cbbdf16e9181d3482bc3a389b7b7c169';
+require('dotenv').load();
+const accountSid = process.env.Account;
+const authToken = process.env.authToken;
 const client = require('twilio')(accountSid, authToken);
+const from = process.env.textNumber
 
 //matches with "/course-attendance" 
 router.route("/")
     .get()
-    .post((data)=>{
+    .post((data,res)=>{
         console.log("welcome to POST /course-attendance")
         console.log(data)
     });
@@ -23,10 +25,8 @@ router.route("/:courseId")
         console.log(req.body)
         // res.json(req.body)
 
-        attendance.new(req.body)
-        //go through roster and check if each student is in attendanceArray
-        //set var to false
-        //if they are in array, set var to true
+        attendance.new(req.body,res)
+
     })
     .delete((req,res)=>{
         
@@ -42,16 +42,24 @@ router.route("/send/:courseId")
     .post((req,res)=>{
         console.log("inside sms test route!")
         // console.log("token is: "+req.params.token)
-        console.log('number is '+ req.body.number)
-        console.log("url to send is "+req.body.urlToSend)
+        console.log('token is '+authToken)
+        console.log('account is is '+accountSid)
+        let number = req.body.number
+        let url = req.body.urlToSend
+        let body = `Link for today's attendance: ${url}`
+        
+        console.log('number is '+ number)
+        console.log('url is '+ url)
+        console.log('body is '+ body) 
+        console.log('from  is '+ from) 
 
-        // client.messages
-        // .create({
-        //     body: 'testing the sms send feature',
-        //     from: '+18622175206',
-        //     to: '+19732233733'
-        // })
-        // .then(message => console.log(message.sid));
+        client.messages
+        .create({
+            body: body,
+            from: from,
+            to: number
+        })
+        .then(message => console.log(message.sid));
     })
 
 module.exports=router;
