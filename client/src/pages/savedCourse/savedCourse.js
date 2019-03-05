@@ -132,20 +132,19 @@ class Course extends Component {
                                     {/* <Select className="basic-multi-select" classNamePrefix="select" isMulti name="colors" options={testoptions}/> */}
                                 </div> 
 
-                                <div id="courseContent" className="courseTab" className="col s12 grey lighten-3">
-                                   
+                                <div id="courseContent" className="courseTab" className="col s12 grey lighten-3">                        
                                 </div>
 
                                 <div id="classRoster" className="courseTab" className="col s12 grey lighten-3">
-                                    
+                                    Students
                                 </div>
 
                                 <div id="instructors" className="courseTab" className="col s12 grey lighten-3">
-                                    
+                                    Instructors
                                 </div>
 
                                 <div id="attendance" className="courseTab" className="col s12 grey lighten-3">
-                                    
+                                    Attendance
                                 </div>
                             </div>
 
