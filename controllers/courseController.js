@@ -74,7 +74,7 @@ module.exports = {
     },
     getAll:function(req,res){
         db.course.find(req.query)
-        // .sort({ : -1 })
+        .sort({_id: -1 })
         .populate('students')
         .then(data => res.json(data))
         .catch(err => res.status(422).json(err));

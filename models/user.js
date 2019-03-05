@@ -31,13 +31,11 @@ const userSchema = new Schema({
         unique:true,
         type:String,
         required: true,
-        minlength:3
     },
     password:{
         trim:true,
         type:String,
         required:true,
-        minlength:2
     },
 
 },{ collection : 'users' });
