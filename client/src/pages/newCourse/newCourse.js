@@ -294,15 +294,7 @@ class Newcourse extends Component {
             
           />
           
-          <label> Start Date:</label>  
-          <input type="text" id='startDatePicker' className="datepicker" value={this.state.startDate}
-            // onChange={this.handleDateChange} 
-          />
-          
-          <label> End Date:</label>  
-          <input type="text" id='endDatePicker' className="datepicker" value={this.state.endDate}
-          //  onChange={this.handleDateChange}
-            />
+         
        
          
         </form>
@@ -323,6 +315,15 @@ class Newcourse extends Component {
        <SelectInstructor onChange={this.getSelectedInstructors} />
       <SelectStudent onChange={this.getSelectedStudents} />
       <form>
+      <label> Start Date:</label>  
+          <input type="text" id='startDatePicker' className="datepicker" value={this.state.startDate}
+            // onChange={this.handleDateChange} 
+          />
+          
+          <label> End Date:</label>  
+          <input type="text" id='endDatePicker' className="datepicker" value={this.state.endDate}
+          //  onChange={this.handleDateChange}
+            />
       <button onClick={this.handleFormSubmit}>Submit</button>
       </form>
       </PageContainer>
