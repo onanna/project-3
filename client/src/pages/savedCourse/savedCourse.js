@@ -108,14 +108,17 @@ class Course extends Component {
                                 <div id="registerStudent" className="modal">
                                     <h4 id="modalHeader">Register Students</h4>
                                     <Register />            
-                                </div>                            
+                                </div> 
+
+                                {/* Tabs Titles */}
                                 <ul id="tabs-swipe" className="tabs">
-                                    <li className="tab col s4"><a className="active" href="#courseContent">Course Details</a></li>
-                                    <li className="tab col s4"><a  href="#classRoster">Class Roster</a></li>
-                                    <li className="tab col s4"><a href="#test-swipe-3">Test 3</a></li>
+                                    <li className="tab col s3"><a className="active" href="#courseContent">Course Details</a></li>
+                                    <li className="tab col s3"><a  href="#classRoster">Students</a></li>
+                                    <li className="tab col s3"><a href="#instructors">Instructors</a></li>
+                                    <li className="tab col s3"><a href="#attendance">Attendance</a></li>
                                 </ul>
 
-                                {/* Course Content & Student Roster in Tabs */}
+                                {/* Content inside Tabs */}
                                 <div id="courseContent" className="col s12 grey lighten-3">               
                                     <h4 onClick={this.getSelectedInstructors}>{this.state.course.name}</h4>  
                                     {/* <StudentSelect onChange={this.getSelectedStudents} />
@@ -129,12 +132,20 @@ class Course extends Component {
                                     {/* <Select className="basic-multi-select" classNamePrefix="select" isMulti name="colors" options={testoptions}/> */}
                                 </div> 
 
-                                <div id="classRoster" className="courseTab" className="col s12 grey lighten-3">
-                                    <h4>Class Roster</h4>
+                                <div id="courseContent" className="courseTab" className="col s12 grey lighten-3">
+                                   
                                 </div>
 
-                                <div id="test-swipe-3" className="courseTab" className="col s12 grey lighten-3">
-                                    Test 3
+                                <div id="classRoster" className="courseTab" className="col s12 grey lighten-3">
+                                    
+                                </div>
+
+                                <div id="instructors" className="courseTab" className="col s12 grey lighten-3">
+                                    
+                                </div>
+
+                                <div id="attendance" className="courseTab" className="col s12 grey lighten-3">
+                                    
                                 </div>
                             </div>
 
@@ -142,8 +153,9 @@ class Course extends Component {
                             <a href={`/attendance/temp362019/${this.props.token}/${this.state.course._id}`}>Attendance Form</a> */}
                         
                         </div>
+                        
                         {/* Register Student/ Add Instructor Button */}
-                        <a className="btn modal-trigger tooltipped btn-large btn-floating halfway-fab waves-effect waves-light red" href="#registerStudent" data-target="registerStudent" data-position="right" data-tooltip="Add Student &amp; Instructors"><i className="material-icons">Add Student</i></a>
+                        <a className="btn modal-trigger tooltipped btn-large btn-floating halfway-fab waves-effect waves-light red" href="#registerStudent" data-target="registerStudent" data-position="left" data-tooltip="Add Student &amp; Instructors"><i className="material-icons"></i></a>
                     </div>
                 </div>
             </PageContainer>    
