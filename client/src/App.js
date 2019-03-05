@@ -18,6 +18,9 @@ const $ = window.$;
 // import { AutoComplete } from "material-ui";
 // import TouchRipple from "material-ui/internal/TouchRipple";
 
+let isAttendance=false;
+let courseToGetAttendanceFor='';
+
 class App extends Component{
   
   state={
@@ -32,6 +35,8 @@ class App extends Component{
     //special check if this is an attendance form. if it is, use the 3rd parameter as the token to search
     let currentPath = window.location.pathname.split('/');
     if (currentPath[1]==='attendance' && currentPath[2]==='temp362019'){
+      isAttendance=true;
+      courseToGetAttendanceFor=currentPath[4]
       this.checkToken(currentPath[3])
     }
     
@@ -120,6 +125,15 @@ class App extends Component{
         </div>
       )
     }
+    if(isAttendance===true){
+      $("body").fadeIn(300)
+      return(
+        // <Router>
+        //   <Route exact path="/attendance/temp362019/:token/:courseId" component={AttendanceForm} />
+        // </Router>
+        <AttendanceForm deleteToken={this.deleteToken} courseId={courseToGetAttendanceFor} />
+      )
+    }
     
     if(this.state.token && this.state.isLoading===false){
       $("body").fadeIn(300)
@@ -136,7 +150,7 @@ class App extends Component{
                 <Route exact path="/instructors/all" component={InstDirectory} />            
                 {/* <Route exact path="/instructors/detail" component={Instructor} /> */}
                 <Route exact path="/courses/detail/:id" render={(props)=><Course {...props} token={this.state.token}/>} />
-                <Route exact path="/attendance/temp362019/:token/:courseId" component={AttendanceForm} />
+                {/* <Route exact path="/attendance/temp362019/:token/:courseId" component={AttendanceForm} /> */}
                 
                 <Route exact path="/newcourse" component={NewCourse}  />
                 <Route exact path="/newinstructorform" component={NewInstructor}  />
