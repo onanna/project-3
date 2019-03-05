@@ -30,11 +30,11 @@ class Login extends Component{
                 <h3 className='logintext center-align'>Your Learning Managment Resource</h3>
                 <h6 className='logintext center-align'>Access to this site requires a login</h6>
             </header>
+            <br></br>
             <div className="scale-out">
                 {/* <NewLoginForm /> */}
                 <NewLoginForm setSessionToken={this.props.setSessionToken}/>
             </div>
-            <br></br>
         </div>
         )
     }
