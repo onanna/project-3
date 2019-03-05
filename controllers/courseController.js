@@ -61,6 +61,7 @@ module.exports = {
         })
         .catch(error=>{
             console.log(`you tried adding a course, but it's invalid: ${error}`)
+            res.send(error)
         })
     },
     delete:function(courseId){

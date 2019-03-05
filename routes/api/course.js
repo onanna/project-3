@@ -6,10 +6,6 @@ router.route("/")
     .get(course.getAll)
     .post(course.new)
 
-// router.route("/api/courses")
-//     .get(course.getAll)
-//     .post(course.new)
-
 router.route("/:courseId")
     // .get((id)=>{
     //     console.log("id to get is "+id)
