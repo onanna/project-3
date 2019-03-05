@@ -5,6 +5,8 @@ import PageContainer from "../../components/pageContainer";
 import API from "../../utils/API"
 import SelectInstructor from "../../components/selectInstructors/selectInstructors";
 import SelectStudent from "../../components/selectStudents/selectStudents"
+import Submit from '../../components/submitButton/index'
+import Header from '../../components/h1withDivider/index'
 //import $ from "jquery"
 const $ = window.$;
 
@@ -15,7 +17,7 @@ class Newcourse extends Component {
 
   this.state = {
     name: "",
-    numberOfSeats:25,
+    numberOfSeats:'',
     startDate:"",
     endDate:"",
     startTime:"",
@@ -122,26 +124,6 @@ class Newcourse extends Component {
   
   this.onChange = time => this.setState({ time })
 
-  // this.handleDateChange =() => {
-  //   // Getting the value and name of the input which triggered the change
-    
-  //   let x = document.getElementById("startDatePicker")
-  //   let y = document.getElementById("endDatePicker")
-  //   console.log('datepicker is '+ x)
-  //   let startdateChosen = x.value;
-  //   let enddateChosen = y.value;
-    
-
-  
-   
-   
-  //   this.setState({
-  //     startDate:startdateChosen,
-  //     endDate: enddateChosen
-  //   })
-    
-  // };
-
   
   this.handleFormSubmit = event => {
     // Preventing the default behavior of the form submit (which is to refresh the page)
@@ -173,32 +155,20 @@ class Newcourse extends Component {
     // debugger
 
    API.addCourse(dataToSend)
+   .then(result=>{
+      if(result.data._id){
+        // alert("SUCCESSFUL!")
+        window.location.href = "/";
+      }else{
+        alert("COURSE NAME ALREADY EXISTS")
+      }
+   })
+   .catch(error=>{
+     alert('ERROR '+JSON.stringify(error))
+   })
     console.log(dataToSend)
     console.log(this.state)
-
-    // // Alert the user their first and last name, clear `this.state.firstName` and `this.state.lastName`, clearing the inputs
-    // alert(`A course titled ${this.state.course} \n  and is scheduled for ${this.state.startDate}  \n Located at ${this.state.location}
-    //  with ${this.state.numberofAvailablespots} spots available `);
-    // console.log(this.state)
-    
-    // ({
-    //     course: "",
-    //     startDate: new Date,
-    //     location: "",
-    //     numberofAvailablespots: 0
-    // })
   };
-
-
-  // handleChange(date) {
-
-  //   this.setState({
-
-
-  //     startDate: date
-  //   })
-   
-  // }
 
   }
 
@@ -206,21 +176,21 @@ class Newcourse extends Component {
     // Notice how each input has a `value`, `name`, and `onChange` prop
     return (
       <PageContainer>
-        <h1>
-           {this.state.name}
-        </h1>
+       {this.state.name?  <Header text={this.state.name} align='center' /> : <Header text={'Add new Course!'} />}
     
-        <form className="form container">
-        <label>
-            Course: 
-        </label>
-          <input
-            value={this.state.name}
-            name="name"
-            onChange={this.handleInputChange}
-            type="text"
-            placeholder="Course"
-          />
+        {/* <form className="form container"> */}
+        <div className='input-field'>
+          <label htmlFor="courseName">
+              Course Name: 
+          </label>
+            <input
+              value={this.state.name}
+              name="name"
+              onChange={this.handleInputChange}
+              id="courseName"
+              type="text"
+            />
+        </div>
           
      
         <label> 
@@ -234,55 +204,24 @@ class Newcourse extends Component {
             placeholder="Location"
           />
           <label>
-              Spots Available: 
+              Number of Spots Available: 
           </label>
               <input
             value={this.state.numberOfSeats}
             name="numberOfSeats"
-            
             type="number" 
-            min="0"
-             max="25"
-             onChange={this.handleInputChange}
+            // min="0"
+            // max="25"
+            onChange={this.handleInputChange}
           />  <label>Start Time:</label>
-        {/* <Col>
-          <TextField
       
-        
-        type="text"
-        
-        
-        value={this.state.startTime} 
-        onChange={this.handleInputChange}
-        
-      />
-      </Col> */}
-      {/* <input
-            value={this.state.startTime}
-            name="start"
-            onChange={this.handleInputChange}
-            type="time"
-          /> */}
-    
-
-        {/* <input
-            value={this.state.startTime}
-            name="starttime"
-            onChange={this.handleInputChange}
-            type="text"
-            placeholder="Start Time"
-          />  */}
           <input type="text"  
           name="starttime" 
           value={this.state.startTime} 
           onChange={(ev) => {this.setState({startTime:ev.target.value})}}
          pattern ={/^([01]?[0-9]|2[0-3]):[0-5][0-9]$/}
         required />
-{/* 
-        <TimePicker  
-         onChange={this.onChange}
-         value={this.state.startTime}
-        /> */}
+
            <label> 
             End Time:
         </label>
@@ -295,36 +234,24 @@ class Newcourse extends Component {
           />
           
           <label> Start Date:</label>  
-          <input type="text" id='startDatePicker' className="datepicker" value={this.state.startDate}
+          <input type="text" id='startDatePicker' className="datepicker" 
             // onChange={this.handleDateChange} 
           />
           
           <label> End Date:</label>  
-          <input type="text" id='endDatePicker' className="datepicker" value={this.state.endDate}
+          <input type="text" id='endDatePicker' className="datepicker" 
           //  onChange={this.handleDateChange}
             />
        
          
-        </form>
-         
-        <div>
-          
-  
-           <a className="waves-effect waves-light btn modal-trigger" href="#modal1">Add New Instructor</a>
+        {/* </form> */}
 
-  
-            <div id="modal1" className="modal">
-              <div className="modal-content">
-               <Newinstructor />
-              </div>
-    
-            </div>
-        </div>
-       <SelectInstructor onChange={this.getSelectedInstructors} />
-      <SelectStudent onChange={this.getSelectedStudents} />
-      <form>
-      <button onClick={this.handleFormSubmit}>Submit</button>
-      </form>
+        <SelectInstructor onChange={this.getSelectedInstructors} />
+        <SelectStudent onChange={this.getSelectedStudents} />
+        {/* <form> */}
+        {/* <button onClick={this.handleFormSubmit}>Submit</button> */}
+        <div id="newCourseSubmit"><Submit submitFunction={this.handleFormSubmit}/></div>
+        {/* </form> */}
       </PageContainer>
     );
   }
