@@ -184,7 +184,9 @@ function readDate(dateToRead){
     console.log(yyyy)
     
 
-
+    if(mm.charAt(0)==="0"){
+        mm=mm.charAt(1);
+    }
   
     //not necessary because date not saving with 0 in front of 1-9
     if(dd.charAt(0)==="0"){
