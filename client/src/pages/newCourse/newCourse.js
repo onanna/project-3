@@ -3,8 +3,8 @@ import "./style.css";
 import Newinstructor from "../../components/newInstructorForm/newInstructorForm"
 import PageContainer from "../../components/pageContainer";
 import API from "../../utils/API"
-import SelectInstructor from "../../components/select/selectInstructor";
-import SelectStudent from "../../components/select/selectStudent"
+import SelectInstructor from "../../components/selectInstructors/selectInstructors";
+import SelectStudent from "../../components/selectStudents/selectStudents"
 //import $ from "jquery"
 const $ = window.$;
 
@@ -27,7 +27,29 @@ class Newcourse extends Component {
     students:[]
   };
 
- 
+ this.getSelectedInstructors=(selected)=>{
+        console.log(selected)
+        let instructorsSelected =[]
+        selected.forEach((element,i) => {
+            instructorsSelected.push(element.value)
+        });
+        this.setState({
+            instructors:instructorsSelected
+        })
+        // console.log($("#instructorSelect"))
+    }
+
+    this.getSelectedStudents=(selected)=>{
+        console.log(selected)
+        let studentsSelected =[]
+        selected.forEach((element,i) => {
+            studentsSelected.push(element.value)
+        });
+        this.setState({
+            students:studentsSelected
+        })
+        // console.log($("#instructorSelect"))
+    }
   this.componentDidMount=()=>{
     $(".datepicker").datepicker({
       format: "mm-dd-yyyy",
@@ -269,7 +291,7 @@ class Newcourse extends Component {
             name="endtime"
             onChange={(ev) => {this.setState({endTime:ev.target.value})}}
             type="text"
-            placeholder="Endtime"
+            
           />
           
           <label> Start Date:</label>  
@@ -298,8 +320,8 @@ class Newcourse extends Component {
     
             </div>
         </div>
-       <SelectInstructor onChange={this.handleSelectedInstructorsChange} />
-      <SelectStudent onChange={this.handleSelectedStudentsChange} />
+       <SelectInstructor onChange={this.getSelectedInstructors} />
+      <SelectStudent onChange={this.getSelectedStudents} />
       <form>
       <button onClick={this.handleFormSubmit}>Submit</button>
       </form>
