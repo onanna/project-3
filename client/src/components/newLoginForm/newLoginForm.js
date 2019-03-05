@@ -203,7 +203,7 @@ class Newloginform extends Component {
 
               <div className="row">
                   <div className="col s6 center-align">
-                        <div className="card hoverable newloginclass z-depth-5">
+                        <div className="card small hoverable newloginclass z-depth-5">
                             <div className="card-content">
                             {
                               this.state.errors.length>0? 
@@ -265,9 +265,6 @@ class Newloginform extends Component {
                                 }
 
                                 <SubmitButton submitFunction={this.handleFormSubmit} />
-
-                                {/* <a class="btn-large waves-effect waves-light z-depth-5 submitbtnclass go-back-btn" onClick={this.toggleView}>Need a login?</a> */}
-
                             </div>
                         </div>
                     </div>

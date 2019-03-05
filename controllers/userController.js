@@ -43,14 +43,14 @@ module.exports = {
                         res.send({error:"error making session "+ error})                        
                     })
                 }else{
-                    res.send({error:"There was an error with your E-Mail/Password combination. Please try again."})
+                    res.send({error:"There was an error with your Username/Password combination. Please try again."})
                 }
             }else{
-                res.send({error:"There was an error with your E-Mail/Password combination. Please try again."});
+                res.send({error:"There was an error with your Username/Password combination. Please try again."});
             } 
         })
         .catch(error=>{
-            res.send({error:"There was an error with your E-Mail/Password combination. Please try again."});
+            res.send({error:"There was an error with your Username/Password combination. Please try again."});
         })
     },
     checkToken:function(token,res){
