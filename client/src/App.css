@@ -24,10 +24,16 @@ input[type="password"] + label {
     border-bottom: 1px solid #446ca8 !important;
     box-shadow: 0 1px 0 0 #446ca8 !important;
   }
-
   /* changes icon colors when highlighted  */
   .input-field .prefix.active{
     color:#446ca8 !important;
+  }
+
+  input[type=text]:not(.browser-default):focus:not([readonly]){
+    color:#446ca8 !important;
+    border-bottom: 1px solid #446ca8;
+    -webkit-box-shadow: 0 1px 0 0 #446ca8;
+    box-shadow: 0 1px 0 0 #446ca8;
   }
 
 

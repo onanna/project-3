@@ -48,7 +48,7 @@ class SelectStudent extends Component{
 
     render (){
         return(
-            <Select closeMenuOnSelect={false} onChange={this.props.onChange} isMulti id="studentSelect" options={this.state.students}/>
+            <Select placeholder="Add Students"closeMenuOnSelect={false} onChange={this.props.onChange} isMulti id="studentSelect" options={this.state.students}/>
         )
     }
 }
