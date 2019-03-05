@@ -46,25 +46,28 @@ class instructors extends Component{
     render(){
         return(
             <Pagecontainer>
-                <h1>All instructors</h1>
-                <h2>Number of instructors: {this.state.instructors.length}</h2>
-                <div class="row">
-                    <div class="col s12 m5">
-                        <div class="card-panel teal">
+                <div className="row">
+                    <div className="col s12 m5 blue darken-4">
+                        <div className="card-panel">
+                            <h1>All instructors</h1>
+                            <h2>Number of instructors: {this.state.instructors.length}</h2>
+                        </div>
+                        <div className="card-panel grey lighten-2">
                             <ul className="collection">
-                                <h3>{this.state.instructors.firstName}</h3>
-                                <h4>{this.state.instructors.lastName}</h4>
-                                <p><b>Email: {this.state.instructors.email}</b></p>
-                                <p><b>Phone Number: {this.state.instructors.phone}</b></p>
-                                <p><b>Classes currently teaching in: {this.state.instructors.currentlyTeaching}</b></p>
-                                <p><b>Classes previously taught in: {this.state.instructors.pastCourses}</b></p>
-                                {/* {
-                                    this.state.instructors.map((current,i)=>{
-                                        return(
-                                    <li onClick={()=>this.updateInstructor(current._id,"lastName","tester")} key={i} className="collection-item">{JSON.stringify(current)}</li>
+                                {this.state.instructors.map((current,i)=>{
+                                    return (
+                                        <ul>
+                                            <li key={i}>Name: {current.firstName}</li>
+                                            <li key={i}>{current.lastName}</li>
+                                            <li key={i}>Email: {current.email}</li>
+                                            <li key={i}>Phone Number: {current.phone}</li>
+                                            <li key={i}>Currently Teaching: {current.currentlyTeaching}</li>
+                                            <li key={i}>Previously Taught: {current.pastCourses}</li>
+                                            <hr></hr>
+                                        </ul>
                                     )
-                                    })
-                                } */}
+                                })
+                                }
                             </ul>
                         </div>
                     </div>
