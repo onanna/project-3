@@ -17,10 +17,6 @@ class Home extends Component{
         this.getCourses();
         this.getAllStudents();
         this.getInstructors();
-        // $("body").css("display","none");
-        // $("body").fadeIn();
-
-
     }
     
     getInstructors=()=>{
@@ -141,7 +137,6 @@ class Home extends Component{
         return(
             <Pagecontainer>
                 <Header align='left' text="All Courses"/>
-                {/* <ul className="collection"> */}
                 <div className='mainClass row'>
                     {
                         this.state.allCourses.map((current,i)=>{
@@ -156,7 +151,6 @@ class Home extends Component{
                         })
                     }
                 </div>
-                {/* </ul> */}
             </Pagecontainer>
         )
    }
