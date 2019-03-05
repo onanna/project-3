@@ -1,13 +1,4 @@
-/* .form {
-    margin: 20px;
-  }
-  
-  .form input {
-    display: block;
-    margin-top: 50px;
-    margin-bottom: 50px;
-    width: 100%;
-  } */
+
 .modal .datepicker-modal .open{
   z-index: 1000000000000;
 }
@@ -16,8 +7,18 @@
   background-size:cover
 }
 
+.newCourseError{
+  color:#ff5252;
+  font-weight: bold;
+}
+
 .datepicker-cancel, .datepicker-clear, .datepicker-today, .datepicker-done,.datepicker-table td.is-today{
   color:#0E419B;
+}
+
+.datepicker-table td.is-selected{
+  background-color:#0E419B;
+  color:white;
 }
 
 .modal{
