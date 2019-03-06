@@ -50,7 +50,6 @@ class instructors extends Component{
                         </ul>
                     </div>
                 </div>
-<<<<<<< HEAD
                 <div className='row'>
                     <div className="card">
                         <div className="col s12 grey lighten-3">  
@@ -76,22 +75,6 @@ class instructors extends Component{
                             }
                         </div>
                     </div>
-=======
-                <div className="card hoverable grey lighten-3">
-                    {this.state.instructors.map((current,i)=>{
-                        return (
-                            <ul>
-                                <li key={i}><b>Name: </b>{current.firstName} {current.lastName}</li>
-                                <li key={i}><b>Email: </b>{current.email}</li>
-                                <li key={i}><b>Phone Number: </b>{current.phone}</li>
-                                <li key={i}><b>Currently Teaching: </b>{current.currentlyTeaching}</li>
-                                <li key={i}><b>Previously Taught: </b>{current.pastCourses}</li>
-                                <hr></hr>
-                            </ul>
-                        )
-                    })
-                    }
->>>>>>> master
                 </div>
             </Pagecontainer>
         )
