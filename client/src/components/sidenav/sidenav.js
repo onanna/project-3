@@ -17,12 +17,13 @@ function sidenav(props){
                     {/* <a href={`user/profile`}><span class="white-text email">jdandturk@gmail.com</span></a> */}
                     </div></li>
                 {/* <li><div className='divider'></div></li> */}
-                <li className="firstItem sidenav-close"><a href="/">Home</a></li>
-                <li className="sidenav-close"><a href="/students/all">Students</a></li>
-                <li className="sidenav-close"><a href="/instructors/all">Instructors</a></li>
-                <li className="sidenav-close"><a href="/newcourse">Add Course</a></li>
+                <li className="firstItem sidenav-close"><a className='sideLink'href="/">Home</a></li>
+                <li className="sidenav-close"><a className='sideLink' href="/students/all">Students</a></li>
+                <li className="sidenav-close"><a className='sideLink'href="/instructors/all">Instructors</a></li>
+                <li className="sidenav-close"><a className='sideLink'href="/newcourse">Add Course</a></li>
                 {/* <li className="sidenav-close"><a href="/savedCourse">View Courses</a></li> */}
-                <li className="sidenav-close"> <Logout deleteToken={props.deleteToken}/></li>
+                {/* <li className="sidenav-close logoutSidenav"><Logout deleteToken={props.deleteToken}/></li> */}
+                <li className="sidenav-close"><a id='logSide'lassName='logoutSidenav'onClick={props.deleteToken}>Logout</a></li>
             </ul>
         </div>
     )

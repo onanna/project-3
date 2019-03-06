@@ -6,3 +6,26 @@
     /* background-image:url("https://previews.123rf.com/images/irrrina/irrrina1412/irrrina141200031/34663463-notebook-lined-paper-background-or-texture.jpg"); */
     /* background-image:url("https://allfreedesigns.com/wp-content/uploads/2017/04/lined-paper-texture-4.jpg"); */
 }
+
+/* a:not([href]):not([tabindex]){
+    color:#ff5252;
+} */
+
+#logSide{
+    color:#ff5252;
+    margin-top:30%;
+}
+
+.sidenav-close:hover{
+    background-color:#0d47a1;
+}
+.sideLink:hover{
+    text-decoration: none;
+    color:white;
+}
+
+#logSide:hover{
+    color:white;
+    cursor: pointer;
+    background-color:#ff5252;
+}

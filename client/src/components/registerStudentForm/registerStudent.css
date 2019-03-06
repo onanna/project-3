@@ -5,6 +5,15 @@
 .errorMessage{
     color:#ff5252;
     font-weight: bold;
+    padding:0;
+    margin:0;
+}
+
+.successMessage{
+    color:#00e676;
+    font-weight: bold;
+    padding:0;
+    margin:0;
 }
 
 #existStudentSubmit,#existInstructSubmit{
