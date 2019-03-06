@@ -32,13 +32,13 @@ const stuSchema = new Schema({
     currentlyEnrolled:[{
         type: Schema.Types.ObjectId, 
         ref: "course",
-        required:true,
+        // required:true,
         default:[]
     }],
     pastCourses:[{
         type: Schema.Types.ObjectId, 
         ref: "course",
-        required:true,
+        // required:true,
         default:[]    
     }]
 
