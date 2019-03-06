@@ -34,6 +34,7 @@ class attendanceForm extends Component{
         sentSuccess:false
     }
 
+
     handleAttendanceToggle(stuId){
         console.log(stuId)
         let tempStudents=this.state.studentsinAttendance;
@@ -117,7 +118,7 @@ class attendanceForm extends Component{
                                         <Col s={4}>
                                             <div className="switch right-align">
                                                 <label>
-                                                    <input onInput={()=>this.handleAttendanceToggle(current._id)} type="checkbox" />
+                                                    <input onChange={()=>this.handleAttendanceToggle(current._id)} className='browser-default'type="checkbox" />
                                                     <span className="lever"></span>
                                                 </label>
                                             </div>
