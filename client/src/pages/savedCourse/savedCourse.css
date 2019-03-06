@@ -1,31 +1,36 @@
 #courseCard {
-    margin-top: 10px;
-    margin-bottom: 80%;
+    /* margin-top: 10px;
+    margin-bottom: 80%; */
 }
 
 .card {
-    height:775px;
+    /* height:775px; */
+    /* height: auto; */
+}
+
+#registerStudent{
+  background-image:url('https://png.pngtree.com/thumb_back/fh260/back_pic/03/74/98/0557bd128221118.jpg');
 }
 
 #courseContent {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    margin-bottom: 10px;
+    /* font-family: Verdana, Geneva, Tahoma, sans-serif;
     padding-top: 10px;
     padding-left: 20px; 
     padding-bottom: 10px; 
-    line-height: 2;
+    line-height: 2; */
 }
 
 #modalHeader {
     color: white;
     margin-top: 50px;
 }
-
+.sendToText{
+    margin-top: 40px;
+}
 #registerStudent {
     line-height: 5;
     text-align: center;
     width: 800px;
-    background-image: url(../../images/schoolkid.jpg);
     opacity:0.2;
     background-repeat: no-repeat;
     background-size: cover; 
