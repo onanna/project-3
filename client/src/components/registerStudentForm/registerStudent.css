@@ -2,6 +2,15 @@
     background-color: white;
 }
 
+.errorMessage{
+    color:#ff5252;
+    font-weight: bold;
+}
+
+#existStudentSubmit,#existInstructSubmit{
+    display:none
+}
+
 #collapDiv {
     align-items: center;
     padding-left: 40px;

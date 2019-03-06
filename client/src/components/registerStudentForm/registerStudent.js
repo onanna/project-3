@@ -18,16 +18,17 @@ class Register extends Component {
       firstName: "",
       lastName: "",
       email: "",
-      // phone: "",
+      phone: "",
+
       addExistStuNotice:'',
       addExistInstNotice:'',
       addNewStuNotice:'',
       addNewInsNotice:'',  
-      phone: 0,
+
       firstInstructorName: "",
       lastInstructorName: "",
       emailInstructor: "",
-      phoneInstructor: 0
+      phoneInstructor: ''
 
     };
 
@@ -56,131 +57,142 @@ class Register extends Component {
     };
   
 
+  this.handleFirstNameChangeinst=(e)=> {
+    e.preventDefault();
+    this.setState({
+      firstInstructorName: e.target.value
+    });
+  }
+
+  this.handleLastNameChangeinst=(e)=>{
+    e.preventDefault();
+    this.setState({
+      lastInstructorName:e.target.value
+    });
+  }
+
+  this.handleEmailChangestuinst=(e)=>{
+    e.preventDefault();
+    this.setState({
+      emailInstructor:e.target.value
+    });
+  }
+
+  this.handlePhoneChangestuinst=(e)=>{
+    e.preventDefault();
+    this.setState({
+      phoneInstructor:e.target.value
+    });
+  }
+  this.handleInstructorOnSubmit =(e) => {
+    e.preventDefault();
+    var newInstructor={
+      firstName: this.state.firstInstructorName,
+      lastName: this.state.lastInstructorName,
+      email: this.state.emailInstructor,
+      phone: this.state.phoneInstructor
+    }
+    // console.log(newInstructor)
+    alert(JSON.stringify(newInstructor));
+
+    // API.addInstructor(newInstructor)
+  }
+
+  //----------------------------------------------------------------------------------------------
+
   this.handleFirstNameChange=(e)=> {
     e.preventDefault();
     this.setState({
       firstName: e.target.value,
-      firstInstructorName: e.target.value
     });
-    // console.log(this.state.firstName);
-    // console.log(this.state.firstInstructorName);
-
   }
 
   this.handleLastNameChange=(e)=>{
     e.preventDefault();
     this.setState({
       lastName: e.target.value,
-      lastInstructorName:e.target.value
     });
-    // console.log(this.state.lastName);
-    // console.log(this.state.lastInstructorName);
   }
 
   this.handleEmailChange=(e)=>{
     e.preventDefault();
     this.setState({
       email: e.target.value,
-      emailInstructor:e.target.value
     });
-    // console.log(this.state.email);
-    // console.log(this.state.emailInstructor);
   }
 
   this.handlePhoneChange=(e)=>{
     e.preventDefault();
     this.setState({
       phone: e.target.value,
-      phoneInstructor:e.target.value
     });
-    // console.log(this.state.phone);
-    // console.log(this.state.phoneInstructor);
-    
   }
 
   this.handleOnSubmit =(e)=> {
+    $('.forColorClear').css('color','#9e9e9e')
+    this.setState({addNewStuNotice:''})
     e.preventDefault();
     console.log("submit");
-    //console.log(e.target.value)
+    
+    let isError=false
+    let newError='';
+    if(this.state.firstName.trim().length===0){
+      $('#stuFirstName').css('color','#ff5252')
+      isError=true;      
+    }
+    if(this.state.lastName.trim().length===0){
+      $('#stuLastName').css('color','#ff5252')
+      isError=true;       
+    }
+    if(this.state.email.trim().length===0){
+      $('#stuEmail').css('color','#ff5252')
+      isError=true;       
+    }
+    if(this.state.phone.trim().length===0){
+      $('#stuPhone').css('color','#ff5252')
+      isError=true;       
+    }
+
+    if(isError){
+      this.setState((prevState)=>({
+        addNewStuNotice:'Missing Fields'
+      }))
+    }
+
     var newStudent = {
       firstName: this.state.firstName,
       lastName: this.state.lastName,
       email: this.state.email,
       phone: this.state.phone
     };
-    console.log(newStudent);
-    // API.addStudent(newStudent)
-
-    //make an axios.post method
-    //axios.post('localhost:3001/api/students', newStudent)
-
-    // let isError = false;
-    //   if(dataToSend.name.trim().length===0){
-    //     $('#courseNameLabel').css('color','#ff5252')
-    //     isError=true;
-    //   }
-    //   if(dataToSend.numberOfSeats.trim().length===0){
-    //     $('#numSeatsLabel').css('color','#ff5252')
-    //     isError=true;
-    //   }else{
-    //       //check that it's a number
-    //     }
-    //   if(dataToSend.startDate.trim().length===0){
-    //     $('#startDateLabel').css('color','#ff5252')
-    //     isError=true;      
-    //   }
-    //   if(dataToSend.endDate.trim().length===0){
-    //     $('#endDateLabel').css('color','#ff5252')
-    //     isError=true;      
-    //   }
-    //   if(dataToSend.startTime.trim().length===0){
-    //     $('#startTimeLabel').css('color','#ff5252')
-    //     isError=true;      
-    //   }
-    //   if(dataToSend.endTime.trim().length===0){
-    //     $('#endTimeLabel').css('color','#ff5252')
-    //     isError=true;      
-    //   }
-    //   if(dataToSend.location.trim().length===0){
-    //     $('#locationLabel').css('color','#ff5252')
-    //     isError=true;      
-    //   }
-    
-    //   if(isError){
-    //     this.setState((prevState)=>({
-    //       error:'All Fields Are Required'
-    //     }))
-    //   }else{
-    //     API.addCourse(dataToSend)
-    //     .then(result=>{
-    //       if(result.data._id){
-    //         window.location.href = "/";
-    //       }else{
-    //         $('#courseNameLabel').css('color','#ff5252')
-    //         this.setState((prevState)=>({
-    //           error:'A course with this name already exists'
-    //         }))
-    //       }
-    //     })
-    //     .catch(error=>{
-    //       console.log('ERROR '+JSON.stringify(error))
-    //     })
-    //   }
   }
+  //--------------------------------------------------------------------------------------------------------------
 
   this.selectStudentChange=(currentList)=>{
+      if(currentList.length<1){
+        $('#existStudentSubmit').css('display','none');
+      }else{
+        $('#existStudentSubmit').css('display','inherit')
+      }
+    
     this.setState((prev)=>({
       studentsToAdd:currentList
     }))
   }
-    
+  
   this.selectInstructorChange=(currentList)=>{
+    if(currentList.length<1){
+      $('#existInstructSubmit').css('display','none');
+    }else{
+      $('#existInstructSubmit').css('display','inherit')
+    }
     this.setState((prev)=>({
       instructorsToAdd:currentList
     }))
   }
   
   this.addToRoster=(roster,optionalData)=>{
+
     let whoToAdd;
     let data;
     switch(roster){
@@ -190,6 +202,7 @@ class Register extends Component {
         whoToAdd.forEach((current,i)=>{
           data.push(current.value)
         })
+        if(data.length<1) return;
         API.addStudentsToCourse(this.props.courseId,data)
         .then(result=>{
           if(result.data.success){
@@ -216,6 +229,7 @@ class Register extends Component {
         whoToAdd.forEach((current,i)=>{
           data.push(current.value)
         })
+        if(data.length<1) return;
         API.addInstructorsToCourse(this.props.courseId,data)
         .then(result=>{
           if(result.data.success){
@@ -238,17 +252,6 @@ class Register extends Component {
     }
   }
 
-  this.handleInstructorOnSubmit =(e) => {
-    e.preventDefault();
-    var newInstructor={
-      firstName: this.state.firstInstructorName,
-      lastName: this.state.lastInstructorName,
-      email: this.state.emailInstructor,
-      phone: this.state.phoneInstructor
-    }
-    // console.log(newInstructor)
-    API.addInstructor(newInstructor)
-  }
   }
   render() {
     return (
@@ -283,7 +286,7 @@ class Register extends Component {
                       <form class="col s12" onSubmit={this.handleOnSubmit}>
                         <div class="row">
                           <div class="input-field col s6">
-                            <i class="material-icons prefix">account_circle</i>
+                            <i class="material-icons prefix forColorClear" id='stuFirstName'>account_circle</i>
                             <input
                               id="fName"
                               type="text"
@@ -293,7 +296,7 @@ class Register extends Component {
                           </div>
 
                           <div class="input-field col s6">
-                            <i class="material-icons prefix">account_circle</i>
+                            <i class="material-icons prefix forColorClear"id='stuLastName'>account_circle</i>
                             <input
                               id="lName"
                               type="text"
@@ -305,7 +308,7 @@ class Register extends Component {
 
                         <div class="row">
                           <div class="input-field col s6">
-                            <i class="material-icons prefix">email</i>
+                            <i class="material-icons prefix forColorClear"id='stuEmail'>email</i>
                             <input
                               id="email"
                               type="text"
@@ -315,7 +318,7 @@ class Register extends Component {
                           </div>
 
                           <div class="input-field col s6">
-                            <i class="material-icons prefix">phone</i>
+                            <i class="material-icons prefix forColorClear"id='stuPhone'>phone</i>
                             <input
                               id="phone"
                               type="text"
@@ -324,6 +327,7 @@ class Register extends Component {
                             />
                           </div>
                         </div>
+                          <div>{this.state.addNewStuNotice.length>0?this.state.addNewStuNotice:''}</div>
                         <div id="newStudentSubmit"><Submit submitFunction={this.handleFormSubmit}/></div>
                       </form>
                     </div>
@@ -364,49 +368,44 @@ class Register extends Component {
                       <form class="col s12" onSubmit={this.handleOnSubmit}>
                         <div class="row">
                           <div class="input-field col s6">
-                            <i class="material-icons prefix">account_circle</i>
+                            <i class="material-icons prefix forColorClear">account_circle</i>
                             <input
                               id="fName"
                               type="text"
                               placeholder="First Name"
-                              value={this.state.firstInstructorName}
-
-                              onChange={this.handleFirstNameChange}
+                              onChange={this.handleFirstNameChangeinst}
                             />
                           </div>
 
                           <div class="input-field col s6">
-                            <i class="material-icons prefix">account_circle</i>
+                            <i class="material-icons prefix forColorClear">account_circle</i>
                             <input
                               id="lName"
                               type="text"
                               placeholder="Last Name"
-                              value={this.state.lastInstructorName}
-                              onChange={this.handleLastNameChange}
+                              onChange={this.handleLastNameChangeinst}
                             />
                           </div>
                         </div>
 
                         <div class="row">
                           <div class="input-field col s6">
-                            <i class="material-icons prefix">email</i>
+                            <i class="material-icons prefix forColorClear">email</i>
                             <input
                               id="email"
                               type="text"
                               placeholder="Email"
-                              value={this.state.emailInstructor}
-                              onChange={this.handleEmailChange}
+                              onChange={this.handleEmailChangestuinst}
                             />
                           </div>
 
                           <div class="input-field col s6">
-                            <i class="material-icons prefix">phone</i>
+                            <i class="material-icons prefix forColorClear">phone</i>
                             <input
                               id="phone"
                               type="text"
                               placeholder="Phone"
-                              value={this.state.phoneInstructor}
-                              onChange={this.handlePhoneChange}
+                              onChange={this.handlePhoneChangestuinst}
                             />
                           </div>
                         </div>
