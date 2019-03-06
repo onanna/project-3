@@ -146,6 +146,7 @@ class Course extends Component {
                             </div>
                         
                         </div>
+                        
                         {/* Register Student/ Add Instructor Button */}
                         <a className="btn modal-trigger tooltipped btn-large btn-floating halfway-fab waves-effect waves-light red" href="#registerStudent" data-target="registerStudent" data-position="right" data-tooltip="Add Student &amp; Instructors"><i className="material-icons">add</i></a>
                     </div>
