@@ -279,11 +279,11 @@ class Register extends Component {
 
                 <div className="collapsible-body">
                   <span>
-                    <div class="row">
-                      <form class="col s12" onSubmit={this.handleOnSubmit}>
-                        <div class="row">
-                          <div class="input-field col s6">
-                            <i class="material-icons prefix">account_circle</i>
+                    <div className="row">
+                      <form className="col s12" onSubmit={this.handleOnSubmit}>
+                        <div className="row">
+                          <div className="input-field col s6">
+                            <i className="material-icons prefix">account_circle</i>
                             <input
                               id="fName"
                               type="text"
@@ -292,8 +292,8 @@ class Register extends Component {
                             />
                           </div>
 
-                          <div class="input-field col s6">
-                            <i class="material-icons prefix">account_circle</i>
+                          <div className="input-field col s6">
+                            <i className="material-icons prefix">account_circle</i>
                             <input
                               id="lName"
                               type="text"
@@ -303,9 +303,9 @@ class Register extends Component {
                           </div>
                         </div>
 
-                        <div class="row">
-                          <div class="input-field col s6">
-                            <i class="material-icons prefix">email</i>
+                        <div className="row">
+                          <div className="input-field col s6">
+                            <i className="material-icons prefix">email</i>
                             <input
                               id="email"
                               type="text"
@@ -314,8 +314,8 @@ class Register extends Component {
                             />
                           </div>
 
-                          <div class="input-field col s6">
-                            <i class="material-icons prefix">phone</i>
+                          <div className="input-field col s6">
+                            <i className="material-icons prefix">phone</i>
                             <input
                               id="phone"
                               type="text"
@@ -360,11 +360,11 @@ class Register extends Component {
 
                 <div className="collapsible-body">
                   <span>
-                    <div class="row">
-                      <form class="col s12" onSubmit={this.handleOnSubmit}>
-                        <div class="row">
-                          <div class="input-field col s6">
-                            <i class="material-icons prefix">account_circle</i>
+                    <div className="row">
+                      <form className="col s12" onSubmit={this.handleOnSubmit}>
+                        <div className="row">
+                          <div className="input-field col s6">
+                            <i className="material-icons prefix">account_circle</i>
                             <input
                               id="fName"
                               type="text"
@@ -375,8 +375,8 @@ class Register extends Component {
                             />
                           </div>
 
-                          <div class="input-field col s6">
-                            <i class="material-icons prefix">account_circle</i>
+                          <div className="input-field col s6">
+                            <i className="material-icons prefix">account_circle</i>
                             <input
                               id="lName"
                               type="text"
@@ -387,9 +387,9 @@ class Register extends Component {
                           </div>
                         </div>
 
-                        <div class="row">
-                          <div class="input-field col s6">
-                            <i class="material-icons prefix">email</i>
+                        <div className="row">
+                          <div className="input-field col s6">
+                            <i className="material-icons prefix">email</i>
                             <input
                               id="email"
                               type="text"
@@ -399,8 +399,8 @@ class Register extends Component {
                             />
                           </div>
 
-                          <div class="input-field col s6">
-                            <i class="material-icons prefix">phone</i>
+                          <div className="input-field col s6">
+                            <i className="material-icons prefix">phone</i>
                             <input
                               id="phone"
                               type="text"
