@@ -19,7 +19,7 @@ class Newloginform extends Component {
   // Setting the component's initial state
   state = {
     createnewaccount: false,
-    errors:[],
+    error:'',
     firstname: "",
     lastname: "",
     email: "",
@@ -28,11 +28,12 @@ class Newloginform extends Component {
   };
   
   createnewaccountfunction = event => {
+    $('.forColorClear').css('color','#9e9e9e')
     console.log("clicked on create new account")
     if(this.state.createnewaccount===false){
       this.setState({
         createnewaccount: true,
-        errors:[], 
+        error:'', 
         firstname: "",
         lastname: "",
         email: "",
@@ -43,7 +44,7 @@ class Newloginform extends Component {
     }else{
       this.setState({
         createnewaccount: false,
-        errors:[],
+        error:'',
         firstname: "",
         lastname: "",
         email: "",
@@ -77,63 +78,86 @@ class Newloginform extends Component {
   handleFormSubmit = event => {
     // Preventing the default behavior of the form submit (which is to refresh the page)
     event.preventDefault();
+    
+    $('.forColorClear').css('color','#9e9e9e')
     this.setState((prevState)=>({
-      errors:[]
+      error:''
     }))
-    let goodToGo=false;
 
     console.log('entered submit function')
     //if user is logging in normally
-    let newErrors=[]
+    let isError=false
+    let newError='';
     if(this.state.createnewaccount===false){
       if(this.state.username.trim().length===0){
-        newErrors.push('Username Required')      
+        $('#loginUser').css('color','#ff5252')
+        isError=true;      
       }
       if(!this.state.password){
-        newErrors.push('Password Required')       
+        $('#loginPassword').css('color','#ff5252')
+        isError=true;       
       }
 
-      this.setState((prevState)=>({
-        errors:newErrors
-      }))
-      newErrors.length>0? goodToGo=false : goodToGo=true;
+      if(isError){
+        this.setState((prevState)=>({
+          error:'Both Fields Are Required'
+        }))
+      }
     
     //if user is making new account
     }else{
       if(this.state.username.trim().length===0){
-        newErrors.push('Username Required')      
+        $('#loginUser').css('color','#ff5252')
+        newError='All Fields Are Required';
+        isError=true;
       }
-      if(this.state.password.trim().length===0){
-        newErrors.push('Password Required')       
+      if(!this.state.password){
+        $('#loginPassword').css('color','#ff5252')
+        newError='All Fields Are Required';
+        isError=true;       
       }else{
         let confirm = $('#confirmPassword').val();
         if(confirm!=this.state.password){
-          newErrors.push('Passwords Do Not Match') 
+          isError=true;       
+          newError='Passwords Do Not Match'
+          $('#loginConfirm').css('color','#ff5252')
         }
       }
+      if(!$('#confirmPassword').val()){
+        $('#loginConfirm').css('color','#ff5252')
+        newError='All Fields Are Required';
+        isError=true;        
+      }
       if(this.state.email.trim().length===0){
-        newErrors.push('Email Required')       
+        $('#loginEmail').css('color','#ff5252')
+        newError='All Fields Are Required';
+        isError=true;        
       }else{
         //verify it's a valid email using regex
         let isValidEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.state.email);
         if(!isValidEmail){
-          newErrors.push('Invalid Email')       
+          $('#loginEmail').css('color','#ff5252')
+          newError='Invalid Email'
+          isError=true;        
         }
       }
       if(this.state.firstname.trim().length===0){
-        newErrors.push('First Name Required')       
+        $('#loginFirst').css('color','#ff5252')
+        isError=true;        
       }
       if(this.state.lastname.trim().length===0){
-        newErrors.push('Last Name Required')       
+        $('#loginLast').css('color','#ff5252')
+        isError=true;         
       }
 
-      this.setState((prevState)=>({
-        errors:newErrors
-      }))
-      newErrors.length>0? goodToGo=false : goodToGo=true;
+      if(newError.length>0){
+        this.setState((prevState)=>({
+          error:newError
+        }))
+      }
     }
 
-    if(goodToGo){
+    if(!isError){
       //clear the state
       if (this.state.createnewaccount) {
           console.log("entering handleFormSubmit with createnewaccount = true") 
@@ -151,7 +175,7 @@ class Newloginform extends Component {
             if(result.data.session){
               this.props.setSessionToken(result.data.session,result.data.user);
             }else if(result.data.error){
-              this.setState({errors:[result.data.error]})
+              this.setState({error:[result.data.error]})
             }
           })
           .catch(result=>{
@@ -172,7 +196,7 @@ class Newloginform extends Component {
             if(res.data.error){
               console.log("error is"+JSON.stringify(res.data.error))
               let errors = res.data.error.split('.');
-              this.setState({errors:errors})
+              this.setState({error:errors})
             }else{
               console.log("session id is "+JSON.stringify(res.data.session._id))
               this.props.setSessionToken(res.data.session,res.data.user);
@@ -205,7 +229,7 @@ class Newloginform extends Component {
                   <div className="col s6 center-align">
                         <div className="card small hoverable newloginclass z-depth-5">
                             <div className="card-content">
-                            {
+                            {/* {
                               this.state.errors.length>0? 
                                 <ul className='errorNotice'>
                                   {
@@ -216,7 +240,8 @@ class Newloginform extends Component {
                                 </ul> 
                               : 
                                 <div></div>
-                            }
+                            } */}
+                            {this.state.error.length>0? <p className='errorMessage'>{this.state.error}</p>:<div></div>}
                             {/* <a class="btn-large waves-effect waves-light z-depth-5 submitbtnclass go-back-btn" onClick={this.createnewaccountfunction}>Create New Account</a> */}
 
                                 {/* This section will appear only when the user clicks the create an account "click here" button */}
@@ -224,19 +249,19 @@ class Newloginform extends Component {
                                   <div className="input-field">
                                     <i className="material-icons prefix">person_outline</i>
                                     <input onChange={this.handleInputChange} name="firstname" id="firstname" type="text" />
-                                    <label className="active" htmlFor="first_name">First Name</label>
+                                    <label id='loginFirst'className="forColorClear" htmlFor="first_name">First Name</label>
                                   </div>
 
                                   <div className="input-field">
                                       <i className="material-icons prefix">person</i>
                                       <input onChange={this.handleInputChange} name="lastname" id="lastname" type="text" />
-                                      <label className="active" htmlFor="last_name">Last Name</label>
+                                      <label id='loginLast' className="forColorClear" htmlFor="last_name">Last Name</label>
                                   </div>
 
                                   <div className="input-field">
                                       <i className="material-icons prefix">email</i>
                                       <input onChange={this.handleInputChange} name="email" id="email" type="text" />
-                                      <label className="active" htmlFor="email">Email</label>
+                                      <label id='loginEmail'className="forColorClear" htmlFor="email">Email</label>
                                   </div>
                                 </div>
 
@@ -244,13 +269,13 @@ class Newloginform extends Component {
                                 <div className="input-field">
                                     <i className="material-icons prefix">account_box</i>
                                     <input onChange={this.handleInputChange} name="username" id="username" type="text" />
-                                    <label className="active" htmlFor="last_name">Username</label>
+                                    <label id='loginUser'className="forColorClear" htmlFor="last_name">Username</label>
                                 </div>
 
                                 <div className="input-field">
                                     <i className="material-icons prefix">lock</i>
                                     <input onChange={this.handleInputChange} id="password" type="password" name="password" />
-                                    <label className="active" htmlFor="last_name">Password</label>
+                                    <label id='loginPassword'className="forColorClear" htmlFor="last_name">Password</label>
                                 </div>
 
                                 {
@@ -258,7 +283,7 @@ class Newloginform extends Component {
                                     <div className="input-field">
                                         <i className="material-icons prefix">lock</i>
                                         <input id="confirmPassword" type="password" name="password" />
-                                        <label className="active" htmlFor="last_name">Confirm Password</label>
+                                        <label id='loginConfirm' className="forColorClear" htmlFor="last_name">Confirm Password</label>
                                     </div>
                                   :
                                     <div></div>                        

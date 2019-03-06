@@ -1,7 +1,5 @@
 const mongoose = require("mongoose");
 const db = require("../models");
-const dateFormat=require('dateformat')
-
 
 // This file empties the students/instructors/and courses collection and inserts the seeds below
 
