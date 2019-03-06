@@ -1,6 +1,6 @@
 #courseCard {
-    /* margin-top: 10px;
-    margin-bottom: 80%; */
+    /* margin-top: 10px;*/
+    /* margin-bottom: 80%;  */
 }
 
 .card {
@@ -50,7 +50,7 @@
 #registerStudent {
     line-height: 5;
     text-align: center;
-    width: 800px;
+    /* width: 800px; */
     opacity:0.2;
     background-repeat: no-repeat;
     background-size: cover; 

@@ -168,19 +168,19 @@ class Register extends Component {
     //   }
   }
 
-  selectStudentChange=(currentList)=>{
+  this.selectStudentChange=(currentList)=>{
     this.setState((prev)=>({
       studentsToAdd:currentList
     }))
   }
     
-  selectInstructorChange=(currentList)=>{
+  this.selectInstructorChange=(currentList)=>{
     this.setState((prev)=>({
       instructorsToAdd:currentList
     }))
   }
   
-  addToRoster=(roster,optionalData)=>{
+  this.addToRoster=(roster,optionalData)=>{
     let whoToAdd;
     let data;
     switch(roster){
