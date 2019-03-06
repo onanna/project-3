@@ -5,6 +5,7 @@ import SubmitButton from "../../components/submitButton"
 import {Row, Col, Input} from 'react-materialize';
 import API from "../../utils/API";
 import Header from "../../components/h1withDivider/index"
+const dateFormat=require('dateformat')
 const $=window.$;
 
 class attendanceForm extends Component{
@@ -28,7 +29,7 @@ class attendanceForm extends Component{
             students:[]
         },
         studentsinAttendance:[],
-        date:new Date(),
+        date:dateFormat(new Date(), 'mm-dd-yyyy'),
         sentSuccess:false
     }
 

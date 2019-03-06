@@ -20,12 +20,31 @@
     line-height: 2; */
 }
 
+.material-icons.check{
+    color:#00e676;
+}
+.material-icons.clear{
+    color:#ff5252;
+}
+.stuAttName{
+    font-weight: bold;
+}
 #modalHeader {
     color: white;
     margin-top: 50px;
 }
 .sendToText{
-    margin-top: 40px;
+    margin-top: 50px;
+    font-weight: bold
+}
+.bold{
+    font-weight: bold
+}
+.light{
+    font-weight: 200
+}
+.m-top{
+    margin-top:5%;
 }
 #registerStudent {
     line-height: 5;
@@ -36,7 +55,20 @@
     background-size: cover; 
     z-index: -1;
 }
-
+.tabs .tab a.active, .tabs .tab a {
+    color: #446ca8;
+}
+.rosterHeader{
+    font-weight: 600;
+    color:#039be5;
+}
+  
+li.indicator{
+    display:none
+}
+#LightBlue {
+    background-color: #039be5;
+}
 #tabs-swipe {
     font-weight: bold;
     font-size: 30px;
