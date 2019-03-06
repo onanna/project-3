@@ -2,168 +2,263 @@ import React, { Component } from "react";
 import axios from "axios";
 import "./../registerStudentForm/registerStudent.css";
 import API from "../../utils/API";
+import Submit from '../../components/submitButton/index'
+import InstructorSelect from "../../components/selectInstructors/selectInstructors";
+import StudentSelect from "../../components/selectStudents/selectStudents";
 const $ = window.$;
 
-
 class Register extends Component {
-    constructor(props){
-        super(props);
-    
-    
-        this.state={
-            students: [],
-            firstName: "",
-            lastName: "",
-            email: "",
-            phone: ""
-        }
+  constructor(props) {
+    super(props);
 
-        this.handleFirstNameChange=this.handleFirstNameChange.bind(this)
+    this.state = {
+      students: [],
+      firstName: "",
+      lastName: "",
+      email: "",
+      phone: ""
+    };
 
-        this.handleLastNameChange=this.handleLastNameChange.bind(this)
+    this.handleFirstNameChange = this.handleFirstNameChange.bind(this);
 
-        this.handleEmailChange=this.handleEmailChange.bind(this)
+    this.handleLastNameChange = this.handleLastNameChange.bind(this);
 
-        this.handlePhoneChange=this.handlePhoneChange.bind(this)
+    this.handleEmailChange = this.handleEmailChange.bind(this);
 
-        this.handleOnSubmit=this.handleOnSubmit.bind(this)
+    this.handlePhoneChange = this.handlePhoneChange.bind(this);
 
-        this.componentDidMount=()=>{
-            $('select').formSelect();
-            $('.collapsible').collapsible();  
-            this.getAllStudents();
-        }
+    this.handleOnSubmit = this.handleOnSubmit.bind(this);
 
-        this.getAllStudents = ()=> {
-            API.getAllStudents()
-            .then(res =>{ this.setState({ students: res.data })
-                console.log(JSON.stringify(res.data))
-            })            
-            .catch(err => console.log(err));
-        }
+    this.componentDidMount = () => {
+      $("select").formSelect();
+      $(".collapsible").collapsible();
+      this.getAllStudents();
+    };
 
-    }
-
-    handleFirstNameChange(e) {
-        e.preventDefault()
-        this.setState({
-            firstName: e.target.value
+    this.getAllStudents = () => {
+      API.getAllStudents()
+        .then(res => {
+          this.setState({ students: res.data });
+          console.log(JSON.stringify(res.data));
         })
-        console.log(this.state.firstName)
-    }
+        .catch(err => console.log(err));
+    };
+  }
 
-    handleLastNameChange(e) {
-        e.preventDefault()
-        this.setState({
-            lastName: e.target.value
-        })
-        console.log(this.state.lastName)
-    }
+  handleFirstNameChange(e) {
+    e.preventDefault();
+    this.setState({
+      firstName: e.target.value
+    });
+    console.log(this.state.firstName);
+  }
 
-    handleEmailChange(e) {
-        e.preventDefault()
-        this.setState({
-            email: e.target.value
-        })
-        console.log(this.state.email)
-    }
+  handleLastNameChange(e) {
+    e.preventDefault();
+    this.setState({
+      lastName: e.target.value
+    });
+    console.log(this.state.lastName);
+  }
 
-    handlePhoneChange(e) {
-        e.preventDefault()
-        this.setState({
-            phone: e.target.value
-        })
-        console.log(this.state.phone)
-    }
+  handleEmailChange(e) {
+    e.preventDefault();
+    this.setState({
+      email: e.target.value
+    });
+    console.log(this.state.email);
+  }
 
-    handleOnSubmit(e) {
-        e.preventDefault()
-        console.log("submit")
-        //console.log(e.target.value)
-        var newStudent = {
-            firstName: this.state.firstName,
-            lastName: this.state.lastName,
-            email: this.state.email,
-            phone: this.state.phone
-        }
-        console.log(newStudent)
-        //make an axios.post method
-        //axios.post('localhost:3001/api/students', newStudent)
-    }
+  handlePhoneChange(e) {
+    e.preventDefault();
+    this.setState({
+      phone: e.target.value
+    });
+    console.log(this.state.phone);
+  }
 
-    render(){
-        return(
-            <div className="row" id="collapDiv"> 
-                <div className="col s12 m6">
-                    <ul className="collapsible expandable">        
-                        <li>
-                            <div className="collapsible-header" id="header1"><i className="material-icons">person_add</i>Existing Student</div>
-                            
-                            <div className="collapsible-body">
-                                <span>
-                                    {/* <form>
-                                        <label>Select Students</label>
-                                        <div className="input-field col s12">
-                                            <select multiple onChange={this.props.onChange} name="selectStudents">
-                                            
-                                            <option value="" defaultValue>Choose your option</option>
+  handleOnSubmit(e) {
+    e.preventDefault();
+    console.log("submit");
+    //console.log(e.target.value)
+    var newStudent = {
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
+      email: this.state.email,
+      phone: this.state.phone
+    };
+    console.log(newStudent);
+    //make an axios.post method
+    //axios.post('localhost:3001/api/students', newStudent)
+  }
 
-                                            {
-                                                this.state.students.map((current,i)=>{
-                                                    return <option key={current._id} accessKey={current._id} value={current.firstName}>{current.firstName}, {current.lastName}</option>
-                                                })
-                                            }
-                                            </select>
-                                        </div>
-                                    </form>                                     */}
-                                </span>
-                            </div>
-                        </li>
-
-                        <li>
-                            <div className="collapsible-header" id="header2"><i className="material-icons">person_add</i>New Student</div>
-
-                            <div className="collapsible-body">
-                                <span>
-                                    <div class="row">
-                                        <form class="col s12" onSubmit={this.handleOnSubmit}>
-                                            <div class="row">
-                                                <div class="input-field col s6">
-                                                    <i class="material-icons prefix">account_circle</i>
-                                                    <input id="fName" type="text" placeholder="First Name" onChange={this.handleFirstNameChange}></input>
-                                                </div>
-
-                                                <div class="input-field col s6">
-                                                    <i class="material-icons prefix">account_circle</i>
-                                                    <input id="lName" type="text" placeholder="Last Name" onChange={this.handleLastNameChange}></input>
-                                                </div>
-                                            </div>    
-
-                                            <div class="row">
-                                                <div class="input-field col s6">
-                                                    <i class="material-icons prefix">email</i>
-                                                    <input id="email" type="text" placeholder="Email" onChange={this.handleEmailChange}></input>
-                                                </div>
-
-                                                <div class="input-field col s6">
-                                                    <i class="material-icons prefix">phone</i>
-                                                    <input id="phone" type="text" placeholder="Phone" onChange={this.handlePhoneChange}></input>
-                                                </div>
-                                            </div>
-                                            <button className="btn waves-effect waves-light" id="submit-btn" type="submit" name="action">Submit<i class="material-icons right">send</i></button> 
-                                        </form>  
-                                    </div>
-                                </span>
-                            </div>
-                        </li>
-                    </ul>
-       
+  render() {
+    return (
+      <div>
+        {/* Add Student Collapsible */}  
+        <div className="row" id="collapDiv">
+          <div className="col s12 m6">
+            <ul className="collapsible expandable">
+              <li>
+                <div className="collapsible-header" id="header1">
+                  <i className="material-icons">person_add</i>Existing Student
                 </div>
-            </div>    
-        )
 
-    }
+                <div className="collapsible-body">
+                  <span>
+                    <StudentSelect onChange={this.getSelectedStudents} />
 
+                    <div id="existStudentSubmit"><Submit submitFunction={this.handleFormSubmit}/></div>
+                  </span>
+                </div>
+         
+              </li>
+
+              <li>
+                <div className="collapsible-header" id="header2">
+                  <i className="material-icons">person_add</i>New Student
+                </div>
+
+                <div className="collapsible-body">
+                  <span>
+                    <div class="row">
+                      <form class="col s12" onSubmit={this.handleOnSubmit}>
+                        <div class="row">
+                          <div class="input-field col s6">
+                            <i class="material-icons prefix">account_circle</i>
+                            <input
+                              id="fName"
+                              type="text"
+                              placeholder="First Name"
+                              onChange={this.handleFirstNameChange}
+                            />
+                          </div>
+
+                          <div class="input-field col s6">
+                            <i class="material-icons prefix">account_circle</i>
+                            <input
+                              id="lName"
+                              type="text"
+                              placeholder="Last Name"
+                              onChange={this.handleLastNameChange}
+                            />
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="input-field col s6">
+                            <i class="material-icons prefix">email</i>
+                            <input
+                              id="email"
+                              type="text"
+                              placeholder="Email"
+                              onChange={this.handleEmailChange}
+                            />
+                          </div>
+
+                          <div class="input-field col s6">
+                            <i class="material-icons prefix">phone</i>
+                            <input
+                              id="phone"
+                              type="text"
+                              placeholder="Phone"
+                              onChange={this.handlePhoneChange}
+                            />
+                          </div>
+                        </div>
+                        <div id="newStudentSubmit"><Submit submitFunction={this.handleFormSubmit}/></div>
+                      </form>
+                    </div>
+                  </span>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+
+        {/* Add Instructor Collapsible */}
+        <div className="row" id="collapDiv">
+          <div className="col s12 m6">
+            <ul className="collapsible expandable">
+              <li>
+                <div className="collapsible-header" id="header1">
+                  <i className="material-icons">person_add</i>Existing Instructor
+                </div>
+
+                <div className="collapsible-body">
+                  <span>
+                    <InstructorSelect onChange={this.getSelectedInstructors} />
+
+                    <div id="existInstructSubmit"><Submit submitFunction={this.handleFormSubmit}/></div>
+                  </span>
+                </div>
+              </li>
+
+              <li>
+                <div className="collapsible-header" id="header2">
+                  <i className="material-icons">person_add</i>New Instructor
+                </div>
+
+                <div className="collapsible-body">
+                  <span>
+                    <div class="row">
+                      <form class="col s12" onSubmit={this.handleOnSubmit}>
+                        <div class="row">
+                          <div class="input-field col s6">
+                            <i class="material-icons prefix">account_circle</i>
+                            <input
+                              id="fName"
+                              type="text"
+                              placeholder="First Name"
+                              onChange={this.handleFirstNameChange}
+                            />
+                          </div>
+
+                          <div class="input-field col s6">
+                            <i class="material-icons prefix">account_circle</i>
+                            <input
+                              id="lName"
+                              type="text"
+                              placeholder="Last Name"
+                              onChange={this.handleLastNameChange}
+                            />
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="input-field col s6">
+                            <i class="material-icons prefix">email</i>
+                            <input
+                              id="email"
+                              type="text"
+                              placeholder="Email"
+                              onChange={this.handleEmailChange}
+                            />
+                          </div>
+
+                          <div class="input-field col s6">
+                            <i class="material-icons prefix">phone</i>
+                            <input
+                              id="phone"
+                              type="text"
+                              placeholder="Phone"
+                              onChange={this.handlePhoneChange}
+                            />
+                          </div>
+                        </div>
+                        <div id="newInstructSubmit"><Submit submitFunction={this.handleFormSubmit}/></div>
+                      </form>
+                    </div>
+                  </span>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    );
+  }
 }
 
-export default Register
+export default Register;

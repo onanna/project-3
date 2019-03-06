@@ -5,44 +5,20 @@ import Register from "../../components/registerStudentForm/registerStudent";
 import API from "../../utils/API";
 import H1 from "../../components/h1withDivider";
 import {Card, Col} from 'react-materialize';
-import Send from "../../components/sendAttendance/sendAttendance"
+import Send from "../../components/sendAttendance/sendAttendance2"
 import booksImg from "../../images/books1.jpg";
 import InstructorSelect from '../../components/selectInstructors/selectInstructors'
 import StudentSelect from '../../components/selectStudents/selectStudents'
-
+import * as date from '../../utils/dateReaders';
 const $ = window.$;
 
 class Course extends Component {
     state={
         course:{
-            instructors:[]
+            instructors:[],
+            attendanceRecords:[],
+            students:[]
         },
-        testStudents:[
-            {
-              firstName:"First",
-              lastName:"Instructor",
-              email:"something@gmail.com",
-              currentlyTeaching:[],
-              pastCourses:[],
-              phone:"+1someRandomNumber"
-            },
-            {
-              firstName:"numbah",
-              lastName:"two",
-              email:"someOtherthing@yahoo.com",
-              currentlyTeaching:[],
-              pastCourses:[],
-              phone:"+19732233733"
-            },
-            {
-              firstName:"Noel",
-              lastName:"Holiday",
-              email:"nice@aol.com",
-              currentlyTeaching:[],
-              pastCourses:[],
-              phone:"+1someRandomNumber"
-            },
-        ],
         instructorsToAdd:[],
         studentsToAdd:[]
     }
@@ -80,10 +56,11 @@ class Course extends Component {
     }
     componentDidMount=()=>{
         $('.modal').modal();
+        $('.collapsible').collapsible();
         $('.tooltipped').tooltip();
         $('ul.tabs').tabs({
-            'swipeable': true,
-            'responsiveThreshold' : Infinity
+            // 'swipeable': true,
+            // 'responsiveThreshold' : Infinity
         });
     }
 
@@ -101,50 +78,77 @@ class Course extends Component {
                     <div className="col s12 m6">
                         <div className="card hoverable">
                             <div className="card-image">
-
                                 <img src={booksImg} alt="books" /> 
+                            </div>
+                            <div id="registerStudent" className="modal">
+                                <h4 id="modalHeader">Register Students</h4>
+                                <Register />            
+                            </div>                            
+                            <ul id="tabs-swipe" className="tabs">
+                                <li className="tab col s4"><a className="active" href="#courseContent">Course Details</a></li>
+                                <li className="tab col s4"><a  href="#classRoster">Class Roster</a></li>
+                                <li className="tab col s4"><a href="#test-swipe-3">Attendance</a></li>
+                            </ul>
 
-                                {/* Register Student Button */}
-                                <a className="btn modal-trigger tooltipped btn-large btn-floating halfway-fab waves-effect waves-light red" href="#registerStudent" data-target="registerStudent" data-position="right" data-tooltip="Add Student"><i className="material-icons">add</i></a>
+                            {/* Course Content & Student Roster in Tabs */}
+                            <div id="courseContent" className="col s12 grey lighten-3">               
+                                <h4 onClick={this.getSelectedInstructors}>{this.state.course.name}</h4>  
+                                <p><b> Number of Seats Available:</b> {this.state.course.numberOfSeats}</p>
+                                <p><b>Start Date:</b> {this.state.course.startDate? date.readDate(this.state.course.startDate) : this.state.course.startDate}</p>
+                                <p><b>End Date:</b> {this.state.course.startDate? date.readDate(this.state.course.endDate) : this.state.course.endDate}</p>
+                                <p><b>Start Time:</b> {this.state.course.startTime}</p>
+                                <p><b>End Time:</b> {this.state.course.endTime}</p>
+                                <p><b>Location:</b> {this.state.course.location}</p>
+                                {/* <Select className="basic-multi-select" classNamePrefix="select" isMulti name="colors" options={testoptions}/> */}
+                            </div> 
 
-                                {/* Register Student Modal */}
-                                <div id="registerStudent" className="modal">
-                                    <h4 id="modalHeader">Register Students</h4>
-                                    <Register />            
-                                </div>                            
-                                <ul id="tabs-swipe" className="tabs">
-                                    <li className="tab col s4"><a className="active" href="#courseContent">Course Details</a></li>
-                                    <li className="tab col s4"><a  href="#classRoster">Class Roster</a></li>
-                                    <li className="tab col s4"><a href="#test-swipe-3">Test 3</a></li>
+                            <div id="classRoster" className="courseTab" className="col s12 grey lighten-3">
+                                <h4>Class Roster</h4>
+                                <ul>
+                                    {this.state.course.students.map((current,i)=>{
+                                        return(
+                                            <li>{`${current.firstName} ${current.lastName}`}</li>
+                                        )
+                                    })}
                                 </ul>
-
-                                {/* Course Content & Student Roster in Tabs */}
-                                <div id="courseContent" className="col s12 grey lighten-3">               
-                                    <h4 onClick={this.getSelectedInstructors}>{this.state.course.name}</h4>  
-                                    <StudentSelect onChange={this.getSelectedStudents} />
-                                    <InstructorSelect onChange={this.getSelectedInstructors} />                                    
-                                    <p><b> Number of Seats Available:</b> {this.state.course.numberOfSeats}</p>
-                                    <p><b>Start Date:</b> {this.state.course.startDate}</p>
-                                    <p><b>End Date:</b> {this.state.course.endDate}</p>
-                                    <p><b>Start Time:</b> {this.state.course.startTime}</p>
-                                    <p><b>End Time:</b> {this.state.course.endTime}</p>
-                                    <p><b>Location:</b> {this.state.course.location}</p>
-                                    {/* <Select className="basic-multi-select" classNamePrefix="select" isMulti name="colors" options={testoptions}/> */}
-                                </div> 
-
-                                <div id="classRoster" className="courseTab" className="col s12 grey lighten-3">
-                                    <h4>Class Roster</h4>
-                                </div>
-
-                                <div id="test-swipe-3" className="courseTab" className="col s12 grey lighten-3">
-                                    Test 3
-                                </div>
                             </div>
 
-                             {/* <Send attendLink={`/attendance/temp362019/${this.props.token}/${this.state.course._id}`} instructors={this.state.course.instructors}/>
-                            <a href={`/attendance/temp362019/${this.props.token}/${this.state.course._id}`}>Attendance Form</a> */}
+                            <div id="test-swipe-3" className="courseTab" className="col s12 grey lighten-3">
+                                <h4>Records</h4>
+
+                                <ul className='collapsible'>
+                                    {this.state.course.attendanceRecords.map((current,i)=>{
+                                        return(
+                                                <li>
+                                                    <div className='collapsible-header'>{current.date}</div>
+                                                    <div className='collapsible-body'>
+                                                        {current.students.map((current,i)=>{
+                                                            return(
+                                                                <div className='row'>
+                                                                    <div className='col s6'>
+                                                                        <p>{`${current.student.firstName} ${current.student.lastName}`}</p>
+                                                                    </div>
+                                                                    <div className='col s6'>
+                                                                        <p className={`inClass${current.inAttendance}`}>{current.inAttendance? 'Yes':'No'}</p>
+                                                                    </div>
+                                                                </div>
+                                                            )
+                                                        })}
+                                                    </div>
+                                                </li>
+                                        )
+                                    })}
+                                </ul>
+                                
+                                <p className='sendToText flow-text'>Send To Instructor</p>                            
+                                <Send attendLink={`https://gentle-garden-19053.herokuapp.com/attendance/temp362019/${this.props.token}/${this.state.course._id}`} instructors={this.state.course.instructors}/>
+                                <a href={`/attendance/temp362019/${this.props.token}/${this.state.course._id}`} target="_blank">Attendance Form</a>
+                            </div>
                         
                         </div>
+                        
+                        {/* Register Student/ Add Instructor Button */}
+                        <a className="btn modal-trigger tooltipped btn-large btn-floating halfway-fab waves-effect waves-light red" href="#registerStudent" data-target="registerStudent" data-position="right" data-tooltip="Add Student &amp; Instructors"><i className="material-icons">add</i></a>
                     </div>
                 </div>
             </PageContainer>    

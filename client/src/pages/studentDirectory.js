@@ -1,13 +1,7 @@
 import React, { Component } from "react";
 import Pagecontainer from "../components/pageContainer"
 import API from "../utils/API"
-
-let newStudentTest = {
-    firstName:"new",
-    lastName:"stude22nt!",
-    email:"funtsfimes2@gmail.com",
-    phone:"+19732233733"
-}
+import booksImg from "../images/books1.jpg";
 
 class Home extends Component{
     state={
@@ -48,24 +42,26 @@ class Home extends Component{
     render(){
         return(
             <Pagecontainer>
-                <h1>All Students</h1>
-                <h2>Number of students: {this.state.students.length}</h2>
-                <div class="row">
-                    <div class="col s12 m5">
-                        <div class="card-panel teal">
+                <div className="row">
+                    <div className="col s12 m5 blue darken-4">
+                        <div className="card-panel">
+                            <h1>All Students</h1>
+                        </div>
+                        <div className="card-panel grey lighten-2">
                             <ul className="collection">
-                                <h3>{this.state.students.firstName}</h3>
-                                <h4>{this.state.students.lastName}</h4>
-                                <p><b>Email: {this.state.students.email}</b></p>
-                                <p><b>Phone Number: {this.state.students.phone}</b></p>
-                                <p><b>Classes currently enrolled in: {this.state.students.currentlyEnrolled}</b></p>
-                                <p><b>Classes previously enrolled in: {this.state.students.pastCourses}</b></p>
-                                {/* {this.state.students.map((current,i)=>{
+                                {this.state.students.map((current,i)=>{
                                     return (
-                                        <li onClick={()=>this.addStudent(newStudentTest)} key={i} className="collection-item"> {JSON.stringify(current)}</li>
+                                        <ul>
+                                            <li key={i}>Name: {current.firstName} {current.lastName}</li>
+                                            <li key={i}>Email: {current.email}</li>
+                                            <li key={i}>Phone Number: {current.phone}</li>
+                                            <li key={i}>Currently Enrolled: {current.currentlyEnrolled}</li>
+                                            <li key={i}>Previously Enrolled: {current.pastCourses}</li>
+                                            <hr></hr>
+                                        </ul>
                                     )
                                 })
-                                } */}
+                                }
                             </ul>
                         </div>
                     </div>

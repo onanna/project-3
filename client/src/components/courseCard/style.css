@@ -65,14 +65,17 @@
       max-height: 650px; */
   
       /* height:387px; */
-      max-height: 425.600px;
+      max-height: 415.600px;
+      /* height:410px; */
       width:330px;
     }
 }
 
 @media only screen and (max-width : 992px) {
   .mainCourseCard{
-    height:400px;
+    /* height:400px;
+    width:280px; */
+    max-height: 425.600px;
     width:280px;
   }
 }

@@ -5,38 +5,41 @@ import PageContainer from "../../components/pageContainer";
 import API from "../../utils/API"
 import SelectInstructor from "../../components/selectInstructors/selectInstructors";
 import SelectStudent from "../../components/selectStudents/selectStudents"
+import Submit from '../../components/submitButton/index'
+import Header from '../../components/h1withDivider/index'
 //import $ from "jquery"
 const $ = window.$;
 
 class Newcourse extends Component {
   constructor(props) {
     super(props);
-  // Setting the component's initial state
 
-  this.state = {
-    name: "",
-    numberOfSeats:0,
-    startDate:"",
-    endDate:"",
-    startTime:"",
-    endTime: "",
-    location: "",
-    selectInstructors: [],
-    selectStudents:[],
-    instructors:[],
-    students:[]
-  };
+    // Setting the component's initial state
+    this.state = {
+      error:'',
+      name: "",
+      numberOfSeats:'',
+      startDate:"",
+      endDate:"",
+      startTime:"",
+      endTime: "",
+      location: "",
+      selectInstructors: [],
+      selectStudents:[],
+      instructors:[],
+      students:[]
+    };
 
- this.getSelectedInstructors=(selected)=>{
-        console.log(selected)
-        let instructorsSelected =[]
-        selected.forEach((element,i) => {
-            instructorsSelected.push(element.value)
-        });
-        this.setState({
-            instructors:instructorsSelected
-        })
-        // console.log($("#instructorSelect"))
+    this.getSelectedInstructors=(selected)=>{
+            console.log(selected)
+            let instructorsSelected =[]
+            selected.forEach((element,i) => {
+                instructorsSelected.push(element.value)
+            });
+            this.setState({
+                instructors:instructorsSelected
+            })
+            // console.log($("#instructorSelect"))
     }
 
     this.getSelectedStudents=(selected)=>{
@@ -50,155 +53,103 @@ class Newcourse extends Component {
         })
         // console.log($("#instructorSelect"))
     }
-  this.componentDidMount=()=>{
-    $(".datepicker").datepicker({
-      format: "mm-dd-yyyy",
-      autoClose: true
-    });
-  }
-  this.handleInputChange = event =>{
-    const {name, value} = event.target
 
-    this.setState({
-      [name]: value
-    })
-  }
-  this.handleSelectedInstructorsChange = event => {
-
-
-    const { name, options} = event.target;
-    
-    var lem = [];
-    var value2 =[];
-    
-  
-    for (var i = 0, l = options.length; i < l; i++) {
-      if (options[i].selected) {
-        lem.push(options[i].value);
-      }
-      if(options[i].selected){
-        value2.push(options[i].accessKey)
-      }
-        }
-    
-
-    this.setState({
-      selectInstructors: value2,
-      instructors:lem
-    }, ()=>   { 
-      console.log(this.state.selectInstructors);
-      console.log(this.state.instructors);
-    })
-    
-
-  }
-  
-  this.handleSelectedStudentsChange = event => {
-
-    const { name, options} = event.target;
-    
-    var lem = [];
-    var value2 =[];
-    
-  
-    for (var i = 0, l = options.length; i < l; i++) {
-      if (options[i].selected) {
-        lem.push(options[i].value);
-      }
-      if(options[i].selected){
-        value2.push(options[i].accessKey)
-      }
-        }
-    
-
-    this.setState({
-      selectStudents: value2,
-      students:lem
-    }, ()=>   { 
-      console.log(this.state.selectStudents);
-      console.log(this.state.students);
-    })
-  }
-  
-  this.onChange = time => this.setState({ time })
-
-  // this.handleDateChange =() => {
-  //   // Getting the value and name of the input which triggered the change
-    
-  //   let x = document.getElementById("startDatePicker")
-  //   let y = document.getElementById("endDatePicker")
-  //   console.log('datepicker is '+ x)
-  //   let startdateChosen = x.value;
-  //   let enddateChosen = y.value;
-    
-
-  
-   
-   
-  //   this.setState({
-  //     startDate:startdateChosen,
-  //     endDate: enddateChosen
-  //   })
-    
-  // };
-
-  
-  this.handleFormSubmit = event => {
-    // Preventing the default behavior of the form submit (which is to refresh the page)
-    event.preventDefault();
-
-
-    let x = document.getElementById("startDatePicker")
-    let y = document.getElementById("endDatePicker")
-    console.log('datepicker is '+ x.value)
-    console.log('datepicker is '+ y.value)
-
-    let startdateChosen = x.value;
-    let enddateChosen = y.value;
-
-    let dataToSend={
-      name: this.state.name,
-      numberOfSeats: this.state.numberOfSeats,
-      startDate: startdateChosen,
-      endDate: enddateChosen,
-      startTime: this.state.startTime,
-      endTime: this.state.endTime,
-      location: this.state.location,
-      instructors: this.state.instructors,
-      students:this.state.students
+    this.componentDidMount=()=>{
+      $(".datepicker").datepicker({
+        format: "mm-dd-yyyy",
+        autoClose: true
+      });
     }
 
-    //add validation
+    this.handleInputChange = event =>{
+      const {name, value} = event.target
+      this.setState({
+        [name]: value
+      })
+    }
+  
+    this.onChange = time => this.setState({ time })
 
-    // debugger
+  
+    this.handleFormSubmit = event => {
+      // Preventing the default behavior of the form submit (which is to refresh the page)
+      event.preventDefault();
+      $('.forColorClear').css('color','#9e9e9e')
 
-   API.addCourse(dataToSend)
-    console.log(dataToSend)
-    console.log(this.state)
+      let startdateChosen = document.getElementById("startDatePicker").value
+      let enddateChosen = document.getElementById("endDatePicker").value
+      console.log(startdateChosen)
 
-    // // Alert the user their first and last name, clear `this.state.firstName` and `this.state.lastName`, clearing the inputs
-    // alert(`A course titled ${this.state.course} \n  and is scheduled for ${this.state.startDate}  \n Located at ${this.state.location}
-    //  with ${this.state.numberofAvailablespots} spots available `);
-    // console.log(this.state)
+      // let startdateChosen = x.value;
+      // let enddateChosen = y.value;
+
+      let dataToSend={
+        name: this.state.name,
+        numberOfSeats: this.state.numberOfSeats,
+        startDate: startdateChosen,
+        endDate: enddateChosen,
+        startTime: this.state.startTime,
+        endTime: this.state.endTime,
+        location: this.state.location,
+        instructors: this.state.instructors,
+        students:this.state.students
+      }
+
+      let isError = false;
+      if(dataToSend.name.trim().length===0){
+        $('#courseNameLabel').css('color','#ff5252')
+        isError=true;
+      }
+      if(dataToSend.numberOfSeats.trim().length===0){
+        $('#numSeatsLabel').css('color','#ff5252')
+        isError=true;
+      }else{
+          //check that it's a number
+        }
+      if(dataToSend.startDate.trim().length===0){
+        $('#startDateLabel').css('color','#ff5252')
+        isError=true;      
+      }
+      if(dataToSend.endDate.trim().length===0){
+        $('#endDateLabel').css('color','#ff5252')
+        isError=true;      
+      }
+      if(dataToSend.startTime.trim().length===0){
+        $('#startTimeLabel').css('color','#ff5252')
+        isError=true;      
+      }
+      if(dataToSend.endTime.trim().length===0){
+        $('#endTimeLabel').css('color','#ff5252')
+        isError=true;      
+      }
+      if(dataToSend.location.trim().length===0){
+        $('#locationLabel').css('color','#ff5252')
+        isError=true;      
+      }
     
-    // ({
-    //     course: "",
-    //     startDate: new Date,
-    //     location: "",
-    //     numberofAvailablespots: 0
-    // })
-  };
+      if(isError){
+        this.setState((prevState)=>({
+          error:'All Fields Are Required'
+        }))
+      }else{
+        // alert('all good to go')
+        API.addCourse(dataToSend)
+        .then(result=>{
+          if(result.data._id){
+            window.location.href = "/";
+          }else{
+            $('#courseNameLabel').css('color','#ff5252')
+            this.setState((prevState)=>({
+              error:'A course with this name already exists'
+            }))
+          }
+        })
+        .catch(error=>{
+          console.log('ERROR '+JSON.stringify(error))
+        })
+      }
 
-
-  // handleChange(date) {
-
-  //   this.setState({
-
-
-  //     startDate: date
-  //   })
-   
-  // }
+    };
 
   }
 
@@ -206,126 +157,87 @@ class Newcourse extends Component {
     // Notice how each input has a `value`, `name`, and `onChange` prop
     return (
       <PageContainer>
-        <h1>
-           {this.state.name}
-        </h1>
+       {this.state.name?  <Header text={this.state.name} align='center' /> : <Header text={'Add new Course!'} />}
     
-        <form className="form container">
-        <label>
-            Course: 
-        </label>
-          <input
-            value={this.state.name}
-            name="name"
-            onChange={this.handleInputChange}
-            type="text"
-            placeholder="Course"
-          />
-          
-     
-        <label> 
-            Location:
-        </label>
-            <input
-            value={this.state.location}
-            name="location"
-            onChange={this.handleInputChange}
-            type="text"
-            placeholder="Location"
-          />
-          <label>
-              Spots Available: 
+        {/* <form className="form container"> */}
+        <div className='input-field'>
+          <label className='forColorClear' id='courseNameLabel'htmlFor="courseName">
+              Course Name: 
           </label>
-              <input
+            <input
+              value={this.state.name}
+              name="name"
+              onChange={this.handleInputChange}
+              id="courseName"
+              type="text"
+            />
+        </div>
+          
+        <div className='input-field'>     
+            <label className='forColorClear' id='locationLabel'htmlFor="location"> 
+                Location:
+            </label>
+            <input
+              value={this.state.location}
+              name="location"
+              onChange={this.handleInputChange}
+              type="text"
+              id='location'
+            />
+        </div>
+
+        <div className='input-field'>     
+          <label className='forColorClear' id='numSeatsLabel'htmlFor="numSeats">
+              Number of Spots Available: 
+          </label>
+          <input
             value={this.state.numberOfSeats}
             name="numberOfSeats"
-            
-            type="number" 
-            min="0"
-             max="25"
-             onChange={this.handleInputChange}
-          />  <label>Start Time:</label>
-        {/* <Col>
-          <TextField
-      
-        
-        type="text"
-        
-        
-        value={this.state.startTime} 
-        onChange={this.handleInputChange}
-        
-      />
-      </Col> */}
-      {/* <input
-            value={this.state.startTime}
-            name="start"
+            type="number"
+            id='numSeats'
             onChange={this.handleInputChange}
-            type="time"
-          /> */}
-    
-
-        {/* <input
-            value={this.state.startTime}
-            name="starttime"
-            onChange={this.handleInputChange}
-            type="text"
-            placeholder="Start Time"
-          />  */}
+          />  
+        </div>
+          
+        <div className='input-field'>     
+          <label className='forColorClear' id='startTimeLabel' htmlFor='startTime'>Start Time:</label>
           <input type="text"  
           name="starttime" 
-          value={this.state.startTime} 
+          value={this.state.startTime}
+          id='startTime'
           onChange={(ev) => {this.setState({startTime:ev.target.value})}}
          pattern ={/^([01]?[0-9]|2[0-3]):[0-5][0-9]$/}
         required />
-{/* 
-        <TimePicker  
-         onChange={this.onChange}
-         value={this.state.startTime}
-        /> */}
-           <label> 
-            End Time:
-        </label>
-         <input
-            value={this.state.endTime}
-            name="endtime"
-            onChange={(ev) => {this.setState({endTime:ev.target.value})}}
-            type="text"
-            
-          />
-          
-         
-       
-         
-        </form>
-         
-        <div>
-          
-  
-           <a className="waves-effect waves-light btn modal-trigger" href="#modal1">Add New Instructor</a>
-
-  
-            <div id="modal1" className="modal">
-              <div className="modal-content">
-               <Newinstructor />
-              </div>
-    
-            </div>
         </div>
-       <SelectInstructor onChange={this.getSelectedInstructors} />
-      <SelectStudent onChange={this.getSelectedStudents} />
-      <form>
-      <label> Start Date:</label>  
-          <input type="text" id='startDatePicker' className="datepicker" value={this.state.startDate}
-            // onChange={this.handleDateChange} 
+
+        <div className='input-field'>     
+           <label className='forColorClear' id='endTimeLabel' htmlFor='endTime'> 
+            End Time:
+          </label>
+          <input
+              value={this.state.endTime}
+              name="endtime"
+              onChange={(ev) => {this.setState({endTime:ev.target.value})}}
+              type="text"
+              id='endTime'
           />
+        </div>
           
-          <label> End Date:</label>  
-          <input type="text" id='endDatePicker' className="datepicker" value={this.state.endDate}
-          //  onChange={this.handleDateChange}
-            />
-      <button onClick={this.handleFormSubmit}>Submit</button>
-      </form>
+        <div className='input-field'>     
+          <label className='forColorClear' id='startDateLabel' htmlFor='startDatePicker'> Start Date:</label>  
+          <input type="text" id='startDatePicker' className="datepicker"/>
+        </div>
+          
+        <div className='input-field'>     
+          <label className='forColorClear' id='endDateLabel' htmlFor='endDatePicker'> End Date:</label>  
+          <input type="text" id='endDatePicker' className="datepicker"/>
+        </div>
+
+        <SelectInstructor onChange={this.getSelectedInstructors} />
+        <SelectStudent onChange={this.getSelectedStudents} />
+
+        {this.state.error.length>0? <p className='newCourseError center-align'>{this.state.error}</p> : <div></div>}
+        <div id="newCourseSubmit"><Submit submitFunction={this.handleFormSubmit}/></div>
       </PageContainer>
     );
   }

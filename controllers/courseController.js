@@ -61,6 +61,7 @@ module.exports = {
         })
         .catch(error=>{
             console.log(`you tried adding a course, but it's invalid: ${error}`)
+            res.send(error)
         })
     },
     delete:function(courseId){
@@ -73,7 +74,7 @@ module.exports = {
     },
     getAll:function(req,res){
         db.course.find(req.query)
-        // .sort({ : -1 })
+        .sort({_id: -1 })
         .populate('students')
         .then(data => res.json(data))
         .catch(err => res.status(422).json(err));
@@ -83,7 +84,13 @@ module.exports = {
         db.course.findById(req)
         .populate('students')
         .populate('instructors')
-        .populate('attendanceRecords')
+        .populate({
+            path:'attendanceRecords',
+            populate:{
+                path:'students.student',
+                model:'student'
+            }
+        })
         .then(data => res.json(data))
         .catch(err => res.status(422).json(err));
     },
