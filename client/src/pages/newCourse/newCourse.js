@@ -132,7 +132,6 @@ class Newcourse extends Component {
           error:'All Fields Are Required'
         }))
       }else{
-        // alert('all good to go')
         API.addCourse(dataToSend)
         .then(result=>{
           if(result.data._id){

@@ -10,7 +10,9 @@ class sendAttendance extends Component{
     }
     
     state={
-        instructors:[]
+        instructors:[],
+        sentSuccess:false,
+        error:''
     }
 
     chosen=''
@@ -25,10 +27,12 @@ class sendAttendance extends Component{
             let options=[]
             if(res.data.length>0){
                 res.data.forEach((element,i) => {
-                    options.push({
-                        value:element.phone,
-                        label:`${element.firstName} ${element.lastName}`
-                    })
+                    if(element.phone){
+                        options.push({
+                            value:element.phone,
+                            label:`${element.firstName} ${element.lastName}`
+                        })
+                    }
                 });
                 this.setState({ 
                     instructors: options 
@@ -43,6 +47,7 @@ class sendAttendance extends Component{
     }
 
     sendAttendanceForm=()=>{
+        this.setState({error:''})
 
         console.log("chosen is "+this.chosen)
         let dataToSend={
@@ -50,27 +55,41 @@ class sendAttendance extends Component{
             urlToSend:this.props.attendLink
         }
         API.sendAttendanceForm(dataToSend)
+        .then(result=>{
+            if(result.data.success){
+                this.setState({sentSuccess:true})
+            }else{
+                this.setState({error:result.data.error})
+            }
+        })
     }
 
 
     render (){
-        return(
-            <div>
-                <div className='row'>
-                    <div className='col s12'>
-                        <Select placeholder="Choose Instructor..." onChange={this.onChange} id="sendAttendanceSelect" options={this.state.instructors}/>
-                    </div>
-                </div>
+        if(!this.state.sentSuccess){
+            return(
 
-                <div className='row'>
-                    <div className='col s12'>
-                        <button id='sendAttendButton' onClick={this.sendAttendanceForm} className="btn-large waves-light" type="submit">
-                            Send
-                        </button>
+                <div>
+                    <div className='row'>
+                        <div className='col s12'>
+                            <Select placeholder="Choose Instructor..." onChange={this.onChange} id="sendAttendanceSelect" options={this.state.instructors}/>
+                        </div>
+                    </div>
+
+                    <div className='row'>
+                        <div className='col s12'>
+                            <button id='sendAttendButton' onClick={this.sendAttendanceForm} className="btn-large waves-light" type="submit">
+                                Send
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
-        )
+            )
+        }else{
+            return(
+                <h4 className='light flow-text'>Attendance Sent</h4>
+            )
+        }
     }
 }
 

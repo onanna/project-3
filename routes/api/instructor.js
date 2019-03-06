@@ -6,6 +6,15 @@ router.route("/")
     .get(instructor.getAll)
     .post((data)=>instructor.add(data));
 
+router.route('/new-add/:courseId')
+  .post((req,res)=>{
+      let course =req.params.courseId;
+      let newUser = req.body
+
+      instructor.makeAndAdd(newUser,course,res)
+
+  })
+
 router.route("/:id")
     .get((req,res)=>{
         console.log('instructor to get is '+req.params.id)

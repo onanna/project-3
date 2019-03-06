@@ -3,7 +3,7 @@ import "./../savedCourse/savedCourse.css";
 import PageContainer from "../../components/pageContainer";
 import Register from "../../components/registerStudentForm/registerStudent";
 import API from "../../utils/API";
-import H1 from "../../components/h1withDivider";
+import Header from "../../components/h1withDivider";
 import {Card, Col} from 'react-materialize';
 import Send from "../../components/sendAttendance/sendAttendance2"
 import booksImg from "../../images/books1.jpg";
@@ -11,6 +11,7 @@ import InstructorSelect from '../../components/selectInstructors/selectInstructo
 import StudentSelect from '../../components/selectStudents/selectStudents'
 import * as date from '../../utils/dateReaders';
 const $ = window.$;
+
 
 class Course extends Component {
     state={
@@ -20,7 +21,8 @@ class Course extends Component {
             students:[]
         },
         instructorsToAdd:[],
-        studentsToAdd:[]
+        studentsToAdd:[],
+        hasBeenSent:false
     }
   
     constructor(props){
@@ -29,6 +31,21 @@ class Course extends Component {
         API.getOneCourse(this.props.match.params.id)
         .then(response=> this.setState({course:response.data}))
         .catch(err => console.log("ERROR ERROR ERROR "+err))
+    }
+
+    updateCourseStudents=(newStudents)=>{
+        let newState = this.state.course
+        newState.students=newStudents
+        this.setState((prev)=>({
+            course:newState
+        }))
+    }
+    updateCourseInstructors=(newInstructors)=>{
+        let newState = this.state.course
+        newState.instructors=newInstructors
+        this.setState((prev)=>({
+            course:newState
+        }))
     }
 
     getSelectedInstructors=(selected)=>{
@@ -74,15 +91,16 @@ class Course extends Component {
     render(){
         return(
             <PageContainer>
+                <Header align='center' text={this.state.course.name}/>
                 <div className="row" id="courseCard"> 
                     <div className="col s12 m6">
-                        <div className="card hoverable">
+                        <div className="card">
                             <div className="card-image">
                                 <img src={booksImg} alt="books" /> 
                             </div>
                             <div id="registerStudent" className="modal">
                                 <h4 id="modalHeader">Register Students</h4>
-                                <Register />            
+                                <Register updateCourseInstructors={this.updateCourseInstructors} updateCourseStudents={this.updateCourseStudents} courseId={this.state.course._id} />            
                             </div>                            
                             <ul id="tabs-swipe" className="tabs">
                                 <li className="tab col s4"><a className="active" href="#courseContent">Course Details</a></li>
@@ -91,45 +109,63 @@ class Course extends Component {
                             </ul>
 
                             {/* Course Content & Student Roster in Tabs */}
-                            <div id="courseContent" className="col s12 grey lighten-3">               
-                                <h4 onClick={this.getSelectedInstructors}>{this.state.course.name}</h4>  
+                            <div id="courseContent" className="col s12 grey lighten-3 tabContent">               
+                                {/* <h4 className='bold m-top'>{this.state.course.name}</h4>   */}
+                                <h4 className='bold m-top'>Details</h4>
                                 <p><b> Number of Seats Available:</b> {this.state.course.numberOfSeats}</p>
                                 <p><b>Start Date:</b> {this.state.course.startDate? date.readDate(this.state.course.startDate) : this.state.course.startDate}</p>
                                 <p><b>End Date:</b> {this.state.course.startDate? date.readDate(this.state.course.endDate) : this.state.course.endDate}</p>
                                 <p><b>Start Time:</b> {this.state.course.startTime}</p>
                                 <p><b>End Time:</b> {this.state.course.endTime}</p>
                                 <p><b>Location:</b> {this.state.course.location}</p>
-                                {/* <Select className="basic-multi-select" classNamePrefix="select" isMulti name="colors" options={testoptions}/> */}
                             </div> 
 
-                            <div id="classRoster" className="courseTab" className="col s12 grey lighten-3">
-                                <h4>Class Roster</h4>
-                                <ul>
-                                    {this.state.course.students.map((current,i)=>{
-                                        return(
-                                            <li>{`${current.firstName} ${current.lastName}`}</li>
-                                        )
-                                    })}
-                                </ul>
+                            <div id="classRoster" className="courseTab" className="col s12 grey lighten-3 tabContent center-align">
+                            {this.state.course.students.length>0 || this.state.course.instructors.length>0?
+                                <div>
+                                    <h4 className='bold m-top'>Class Roster</h4>
+                                    
+                                    <p className='flow-text rosterHeader'>{this.state.course.instructors.length>0? 'Instructors':''}</p>
+                                    <ul>
+                                        {this.state.course.instructors.map((current,i)=>{
+                                            return(
+                                                <li className='flow-text light'>{`${current.firstName} ${current.lastName}`}</li>
+                                            )
+                                        })}
+                                    </ul>
+                                    
+                                    <p className='flow-text rosterHeader'>{this.state.course.students.length>0? 'Students':''}</p>
+                                    <ul>
+                                        {this.state.course.students.map((current,i)=>{
+                                            return(
+                                                <li className='flow-text light'>{`${current.firstName} ${current.lastName}`}</li>
+                                            )
+                                        })}
+                                    </ul>
+                                </div>
+                            :
+                                <h4>Nobody Here Yet</h4>        
+                            }
+                                
                             </div>
 
-                            <div id="test-swipe-3" className="courseTab" className="col s12 grey lighten-3">
-                                <h4>Records</h4>
+                            <div id="test-swipe-3" className="courseTab" className="col s12 grey lighten-3 tabContent">
 
+                                <h4 className='bold m-top'>Records</h4>
                                 <ul className='collapsible'>
                                     {this.state.course.attendanceRecords.map((current,i)=>{
                                         return(
                                                 <li>
-                                                    <div className='collapsible-header'>{current.date}</div>
+                                                    <div className='collapsible-header flow-text'>{date.readDate(current.date)}</div>
                                                     <div className='collapsible-body'>
                                                         {current.students.map((current,i)=>{
                                                             return(
                                                                 <div className='row'>
-                                                                    <div className='col s6'>
-                                                                        <p>{`${current.student.firstName} ${current.student.lastName}`}</p>
+                                                                    <div className='col s6 right-align'>
+                                                                        <p className='stuAttName'>{`${current.student.firstName} ${current.student.lastName}`}</p>
                                                                     </div>
-                                                                    <div className='col s6'>
-                                                                        <p className={`inClass${current.inAttendance}`}>{current.inAttendance? 'Yes':'No'}</p>
+                                                                    <div className='col s6 vertical-align'>
+                                                                        <p>{current.inAttendance? <i className='material-icons check small'>check</i>:<i className='material-icons clear'>clear</i>}</p>
                                                                     </div>
                                                                 </div>
                                                             )
@@ -139,16 +175,22 @@ class Course extends Component {
                                         )
                                     })}
                                 </ul>
-                                
-                                <p className='sendToText flow-text'>Send To Instructor</p>                            
-                                <Send attendLink={`https://gentle-garden-19053.herokuapp.com/attendance/temp362019/${this.props.token}/${this.state.course._id}`} instructors={this.state.course.instructors}/>
-                                <a href={`/attendance/temp362019/${this.props.token}/${this.state.course._id}`} target="_blank">Attendance Form</a>
+
+                                {this.state.course.students.length>0?
+                                    <div>
+                                        <p className='sendToText flow-text'>Send To Instructor</p>                            
+                                        <Send attendLink={`https://gentle-garden-19053.herokuapp.com/attendance/temp362019/${this.props.token}/${this.state.course._id}`} clickFunction={this.sendAttendanceForm}instructors={this.state.course.instructors}/>
+                                        <a href={`/attendance/temp362019/${this.props.token}/${this.state.course._id}`} target="_blank">Attendance Form</a>
+                                    </div>
+                                :
+                                    <div></div>
+                                }
                             </div>
                         
                         </div>
                         
                         {/* Register Student/ Add Instructor Button */}
-                        <a className="btn modal-trigger tooltipped btn-large btn-floating halfway-fab waves-effect waves-light red" href="#registerStudent" data-target="registerStudent" data-position="right" data-tooltip="Add Student &amp; Instructors"><i className="material-icons">add</i></a>
+                        <a id='LightBlue'className="btn modal-trigger tooltipped btn-large btn-floating halfway-fab waves-effect waves-light" href="#registerStudent" data-target="registerStudent" data-position="right" data-tooltip="Add Student &amp; Instructors"><i className="material-icons">add</i></a>
                     </div>
                 </div>
             </PageContainer>    

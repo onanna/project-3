@@ -53,13 +53,21 @@ router.route("/send/:courseId")
         console.log('body is '+ body) 
         console.log('from  is '+ from) 
 
-        client.messages
-        .create({
-            body: body,
-            from: from,
-            to: number
-        })
-        .then(message => console.log(message.sid));
+        if(body && from && number){
+            
+            client.messages
+                .create({
+                    body: body,
+                    from: from,
+                    to: number
+                })
+                .then(message => {
+                    if(message.sid){
+                        res.send({success:'text successfully sent to '+number})
+                    }
+                })
+                .catch(error=>res.send({error:error.message}))
+        }
     })
 
 module.exports=router;

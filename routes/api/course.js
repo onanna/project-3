@@ -29,14 +29,17 @@ router.route("/:courseId")
     })
 
 router.route("/:courseId/:roster")
-    .post((data)=>{
+    .post((data,res)=>{
         switch(data.params.roster){
             case "students": 
-                course.addToRoster(data.params.courseId,"students",data.body)
+                console.log('going to add to course '+data.params.courseId)
+                console.log('the roster students')
+                console.log('adding '+JSON.stringify(data.body))
+                course.addToRoster(data.params.courseId,"students",data.body,res)
             break;
 
             case "instructors":
-                course.addToRoster(data.params.courseId,"instructors",data.body)
+                course.addToRoster(data.params.courseId,"instructors",data.body,res)
             break;
         }
     })
