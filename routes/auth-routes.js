@@ -36,13 +36,6 @@ router.route("/token/:token")
         user.deleteToken(req.params.token)
     })
 
-
-//matches with 
-// router.get("/newloginform", (req,res)=> {
-//     res.render('newloginform');
-// })
-
-
 //logout route
 router.get("/logout", (req,res) => {
     res.send('logging out');

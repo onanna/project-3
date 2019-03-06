@@ -23,7 +23,11 @@ module.exports = {
                 }
             })
             .catch(error=>{
-                res.send({error:error})
+                if(error.errmsg.includes('email_1 dup key')){
+                    res.send({error:'A Student with that email already exists'})
+                }else{
+                    res.send({error:error})
+                }
             })
     },
     getOne:function(id,res){
@@ -35,6 +39,7 @@ module.exports = {
 
         db.student.find(req.query)
         // .sort({ date: -1 })
+        .populate('currentlyEnrolled')
         .then(dbModel => res.json(dbModel))
         .catch(err => res.status(422).json(err));
     },

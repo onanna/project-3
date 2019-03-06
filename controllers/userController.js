@@ -1,32 +1,17 @@
 const db = require("../models/index");
 
 module.exports = {
-    // new:function(req,res){
-    //     console.log("about to add a new user to users: "+JSON.stringify(req.body))
-    //     db.user.create(req.body)
-    //     .then(result=>{
-    //         console.log(`congrats on adding a new user!: ${result}`)
-    //         res.json(result);
-    //     })
-    //     .catch(error=>{
-    //         console.log(`you tried adding a user, but it's invalid: ${error}`)
-    //     })
-    // },
     checkLogin:function(userInfoToCheck,res){
         db.user.findOne({"userName":userInfoToCheck.username})
         .then((user)=>{
             if(user._id){
-                console.log("SUcCESS! "+user)
                 let potentialUser = new db.user(user)
-                console.log("password check "+potentialUser.validPassword(userInfoToCheck.password))
 
                 if(potentialUser.validPassword(userInfoToCheck.password)===true){
-                    // db.userSession.create(user._id)
                     let newSession = new db.userSession();
                     newSession.user=user._id;
                     newSession.save()
                     .then(session=>{
-                        console.log("session in backend is "+session)
                         res.send({
                             session:session,
                             user:{
@@ -39,7 +24,6 @@ module.exports = {
                         });
                     })    
                     .catch(error=>{
-                        // res.send({error:"There was an error with your E-Mail/Password combination. Please try again."})
                         res.send({error:"error making session "+ error})                        
                     })
                 }else{
@@ -57,7 +41,6 @@ module.exports = {
         db.userSession.findById(token)
         .then((session)=>{
             let {_id, user} = session;
-            console.log("session found is "+_id)
             if(_id){
                 db.user.findById(user)
                 .then(result=>{
@@ -139,25 +122,6 @@ module.exports = {
             }else{
                 res.send(error)
             }
-
-            //when duplicate email: 
-            // {
-            //     "driver": true,
-            //     "name": "MongoError",
-            //     "index": 0,
-            //     "code": 11000,
-            //     "errmsg": "E11000 duplicate key error collection: courseCreator.users index: email_1 dup key: { : \"mustbevalidemail@mail.com\" }"
-            // }
-
-
-            // {
-            //     "driver": true,
-            //     "name": "MongoError",
-            //     "index": 0,
-            //     "code": 11000,
-            //     "errmsg": "E11000 duplicate key error collection: courseCreator.users index: userName_1 dup key: { : \"tester\" }"
-            // }
-
         })
      
     },

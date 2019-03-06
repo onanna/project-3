@@ -19,7 +19,7 @@ module.exports = {
                 if(result._id){
                     courseFuncs.addToRoster(course,'instructors',result._id,res)
                 }else{
-                    res.send({error:'could not create student'})
+                    res.send({error:'could not create instructor'})
                 }
             })
             .catch(error=>{
@@ -33,6 +33,7 @@ module.exports = {
     getAll:function(req,res){
         db.instructor.find(req.query)
         // .sort({ date: -1 })
+        .populate('currentlyTeaching')
         .then(dbModel => res.json(dbModel))
         .catch(err => res.status(422).json(err));
     },

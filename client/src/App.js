@@ -128,9 +128,6 @@ class App extends Component{
     if(isAttendance===true){
       $("body").fadeIn(300)
       return(
-        // <Router>
-        //   <Route exact path="/attendance/temp362019/:token/:courseId" component={AttendanceForm} />
-        // </Router>
         <AttendanceForm deleteToken={this.deleteToken} courseId={courseToGetAttendanceFor} />
       )
     }
