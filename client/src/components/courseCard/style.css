@@ -27,7 +27,9 @@
   }
   
   .classStudents,.classUntil,.className{
-    color:#446ca8;
+    /* color:#446ca8; */
+    color:#039be5;
+
   }
   
   .softContainer{

@@ -7,16 +7,10 @@ router.route("/")
     .post(course.new)
 
 router.route("/:courseId")
-    // .get((id)=>{
-    //     console.log("id to get is "+id)
-    // })
-    
-    // .delete((req)=>course.delete(req.params.courseId))
     .delete((req,res)=>{
         course.delete(req.params.courseId)
         .then((response)=>res.json(response))
         .catch(res=>console.log(res))
-        // console.log("heres the response" + res)
     })
     .put((req)=>{
         let {whatToChange,newValue}=req.body
@@ -24,7 +18,6 @@ router.route("/:courseId")
         course.update(req.params.courseId,update)
     })
     .get((req,res)=>{
-        console.log("courseeeeee "+ req.params.courseId)
         course.getOne(req.params.courseId,res)
     })
 
@@ -32,9 +25,6 @@ router.route("/:courseId/:roster")
     .post((data,res)=>{
         switch(data.params.roster){
             case "students": 
-                console.log('going to add to course '+data.params.courseId)
-                console.log('the roster students')
-                console.log('adding '+JSON.stringify(data.body))
                 course.addToRoster(data.params.courseId,"students",data.body,res)
             break;
 
@@ -46,8 +36,6 @@ router.route("/:courseId/:roster")
     .put((data)=>{
           switch(data.params.roster){
             case "students":
-                // console.log("data.params.courseId="+data.params.courseId)
-                // console.log("data.body="+JSON.stringify(data.body))
                 course.removeFromRoster(data.params.courseId,'students',data.body);
             break;
 

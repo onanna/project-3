@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import Pagecontainer from "../../components/pageContainer/index";
 import Header from "../../components/h1withDivider"
-import API from "../../utils/API" 
 import './style.css'
 
 class userProfile extends Component{
@@ -13,10 +12,6 @@ class userProfile extends Component{
         userName:''
     }
     
-    constructor(props){
-        super(props)
-        console.log("props are "+JSON.stringify(this.props.user))
-    }
 
     edit=(whatsEdited)=>{
         let whatToUpdate = whatsEdited.substring(0,whatsEdited.indexOf('Profile'))

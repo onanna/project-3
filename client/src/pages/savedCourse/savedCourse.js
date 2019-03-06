@@ -4,11 +4,8 @@ import PageContainer from "../../components/pageContainer";
 import Register from "../../components/registerStudentForm/registerStudent";
 import API from "../../utils/API";
 import Header from "../../components/h1withDivider";
-import {Card, Col} from 'react-materialize';
 import Send from "../../components/sendAttendance/sendAttendance2"
 import booksImg from "../../images/books1.jpg";
-import InstructorSelect from '../../components/selectInstructors/selectInstructors'
-import StudentSelect from '../../components/selectStudents/selectStudents'
 import * as date from '../../utils/dateReaders';
 const $ = window.$;
 
@@ -49,7 +46,6 @@ class Course extends Component {
     }
 
     getSelectedInstructors=(selected)=>{
-        console.log(selected)
         let instructorsSelected =[]
         selected.forEach((element,i) => {
             instructorsSelected.push(element.value)
@@ -57,11 +53,9 @@ class Course extends Component {
         this.setState({
             instructorsToAdd:instructorsSelected
         })
-        // console.log($("#instructorSelect"))
     }
 
     getSelectedStudents=(selected)=>{
-        console.log(selected)
         let studentsSelected =[]
         selected.forEach((element,i) => {
             studentsSelected.push(element.value)
@@ -69,7 +63,6 @@ class Course extends Component {
         this.setState({
             studentsToAdd:studentsSelected
         })
-        // console.log($("#instructorSelect"))
     }
     componentDidMount=()=>{
         $('.modal').modal();
@@ -80,13 +73,6 @@ class Course extends Component {
             // 'responsiveThreshold' : Infinity
         });
     }
-
-
-    // componentDidMount=()=>{
-    //     API.getAllAttendanceFromCourse(this.state.course._id)
-    //     .then(response=> console.log('all attendance records are '+ JSON.stringify(response)))
-    //     .catch(err => console.log("ERROR ERROR ERROR "+err))
-    // }
 
     render(){
         return(
@@ -117,13 +103,13 @@ class Course extends Component {
                                 <p><b>End Date:</b> {this.state.course.startDate? date.readDate(this.state.course.endDate) : this.state.course.endDate}</p>
                                 <p><b>Start Time:</b> {this.state.course.startTime}</p>
                                 <p><b>End Time:</b> {this.state.course.endTime}</p>
-                                <p><b>Location:</b> {this.state.course.location}</p>
+                                <p className='bottom'><b>Location:</b> {this.state.course.location}</p>
                             </div> 
 
-                            <div id="classRoster" className="courseTab" className="col s12 grey lighten-3 tabContent center-align">
+                            <div id="classRoster" className="col s12 grey lighten-3 tabContent center-align courseTab">
                             {this.state.course.students.length>0 || this.state.course.instructors.length>0?
                                 <div>
-                                    <h4 className='bold m-top'>Class Roster</h4>
+                                    <h4 className='bold m-top'>Roster</h4>
                                     
                                     <p className='flow-text rosterHeader'>{this.state.course.instructors.length>0? 'Instructors':''}</p>
                                     <ul>
@@ -135,7 +121,7 @@ class Course extends Component {
                                     </ul>
                                     
                                     <p className='flow-text rosterHeader'>{this.state.course.students.length>0? 'Students':''}</p>
-                                    <ul>
+                                    <ul className='bottom'>
                                         {this.state.course.students.map((current,i)=>{
                                             return(
                                                 <li key={i} className='flow-text light'>{`${current.firstName} ${current.lastName}`}</li>
@@ -149,7 +135,7 @@ class Course extends Component {
                                 
                             </div>
 
-                            <div id="test-swipe-3" className="courseTab" className="col s12 grey lighten-3 tabContent">
+                            <div id="test-swipe-3" className="col s12 grey lighten-3 tabContent courseTab">
 
                                 <h4 className='bold m-top'>Records</h4>
                                 <ul className='collapsible'>
@@ -177,13 +163,13 @@ class Course extends Component {
                                 </ul>
 
                                 {this.state.course.students.length>0 && this.state.course.instructors.length>0?
-                                    <div>
+                                    <div className='bottom'>
                                         <p className='sendToText flow-text'>Send To Instructor</p>                            
                                         <Send attendLink={`https://gentle-garden-19053.herokuapp.com/attendance/temp362019/${this.props.token}/${this.state.course._id}`} clickFunction={this.sendAttendanceForm}instructors={this.state.course.instructors}/>
                                         <a href={`/attendance/temp362019/${this.props.token}/${this.state.course._id}`} target="_blank">Attendance Form</a>
                                     </div>
                                 :
-                                    <div></div>
+                                    <div className='bottom'></div>
                                 }
                             </div>
                         

@@ -1,7 +1,19 @@
-.submitDiv{
-    margin: 30px 0;
+.headerDiv{
+    /* margin: 30px 0; */
 }
 
-#pageHeader{
-    color:#448aff ;
+.pageHeader{
+    /* color:#448aff ; */
+    color:#039be5;
+}
+
+@media only screen and (max-width : 992px) {
+    .pageHeader {
+      padding-left: 0;
+      margin-top:20px;
+    }
+
+    .headerDiv{
+        margin:0;
+    }
 }

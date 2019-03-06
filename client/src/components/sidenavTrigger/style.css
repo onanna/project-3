@@ -1,16 +1,14 @@
 #sidenavTrigger:hover{
     cursor: pointer;
 }
-
+#sidenavTrigger{
+  margin-top:40px;
+  display: none;
+}
 @media only screen and (max-width : 992px) {
     
     #sidenavTrigger {
+      margin-top:40px;
       display:inherit;
-    }
-}
-@media only screen and (min-width : 992px) {
-    
-    #sidenavTrigger {
-      display:none;
     }
 }

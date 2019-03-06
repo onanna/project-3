@@ -16,7 +16,6 @@ class Home extends Component{
 
     addStudent=(studentToAdd)=>{
         API.addStudent(studentToAdd)
-            // .then(res=>console.log("student added" + res))
             .then(this.getAllStudents())
     }
     updateStudent=(idOfStudentToUpdate,whatToChange,newValue)=>{
@@ -24,19 +23,17 @@ class Home extends Component{
             .then(this.getAllStudents())
             .catch(err => console.log(err));
     }
-    getAStudent=(indexOfStudentToGet)=>{
-      alert( JSON.stringify( this.state.students[indexOfStudentToGet]))
-      let chosen=this.state.students[indexOfStudentToGet];
-    }
+    // getAStudent=(indexOfStudentToGet)=>{
+    //   alert( JSON.stringify( this.state.students[indexOfStudentToGet]))
+    //   let chosen=this.state.students[indexOfStudentToGet];
+    // }
     getAllStudents=()=>{
         API.getAllStudents()
             .then(res => this.setState({ students: res.data }))
             .catch(err => console.log(err));
     }
     deleteStudent=(idToDelete)=>{
-        console.log(idToDelete)
         API.deleteStudent(idToDelete)
-            // .then(response=> this.setState({students:response.data}))
             .then(this.getAllStudents());
     }
 
@@ -46,36 +43,38 @@ class Home extends Component{
                 <div className="row">
                     <div className="card hoverable">
                         <div className="card-image">
-                            <img src={learningImg} alt="learning" /> 
+                            <img src={learningImg} alt="learning" />
+                            <span className='card-title'>Students</span>
                         </div>
-                        <ul id="tabs-swipe" className="tabs">
-                            <li className="col s12"><center>All Students</center></li>
-                        </ul>
-                    </div>
-                </div>
-                <div className='row'>
-                    <div className="card">
-                        <div className="col s12 grey lighten-3">  
-                            {this.state.students.map((current,i)=>{
-                                return (
-                                    <ul  key={i}>
-                                        <li><b>Name: </b>{`${current.firstName} ${current.lastName}`}</li>
-                                        <li><b>Email: </b>{current.email}</li>
-                                        <li><b>Phone Number: </b>{current.phone}</li>
-                                        <li> <b>Currently Enrolled:</b> 
-                                            <ul>
-                                                {current.currentlyEnrolled.map((current,i)=>{
-                                                    return(
-                                                        <li key={i}><Link target='_blank' rel="noopener noreferrer"  to={`/courses/detail/${current._id}`}>{current.name}</Link></li>
-                                                    )
-                                                })}
-                                            </ul>
-                                        </li>
-                                        <hr></hr>
-                                    </ul>
-                                )
-                            })
-                            }
+                        {/* <ul id="tabs-swipe" className="tabs">
+                            <li>All Students</li>
+                        </ul> */}
+                 
+                {/* <div className='row'>
+                    <div className="card"> */}
+                        <div className='card-content'>
+                            <div className="col s12 ">  
+                                {this.state.students.map((current,i)=>{
+                                    return (
+                                        <ul  key={i}>
+                                            <li><b>Name: </b>{`${current.firstName} ${current.lastName}`}</li>
+                                            <li><b>Email: </b>{current.email}</li>
+                                            <li><b>Phone Number: </b>{current.phone}</li>
+                                            <li> <b>Currently Enrolled:</b> 
+                                                <ul>
+                                                    {current.currentlyEnrolled.map((current,i)=>{
+                                                        return(
+                                                            <li key={i}><Link target='_blank' rel="noopener noreferrer"  to={`/courses/detail/${current._id}`}>{current.name}</Link></li>
+                                                        )
+                                                    })}
+                                                </ul>
+                                            </li>
+                                            <hr></hr>
+                                        </ul>
+                                    )
+                                })
+                                }
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -4,6 +4,9 @@
 .page-container{
   margin-bottom: 20%;
 }
+.bottom{
+  margin-bottom:20%
+}
 /* This code is to fix the issue where clicking the label of a text field does not activate the field */
 input[type="text"] + label {
     pointer-events: none;

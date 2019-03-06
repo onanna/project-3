@@ -56,7 +56,6 @@ export default {
     return axios.post(`/api/courses`,courseInfo);
   },
   deleteCourse:function(courseId){
-    console.log("deleting "+courseId)
     return axios.delete(`/api/courses/${courseId}`)
   },
   updateCourse:function(courseId,whatToChange,newValue){

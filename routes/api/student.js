@@ -18,11 +18,9 @@ router.route('/new-add/:courseId')
 // matches with '/api/students/:id'
 router.route("/:id")
   .get((req,res)=>{
-    console.log('student to get is '+req.params.id)
     student.getOne(req.params.id,res)
   })
   .delete((req,res)=>{
-    console.log(req.params.id)
     student.delete({"_id":req.params.id})
   })
   .put((req,res)=>{

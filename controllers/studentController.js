@@ -5,7 +5,6 @@ module.exports = {
     add:function(req,res){
         db.student.create(req.body)
         .then(result=>{
-            console.log(`congrats on adding a student!: ${result}`)
             res.json(result);
         })
         .catch(error=>{
@@ -48,10 +47,7 @@ module.exports = {
         .then(result=>{console.log("student deleted! "+result)})
     },
     update:function(filter,update,res){
-        console.log(filter,update)
         db.student.findOneAndUpdate(filter,update)
         .then(result=>console.log(result))
-        // .then(this.getAll(""))
-
     }
 };

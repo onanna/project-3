@@ -3,15 +3,10 @@ import React, { Component } from "react";
 import "./newLoginForm.css";
 import SubmitButton from "../submitButton"
 import API from "../../utils/API"
-import styles from "./newLoginForm.css"
+// import styles from "./newLoginForm.css"
 const $ = window.$;
 
 class Newloginform extends Component {
-
-  // constructor(props){
-  //   super(props);
-  //   console.log("props are "+JSON.stringify(this.props))
-  // }
 
   componentDidMount=()=>{
     $('.createnewaccount').css('display','none');
@@ -29,7 +24,6 @@ class Newloginform extends Component {
   
   createnewaccountfunction = event => {
     $('.forColorClear').css('color','#9e9e9e')
-    console.log("clicked on create new account")
     if(this.state.createnewaccount===false){
       this.setState({
         createnewaccount: true,
@@ -84,7 +78,6 @@ class Newloginform extends Component {
       error:''
     }))
 
-    console.log('entered submit function')
     //if user is logging in normally
     let isError=false
     let newError='';
@@ -160,7 +153,6 @@ class Newloginform extends Component {
     if(!isError){
       //clear the state
       if (this.state.createnewaccount) {
-          console.log("entering handleFormSubmit with createnewaccount = true") 
           let newUserLoginInfo={
             firstName: this.state.firstname,
             lastName: this.state.lastname,
@@ -181,8 +173,6 @@ class Newloginform extends Component {
           .catch(result=>{
             alert('error in adding user')
           })
-          console.log(newUserLoginInfo)
-          console.log(this.state.allUsers)
   
       } else {
   
@@ -194,11 +184,9 @@ class Newloginform extends Component {
           API.getLogin(userLoginInfo)
           .then(res=>{
             if(res.data.error){
-              console.log("error is"+JSON.stringify(res.data.error))
               let errors = res.data.error.split('.');
               this.setState({error:errors})
             }else{
-              console.log("session id is "+JSON.stringify(res.data.session._id))
               this.props.setSessionToken(res.data.session,res.data.user);
             }
           })

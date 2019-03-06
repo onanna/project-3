@@ -47,10 +47,7 @@ module.exports = {
         .then(result=>{console.log("instructor deleted! "+result)})
     },
     update:function(filter,update,res){
-        console.log(filter,update)
         db.instructor.findOneAndUpdate(filter,update)
         .then(result=>console.log(result))
-        // .then(this.getAll(""))
-
     }
 };

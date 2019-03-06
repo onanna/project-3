@@ -1,16 +1,10 @@
 import React, { Component } from "react";
-import API from "../../utils/API"
 import NewLoginForm from "../../components/newLoginForm/newLoginForm"
-import styles from "./login.css";
+// import styles from "./login.css";
 const $ = window.$;
 
 
 class Login extends Component{
-// function Login(props){
-    // constructor(props){
-    //     super(props)
-    //     console.log("login props are "+JSON.stringify(this.props))
-    // }
 
     componentDidMount=()=>{
         $('body').css('background-image','url(https://www.jitterbit.com/wp-content/uploads/2018/11/higher-ed-background-blue.jpg)');
@@ -32,7 +26,6 @@ class Login extends Component{
             </header>
             <br></br>
             <div className="scale-out">
-                {/* <NewLoginForm /> */}
                 <NewLoginForm setSessionToken={this.props.setSessionToken}/>
             </div>
         </div>

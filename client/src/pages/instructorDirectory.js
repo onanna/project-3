@@ -21,7 +21,6 @@ class instructors extends Component{
     
     addInstructor=(InstructorToAdd)=>{
         API.addInstructor(InstructorToAdd)
-            // .then(res=>console.log("student added" + res))
             .then(this.getAllInstructors())
     }
 
@@ -32,7 +31,6 @@ class instructors extends Component{
     }
 
     deleteInstructor=(idToDelete)=>{
-        console.log(idToDelete)
         API.deleteInstructor(idToDelete)
         .then(this.getInstructors())
     }
@@ -44,15 +42,17 @@ class instructors extends Component{
                     <div className="card hoverable">
                         <div className="card-image">
                             <img src={instructorImg} alt="learning" /> 
+                            <span className='card-title'>instructors</span>
                         </div>
-                        <ul id="tabs-swipe" className="tabs">
+                        {/* <ul id="tabs-swipe" className="tabs">
                             <li className="col s12"><center>All Insructors</center></li>
                         </ul>
                     </div>
                 </div>
                 <div className='row'>
-                    <div className="card">
-                        <div className="col s12 grey lighten-3">  
+                    <div className="card"> */}
+                    <div className='card-content'>
+                        <div className="col s12 ">  
                             {this.state.instructors.map((current,i)=>{
                                 return (
                                     <ul  key={i}>
@@ -73,6 +73,7 @@ class instructors extends Component{
                                 )
                             })
                             }
+                        </div>
                         </div>
                     </div>
                 </div>

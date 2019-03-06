@@ -10,23 +10,15 @@ const from = process.env.textNumber
 router.route("/")
     .get()
     .post((data,res)=>{
-        console.log("welcome to POST /course-attendance")
-        console.log(data)
     });
 
 // route for posting attendance
 router.route("/:courseId")
     .get((req,res)=>{
-        console.log('course to get attendance for in route is '+JSON.stringify(req.params))
         attendance.getAllFromCourse(req.params.courseId,res)
     })
     .post((req,res)=>{
-        console.log(req.params.courseId)
-        console.log(req.body)
-        // res.json(req.body)
-
         attendance.new(req.body,res)
-
     })
     .delete((req,res)=>{
         
@@ -40,18 +32,10 @@ router.route("/:courseId")
 //matches with "/course-attendance/send/:courseId"
 router.route("/send/:courseId")
     .post((req,res)=>{
-        console.log("inside sms test route!")
-        // console.log("token is: "+req.params.token)
-        console.log('token is '+authToken)
-        console.log('account is is '+accountSid)
+
         let number = req.body.number
         let url = req.body.urlToSend
         let body = `Link for today's attendance: ${url}`
-        
-        console.log('number is '+ number)
-        console.log('url is '+ url)
-        console.log('body is '+ body) 
-        console.log('from  is '+ from) 
 
         if(body && from && number){
             

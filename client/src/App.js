@@ -43,7 +43,6 @@ class App extends Component{
     //check if there is a token in local storage. if there is, check it against database
     if(localStorage.getItem("course-creator-token")){
       let token=localStorage.getItem("course-creator-token");
-      console.log("token found in local storage "+token)
       this.checkToken(token);
     }else{
       // window.location.replace('/')
@@ -57,7 +56,6 @@ class App extends Component{
     API.checkToken(token)
     .then(result=>{
 
-      console.log(JSON.stringify(result.data))
       $("body").hide()
 
       if(result.data.session){

@@ -1,9 +1,6 @@
-import React, {Component} from "react";
-import Sidenav from "../sidenav/sidenav"
-import {Col,Row} from "react-materialize";
+import React from "react";
 import "./style.css";
 import SideTrigger from '../sidenavTrigger/sidenavTrigger'
-const $=window.$;
 
 export default function pageContainer({children}){
     return(

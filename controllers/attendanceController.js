@@ -6,10 +6,8 @@ module.exports = {
         .then(result=>{
             if(result.course){
                 let course=result.course
-                console.log("attendance added! course to update is "+course)
                 db.course.findByIdAndUpdate(course,{$addToSet:{"attendanceRecords":result._id}},{new:true})
                 .then(result=>{
-                    console.log("result of attendance in course is "+result)
                     if(result.attendanceRecords){
                         response.send({success:result})
                     }else{
@@ -17,7 +15,6 @@ module.exports = {
                     }
                 })
                 .catch(error=>{
-                    console.log(`you tried adding an attendance object to a course, but it's invalid: ${error}`)
                     response.send({error:error})
                 })
             }else{
@@ -29,9 +26,6 @@ module.exports = {
         })
     },
     getAllFromCourse:function(req,res){
-
-        console.log('data on backend is '+req)
-
         // db.attendance.findById(req)
         // // .sort({ date: -1 })
         // .then(dbModel => res.json(dbModel))

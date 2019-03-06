@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import axios from "axios";
 import "./../registerStudentForm/registerStudent.css";
 import API from "../../utils/API";
 import Submit from '../../components/submitButton/index'
@@ -31,16 +30,6 @@ class Register extends Component {
       phoneInstructor: ''
     };
 
-    // this.handleFirstNameChange = this.handleFirstNameChange.bind(this);
-
-    // this.handleLastNameChange = this.handleLastNameChange.bind(this);
-
-    // this.handleEmailChange = this.handleEmailChange.bind(this);
-
-    // this.handlePhoneChange = this.handlePhoneChange.bind(this);
-
-    // this.handleOnSubmit = this.handleOnSubmit.bind(this);
-
     this.componentDidMount = () => {
       $(".collapsible").collapsible();
       this.getAllStudents();
@@ -50,7 +39,6 @@ class Register extends Component {
       API.getAllStudents()
         .then(res => {
           this.setState({ students: res.data });
-          console.log(JSON.stringify(res.data));
         })
         .catch(err => console.log(err));
     };
@@ -195,7 +183,6 @@ class Register extends Component {
     $('.forColorClear').css('color','#9e9e9e')
     this.setState({addNewStuNotice:''})
     e.preventDefault();
-    console.log("submit");
     
     let isError=false
     let newError='';
@@ -351,6 +338,9 @@ class Register extends Component {
         .catch(error=>{
           alert('error '+JSON.stringify(error))
         })
+      break;
+
+      default:
       break;
     }
   }

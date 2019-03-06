@@ -1,7 +1,7 @@
 
 import React, { Component } from "react";
 // import "./newinstructor.css";
-import InputFile from "../inputFile/inputFile"
+// import InputFile from "../inputFile/inputFile"
 import "./style.css";
 
 

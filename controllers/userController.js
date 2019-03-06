@@ -66,14 +66,12 @@ module.exports = {
             
         })
         .catch(error=>{
-            console.log(`token not found ${error}`)
             res.send({error:'error '+error});
         })
     },
     deleteToken:function(token){
         db.userSession.findByIdAndRemove(token)
         .then(result=>{
-            console.log("session deleted! "+result)
             return
         })
     },
@@ -87,12 +85,10 @@ module.exports = {
         newUser.lastName = data.lastName
         newUser.save()
         .then(result=>{
-            console.log(`congrats on adding an user!: ${result}`)
             let newSession = new db.userSession();
                     newSession.user=result._id;
                     newSession.save()
                     .then(session=>{
-                        console.log("session in backend is "+session)
                         res.send({
                             session:session,
                             user:{
@@ -108,14 +104,8 @@ module.exports = {
                         // res.send({error:"There was an error with your E-Mail/Password combination. Please try again."})
                         res.send({error:"error making session "+ error})                      
                     })
-            // res.send(result);
         })
         .catch(error=>{
-            console.log(`you tried adding a user, but it's invalid: ${error}`)
-
-            // if(error.code==='11000'){
-            // }
-            // res.send(error.errmsg)
             if(error.code){
                 if(error.errmsg.includes('email_1')) res.send({error:"An account already exists with that email address"})
                 if(error.errmsg.includes('userName_1')) res.send({error:"Sorry. Username already exists"})
@@ -125,21 +115,12 @@ module.exports = {
         })
      
     },
-    // getAll:function(req,res){
-    //     db.user.find(req.query)
-    //     // .sort({ date: -1 })
-    //     .then(dbModel => res.json(dbModel))
-    //     .catch(err => res.status(422).json(err));
-    // },
     delete:function(idToDelete){
         db.user.remove({_id:idToDelete})
         .then(result=>{console.log("user deleted! "+result)})
     },
     update:function(filter,update,res){
-        console.log(filter,update)
         db.user.findOneAndUpdate(filter,update)
         .then(result=>console.log(result))
-        // .then(this.getAll(""))
-
     }
 };

@@ -139,32 +139,19 @@ function readMonth(month){
         case "12":
         newMonth="December"
         break;
+
+        default:
+        newMonth=''
+        break;
     }
     return newMonth.substring(0,3);
 }
 function readDay(dd){
 
     let neatDay=dd
-    let suffix="th";
 
     if(dd.charAt(0)==="0"){
         neatDay=dd.charAt(1);
-    }
-
-    if(dd==="11"||dd==="12"||dd==="13"){
-        switch(dd.charAt(1)){
-          case "1":
-          suffix="st"
-          break;
-    
-          case "2":
-          suffix="nd"
-          break;
-    
-          case "3":
-          suffix="rd"
-          break;
-        }
     }
 
     return neatDay
@@ -181,12 +168,6 @@ function readDate(dateToRead){
     let newMonth;
     let newDay = dd;
 
-    console.log(date)
-    console.log(mm)
-    console.log(dd)
-    console.log(yyyy)
-    
-
     if(mm.charAt(0)==="0"){
         mm=mm.charAt(1);
     }
@@ -196,8 +177,6 @@ function readDate(dateToRead){
       newDay=dd.charAt(1);
     }
   
-    console.log(dd)
-
     //if dd is 11, 12, or 13, suffix remains as "th". If not, check second number for 1, 2, or 3 to change the suffix
     if(dd==="11"||dd==="12"||dd==="13"){
       switch(dd.charAt(1)){
@@ -211,6 +190,10 @@ function readDate(dateToRead){
   
         case "3":
         suffix="rd"
+        break;
+
+        default:
+        suffix=''
         break;
       }
     }
@@ -253,6 +236,10 @@ function readDate(dateToRead){
       break;
       case "12":
       newMonth="December"
+      break;
+
+      default:
+      newMonth=''
       break;
     }
     

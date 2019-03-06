@@ -8,7 +8,6 @@ passport.use(new LocalStrategy(
     userModel.findOne({"userName":username})
     .then(result=>{
         if (result){
-            console.log("user was found")
             if(password===result.password){
                 return console.log("password is correct")
             }

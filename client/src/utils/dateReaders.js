@@ -50,6 +50,9 @@ export function readMonth(month){
         case "12":
         newMonth="December"
         break;
+
+        default:
+        break;
     }
 
     return newMonth;
@@ -58,33 +61,35 @@ export function readMonth(month){
 export function readDay(dd){
 
     let neatDay=dd
-    let suffix="th";
+    // let suffix="th";
 
     if(dd.charAt(0)==="0"){
         neatDay=dd.charAt(1);
     }
 
-    if(dd==="11"||dd==="12"||dd==="13"){
-        switch(dd.charAt(1)){
-          case "1":
-          suffix="st"
-          break;
+    // if(dd==="11"||dd==="12"||dd==="13"){
+    //     switch(dd.charAt(1)){
+    //       case "1":
+    //       suffix="st"
+    //       break;
     
-          case "2":
-          suffix="nd"
-          break;
+    //       case "2":
+    //       suffix="nd"
+    //       break;
     
-          case "3":
-          suffix="rd"
-          break;
-        }
-    }
+    //       case "3":
+    //       suffix="rd"
+    //       break;
+
+    //       default:
+    //       break;
+    //     }
+    // }
 
     return neatDay
 }
 
 export function readDate(dateToRead){
-    // let date = dateToRead;
     let mm = dateToRead.split("-")[0];
     let dd = dateToRead.split("-")[1];
     let yyyy = dateToRead.split("-")[2];
@@ -92,12 +97,6 @@ export function readDate(dateToRead){
     let suffix="th";
     let newMonth;
     let newDay = dd;
-
-    // console.log(date)
-    console.log(mm)
-    console.log(dd)
-    console.log(yyyy)
-    
 
     if(mm.charAt(0)==="0"){
         mm=mm.charAt(1);
@@ -108,7 +107,6 @@ export function readDate(dateToRead){
       newDay=dd.charAt(1);
     }
   
-    console.log(dd)
 
     //if dd is 11, 12, or 13, suffix remains as "th". If not, check second number for 1, 2, or 3 to change the suffix
     if(dd==="11"||dd==="12"||dd==="13"){
@@ -123,6 +121,9 @@ export function readDate(dateToRead){
   
         case "3":
         suffix="rd"
+        break;
+
+        default:
         break;
       }
     }
@@ -165,6 +166,9 @@ export function readDate(dateToRead){
       break;
       case "12":
       newMonth="December"
+      break;
+
+      default:
       break;
     }
     

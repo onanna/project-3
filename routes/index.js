@@ -14,7 +14,6 @@ router.use("/course-attendance",attendanceRoutes);
 router.use("/auth", authRoutes);
 
 router.get("/",(req,res)=>{
-  console.log(res)
 })
 
 // If no API routes are hit, send the React app

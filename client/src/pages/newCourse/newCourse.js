@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import "./style.css";
-import Newinstructor from "../../components/newInstructorForm/newInstructorForm"
 import PageContainer from "../../components/pageContainer";
 import API from "../../utils/API"
 import SelectInstructor from "../../components/selectInstructors/selectInstructors";
@@ -31,19 +30,16 @@ class Newcourse extends Component {
     };
 
     this.getSelectedInstructors=(selected)=>{
-            console.log(selected)
-            let instructorsSelected =[]
-            selected.forEach((element,i) => {
-                instructorsSelected.push(element.value)
-            });
-            this.setState({
-                instructors:instructorsSelected
-            })
-            // console.log($("#instructorSelect"))
+      let instructorsSelected =[]
+      selected.forEach((element,i) => {
+          instructorsSelected.push(element.value)
+      });
+      this.setState({
+          instructors:instructorsSelected
+      })
     }
 
     this.getSelectedStudents=(selected)=>{
-        console.log(selected)
         let studentsSelected =[]
         selected.forEach((element,i) => {
             studentsSelected.push(element.value)
@@ -51,7 +47,6 @@ class Newcourse extends Component {
         this.setState({
             students:studentsSelected
         })
-        // console.log($("#instructorSelect"))
     }
 
     this.componentDidMount=()=>{
@@ -78,7 +73,6 @@ class Newcourse extends Component {
 
       let startdateChosen = document.getElementById("startDatePicker").value
       let enddateChosen = document.getElementById("endDatePicker").value
-      console.log(startdateChosen)
 
       // let startdateChosen = x.value;
       // let enddateChosen = y.value;
@@ -156,7 +150,7 @@ class Newcourse extends Component {
     // Notice how each input has a `value`, `name`, and `onChange` prop
     return (
       <PageContainer>
-       {this.state.name?  <Header text={this.state.name} align='center' /> : <Header text={'Add new Course!'} />}
+       {this.state.name?  <Header text={this.state.name} align='center' /> : <Header text={'Add Course'} />}
     
         {/* <form className="form container"> */}
         <div className='input-field'>

@@ -1,8 +1,7 @@
 import './style.css';
 import React, { Component } from "react";
-import Pagecontainer from "../../components/pageContainer/index"
 import SubmitButton from "../../components/submitButton"
-import {Row, Col, Input} from 'react-materialize';
+import {Row, Col} from 'react-materialize';
 import API from "../../utils/API";
 import Header from "../../components/h1withDivider/index"
 import * as date from '../../utils/dateReaders';
@@ -16,7 +15,6 @@ class attendanceForm extends Component{
         
         this.state.deleteFunction=props.deleteToken
         
-        // API.getOneCourse(this.props.match.params.courseId)
         API.getOneCourse(props.courseId)
         .then(response=> this.setState({course:response.data}))
         .catch(err => console.log("ERROR ERROR ERROR "+err))
@@ -36,7 +34,6 @@ class attendanceForm extends Component{
 
 
     handleAttendanceToggle(stuId){
-        console.log(stuId)
         let tempStudents=this.state.studentsinAttendance;
 
         if(tempStudents.includes(stuId)){
@@ -49,7 +46,6 @@ class attendanceForm extends Component{
         };
 
         this.setState({studentsinAttendance:tempStudents})
-        console.log(this.state.studentsinAttendance)
     }
 
     makeRecord=(student,attendance)=>{

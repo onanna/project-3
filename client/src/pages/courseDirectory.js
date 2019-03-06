@@ -1,10 +1,8 @@
 import React, {Component } from "react";
-import {Link} from "react-router-dom";
 import Pagecontainer from "../components/pageContainer"
 import API from "../utils/API";
 import Header from "../components/h1withDivider";
 import CourseCard from '../components/courseCard/courseCard'
-const $=window.$
 
 class Home extends Component{
     state={
@@ -30,20 +28,17 @@ class Home extends Component{
             .catch(err => console.log(err));
     }
     getCourses=()=>{
-        console.log("about to get all courses in home.js")
         API.getAllCourses()
             .then(res => this.setState({allCourses:res.data}))
             .catch(err => console.log(err));
     }
     getACourse=(courseId)=>{
-        console.log("about to get all courses in home.js")
         API.getACourse(courseId)
             .then(res => this.setState({allCourses:res.data}))
             .catch(err => console.log(err));
     }
 
 
-    // addNewCourse=(courseObject)=>{
     addNewCourse=()=>{
     
         let testCourse={
@@ -114,8 +109,6 @@ class Home extends Component{
     }
 
     goToCourse=(courseId)=>{
-        console.log("going to go to ")
-        // window.location.replace(`/courses/detail/${courseId}`);
         window.location.href=`/courses/detail/${courseId}`;
     }
    
@@ -141,7 +134,7 @@ class Home extends Component{
                     {
                         this.state.allCourses.map((current,i)=>{
                             return(
-                                <div className='left col s12 m6 mainCourseCol'>
+                                <div key={i} className='left col s12 m6 mainCourseCol'>
                                     <div onClick={()=>this.goToCourse(current._id)} className="mainCourseCard card small hoverable">
                                         <CourseCard course={current}/>
                                     </div>

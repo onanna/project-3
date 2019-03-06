@@ -1,14 +1,9 @@
 import React, { Component } from "react";
-import {Col,Row} from "react-materialize";
 import API from '../../utils/API'
 import Select from 'react-select';
-const $ = window.$;
 
 class sendAttendance extends Component{
-    constructor (props) {
-        super(props)
-    }
-    
+
     state={
         instructors:[],
         sentSuccess:false,
@@ -49,7 +44,6 @@ class sendAttendance extends Component{
     sendAttendanceForm=()=>{
         this.setState({error:''})
 
-        console.log("chosen is "+this.chosen)
         let dataToSend={
             number:this.chosen.value,
             urlToSend:this.props.attendLink
