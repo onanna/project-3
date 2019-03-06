@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Pagecontainer from "../components/pageContainer"
 import API from "../utils/API"
-import booksImg from "../images/books1.jpg";
+import learningImg from "../images/learning.jpg";
 
 class Home extends Component{
     state={
@@ -43,27 +43,30 @@ class Home extends Component{
         return(
             <Pagecontainer>
                 <div className="row">
-                    <div className="col s12 m5 blue darken-4">
-                        <div className="card-panel">
-                            <h1>All Students</h1>
+                    <div className="card hoverable">
+                        <div className="card-image">
+                            <img src={learningImg} alt="learning" /> 
                         </div>
-                        <div className="card-panel grey lighten-2">
-                            <ul className="collection">
-                                {this.state.students.map((current,i)=>{
-                                    return (
-                                        <ul>
-                                            <li key={i}>Name: {current.firstName} {current.lastName}</li>
-                                            <li key={i}>Email: {current.email}</li>
-                                            <li key={i}>Phone Number: {current.phone}</li>
-                                            <li key={i}>Currently Enrolled: {current.currentlyEnrolled}</li>
-                                            <li key={i}>Previously Enrolled: {current.pastCourses}</li>
-                                            <hr></hr>
-                                        </ul>
-                                    )
-                                })
-                                }
-                            </ul>
-                        </div>
+                        <ul id="tabs-swipe" className="tabs">
+                            <li className="col s12"><center>All Students</center></li>
+                        </ul>
+                    </div>
+                </div>
+                <div className="card hoverable">
+                    <div className="col s12 grey lighten-3">  
+                        {this.state.students.map((current,i)=>{
+                            return (
+                                <ul>
+                                    <li key={i}><b>Name: </b>{current.firstName} {current.lastName}</li>
+                                    <li key={i}><b>Email: </b>{current.email}</li>
+                                    <li key={i}><b>Phone Number: </b>{current.phone}</li>
+                                    <li key={i}><b>Currently Enrolled: </b>{current.currentlyEnrolled}</li>
+                                    <li key={i}><b>Previously Enrolled: </b>{current.pastCourses}</li>
+                                    <hr></hr>
+                                </ul>
+                            )
+                        })
+                        }
                     </div>
                 </div>
             </Pagecontainer>
