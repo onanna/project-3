@@ -6,6 +6,7 @@
 .card {
     /* height:775px; */
     /* height: auto; */
+    height: 184%;
 }
 
 #registerStudent{
@@ -72,9 +73,4 @@ li.indicator{
 #tabs-swipe {
     font-weight: bold;
     font-size: 30px;
-}
-
-.btn.i {
-    
-
 }
