@@ -5,7 +5,7 @@ import Register from "../../components/registerStudentForm/registerStudent";
 import API from "../../utils/API";
 import H1 from "../../components/h1withDivider";
 import {Card, Col} from 'react-materialize';
-import Send from "../../components/sendAttendance/sendAttendance"
+import Send from "../../components/sendAttendance/sendAttendance2"
 import booksImg from "../../images/books1.jpg";
 import InstructorSelect from '../../components/selectInstructors/selectInstructors'
 import StudentSelect from '../../components/selectStudents/selectStudents'
@@ -137,6 +137,9 @@ class Course extends Component {
 
                                 <div id="classRoster" className="courseTab" className="col s12 grey lighten-3">
                                     Students
+                                    <h4>Class Roster</h4>
+                                    <Send attendLink={`https://gentle-garden-19053.herokuapp.com/attendance/temp362019/${this.props.token}/${this.state.course._id}`} instructors={this.state.course.instructors}/>
+                                    <a href={`/attendance/temp362019/${this.props.token}/${this.state.course._id}`} target="_blank">Attendance Form</a>
                                 </div>
 
                                 <div id="instructors" className="courseTab" className="col s12 grey lighten-3">
@@ -147,9 +150,6 @@ class Course extends Component {
                                     Attendance
                                 </div>
                             </div>
-
-                             {/* <Send attendLink={`/attendance/temp362019/${this.props.token}/${this.state.course._id}`} instructors={this.state.course.instructors}/>
-                            <a href={`/attendance/temp362019/${this.props.token}/${this.state.course._id}`}>Attendance Form</a> */}
                         
                         </div>
                         

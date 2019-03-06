@@ -4,27 +4,32 @@ import Pagecontainer from "../../components/pageContainer/index"
 import SubmitButton from "../../components/submitButton"
 import {Row, Col, Input} from 'react-materialize';
 import API from "../../utils/API";
-import Header from "../../components/h1withDivider"
+import Header from "../../components/h1withDivider/index"
+const $=window.$;
 
 class attendanceForm extends Component{
 
     constructor(props){
         super(props)
-
-        console.log('token '+JSON.stringify(this.props.match.params.token))
-        console.log('courseId '+JSON.stringify(this.props.match.params.courseId))
         
-        API.getOneCourse(this.props.match.params.courseId)
+        this.state.deleteFunction=props.deleteToken
+        
+        // API.getOneCourse(this.props.match.params.courseId)
+        API.getOneCourse(props.courseId)
         .then(response=> this.setState({course:response.data}))
         .catch(err => console.log("ERROR ERROR ERROR "+err))
-    }
 
+        this.deleteToken=props.deleteToken;
+    }
+    
     state={
+        deleteFunction:{},
         course:{
             students:[]
         },
         studentsinAttendance:[],
-        date:new Date()
+        date:new Date(),
+        sentSuccess:false
     }
 
     handleAttendanceToggle(stuId){
@@ -74,40 +79,63 @@ class attendanceForm extends Component{
             students:records,
         }
 
-        alert("send form now"+JSON.stringify(data))
-        // API.sendAttendance(data); 
+        API.sendAttendance(data)
+        .then(result=>{
+            if(result.data.success){
+                this.setState({sentSuccess:true})
+                // alert('Attendance Sent! You will now be redirected to login')
+                $('body').fadeOut(1500);
+                setTimeout(()=>{
+                    this.deleteToken();
+                },2000)
+
+            }else{
+                alert('ERROR')
+            }
+        })  
+        .catch(error=>{
+            alert('ERROR IN ATTENDANCe: '+JSON.stringify(error))
+        }); 
     }
 
     render(){
-        return(
-            <Pagecontainer>
-                <Header align="center-align">attendance</Header>
-                <h4 className="attendanceDate center-align">March 6th, 2019</h4>
-                <div className="divider"></div>
-                {
-                    this.state.course.students.map((current,i)=>{
-                            return(
-                                <Row key={i}>
-                                    <Col s={8}>
-                                        <p className="flow-text">{`${current.firstName} ${current.lastName}`}</p>
-                                    </Col>
-                                    <Col s={4}>
-                                        <div className="switch right-align">
-                                            <label>
-                                                <input onInput={()=>this.handleAttendanceToggle(current._id)} type="checkbox" />
-                                                <span className="lever"></span>
-                                            </label>
-                                        </div>
-                                    </Col>
-                                </Row>
-                            )
-                    })               
-                }
-                <Row>
-                    <SubmitButton submitFunction={()=>this.sendAttendanceForm()} />
-                </Row>
-            </Pagecontainer>
-        )
+        if(!this.state.sentSuccess){
+            return(
+                <div className='container'>
+                    <Header align="center" text={this.state.course.name}/>
+                    <h4 className="attendanceDate center-align">March 6th, 2019</h4>
+                    <div className="bottomAttend divider"></div>
+                    {
+                        this.state.course.students.map((current,i)=>{
+                                return(
+                                    <Row key={i}>
+                                        <Col s={8}>
+                                            <p className="flow-text">{`${current.firstName} ${current.lastName}`}</p>
+                                        </Col>
+                                        <Col s={4}>
+                                            <div className="switch right-align">
+                                                <label>
+                                                    <input onInput={()=>this.handleAttendanceToggle(current._id)} type="checkbox" />
+                                                    <span className="lever"></span>
+                                                </label>
+                                            </div>
+                                        </Col>
+                                    </Row>
+                                )
+                        })               
+                    }
+                    <Row>
+                        <SubmitButton submitFunction={()=>this.sendAttendanceForm()} />
+                    </Row>
+                </div>
+            )
+        }else{
+            return(
+                <div className='container'>
+                    <Header align='center' text='Attendance Sent!'/>
+                </div>
+            )
+        }
     }
 }
 

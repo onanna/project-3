@@ -39,7 +39,7 @@ const instructorSeed = [
     email:"something@gmail.com",
     currentlyTeaching:[],
     pastCourses:[],
-    phone:"+1someRandomNumber"
+    phone:"+19732233733"
   },
   {
     firstName:"numbah",
@@ -55,7 +55,7 @@ const instructorSeed = [
     email:"nice@aol.com",
     currentlyTeaching:[],
     pastCourses:[],
-    phone:"+1someRandomNumber"
+    phone:"+19732233733"
   },
 ];
 

@@ -13,10 +13,6 @@ class sendAttendance extends Component{
         super(props)
     }
 
-    componentDidMount=()=>{
-        $('select').formSelect();          
-    }   
-
     sendAttendanceForm=()=>{
 
         let chosen = document.getElementById('sendSelect').value
@@ -48,7 +44,7 @@ class sendAttendance extends Component{
                     </div>
                 </div>
                 <div className="col s4">
-                    <button onClick={this.sendAttendanceForm} className="btn-large waves-light" type="submit">
+                    <button onClick={this.sendAttendanceForm} className="btn-large waves-light">
                         Send
                     </button>
                 </div>

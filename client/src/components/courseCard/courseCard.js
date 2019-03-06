@@ -97,6 +97,9 @@ function splitDate(date){
 }
 function readMonth(month){
     let newMonth='';
+    if(month.charAt(0)==="0"){
+        month=month.charAt(1);
+    }
     switch(month){
         case "1":
         newMonth="January"
