@@ -40,32 +40,32 @@ class instructors extends Component{
         return(
             <Pagecontainer>
                 <div className="row">
-                        <div className="card hoverable">
-                            <div className="card-image">
-                                <img src={instructorImg} alt="instructor" /> 
-                            </div>
-                            <ul id="tabs-swipe" className="tabs">
-                                <li className="col s12"><center>All Instructors</center></li>
-                            </ul>
+                    <div className="card hoverable">
+                        <div className="card-image">
+                            <img src={instructorImg} alt="instructor" /> 
                         </div>
+                        <ul id="tabs-swipe" className="tabs">
+                            <li className="col s12"><center>All Instructors</center></li>
+                        </ul>
+                    </div>
                 </div>
                 <div className="card hoverable">
-                        <div className="col s12 grey lighten-3">  
-                                {this.state.instructors.map((current,i)=>{
-                                    return (
-                                        <ul>
-                                            <li key={i}><b>Name: </b>{current.firstName} {current.lastName}</li>
-                                            <li key={i}><b>Email: </b>{current.email}</li>
-                                            <li key={i}><b>Phone Number: </b>{current.phone}</li>
-                                            <li key={i}><b>Currently Teaching: </b>{current.currentlyTeaching}</li>
-                                            <li key={i}><b>Previously Taught: </b>{current.pastCourses}</li>
-                                            <hr></hr>
-                                        </ul>
-                                    )
-                                })
-                                }
-                        </div>
+                    <div className="col s12 grey lighten-3">  
+                        {this.state.instructors.map((current,i)=>{
+                            return (
+                                <ul>
+                                    <li key={i}><b>Name: </b>{current.firstName} {current.lastName}</li>
+                                    <li key={i}><b>Email: </b>{current.email}</li>
+                                    <li key={i}><b>Phone Number: </b>{current.phone}</li>
+                                    <li key={i}><b>Currently Teaching: </b>{current.currentlyTeaching}</li>
+                                    <li key={i}><b>Previously Taught: </b>{current.pastCourses}</li>
+                                    <hr></hr>
+                                </ul>
+                            )
+                        })
+                        }
                     </div>
+                </div>
             </Pagecontainer>
         )
     }
