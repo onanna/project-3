@@ -5,6 +5,7 @@ import SubmitButton from "../../components/submitButton"
 import {Row, Col, Input} from 'react-materialize';
 import API from "../../utils/API";
 import Header from "../../components/h1withDivider/index"
+import * as date from '../../utils/dateReaders';
 const dateFormat=require('dateformat')
 const $=window.$;
 
@@ -104,7 +105,7 @@ class attendanceForm extends Component{
             return(
                 <div className='container'>
                     <Header align="center" text={this.state.course.name}/>
-                    <h4 className="attendanceDate center-align">March 6th, 2019</h4>
+                    <h4 className="attendanceDate center-align">{date.readDate(this.state.date)}</h4>
                     <div className="bottomAttend divider"></div>
                     {
                         this.state.course.students.map((current,i)=>{
