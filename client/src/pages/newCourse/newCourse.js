@@ -15,7 +15,7 @@ class Newcourse extends Component {
 
   this.state = {
     name: "",
-    numberOfSeats:25,
+    numberOfSeats:0,
     startDate:"",
     endDate:"",
     startTime:"",
