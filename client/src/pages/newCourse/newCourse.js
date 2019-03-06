@@ -173,68 +173,71 @@ class Newcourse extends Component {
             />
         </div>
           
-     
-        <label className='forColorClear' id='locationLabel'> 
-            Location:
-        </label>
+        <div className='input-field'>     
+            <label className='forColorClear' id='locationLabel'htmlFor="location"> 
+                Location:
+            </label>
             <input
-            value={this.state.location}
-            name="location"
-            onChange={this.handleInputChange}
-            type="text"
-            placeholder="Location"
-          />
-          <label className='forColorClear' id='numSeatsLabel'>
+              value={this.state.location}
+              name="location"
+              onChange={this.handleInputChange}
+              type="text"
+              id='location'
+            />
+        </div>
+
+        <div className='input-field'>     
+          <label className='forColorClear' id='numSeatsLabel'htmlFor="numSeats">
               Number of Spots Available: 
           </label>
-              <input
+          <input
             value={this.state.numberOfSeats}
             name="numberOfSeats"
-            type="number" 
-            // min="0"
-            // max="25"
+            type="number"
+            id='numSeats'
             onChange={this.handleInputChange}
           />  
+        </div>
           
-          <label className='forColorClear' id='startTimeLabel'>Start Time:</label>
+        <div className='input-field'>     
+          <label className='forColorClear' id='startTimeLabel' htmlFor='startTime'>Start Time:</label>
           <input type="text"  
           name="starttime" 
-          value={this.state.startTime} 
+          value={this.state.startTime}
+          id='startTime'
           onChange={(ev) => {this.setState({startTime:ev.target.value})}}
          pattern ={/^([01]?[0-9]|2[0-3]):[0-5][0-9]$/}
         required />
+        </div>
 
-           <label className='forColorClear' id='endTimeLabel'> 
+        <div className='input-field'>     
+           <label className='forColorClear' id='endTimeLabel' htmlFor='endTime'> 
             End Time:
-        </label>
-         <input
-            value={this.state.endTime}
-            name="endtime"
-            onChange={(ev) => {this.setState({endTime:ev.target.value})}}
-            type="text"
-            
+          </label>
+          <input
+              value={this.state.endTime}
+              name="endtime"
+              onChange={(ev) => {this.setState({endTime:ev.target.value})}}
+              type="text"
+              id='endTime'
           />
+        </div>
           
-          <label className='forColorClear' id='startDateLabel'> Start Date:</label>  
-          <input type="text" id='startDatePicker' className="datepicker" 
-            // onChange={this.handleDateChange} 
-          />
+        <div className='input-field'>     
+          <label className='forColorClear' id='startDateLabel' htmlFor='startDatePicker'> Start Date:</label>  
+          <input type="text" id='startDatePicker' className="datepicker"/>
+        </div>
           
-          <label className='forColorClear' id='endDateLabel'> End Date:</label>  
-          <input type="text" id='endDatePicker' className="datepicker" 
-          //  onChange={this.handleDateChange}
-            />
-       
-         
-        {/* </form> */}
+        <div className='input-field'>     
+          <label className='forColorClear' id='endDateLabel' htmlFor='endDatePicker'> End Date:</label>  
+          <input type="text" id='endDatePicker' className="datepicker"/>
+        </div>
 
         <SelectInstructor onChange={this.getSelectedInstructors} />
         <SelectStudent onChange={this.getSelectedStudents} />
-        {/* <form> */}
-        {/* <button onClick={this.handleFormSubmit}>Submit</button> */}
+
         {this.state.error.length>0? <p className='newCourseError center-align'>{this.state.error}</p> : <div></div>}
         <div id="newCourseSubmit"><Submit submitFunction={this.handleFormSubmit}/></div>
-        {/* </form> */}
       </PageContainer>
     );
   }

@@ -16,11 +16,11 @@ input[type="password"] + label {
 }
 
  /* label focus color */
- .input-field input[type=text]:focus + label , .input-field input[type=password]:focus + label{
+ .input-field input[type=text]:focus + label , .input-field input[type=password]:focus + label,.input-field input[type=number]:focus + label{
     color: #446ca8 !important;
   }
   /* label underline focus color */
-  .input-field input[type=text]:focus, .input-field input[type=password]:focus{
+  .input-field input[type=text]:focus, .input-field input[type=password]:focus,.input-field input[type=number]:focus{
     border-bottom: 1px solid #446ca8 !important;
     box-shadow: 0 1px 0 0 #446ca8 !important;
   }
