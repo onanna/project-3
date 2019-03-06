@@ -1,4 +1,5 @@
 const db = require("../models/index");
+const courseFuncs = require('./courseController')
 
 module.exports = {
     add:function(req,res){
@@ -11,6 +12,19 @@ module.exports = {
             console.log(`you tried adding a student, but it's invalid: ${error}`)
         })
 
+    },
+    makeAndAdd:function(newStu,course,res){
+        db.student.create(newStu)
+            .then(result=>{
+                if(result._id){
+                    courseFuncs.addToRoster(course,'students',result._id,res)
+                }else{
+                    res.send({error:'could not create student'})
+                }
+            })
+            .catch(error=>{
+                res.send({error:error})
+            })
     },
     getOne:function(id,res){
         db.student.findById(id)

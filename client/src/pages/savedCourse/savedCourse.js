@@ -3,7 +3,7 @@ import "./../savedCourse/savedCourse.css";
 import PageContainer from "../../components/pageContainer";
 import Register from "../../components/registerStudentForm/registerStudent";
 import API from "../../utils/API";
-import H1 from "../../components/h1withDivider";
+import Header from "../../components/h1withDivider";
 import {Card, Col} from 'react-materialize';
 import Send from "../../components/sendAttendance/sendAttendance2"
 import booksImg from "../../images/books1.jpg";
@@ -31,6 +31,21 @@ class Course extends Component {
         API.getOneCourse(this.props.match.params.id)
         .then(response=> this.setState({course:response.data}))
         .catch(err => console.log("ERROR ERROR ERROR "+err))
+    }
+
+    updateCourseStudents=(newStudents)=>{
+        let newState = this.state.course
+        newState.students=newStudents
+        this.setState((prev)=>({
+            course:newState
+        }))
+    }
+    updateCourseInstructors=(newInstructors)=>{
+        let newState = this.state.course
+        newState.instructors=newInstructors
+        this.setState((prev)=>({
+            course:newState
+        }))
     }
 
     getSelectedInstructors=(selected)=>{
@@ -76,6 +91,7 @@ class Course extends Component {
     render(){
         return(
             <PageContainer>
+                <Header align='center' text={this.state.course.name}/>
                 <div className="row" id="courseCard"> 
                     <div className="col s12 m6">
                         <div className="card">
@@ -84,7 +100,7 @@ class Course extends Component {
                             </div>
                             <div id="registerStudent" className="modal">
                                 <h4 id="modalHeader">Register Students</h4>
-                                <Register />            
+                                <Register updateCourseInstructors={this.updateCourseInstructors} updateCourseStudents={this.updateCourseStudents} courseId={this.state.course._id} />            
                             </div>                            
                             <ul id="tabs-swipe" className="tabs">
                                 <li className="tab col s4"><a className="active" href="#courseContent">Course Details</a></li>
@@ -94,7 +110,8 @@ class Course extends Component {
 
                             {/* Course Content & Student Roster in Tabs */}
                             <div id="courseContent" className="col s12 grey lighten-3 tabContent">               
-                                <h4 className='bold m-top'>{this.state.course.name}</h4>  
+                                {/* <h4 className='bold m-top'>{this.state.course.name}</h4>   */}
+                                <h4 className='bold m-top'>Details</h4>
                                 <p><b> Number of Seats Available:</b> {this.state.course.numberOfSeats}</p>
                                 <p><b>Start Date:</b> {this.state.course.startDate? date.readDate(this.state.course.startDate) : this.state.course.startDate}</p>
                                 <p><b>End Date:</b> {this.state.course.startDate? date.readDate(this.state.course.endDate) : this.state.course.endDate}</p>
@@ -104,11 +121,11 @@ class Course extends Component {
                             </div> 
 
                             <div id="classRoster" className="courseTab" className="col s12 grey lighten-3 tabContent center-align">
-                            {this.state.course.students.length>0 && this.state.course.instructors.length>0?
+                            {this.state.course.students.length>0 || this.state.course.instructors.length>0?
                                 <div>
                                     <h4 className='bold m-top'>Class Roster</h4>
                                     
-                                    <p className='flow-text rosterHeader'>Instructors</p>
+                                    <p className='flow-text rosterHeader'>{this.state.course.instructors.length>0? 'Instructors':''}</p>
                                     <ul>
                                         {this.state.course.instructors.map((current,i)=>{
                                             return(
@@ -117,7 +134,7 @@ class Course extends Component {
                                         })}
                                     </ul>
                                     
-                                    <p className='flow-text rosterHeader'>Students</p>
+                                    <p className='flow-text rosterHeader'>{this.state.course.students.length>0? 'Students':''}</p>
                                     <ul>
                                         {this.state.course.students.map((current,i)=>{
                                             return(
@@ -162,7 +179,7 @@ class Course extends Component {
                                 {this.state.course.students.length>0?
                                     <div>
                                         <p className='sendToText flow-text'>Send To Instructor</p>                            
-                                        <Send attendLink={`https://gentle-garden-19053.herokuapp.com/attendance/temp362019/${this.props.token}/${this.state.course._id}`} instructors={this.state.course.instructors}/>
+                                        <Send attendLink={`https://gentle-garden-19053.herokuapp.com/attendance/temp362019/${this.props.token}/${this.state.course._id}`} clickFunction={this.sendAttendanceForm}instructors={this.state.course.instructors}/>
                                         <a href={`/attendance/temp362019/${this.props.token}/${this.state.course._id}`} target="_blank">Attendance Form</a>
                                     </div>
                                 :

@@ -12,11 +12,16 @@ class Register extends Component {
     super(props);
 
     this.state = {
-      students: [],
+      studentsToAdd: [],
+      instructorsToAdd: [],
       firstName: "",
       lastName: "",
       email: "",
-      phone: ""
+      phone: "",
+      addExistStuNotice:'',
+      addExistInstNotice:'',
+      addNewStuNotice:'',
+      addNewInsNotice:''      
     };
 
     this.handleFirstNameChange = this.handleFirstNameChange.bind(this);
@@ -30,7 +35,6 @@ class Register extends Component {
     this.handleOnSubmit = this.handleOnSubmit.bind(this);
 
     this.componentDidMount = () => {
-      $("select").formSelect();
       $(".collapsible").collapsible();
       this.getAllStudents();
     };
@@ -43,6 +47,14 @@ class Register extends Component {
         })
         .catch(err => console.log(err));
     };
+  }
+
+  onModalClose=()=>{
+    $('.modal').modal({
+      onCloseEnd:function(){
+        alert('closed')
+      }
+    })
   }
 
   handleFirstNameChange(e) {
@@ -90,7 +102,130 @@ class Register extends Component {
     console.log(newStudent);
     //make an axios.post method
     //axios.post('localhost:3001/api/students', newStudent)
+
+    // let isError = false;
+    //   if(dataToSend.name.trim().length===0){
+    //     $('#courseNameLabel').css('color','#ff5252')
+    //     isError=true;
+    //   }
+    //   if(dataToSend.numberOfSeats.trim().length===0){
+    //     $('#numSeatsLabel').css('color','#ff5252')
+    //     isError=true;
+    //   }else{
+    //       //check that it's a number
+    //     }
+    //   if(dataToSend.startDate.trim().length===0){
+    //     $('#startDateLabel').css('color','#ff5252')
+    //     isError=true;      
+    //   }
+    //   if(dataToSend.endDate.trim().length===0){
+    //     $('#endDateLabel').css('color','#ff5252')
+    //     isError=true;      
+    //   }
+    //   if(dataToSend.startTime.trim().length===0){
+    //     $('#startTimeLabel').css('color','#ff5252')
+    //     isError=true;      
+    //   }
+    //   if(dataToSend.endTime.trim().length===0){
+    //     $('#endTimeLabel').css('color','#ff5252')
+    //     isError=true;      
+    //   }
+    //   if(dataToSend.location.trim().length===0){
+    //     $('#locationLabel').css('color','#ff5252')
+    //     isError=true;      
+    //   }
+    
+    //   if(isError){
+    //     this.setState((prevState)=>({
+    //       error:'All Fields Are Required'
+    //     }))
+    //   }else{
+    //     API.addCourse(dataToSend)
+    //     .then(result=>{
+    //       if(result.data._id){
+    //         window.location.href = "/";
+    //       }else{
+    //         $('#courseNameLabel').css('color','#ff5252')
+    //         this.setState((prevState)=>({
+    //           error:'A course with this name already exists'
+    //         }))
+    //       }
+    //     })
+    //     .catch(error=>{
+    //       console.log('ERROR '+JSON.stringify(error))
+    //     })
+    //   }
   }
+
+  selectStudentChange=(currentList)=>{
+    this.setState((prev)=>({
+      studentsToAdd:currentList
+    }))
+  }
+  addToRoster=(roster,optionalData)=>{
+    let whoToAdd;
+    let data;
+    switch(roster){
+      case 'students':
+        whoToAdd=this.state.studentsToAdd;
+        data=[];
+        whoToAdd.forEach((current,i)=>{
+          data.push(current.value)
+        })
+        API.addStudentsToCourse(this.props.courseId,data)
+        .then(result=>{
+          if(result.data.success){
+            this.setState((prev)=>({
+              addExistStuNotice: data.length===1? `Student Added Successfully!` : 'Students Added Successfully!'
+            }))
+            this.props.updateCourseStudents(result.data.success.students)
+            setTimeout(()=>{
+              this.setState((prev)=>({
+                studentsToAdd: [],
+                addExistStuNotice:''
+              }))
+            },1500)
+          }
+        })
+        .catch(error=>{
+          alert('error '+JSON.stringify(error))
+        })
+      break;
+
+      case 'instructors':
+        whoToAdd=this.state.instructorsToAdd;
+        data=[];
+        whoToAdd.forEach((current,i)=>{
+          data.push(current.value)
+        })
+        API.addInstructorsToCourse(this.props.courseId,data)
+        .then(result=>{
+          if(result.data.success){
+            this.setState((prev)=>({
+              addExistInstNotice: data.length===1? `Instructor Added Successfully!` : 'Instructors Added Successfully!'
+            }))
+            this.props.updateCourseInstructors(result.data.success.instructors)
+            setTimeout(()=>{
+              this.setState((prev)=>({
+                InstructorsToAdd: [],
+                addExistInstNotice:''
+              }))
+            },1500)
+          }
+        })
+        .catch(error=>{
+          alert('error '+JSON.stringify(error))
+        })
+      break;
+    }
+  }
+  
+  selectInstructorChange=(currentList)=>{
+    this.setState((prev)=>({
+      instructorsToAdd:currentList
+    }))
+  }
+
 
   render() {
     return (
@@ -101,14 +236,14 @@ class Register extends Component {
             <ul className="collapsible expandable">
               <li>
                 <div className="collapsible-header" id="header1">
-                  <i className="material-icons">person_add</i>Existing Student
+                  <i className="material-icons">person_add</i>Existing Student(s)
                 </div>
 
                 <div className="collapsible-body">
                   <span>
-                    <StudentSelect onChange={this.getSelectedStudents} />
-
-                    <div id="existStudentSubmit"><Submit submitFunction={this.handleFormSubmit}/></div>
+                    <StudentSelect onChange={this.selectStudentChange} />
+                    <div id="existStudentSubmit"><Submit submitFunction={()=>this.addToRoster('students')}/></div>
+                    <div>{this.state.addExistStuNotice.length>0?this.state.addExistStuNotice:''}</div>
                   </span>
                 </div>
          
@@ -183,14 +318,14 @@ class Register extends Component {
             <ul className="collapsible expandable">
               <li>
                 <div className="collapsible-header" id="header1">
-                  <i className="material-icons">person_add</i>Existing Instructor
+                  <i className="material-icons">person_add</i>Existing Instructor(s)
                 </div>
 
                 <div className="collapsible-body">
                   <span>
-                    <InstructorSelect onChange={this.getSelectedInstructors} />
-
-                    <div id="existInstructSubmit"><Submit submitFunction={this.handleFormSubmit}/></div>
+                    <InstructorSelect onChange={this.selectInstructorChange} />
+                    <div id="existInstructSubmit"><Submit submitFunction={()=>this.addToRoster('instructors')}/></div>
+                    <div>{this.state.addExistInstNotice.length>0?this.state.addExistInstNotice:''}</div>
                   </span>
                 </div>
               </li>

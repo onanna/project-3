@@ -6,6 +6,14 @@ router.route("/")
   .get(student.getAll)
   .post((data)=>student.add(data))
 
+router.route('/new-add/:courseId')
+  .post((req,res)=>{
+      let course =req.params.courseId;
+      let newStu = req.body
+
+      student.makeAndAdd(newStu,course,res)
+  })
+
 // matches with '/api/students/:id'
 router.route("/:id")
   .get((req,res)=>{

@@ -9,8 +9,14 @@ function adjustStudentRosters(studentsToFix,operation,course){
         case "add":
             //add this course ID to each student's currentlyEnrolled array
             studentsToFix.forEach((current,i) => {
-                db.student.findByIdAndUpdate(current,{$addToSet:{"currentlyEnrolled":course}},{new:true})
-                .then(console.log(`student ${current._id} has had course ${course._id} added to currentlyEnrolled`))
+                db.student.findByIdAndUpdate(current._id,{$addToSet:{"currentlyEnrolled":course}},{new:true})
+                .then(result=>{
+                    if(result._id){
+                        // return true
+                    }else{
+                        // res.send({success:'student added to course, but somethingwent wrong in adding course to him'})
+                    }
+                })
                 .catch(res=>console.log(res))
             });
         break;
@@ -94,21 +100,27 @@ module.exports = {
         .then(data => res.json(data))
         .catch(err => res.status(422).json(err));
     },
-    addToRoster:function(courseId,roster,dataToAdd){
-        if(roster&&courseId){
-            db.course.findByIdAndUpdate(courseId,{$addToSet:{[roster]:dataToAdd}},{new:true})
-            .then(updatedCourse=>{
-                let added;
-                switch(roster){
-                    case "students":
-                        added=updatedCourse.students
-                        adjustStudentRosters(added,"add",updatedCourse)        
-                    break;
+    addToRoster:function(courseId,roster,dataToAdd,res){
 
-                    case "instructors":
-                        added=updatedCourse.instructors
-                        adjustInstructorRosters(added,"add",updatedCourse)        
-                    break;
+        if(roster&&courseId){
+            db.course.findByIdAndUpdate(courseId,{$addToSet:{[roster]:dataToAdd}},{new:true}).populate('students').populate('instructors')
+            .then(updatedCourse=>{
+                if(updatedCourse._id){
+                    switch(roster){
+                        case "students":
+                            added=updatedCourse.students
+                            adjustStudentRosters(added,"add",updatedCourse)
+                            res.send({success:updatedCourse})
+                        break;
+    
+                        case "instructors":
+                            added=updatedCourse.instructors
+                            adjustInstructorRosters(added,"add",updatedCourse)
+                            res.send({success:updatedCourse})
+                        break;
+                    }
+                }else{
+                    res.send({error:'Could not add studentsS'})
                 }
             })
             .catch(res=>console.log(res))
