@@ -4,6 +4,10 @@
 .attendanceDate{
     color:#bdbdbd;
 }
+
+.bottomAttend{
+    margin:30px 0 ;
+}
 .switch label input[type=checkbox]:checked+.lever{
     background-color: #448aff ;
 }

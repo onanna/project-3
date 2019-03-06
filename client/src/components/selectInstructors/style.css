@@ -1,0 +1,7 @@
+#sendAttendButton{
+    z-index: 2;
+}
+
+#sendAttendanceSelect{
+    z-index: 3;
+}

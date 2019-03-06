@@ -1,19 +1,28 @@
 const db = require("../models/index");
 
 module.exports = {
-    new:function(data){
+    new:function(data,response){
         db.attendance.create(data)
         .then(result=>{
-            console.log(`congrats on adding an attendance object!: ${result}`)
-            let course=data._id
-            console.log("course to update is "+course)
-            db.course.findByIdAndUpdate(course,{$addToSet:{"attendanceRecords":result._id}})
-            .then(result=>{
-                console.log("result of attendance in course is "+result)
-            })
-            .catch(error=>{
-                console.log(`you tried adding an attendance object to a course, but it's invalid: ${error}`)
-            })
+            if(result.course){
+                let course=result.course
+                console.log("attendance added! course to update is "+course)
+                db.course.findByIdAndUpdate(course,{$addToSet:{"attendanceRecords":result._id}},{new:true})
+                .then(result=>{
+                    console.log("result of attendance in course is "+result)
+                    if(result.attendanceRecords){
+                        response.send({success:result})
+                    }else{
+                        response.send({error:'Attendance could not be added to course records'})
+                    }
+                })
+                .catch(error=>{
+                    console.log(`you tried adding an attendance object to a course, but it's invalid: ${error}`)
+                    response.send({error:error})
+                })
+            }else{
+                response.send({error:'attendance could not be added'})
+            }
         })
         .catch(error=>{
             console.log(`you tried making an attendance object, but it's invalid: ${error}`)
