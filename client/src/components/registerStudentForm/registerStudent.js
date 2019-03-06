@@ -5,6 +5,7 @@ import API from "../../utils/API";
 import Submit from '../../components/submitButton/index'
 import InstructorSelect from "../../components/selectInstructors/selectInstructors";
 import StudentSelect from "../../components/selectStudents/selectStudents";
+
 const $ = window.$;
 
 class Register extends Component {
@@ -17,22 +18,28 @@ class Register extends Component {
       firstName: "",
       lastName: "",
       email: "",
-      phone: "",
+      // phone: "",
       addExistStuNotice:'',
       addExistInstNotice:'',
       addNewStuNotice:'',
-      addNewInsNotice:''      
+      addNewInsNotice:'',  
+      phone: 0,
+      firstInstructorName: "",
+      lastInstructorName: "",
+      emailInstructor: "",
+      phoneInstructor: 0
+
     };
 
-    this.handleFirstNameChange = this.handleFirstNameChange.bind(this);
+    // this.handleFirstNameChange = this.handleFirstNameChange.bind(this);
 
-    this.handleLastNameChange = this.handleLastNameChange.bind(this);
+    // this.handleLastNameChange = this.handleLastNameChange.bind(this);
 
-    this.handleEmailChange = this.handleEmailChange.bind(this);
+    // this.handleEmailChange = this.handleEmailChange.bind(this);
 
-    this.handlePhoneChange = this.handlePhoneChange.bind(this);
+    // this.handlePhoneChange = this.handlePhoneChange.bind(this);
 
-    this.handleOnSubmit = this.handleOnSubmit.bind(this);
+    // this.handleOnSubmit = this.handleOnSubmit.bind(this);
 
     this.componentDidMount = () => {
       $(".collapsible").collapsible();
@@ -47,49 +54,51 @@ class Register extends Component {
         })
         .catch(err => console.log(err));
     };
-  }
+  
 
-  onModalClose=()=>{
-    $('.modal').modal({
-      onCloseEnd:function(){
-        alert('closed')
-      }
-    })
-  }
-
-  handleFirstNameChange(e) {
+  this.handleFirstNameChange=(e)=> {
     e.preventDefault();
     this.setState({
-      firstName: e.target.value
+      firstName: e.target.value,
+      firstInstructorName: e.target.value
     });
-    console.log(this.state.firstName);
+    // console.log(this.state.firstName);
+    // console.log(this.state.firstInstructorName);
+
   }
 
-  handleLastNameChange(e) {
+  this.handleLastNameChange=(e)=>{
     e.preventDefault();
     this.setState({
-      lastName: e.target.value
+      lastName: e.target.value,
+      lastInstructorName:e.target.value
     });
-    console.log(this.state.lastName);
+    // console.log(this.state.lastName);
+    // console.log(this.state.lastInstructorName);
   }
 
-  handleEmailChange(e) {
+  this.handleEmailChange=(e)=>{
     e.preventDefault();
     this.setState({
-      email: e.target.value
+      email: e.target.value,
+      emailInstructor:e.target.value
     });
-    console.log(this.state.email);
+    // console.log(this.state.email);
+    // console.log(this.state.emailInstructor);
   }
 
-  handlePhoneChange(e) {
+  this.handlePhoneChange=(e)=>{
     e.preventDefault();
     this.setState({
-      phone: e.target.value
+      phone: e.target.value,
+      phoneInstructor:e.target.value
     });
-    console.log(this.state.phone);
+    // console.log(this.state.phone);
+    // console.log(this.state.phoneInstructor);
+    
   }
 
-  handleOnSubmit(e) {
+  this.handleOnSubmit =(e)=> {
     e.preventDefault();
     console.log("submit");
     //console.log(e.target.value)
@@ -100,6 +109,8 @@ class Register extends Component {
       phone: this.state.phone
     };
     console.log(newStudent);
+    // API.addStudent(newStudent)
+
     //make an axios.post method
     //axios.post('localhost:3001/api/students', newStudent)
 
@@ -162,6 +173,13 @@ class Register extends Component {
       studentsToAdd:currentList
     }))
   }
+    
+  selectInstructorChange=(currentList)=>{
+    this.setState((prev)=>({
+      instructorsToAdd:currentList
+    }))
+  }
+  
   addToRoster=(roster,optionalData)=>{
     let whoToAdd;
     let data;
@@ -219,14 +237,19 @@ class Register extends Component {
       break;
     }
   }
-  
-  selectInstructorChange=(currentList)=>{
-    this.setState((prev)=>({
-      instructorsToAdd:currentList
-    }))
+
+  this.handleInstructorOnSubmit =(e) => {
+    e.preventDefault();
+    var newInstructor={
+      firstName: this.state.firstInstructorName,
+      lastName: this.state.lastInstructorName,
+      email: this.state.emailInstructor,
+      phone: this.state.phoneInstructor
+    }
+    // console.log(newInstructor)
+    API.addInstructor(newInstructor)
   }
-
-
+  }
   render() {
     return (
       <div>
@@ -346,6 +369,8 @@ class Register extends Component {
                               id="fName"
                               type="text"
                               placeholder="First Name"
+                              value={this.state.firstInstructorName}
+
                               onChange={this.handleFirstNameChange}
                             />
                           </div>
@@ -356,6 +381,7 @@ class Register extends Component {
                               id="lName"
                               type="text"
                               placeholder="Last Name"
+                              value={this.state.lastInstructorName}
                               onChange={this.handleLastNameChange}
                             />
                           </div>
@@ -368,6 +394,7 @@ class Register extends Component {
                               id="email"
                               type="text"
                               placeholder="Email"
+                              value={this.state.emailInstructor}
                               onChange={this.handleEmailChange}
                             />
                           </div>
@@ -378,11 +405,12 @@ class Register extends Component {
                               id="phone"
                               type="text"
                               placeholder="Phone"
+                              value={this.state.phoneInstructor}
                               onChange={this.handlePhoneChange}
                             />
                           </div>
                         </div>
-                        <div id="newInstructSubmit"><Submit submitFunction={this.handleFormSubmit}/></div>
+                        <div id="newInstructSubmit"><Submit submitFunction={this.handleInstructorOnSubmit}/></div>
                       </form>
                     </div>
                   </span>
