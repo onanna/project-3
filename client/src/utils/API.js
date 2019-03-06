@@ -19,6 +19,9 @@ export default {
   deleteStudent:function(id){
     return axios.delete(`/api/students/${id}`)
   },
+  newStuAndAdd:function(courseId,studentData){
+    return axios.post(`/api/students/new-add/${courseId}`,studentData)
+  },
 
 // ---------------------------INSTRUCTOR FUNCTIONS---------------------------
   addInstructor:function(insObject){
@@ -36,6 +39,9 @@ export default {
   },
   deleteInstructor:function(id){
     return axios.delete(`/api/instructors/${id}`)
+  },
+  newInstAndAdd:function(courseId,instructorData){
+    return axios.post(`/api/instructors/new-add/${courseId}`,instructorData)
   },
    
 // ---------------------------COURSE FUNCTIONS---------------------------

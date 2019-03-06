@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import {Link} from 'react-router-dom';
 import Pagecontainer from "../components/pageContainer"
 import API from "../utils/API"
 import learningImg from "../images/learning.jpg";
@@ -52,20 +53,31 @@ class Home extends Component{
                         </ul>
                     </div>
                 </div>
-                <div className="card hoverable grey lighten-3">
-                    {this.state.students.map((current,i)=>{
-                        return (
-                            <ul>
-                                <li key={i}><b>Name: </b>{current.firstName} {current.lastName}</li>
-                                <li key={i}><b>Email: </b>{current.email}</li>
-                                <li key={i}><b>Phone Number: </b>{current.phone}</li>
-                                <li key={i}><b>Currently Enrolled: </b>{current.currentlyEnrolled}</li>
-                                <li key={i}><b>Previously Enrolled: </b>{current.pastCourses}</li>
-                                <hr></hr>
-                            </ul>
-                        )
-                    })
-                    }
+                <div className='row'>
+                    <div className="card">
+                        <div className="col s12 grey lighten-3">  
+                            {this.state.students.map((current,i)=>{
+                                return (
+                                    <ul  key={i}>
+                                        <li><b>Name: </b>{`${current.firstName} ${current.lastName}`}</li>
+                                        <li><b>Email: </b>{current.email}</li>
+                                        <li><b>Phone Number: </b>{current.phone}</li>
+                                        <li> <b>Currently Enrolled:</b> 
+                                            <ul>
+                                                {current.currentlyEnrolled.map((current,i)=>{
+                                                    return(
+                                                        <li key={i}><Link target='_blank' rel="noopener noreferrer"  to={`/courses/detail/${current._id}`}>{current.name}</Link></li>
+                                                    )
+                                                })}
+                                            </ul>
+                                        </li>
+                                        <hr></hr>
+                                    </ul>
+                                )
+                            })
+                            }
+                        </div>
+                    </div>
                 </div>
             </Pagecontainer>
         )

@@ -8,51 +8,51 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/courseCreator",
 const studentSeed = [
   {
     firstName:"Tony",
-    lastName:"See",
-    email:"someemail@gmail.com",
+    lastName:"Rodriguez",
+    email:"tonyR@gmail.com",
     currentlyEnrolled:[],
     pastCourses:[],
     phone:"+19732233733"
   },
   {
     firstName:"David",
-    lastName:"jack",
-    email:"someOtheremail@yahoo.com",
+    lastName:"Troboli",
+    email:"David.t@yahoo.com",
     currentlyEnrolled:[],
     pastCourses:[],
-    phone:"+1someRandomNumber"
+    phone:"+19732233733"
   },
   {
-    firstName:"Sallie",
-    lastName:"Mae",
-    email:"notbroke@aol.com",
+    firstName:"Sally",
+    lastName:"Forester",
+    email:"Forester.sally@aol.com",
     currentlyEnrolled:[],
     pastCourses:[],
-    phone:"+1someRandomNumber"
+    phone:"+19732233733"
   },      
 ];
 
 const instructorSeed = [
   {
-    firstName:"First",
-    lastName:"Instructor",
-    email:"something@gmail.com",
+    firstName:"Samuel",
+    lastName:"Motter",
+    email:"mottersays@gmail.com",
     currentlyTeaching:[],
     pastCourses:[],
     phone:"+19732233733"
   },
   {
-    firstName:"numbah",
-    lastName:"two",
-    email:"someOtherthing@yahoo.com",
+    firstName:"Sharon",
+    lastName:"Elrich",
+    email:"erlich.sharon@yahoo.com",
     currentlyTeaching:[],
     pastCourses:[],
     phone:"+19732233733"
   },
   {
-    firstName:"Noel",
-    lastName:"Holiday",
-    email:"nice@aol.com",
+    firstName:"Yasmin",
+    lastName:"Montes",
+    email:"Yas.mon@aol.com",
     currentlyTeaching:[],
     pastCourses:[],
     phone:"+19732233733"
@@ -62,7 +62,7 @@ const instructorSeed = [
 const courseSeed=[
   {
   name:"Biology",
-  numberOfSeats:5,
+  numberOfSeats:15,
   startDate:"3-04-2019",
   endDate:"3-08-2019",
   startTime:"06:30PM",
@@ -74,24 +74,24 @@ const courseSeed=[
   },
   {
     name:"Math",
-    numberOfSeats:7,
+    numberOfSeats:10,
     startDate:"1-14-2019",
-    endDate:"2-30-2019",
+    endDate:"6-30-2019",
     startTime:"07:30PM",
     endTime:"09:30PM",
-    location:"145 sip ave. Jersey City NJ, 07109",
+    location:"145 Prospect ave. Newark NJ, 07101",
     instructors:[],
     students:[],
     attendanceRecords:[]
   },
   {
     name:"History",
-    numberOfSeats:97,
+    numberOfSeats:50,
     startDate:"2-14-2019",
     endDate:"8-14-2019",
     startTime:"08:30PM",
     endTime:"10:30PM",
-    location:"15 taco st. Jersey City NJ, 07109",
+    location:"15 Mercer Dr. Rosewood PA, 19010",
     instructors:[],
     students:[],
     attendanceRecords:[]
@@ -101,26 +101,12 @@ const courseSeed=[
 const userSeed=
 [
   {
-    firstName:"first",
-    lastName:"last",
-    email:"1as@gmail.com",
+    firstName:"Billy",
+    lastName:"Fyre",
+    email:"awfulPerson@gmail.com",
     userName:"user1",
-    password:"test1"
-  },
-  {
-    firstName:"yuiy",
-    lastName:"asdf",
-    email:"fdf@yahoo.com",
-    userName:"user2",
-    password:"test2"
-  },
-  {
-    firstName:"sssss",
-    lastName:"fffd",
-    email:"afsdf@aol.com",
-    userName:"user3",
-    password:"test3"
-  },
+    password:"user1"
+    }
 ];
 // insertStudents=()=>{
 //   db.student

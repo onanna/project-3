@@ -100,7 +100,7 @@ class Course extends Component {
                             </div>
                             <div id="registerStudent" className="modal">
                                 <h4 id="modalHeader">Register Students</h4>
-                                <Register updateCourseInstructors={this.updateCourseInstructors} updateCourseStudents={this.updateCourseStudents} courseId={this.state.course._id} />            
+                                <Register  updateCourseInstructors={this.updateCourseInstructors} updateCourseStudents={this.updateCourseStudents} courseId={this.state.course._id} />            
                             </div>                            
                             <ul id="tabs-swipe" className="tabs">
                                 <li className="tab col s4"><a className="active" href="#courseContent">Course Details</a></li>
@@ -129,7 +129,7 @@ class Course extends Component {
                                     <ul>
                                         {this.state.course.instructors.map((current,i)=>{
                                             return(
-                                                <li className='flow-text light'>{`${current.firstName} ${current.lastName}`}</li>
+                                                <li key={i}className='flow-text light'>{`${current.firstName} ${current.lastName}`}</li>
                                             )
                                         })}
                                     </ul>
@@ -138,7 +138,7 @@ class Course extends Component {
                                     <ul>
                                         {this.state.course.students.map((current,i)=>{
                                             return(
-                                                <li className='flow-text light'>{`${current.firstName} ${current.lastName}`}</li>
+                                                <li key={i} className='flow-text light'>{`${current.firstName} ${current.lastName}`}</li>
                                             )
                                         })}
                                     </ul>
@@ -155,12 +155,12 @@ class Course extends Component {
                                 <ul className='collapsible'>
                                     {this.state.course.attendanceRecords.map((current,i)=>{
                                         return(
-                                                <li>
+                                                <li  key={i}>
                                                     <div className='collapsible-header flow-text'>{date.readDate(current.date)}</div>
                                                     <div className='collapsible-body'>
                                                         {current.students.map((current,i)=>{
                                                             return(
-                                                                <div className='row'>
+                                                                <div  key={i} className='row'>
                                                                     <div className='col s6 right-align'>
                                                                         <p className='stuAttName'>{`${current.student.firstName} ${current.student.lastName}`}</p>
                                                                     </div>
@@ -176,7 +176,7 @@ class Course extends Component {
                                     })}
                                 </ul>
 
-                                {this.state.course.students.length>0?
+                                {this.state.course.students.length>0 && this.state.course.instructors.length>0?
                                     <div>
                                         <p className='sendToText flow-text'>Send To Instructor</p>                            
                                         <Send attendLink={`https://gentle-garden-19053.herokuapp.com/attendance/temp362019/${this.props.token}/${this.state.course._id}`} clickFunction={this.sendAttendanceForm}instructors={this.state.course.instructors}/>

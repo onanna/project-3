@@ -9,9 +9,9 @@ router.route("/")
 router.route('/new-add/:courseId')
   .post((req,res)=>{
       let course =req.params.courseId;
-      let newUser = req.body
+      let newInst = req.body
 
-      instructor.makeAndAdd(newUser,course,res)
+      instructor.makeAndAdd(newInst,course,res)
 
   })
 

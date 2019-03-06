@@ -1,3 +1,4 @@
+import {Link} from 'react-router-dom';
 import React, { Component } from "react";
 import Pagecontainer from "../components/pageContainer/index"
 import API from "../utils/API"
@@ -42,27 +43,38 @@ class instructors extends Component{
                 <div className="row">
                     <div className="card hoverable">
                         <div className="card-image">
-                            <img src={instructorImg} alt="instructor" /> 
+                            <img src={instructorImg} alt="learning" /> 
                         </div>
                         <ul id="tabs-swipe" className="tabs">
-                            <li className="col s12"><center>All Instructors</center></li>
+                            <li className="col s12"><center>All Insructors</center></li>
                         </ul>
                     </div>
                 </div>
-                <div className="card hoverable grey lighten-3">
-                    {this.state.instructors.map((current,i)=>{
-                        return (
-                            <ul>
-                                <li key={i}><b>Name: </b>{current.firstName} {current.lastName}</li>
-                                <li key={i}><b>Email: </b>{current.email}</li>
-                                <li key={i}><b>Phone Number: </b>{current.phone}</li>
-                                <li key={i}><b>Currently Teaching: </b>{current.currentlyTeaching}</li>
-                                <li key={i}><b>Previously Taught: </b>{current.pastCourses}</li>
-                                <hr></hr>
-                            </ul>
-                        )
-                    })
-                    }
+                <div className='row'>
+                    <div className="card">
+                        <div className="col s12 grey lighten-3">  
+                            {this.state.instructors.map((current,i)=>{
+                                return (
+                                    <ul  key={i}>
+                                        <li><b>Name: </b>{`${current.firstName} ${current.lastName}`}</li>
+                                        <li><b>Email: </b>{current.email}</li>
+                                        <li><b>Phone Number: </b>{current.phone}</li>
+                                        <li> <b>Currently Teaching:</b> 
+                                            <ul>
+                                                {current.currentlyTeaching.map((current,i)=>{
+                                                    return(
+                                                        <li key={i}><Link target='_blank' rel="noopener noreferrer"  to={`/courses/detail/${current._id}`}>{current.name}</Link></li>
+                                                    )
+                                                })}
+                                            </ul>
+                                        </li>
+                                        <hr></hr>
+                                    </ul>
+                                )
+                            })
+                            }
+                        </div>
+                    </div>
                 </div>
             </Pagecontainer>
         )

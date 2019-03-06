@@ -12,6 +12,7 @@ router.route('/new-add/:courseId')
       let newStu = req.body
 
       student.makeAndAdd(newStu,course,res)
+      // res.send({newStu:newStu, course: course})
   })
 
 // matches with '/api/students/:id'
