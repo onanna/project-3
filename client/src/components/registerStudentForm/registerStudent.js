@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import "./../registerStudentForm/registerStudent.css";
 import API from "../../utils/API";
+import Submit from '../../components/submitButton/index'
 import InstructorSelect from "../../components/selectInstructors/selectInstructors";
 import StudentSelect from "../../components/selectStudents/selectStudents";
 const $ = window.$;
@@ -106,8 +107,11 @@ class Register extends Component {
                 <div className="collapsible-body">
                   <span>
                     <StudentSelect onChange={this.getSelectedStudents} />
+
+                    <div id="existStudentSubmit"><Submit submitFunction={this.handleFormSubmit}/></div>
                   </span>
                 </div>
+         
               </li>
 
               <li>
@@ -162,14 +166,7 @@ class Register extends Component {
                             />
                           </div>
                         </div>
-                        <button
-                          className="btn waves-effect waves-light"
-                          id="submit-btn"
-                          type="submit"
-                          name="action"
-                        >
-                          Submit<i class="material-icons right">send</i>
-                        </button>
+                        <div id="newStudentSubmit"><Submit submitFunction={this.handleFormSubmit}/></div>
                       </form>
                     </div>
                   </span>
@@ -192,6 +189,8 @@ class Register extends Component {
                 <div className="collapsible-body">
                   <span>
                     <InstructorSelect onChange={this.getSelectedInstructors} />
+
+                    <div id="existInstructSubmit"><Submit submitFunction={this.handleFormSubmit}/></div>
                   </span>
                 </div>
               </li>
@@ -248,14 +247,7 @@ class Register extends Component {
                             />
                           </div>
                         </div>
-                        <button
-                          className="btn waves-effect waves-light"
-                          id="submit-btn"
-                          type="submit"
-                          name="action"
-                        >
-                          Submit<i class="material-icons right">send</i>
-                        </button>
+                        <div id="newInstructSubmit"><Submit submitFunction={this.handleFormSubmit}/></div>
                       </form>
                     </div>
                   </span>
