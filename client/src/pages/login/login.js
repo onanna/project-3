@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import NewLoginForm from "../../components/newLoginForm/newLoginForm"
-// import styles from "./login.css";
+import styles from "./login.css";
 const $ = window.$;
 
 
