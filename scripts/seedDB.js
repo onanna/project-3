@@ -61,7 +61,7 @@ const instructorSeed = [
 
 const courseSeed=[
   {
-  name:"Biology",
+  name:"Basket Weaving",
   numberOfSeats:15,
   startDate:"3-04-2019",
   endDate:"3-08-2019",
@@ -73,7 +73,7 @@ const courseSeed=[
   attendanceRecords:[]
   },
   {
-    name:"Math",
+    name:"Personal Finance",
     numberOfSeats:10,
     startDate:"1-14-2019",
     endDate:"6-30-2019",
@@ -85,7 +85,7 @@ const courseSeed=[
     attendanceRecords:[]
   },
   {
-    name:"History",
+    name:"Intro To Python",
     numberOfSeats:50,
     startDate:"2-14-2019",
     endDate:"8-14-2019",
