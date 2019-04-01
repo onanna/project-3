@@ -362,14 +362,17 @@ class Register extends Component {
                   <span>
                     <StudentSelect onChange={this.selectStudentChange} />
                     <div id="existStudentSubmit"><Submit submitFunction={()=>this.addToRoster('students')}/></div>
-                    <div>{this.state.addExistStuNotice.length>0?
-                            this.state.addExistStuNotice.includes('Added')?
-                              <p className='successMessage'>{this.state.addExistStuNotice}</p>
-                              :
-                              <p className='errorMessage'>{this.state.addExistStuNotice}</p>
-                          :
-                          ''
-                        }</div>
+                      <div>
+                        {
+                          this.state.addExistStuNotice.length>0?
+                              this.state.addExistStuNotice.includes('Added')?
+                                <p className='successMessage'>{this.state.addExistStuNotice}</p>
+                                :
+                                <p className='errorMessage'>{this.state.addExistStuNotice}</p>
+                            :
+                            ''
+                          }
+                    </div>
                   </span>
                 </div>
          
@@ -463,14 +466,17 @@ class Register extends Component {
                   <span>
                     <InstructorSelect onChange={this.selectInstructorChange} />
                     <div id="existInstructSubmit"><Submit submitFunction={()=>this.addToRoster('instructors')}/></div>
-                    <div>{this.state.addExistInstNotice.length>0?
-                            this.state.addExistInstNotice.includes('Added')?
-                              <p className='successMessage'>{this.state.addExistInstNotice}</p>
-                              :
-                              <p className='errorMessage'>{this.state.addExistInstNotice}</p>
-                          :
-                          ''
-                        }</div>
+                    <div>
+                      {
+                        this.state.addExistInstNotice.length>0?
+                          this.state.addExistInstNotice.includes('Added')?
+                            <p className='successMessage'>{this.state.addExistInstNotice}</p>
+                            :
+                            <p className='errorMessage'>{this.state.addExistInstNotice}</p>
+                        :
+                        ''
+                      }
+                    </div>
                   </span>
                 </div>
               </li>

@@ -7,6 +7,9 @@ import Header from "../../components/h1withDivider";
 import Send from "../../components/sendAttendance/sendAttendance2"
 import booksImg from "../../images/books1.jpg";
 import * as date from '../../utils/dateReaders';
+import StudentSelect from "../../components/selectStudents/selectStudents";
+import InstructorSelect from "../../components/selectInstructors/selectInstructors";
+import Submit from '../../components/submitButton/index'
 const $ = window.$;
 
 
@@ -19,7 +22,11 @@ class Course extends Component {
         },
         instructorsToAdd:[],
         studentsToAdd:[],
-        hasBeenSent:false
+        addExistStuNotice:'',
+        addExistInstNotice:'',
+        hasBeenSent:false,
+        showStuSelect:false,
+        showInsSelect:false
     }
   
     constructor(props){
@@ -64,6 +71,125 @@ class Course extends Component {
             studentsToAdd:studentsSelected
         })
     }
+
+    selectStudentChange=(currentList)=>{
+        if(currentList.length<1){
+          $('#existStudentSubmit2').css('display','none');
+        }else{
+          $('#existStudentSubmit2').css('display','inherit')
+        }
+      
+      this.setState((prev)=>({
+        studentsToAdd:currentList
+      }))
+    }
+
+    selectInstructorChange=(currentList)=>{
+        if(currentList.length<1){
+          $('#existInstructSubmit2').css('display','none');
+        }else{
+          $('#existInstructSubmit2').css('display','inherit')
+        }
+        this.setState((prev)=>({
+          instructorsToAdd:currentList
+        }))
+    }
+
+    showSelect=(whichSelect)=>{
+
+        switch(whichSelect){
+            case "students":
+                if(this.state.showStuSelect===false){
+                    this.setState((prev)=>({
+                        showStuSelect:true
+                    }))
+                }else{
+                    this.setState((prev)=>({
+                        showStuSelect:false
+                    }))
+                }
+            break;
+
+            case "instructors":
+                if(this.state.showInsSelect===false){
+                    this.setState((prev)=>({
+                        showInsSelect:true
+                    }))
+                }else{
+                    this.setState((prev)=>({
+                        showInsSelect:false
+                    }))
+                }
+            break;
+        }
+ 
+    }
+
+    addToRoster=(roster,optionalData)=>{
+
+        let whoToAdd;
+        let data;
+        switch(roster){
+          case 'students':
+            whoToAdd=this.state.studentsToAdd;
+            alert(JSON.stringify(whoToAdd))
+            data=[];
+            whoToAdd.forEach((current,i)=>{
+              data.push(current.value)
+            })
+            if(data.length<1) return;
+            API.addStudentsToCourse(this.state.course._id,data)
+            .then(result=>{
+              if(result.data.success){
+                this.setState((prev)=>({
+                  addExistStuNotice: data.length===1? `Student Added Successfully!` : 'Students Added Successfully!',
+                }))
+                this.updateCourseStudents(result.data.success.students)
+                setTimeout(()=>{
+                  this.setState((prev)=>({
+                    addExistStuNotice:'',
+                    showStuSelect:false
+                  }))
+                },1500)
+              }
+            })
+            .catch(error=>{
+              alert('error '+JSON.stringify(error))
+            })
+          break;
+    
+          case 'instructors':
+            whoToAdd=this.state.instructorsToAdd;
+            data=[];
+            whoToAdd.forEach((current,i)=>{
+              data.push(current.value)
+            })
+            if(data.length<1) return;
+            API.addInstructorsToCourse(this.state.course._id,data)
+            .then(result=>{
+              if(result.data.success){
+                this.setState((prev)=>({
+                  addExistInstNotice: data.length===1? `Instructor Added Successfully!` : 'Instructors Added Successfully!',
+                }))
+                this.updateCourseInstructors(result.data.success.instructors)
+                setTimeout(()=>{
+                  this.setState((prev)=>({
+                    addExistStuNotice:'',
+                    showInsSelect:false
+                  }))
+                },1500)
+              }
+            })
+            .catch(error=>{
+              alert('error '+JSON.stringify(error))
+            })
+          break;
+    
+          default:
+          break;
+        }
+    }
+
     componentDidMount=()=>{
         $('.modal').modal();
         $('.collapsible').collapsible();
@@ -107,31 +233,76 @@ class Course extends Component {
                             </div> 
 
                             <div id="classRoster" className="col s12 grey lighten-3 tabContent center-align courseTab">
-                            {this.state.course.students.length>0 || this.state.course.instructors.length>0?
+                                                                                   
+                            {/* {this.state.course.students.length>0 || this.state.course.instructors.length>0? */}
                                 <div>
-                                    <h4 className='bold m-top'>Roster</h4>
+                                    <h4 className='bold m-top left-align'>Roster</h4>
                                     
-                                    <p className='flow-text rosterHeader'>{this.state.course.instructors.length>0? 'Instructors':''}</p>
-                                    <ul>
+                                    <p className='flow-text rosterHeader left-align'>{this.state.course.instructors.length>0? 'Instructors':''}</p>
+                                    <ul className='left-align'>
                                         {this.state.course.instructors.map((current,i)=>{
                                             return(
                                                 <li key={i}className='flow-text light'>{`${current.firstName} ${current.lastName}`}</li>
                                             )
                                         })}
+
+                                        {
+                                            this.state.showInsSelect===false?
+
+                                            <li><a className='btn-small addPersonButton' onClick={()=>this.showSelect('instructors')}><i class="addPerson flow-text material-icons right-align">add</i></a></li>
+                                            :
+                                            <div>
+                                                <InstructorSelect onChange={this.selectInstructorChange} />
+                                                <div id="existInstructSubmit2"><Submit submitFunction={()=>this.addToRoster('instructors')}/></div>
+                                                <div>
+                                                {
+                                                    this.state.addExistInstNotice.length>0?
+                                                    this.state.addExistInstNotice.includes('Added')?
+                                                        <p className='successMessage'>{this.state.addExistInstNotice}</p>
+                                                        :
+                                                        <p className='errorMessage'>{this.state.addExistInstNotice}</p>
+                                                    :
+                                                    ''
+                                                }
+                                                </div>
+                                            </div>
+                                        }
                                     </ul>
                                     
-                                    <p className='flow-text rosterHeader'>{this.state.course.students.length>0? 'Students':''}</p>
-                                    <ul className='bottom'>
+                                    <p className='flow-text rosterHeader left-align'>{this.state.course.students.length>0? 'Students':''}</p>
+                                    <ul className='bottom left-align'>
                                         {this.state.course.students.map((current,i)=>{
                                             return(
                                                 <li key={i} className='flow-text light'>{`${current.firstName} ${current.lastName}`}</li>
                                             )
                                         })}
+
+                                        {
+                                            this.state.showStuSelect===false?
+
+                                            <li><a className='btn-small addPersonButton' onClick={()=>this.showSelect('students')}><i class="addPerson flow-text material-icons right-align">add</i></a></li>
+                                            :
+                                            <div>
+                                                <StudentSelect onChange={this.selectStudentChange} />
+                                                <div id="existStudentSubmit2"><Submit submitFunction={()=>this.addToRoster('students')}/></div>
+                                                <div>
+                                                    {
+                                                    this.state.addExistStuNotice.length>0?
+                                                        this.state.addExistStuNotice.includes('Added')?
+                                                            <p className='successMessage'>{this.state.addExistStuNotice}</p>
+                                                            :
+                                                            <p className='errorMessage'>{this.state.addExistStuNotice}</p>
+                                                        :
+                                                        ''
+                                                    }
+                                                </div>
+                                            </div>
+                                        }
                                     </ul>
                                 </div>
-                            :
+                            {/* :
                                 <h4>Nobody Here Yet</h4>        
-                            }
+                            } */}
                                 
                             </div>
 
