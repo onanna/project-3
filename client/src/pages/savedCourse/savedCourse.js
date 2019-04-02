@@ -203,12 +203,16 @@ class Course extends Component {
     render(){
         return(
             <PageContainer>
-                <Header align='center' text={this.state.course.name}/>
                 <div className="row" id="courseCard"> 
                     <div className="col s12 m6">
                         <div className="card">
                             <div className="card-image">
-                                <img src={booksImg} alt="books" /> 
+                                {/* <img src={booksImg} alt="books" /> */}
+                                <img src='https://png.pngtree.com/thumb_back/fw800/back_pic/00/01/88/65560ceffb360e4.jpg' />
+                                <img src='https://png.pngtree.com/thumb_back/fw800/back_pic/00/01/87/34560c9a55c41fd.jpg' />
+                                <img src='https://png.pngtree.com/thumb_back/fw800/back_pic/00/01/88/99560cf3e33f5a8.jpg' />
+                                <img src='https://png.pngtree.com/thumb_back/fw800/back_pic/00/02/00/41560f3c6f9dadb.jpg'/>
+                                <span id='cardTitle' className='card-title flow-text'>{this.state.course.name}</span> 
                             </div>
                             <div id="registerStudent" className="modal">
                                 <h4 id="modalHeader">Register Students</h4>
@@ -232,78 +236,69 @@ class Course extends Component {
                                 <p className='bottom'><b>Location:</b> {this.state.course.location}</p>
                             </div> 
 
-                            <div id="classRoster" className="col s12 grey lighten-3 tabContent center-align courseTab">
+                            <div id="classRoster" className="col s12 grey lighten-3 tabContent left-align courseTab">
                                                                                    
-                            {/* {this.state.course.students.length>0 || this.state.course.instructors.length>0? */}
-                                <div>
-                                    <h4 className='bold m-top left-align'>Roster</h4>
-                                    
-                                    <p className='flow-text rosterHeader left-align'>{this.state.course.instructors.length>0? 'Instructors':''}</p>
-                                    <ul className='left-align'>
-                                        {this.state.course.instructors.map((current,i)=>{
-                                            return(
-                                                <li key={i}className='flow-text light'>{`${current.firstName} ${current.lastName}`}</li>
-                                            )
-                                        })}
-
-                                        {
-                                            this.state.showInsSelect===false?
-
-                                            <li><a className='btn-small addPersonButton' onClick={()=>this.showSelect('instructors')}><i class="addPerson flow-text material-icons right-align">add</i></a></li>
-                                            :
-                                            <div>
-                                                <InstructorSelect onChange={this.selectInstructorChange} />
-                                                <div id="existInstructSubmit2"><Submit submitFunction={()=>this.addToRoster('instructors')}/></div>
-                                                <div>
-                                                {
-                                                    this.state.addExistInstNotice.length>0?
-                                                    this.state.addExistInstNotice.includes('Added')?
-                                                        <p className='successMessage'>{this.state.addExistInstNotice}</p>
-                                                        :
-                                                        <p className='errorMessage'>{this.state.addExistInstNotice}</p>
-                                                    :
-                                                    ''
-                                                }
-                                                </div>
-                                            </div>
-                                        }
-                                    </ul>
-                                    
-                                    <p className='flow-text rosterHeader left-align'>{this.state.course.students.length>0? 'Students':''}</p>
-                                    <ul className='bottom left-align'>
-                                        {this.state.course.students.map((current,i)=>{
-                                            return(
-                                                <li key={i} className='flow-text light'>{`${current.firstName} ${current.lastName}`}</li>
-                                            )
-                                        })}
-
-                                        {
-                                            this.state.showStuSelect===false?
-
-                                            <li><a className='btn-small addPersonButton' onClick={()=>this.showSelect('students')}><i class="addPerson flow-text material-icons right-align">add</i></a></li>
-                                            :
-                                            <div>
-                                                <StudentSelect onChange={this.selectStudentChange} />
-                                                <div id="existStudentSubmit2"><Submit submitFunction={()=>this.addToRoster('students')}/></div>
-                                                <div>
-                                                    {
-                                                    this.state.addExistStuNotice.length>0?
-                                                        this.state.addExistStuNotice.includes('Added')?
-                                                            <p className='successMessage'>{this.state.addExistStuNotice}</p>
-                                                            :
-                                                            <p className='errorMessage'>{this.state.addExistStuNotice}</p>
-                                                        :
-                                                        ''
-                                                    }
-                                                </div>
-                                            </div>
-                                        }
-                                    </ul>
-                                </div>
-                            {/* :
-                                <h4>Nobody Here Yet</h4>        
-                            } */}
+                                <h4 className='bold m-top left-align'>Roster</h4>
                                 
+                                <p className='flow-text rosterHeader left-align'>Instructors</p>
+                                <ol className='left-align'>
+                                    {this.state.course.instructors.map((current,i)=>{
+                                        return(
+                                            <li key={i}className='flow-text light'>{`${current.firstName} ${current.lastName}`}</li>
+                                        )
+                                    })}
+                                </ol>
+                                {
+                                    this.state.showInsSelect===false?
+
+                                    <a className='btn-small addPersonButton' onClick={()=>this.showSelect('instructors')}><i class="addPerson flow-text material-icons right-align">add</i></a>
+                                    :
+                                    <div>
+                                        <InstructorSelect onChange={this.selectInstructorChange} />
+                                        <div id="existInstructSubmit2"><Submit submitFunction={()=>this.addToRoster('instructors')}/></div>
+                                        <div>
+                                        {
+                                            this.state.addExistInstNotice.length>0?
+                                            this.state.addExistInstNotice.includes('Added')?
+                                                <p className='successMessage'>{this.state.addExistInstNotice}</p>
+                                                :
+                                                <p className='errorMessage'>{this.state.addExistInstNotice}</p>
+                                            :
+                                            ''
+                                        }
+                                        </div>
+                                    </div>
+                                }
+                                
+                                <p className='flow-text rosterHeader left-align'>Students</p>
+                                <ol className=' left-align'>
+                                    {this.state.course.students.map((current,i)=>{
+                                        return(
+                                            <li key={i} className='flow-text light'>{`${current.firstName} ${current.lastName}`}</li>
+                                        )
+                                    })}
+                                </ol>
+                                {
+                                    this.state.showStuSelect===false?
+
+                                    <a className='btn-small addPersonButton' onClick={()=>this.showSelect('students')}><i class="addPerson flow-text material-icons right-align">add</i></a>
+                                    :
+                                    <div>
+                                        <StudentSelect onChange={this.selectStudentChange} />
+                                        <div id="existStudentSubmit2"><Submit submitFunction={()=>this.addToRoster('students')}/></div>
+                                        <div>
+                                            {
+                                            this.state.addExistStuNotice.length>0?
+                                                this.state.addExistStuNotice.includes('Added')?
+                                                    <p className='successMessage'>{this.state.addExistStuNotice}</p>
+                                                    :
+                                                    <p className='errorMessage'>{this.state.addExistStuNotice}</p>
+                                                :
+                                                ''
+                                            }
+                                        </div>
+                                    </div>
+                                }
                             </div>
 
                             <div id="test-swipe-3" className="col s12 grey lighten-3 tabContent courseTab">
@@ -347,7 +342,7 @@ class Course extends Component {
                         </div>
                         
                         {/* Register Student/ Add Instructor Button */}
-                        <a id='LightBlue'className="btn modal-trigger tooltipped btn-large btn-floating halfway-fab waves-effect waves-light" href="#registerStudent" data-target="registerStudent" data-position="right" data-tooltip="Add Student &amp; Instructors"><i className="material-icons">add</i></a>
+                        {/* <a id='LightBlue'className="btn modal-trigger tooltipped btn-large btn-floating halfway-fab waves-effect waves-light" href="#registerStudent" data-target="registerStudent" data-position="right" data-tooltip="Add Student &amp; Instructors"><i className="material-icons">add</i></a> */}
                     </div>
                 </div>
             </PageContainer>    

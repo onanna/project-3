@@ -235,19 +235,19 @@ class Newloginform extends Component {
                                 {/* This section will appear only when the user clicks the create an account "click here" button */}
                                 <div className="createnewaccount" style={style}>
                                   <div className="input-field">
-                                    <i className="material-icons prefix">person_outline</i>
+                                    {/* <i className="material-icons prefix">person_outline</i> */}
                                     <input onChange={this.handleInputChange} name="firstname" id="firstname" type="text" />
                                     <label id='loginFirst'className="forColorClear" htmlFor="first_name">First Name</label>
                                   </div>
 
                                   <div className="input-field">
-                                      <i className="material-icons prefix">person</i>
+                                      {/* <i className="material-icons prefix">person</i> */}
                                       <input onChange={this.handleInputChange} name="lastname" id="lastname" type="text" />
                                       <label id='loginLast' className="forColorClear" htmlFor="last_name">Last Name</label>
                                   </div>
 
                                   <div className="input-field">
-                                      <i className="material-icons prefix">email</i>
+                                      {/* <i className="material-icons prefix">email</i> */}
                                       <input onChange={this.handleInputChange} name="email" id="email" type="text" />
                                       <label id='loginEmail'className="forColorClear" htmlFor="email">Email</label>
                                   </div>
@@ -255,13 +255,13 @@ class Newloginform extends Component {
 
                                 {/* These fields will appear regardless as they are part of both new account creation and existing user login */}
                                 <div className="input-field">
-                                    <i className="material-icons prefix">account_box</i>
+                                    {/* <i className="material-icons prefix">account_box</i> */}
                                     <input onChange={this.handleInputChange} name="username" id="username" type="text" />
                                     <label id='loginUser'className="forColorClear" htmlFor="last_name">Username</label>
                                 </div>
 
                                 <div className="input-field">
-                                    <i className="material-icons prefix">lock</i>
+                                    {/* <i className="material-icons prefix">lock</i> */}
                                     <input onChange={this.handleInputChange} id="password" type="password" name="password" />
                                     <label id='loginPassword'className="forColorClear" htmlFor="last_name">Password</label>
                                 </div>
@@ -269,7 +269,7 @@ class Newloginform extends Component {
                                 {
                                   this.state.createnewaccount?
                                     <div className="input-field">
-                                        <i className="material-icons prefix">lock</i>
+                                        {/* <i className="material-icons prefix">lock</i> */}
                                         <input id="confirmPassword" type="password" name="password" />
                                         <label id='loginConfirm' className="forColorClear" htmlFor="last_name">Confirm Password</label>
                                     </div>

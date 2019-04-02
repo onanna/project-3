@@ -129,8 +129,12 @@ class Home extends Component{
    render(){
         return(
             <Pagecontainer>
-                <Header align='left' text="All Courses"/>
                 <div className='mainClass row'>
+                    <div className='left col s12 m6 mainCourseCol'>
+                        <div className='mainCourseCard addCard card small hoverable center-align'>
+                            <i class="material-icons large">add_circle</i>
+                        </div>
+                    </div>
                     {
                         this.state.allCourses.map((current,i)=>{
                             return(

@@ -3,6 +3,30 @@
   background-image:url('https://png.pngtree.com/thumb_back/fh260/back_pic/03/74/98/0557bd128221118.jpg');
 }
 
+@media only screen and (max-width : 414px) {
+    body {
+      min-height:1000px;
+    }
+}
+
+@media only screen and (min-width : 414px) {
+    body {
+      min-height:1300px;
+    }
+
+    .card .card-image img{
+        /* max-height:333px; */
+        /* max-width:705px; */
+        max-height:200px;
+    }
+}
+
+#cardTitle{
+    top:0;
+    font-weight:bold;
+    font-size:2em;
+}
+
 #submitAddStu{
     margin-top:0px;
     width:50%;
@@ -71,8 +95,10 @@ li.indicator{
 }
 
 .addPersonButton{
+    margin-top:20px;
     background-color:#039be5;
-    width: 30%;
+    /* width: 30%; */
+    width: 100%;
 }
 
 i.addPerson{
