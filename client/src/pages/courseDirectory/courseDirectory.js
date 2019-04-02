@@ -13,9 +13,9 @@ class Home extends Component{
     }
 
     componentDidMount(){
-        this.getCourses();
-        this.getAllStudents();
-        this.getInstructors();
+        this.getCourses(this.props.user);
+        // this.getAllStudents();
+        // this.getInstructors();
     }
     
     getInstructors=()=>{
@@ -28,8 +28,9 @@ class Home extends Component{
             .then(res => this.setState({ students: res.data }))
             .catch(err => console.log(err));
     }
-    getCourses=()=>{
-        API.getAllCourses()
+
+    getCourses=(userId)=>{
+        API.getAllCourses(userId)
             .then(res => this.setState({allCourses:res.data}))
             .catch(err => console.log(err));
     }

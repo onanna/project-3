@@ -46,8 +46,8 @@ export default {
    
 // ---------------------------COURSE FUNCTIONS---------------------------
 
-  getAllCourses:function(){
-    return axios.get("/api/courses")
+  getAllCourses:function(user){
+    return axios.get(`/api/courses/user/${user}`)
   },
   getOneCourse:function(id){
     return axios.get(`/api/courses/${id}`)

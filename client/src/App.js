@@ -94,8 +94,10 @@ class App extends Component{
 
     // alert("about to set state to empty")
     this.setState((prevState)=>({
-      token:''
+      token:'',
+      user:{}
     }))
+    // window.location.replace('/')
   }
 
   render(){
@@ -137,7 +139,7 @@ class App extends Component{
             <div>
               <Sidenav userName={this.state.user.userName} deleteToken={this.deleteToken} />
               <Switch>
-                <Route exact path="/" component={AllCourses} />
+                <Route exact path="/" render={(props)=><AllCourses {...props} user={this.state.user.id}/>} />
                 <Route exact path="/profile" render={(props)=><UserProfile {...props} user={this.state.user}/>} />
                 
                 <Route exact path="/students/all" component={StuDirectory} />
@@ -147,7 +149,7 @@ class App extends Component{
                 <Route exact path="/courses/detail/:id" render={(props)=><Course {...props} token={this.state.token}/>} />
                 {/* <Route exact path="/attendance/temp362019/:token/:courseId" component={AttendanceForm} /> */}
                 
-                <Route exact path="/newcourse" component={NewCourse}  />
+                <Route exact path="/newcourse" render={(props)=><NewCourse {...props} user={this.state.user.id}/>}  />
                 <Route exact path="/newinstructorform" component={NewInstructor}  />
               </Switch>
             </div>
