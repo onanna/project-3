@@ -4,7 +4,9 @@ const instructor = require("../../controllers/instructorController");
 //matches with "/api/instructors" 
 router.route("/")
     .get(instructor.getAll)
-    .post((data)=>instructor.add(data));
+    .post((req,res)=>{
+        instructor.add(req,res)
+      })
 
 router.route('/new-add/:courseId')
   .post((req,res)=>{

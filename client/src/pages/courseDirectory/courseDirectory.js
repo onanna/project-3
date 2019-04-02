@@ -1,8 +1,9 @@
 import React, {Component } from "react";
-import Pagecontainer from "../components/pageContainer"
-import API from "../utils/API";
-import Header from "../components/h1withDivider";
-import CourseCard from '../components/courseCard/courseCard'
+import Pagecontainer from "../../components/pageContainer"
+import API from "../../utils/API";
+import Header from "../../components/h1withDivider";
+import CourseCard from '../../components/courseCard/courseCard'
+import './style.css'
 
 class Home extends Component{
     state={
@@ -128,13 +129,17 @@ class Home extends Component{
    
    render(){
         return(
+            <div>
+            <a href='/newcourse'id='courseAddButton'class="fixed-action-btn btn-floating btn-large red"><i class="material-icons">add</i></a>
+            {/* <h3 id='buttonLabel'>Add Course</h3> */}
+            <h3 id='buttonLabel'>Add</h3>
             <Pagecontainer>
                 <div className='mainClass row'>
-                    <div className='left col s12 m6 mainCourseCol'>
+                    {/* <div className='left col s12 m6 mainCourseCol'>
                         <div className='mainCourseCard addCard card small hoverable center-align'>
                             <i class="material-icons large">add_circle</i>
                         </div>
-                    </div>
+                    </div> */}
                     {
                         this.state.allCourses.map((current,i)=>{
                             return(
@@ -149,6 +154,7 @@ class Home extends Component{
                     }
                 </div>
             </Pagecontainer>
+            </div>
         )
    }
 

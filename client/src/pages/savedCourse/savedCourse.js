@@ -6,6 +6,7 @@ import API from "../../utils/API";
 import Header from "../../components/h1withDivider";
 import Send from "../../components/sendAttendance/sendAttendance2"
 import booksImg from "../../images/books1.jpg";
+import NightImg from '../../images/nightBanner.jpg'
 import * as date from '../../utils/dateReaders';
 import StudentSelect from "../../components/selectStudents/selectStudents";
 import InstructorSelect from "../../components/selectInstructors/selectInstructors";
@@ -14,6 +15,7 @@ const $ = window.$;
 
 
 class Course extends Component {
+    
     state={
         course:{
             instructors:[],
@@ -132,7 +134,6 @@ class Course extends Component {
         switch(roster){
           case 'students':
             whoToAdd=this.state.studentsToAdd;
-            alert(JSON.stringify(whoToAdd))
             data=[];
             whoToAdd.forEach((current,i)=>{
               data.push(current.value)
@@ -174,7 +175,7 @@ class Course extends Component {
                 this.updateCourseInstructors(result.data.success.instructors)
                 setTimeout(()=>{
                   this.setState((prev)=>({
-                    addExistStuNotice:'',
+                    addExistInstNotice:'',
                     showInsSelect:false
                   }))
                 },1500)
@@ -208,10 +209,12 @@ class Course extends Component {
                         <div className="card">
                             <div className="card-image">
                                 {/* <img src={booksImg} alt="books" /> */}
-                                <img src='https://png.pngtree.com/thumb_back/fw800/back_pic/00/01/88/65560ceffb360e4.jpg' />
-                                <img src='https://png.pngtree.com/thumb_back/fw800/back_pic/00/01/87/34560c9a55c41fd.jpg' />
+                                <img src={NightImg} alt='Night Sky Banner'/>
+                                {/* <img src='https://www.rmg.co.uk/sites/default/files/styles/banner/public/August%20NSH%20banner.jpg?itok=tvQxyj6W' /> */}
+                                
+                                {/* <img src='https://png.pngtree.com/thumb_back/fw800/back_pic/00/01/87/34560c9a55c41fd.jpg' />
                                 <img src='https://png.pngtree.com/thumb_back/fw800/back_pic/00/01/88/99560cf3e33f5a8.jpg' />
-                                <img src='https://png.pngtree.com/thumb_back/fw800/back_pic/00/02/00/41560f3c6f9dadb.jpg'/>
+                                <img src='https://png.pngtree.com/thumb_back/fw800/back_pic/00/02/00/41560f3c6f9dadb.jpg'/> */}
                                 <span id='cardTitle' className='card-title flow-text'>{this.state.course.name}</span> 
                             </div>
                             <div id="registerStudent" className="modal">
@@ -248,15 +251,15 @@ class Course extends Component {
                                         )
                                     })}
                                 </ol>
-                                {
-                                    this.state.showInsSelect===false?
-
+                                {   
+                                    this.state.course.instructors.length>0 && this.state.showInsSelect===false?
+                                    
                                     <a className='btn-small addPersonButton' onClick={()=>this.showSelect('instructors')}><i class="addPerson flow-text material-icons right-align">add</i></a>
                                     :
                                     <div>
                                         <InstructorSelect onChange={this.selectInstructorChange} />
                                         <div id="existInstructSubmit2"><Submit submitFunction={()=>this.addToRoster('instructors')}/></div>
-                                        <div>
+                                        <div className='center-align errorRow'>
                                         {
                                             this.state.addExistInstNotice.length>0?
                                             this.state.addExistInstNotice.includes('Added')?
@@ -264,7 +267,7 @@ class Course extends Component {
                                                 :
                                                 <p className='errorMessage'>{this.state.addExistInstNotice}</p>
                                             :
-                                            ''
+                                            <div></div>
                                         }
                                         </div>
                                     </div>
@@ -279,14 +282,14 @@ class Course extends Component {
                                     })}
                                 </ol>
                                 {
-                                    this.state.showStuSelect===false?
+                                    this.state.course.students.length>0 && this.state.showStuSelect===false?
 
                                     <a className='btn-small addPersonButton' onClick={()=>this.showSelect('students')}><i class="addPerson flow-text material-icons right-align">add</i></a>
                                     :
                                     <div>
                                         <StudentSelect onChange={this.selectStudentChange} />
                                         <div id="existStudentSubmit2"><Submit submitFunction={()=>this.addToRoster('students')}/></div>
-                                        <div>
+                                        <div className='center-align errorRow'>
                                             {
                                             this.state.addExistStuNotice.length>0?
                                                 this.state.addExistStuNotice.includes('Added')?
@@ -331,7 +334,7 @@ class Course extends Component {
                                 {this.state.course.students.length>0 && this.state.course.instructors.length>0?
                                     <div className='bottom'>
                                         <p className='sendToText flow-text'>Send To Instructor</p>                            
-                                        <Send attendLink={`https://gentle-garden-19053.herokuapp.com/attendance/temp362019/${this.props.token}/${this.state.course._id}`} clickFunction={this.sendAttendanceForm}instructors={this.state.course.instructors}/>
+                                        <Send instructors={this.state.instructors} attendLink={`https://gentle-garden-19053.herokuapp.com/attendance/temp362019/${this.props.token}/${this.state.course._id}`} clickFunction={this.sendAttendanceForm}instructors={this.state.course.instructors}/>
                                         <a href={`/attendance/temp362019/${this.props.token}/${this.state.course._id}`} target="_blank">Attendance Form</a>
                                     </div>
                                 :
