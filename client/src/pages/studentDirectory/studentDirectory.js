@@ -182,102 +182,108 @@ class Home extends Component{
                     </div>
                 </div>
                  
-                <div className="row">
-                    <div id='students' className="card">
-                        <div className='card-content'>
+                {
+                    this.state.students.length>0 || this.state.addingNew===true?
+                    
+                    <div className="row">
+                        <div id='students' className="card">
+                            <div className='card-content'>
 
-                            {
-                                this.state.addingNew===false?
+                                {
+                                    this.state.addingNew===false?
 
-                                <div className="col s12 ">  
-                                    {this.state.students.map((current,i)=>{
-                                        return (
-                                            <ul  key={i}>
-                                                <li><b>Name: </b>{`${current.firstName} ${current.lastName}`}</li>
-                                                <li><b>Email: </b>{current.email}</li>
-                                                <li><b>Phone Number: </b>{current.phone}</li>
-                                                <li> <b>Currently Enrolled:</b> 
-                                                    <ul>
-                                                        {current.currentlyEnrolled.map((current,i)=>{
-                                                            return(
-                                                                <li key={i}><Link target='_blank' rel="noopener noreferrer"  to={`/courses/detail/${current._id}`}>{current.name}</Link></li>
-                                                            )
-                                                        })}
-                                                    </ul>
-                                                </li>
-                                                <hr></hr>
-                                            </ul>
-                                        )
-                                    })
-                                    }
-                                </div>
-                                :
-                                <div>
-                                    <div className="row">
-                                    <form className="col s12" onSubmit={this.handleOnSubmit}>
-                                        <div className="row">
-                                        <div className="input-field col s6">
-                                            <i className="material-icons prefix forColorClear" id='stuFirstName'>account_circle</i>
-                                            <input
-                                            id="fName"
-                                            type="text"
-                                            placeholder="First Name"
-                                            value={this.state.firstName}
-                                            onChange={this.handleFirstNameChange}
-                                            />
-                                        </div>
-
-                                        <div className="input-field col s6">
-                                            <i className="material-icons prefix forColorClear"id='stuLastName'>account_circle</i>
-                                            <input
-                                            id="lName"
-                                            type="text"
-                                            placeholder="Last Name"
-                                            value={this.state.lastName}
-                                            onChange={this.handleLastNameChange}
-                                            />
-                                        </div>
-                                        </div>
-
-                                        <div className="row">
-                                        <div className="input-field col s6">
-                                            <i className="material-icons prefix forColorClear"id='stuEmail'>email</i>
-                                            <input
-                                            id="email"
-                                            type="text"
-                                            placeholder="Email"
-                                            value={this.state.email}
-                                            onChange={this.handleEmailChange}
-                                            />
-                                        </div>
-
-                                        <div className="input-field col s6">
-                                            <i className="material-icons prefix forColorClear"id='stuPhone'>phone</i>
-                                            <input
-                                            id="phone"
-                                            type="text"
-                                            placeholder="Phone"
-                                            value={this.state.phone}
-                                            onChange={this.handlePhoneChange}
-                                            />
-                                        </div>
-                                        </div>
-                                        <div className='center-align errorRow'>{this.state.addNewStuNotice.length>0?
-                                            this.state.addNewStuNotice.includes('Added')?
-                                            <p className='successMessage'>{this.state.addNewStuNotice}</p>
-                                            :
-                                            <p className='errorMessage'>{this.state.addNewStuNotice}</p>
-                                        :
-                                        ''
-                                        }</div>
-                                        <div id="newStudentSubmit"><Submit submitFunction={this.handleFormSubmit}/></div>
-                                    </form>
+                                    <div className="col s12 ">  
+                                        {this.state.students.map((current,i)=>{
+                                            return (
+                                                <ul  key={i}>
+                                                    <li><b>Name: </b>{`${current.firstName} ${current.lastName}`}</li>
+                                                    <li><b>Email: </b>{current.email}</li>
+                                                    <li><b>Phone Number: </b>{current.phone}</li>
+                                                    <li> <b>Currently Enrolled:</b> 
+                                                        <ul>
+                                                            {current.currentlyEnrolled.map((current,i)=>{
+                                                                return(
+                                                                    <li key={i}><Link target='_blank' rel="noopener noreferrer"  to={`/courses/detail/${current._id}`}>{current.name}</Link></li>
+                                                                )
+                                                            })}
+                                                        </ul>
+                                                    </li>
+                                                    <hr></hr>
+                                                </ul>
+                                            )
+                                        })
+                                        }
                                     </div>
-                                </div>
-                            }
+                                    :
+                                    <div>
+                                        <div className="row">
+                                        <form className="col s12" onSubmit={this.handleOnSubmit}>
+                                            <div className="row">
+                                            <div className="input-field col s6">
+                                                <i className="material-icons prefix forColorClear" id='stuFirstName'>account_circle</i>
+                                                <input
+                                                id="fName"
+                                                type="text"
+                                                placeholder="First Name"
+                                                value={this.state.firstName}
+                                                onChange={this.handleFirstNameChange}
+                                                />
+                                            </div>
+
+                                            <div className="input-field col s6">
+                                                <i className="material-icons prefix forColorClear"id='stuLastName'>account_circle</i>
+                                                <input
+                                                id="lName"
+                                                type="text"
+                                                placeholder="Last Name"
+                                                value={this.state.lastName}
+                                                onChange={this.handleLastNameChange}
+                                                />
+                                            </div>
+                                            </div>
+
+                                            <div className="row">
+                                            <div className="input-field col s6">
+                                                <i className="material-icons prefix forColorClear"id='stuEmail'>email</i>
+                                                <input
+                                                id="email"
+                                                type="text"
+                                                placeholder="Email"
+                                                value={this.state.email}
+                                                onChange={this.handleEmailChange}
+                                                />
+                                            </div>
+
+                                            <div className="input-field col s6">
+                                                <i className="material-icons prefix forColorClear"id='stuPhone'>phone</i>
+                                                <input
+                                                id="phone"
+                                                type="text"
+                                                placeholder="Phone"
+                                                value={this.state.phone}
+                                                onChange={this.handlePhoneChange}
+                                                />
+                                            </div>
+                                            </div>
+                                            <div className='center-align errorRow'>{this.state.addNewStuNotice.length>0?
+                                                this.state.addNewStuNotice.includes('Added')?
+                                                <p className='successMessage'>{this.state.addNewStuNotice}</p>
+                                                :
+                                                <p className='errorMessage'>{this.state.addNewStuNotice}</p>
+                                            :
+                                            ''
+                                            }</div>
+                                            <div id="newStudentSubmit"><Submit submitFunction={this.handleFormSubmit}/></div>
+                                        </form>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
                         </div>
                     </div>
-                </div>
+                    :
+                    <div></div>
+                }
             </Pagecontainer>
         )
     }
