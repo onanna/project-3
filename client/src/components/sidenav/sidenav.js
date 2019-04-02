@@ -14,10 +14,10 @@ function sidenav(props){
                     <a href={'/profile'}><span className="name">{props.userName}</span></a>
                     <div className='divider'></div>
                     </div></li>
-                <li className="firstItem sidenav-close"><a className='sideLink'href="/">Home</a></li>
+                <li className="firstItem sidenav-close"><a className='sideLink'href="/">Courses</a></li>
                 <li className="sidenav-close"><a className='sideLink' href="/students/all">Students</a></li>
                 <li className="sidenav-close"><a className='sideLink'href="/instructors/all">Instructors</a></li>
-                <li className="sidenav-close"><a className='sideLink'href="/newcourse">Add Course</a></li>
+                {/* <li className="sidenav-close"><a className='sideLink'href="/newcourse">Add Course</a></li> */}
                 
                 <li className="sidenav-close"><a id='logSide'className='logoutSidenav'onClick={props.deleteToken}>Logout</a></li>
             </ul>

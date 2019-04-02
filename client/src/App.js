@@ -1,10 +1,10 @@
 import React, {Component} from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Sidenav from "./components/sidenav/sidenav";
-import AllCourses from "./pages/courseDirectory"
+import AllCourses from "./pages/courseDirectory/courseDirectory"
 import NewCourse from "./pages/newCourse/newCourse"
-import InstDirectory from "./pages/instructorDirectory"
-import StuDirectory from "./pages/studentDirectory";
+import InstDirectory from "./pages/instructorDirectory/instructorDirectory"
+import StuDirectory from "./pages/studentDirectory/studentDirectory";
 import AttendanceForm from "./pages/attendanceForm/attendanceForm"
 import Course from "./pages/savedCourse/savedCourse";
 import NewInstructor from "./components/newInstructorForm/newInstructorForm";

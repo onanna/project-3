@@ -7,34 +7,34 @@ class sendAttendance extends Component{
     state={
         instructors:[],
         sentSuccess:false,
-        error:''
+        error:'',
+        tester:[]
     }
+
+    // constructor(props){
+    //     super(props)
+    // }
 
     chosen=''
     
     componentDidMount=()=>{
-        this.getAllInstructors();
-    }
 
-    getAllInstructors=()=>{
-        API.getInstructors()
-        .then(res =>{
-            let options=[]
-            if(res.data.length>0){
-                res.data.forEach((element,i) => {
-                    if(element.phone){
-                        options.push({
-                            value:element.phone,
-                            label:`${element.firstName} ${element.lastName}`
-                        })
-                    }
-                });
-                this.setState({ 
-                    instructors: options 
-                })
-            }
-        })
-        .catch(err => console.log(err));
+        let optionsArray=[];
+        if(this.props.instructors.length>0){
+            this.props.instructors.forEach((element,i)=>{
+                if(element.phone){
+                    optionsArray.push({
+                        value:element.phone,
+                        label:`${element.firstName} ${element.lastName}`
+                    })
+                }
+            })
+        }
+        this.setState((prev)=>({
+            instructors:optionsArray
+        }))
+
+
     }
 
     onChange=(selected)=>{

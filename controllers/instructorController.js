@@ -2,16 +2,24 @@ const db = require("../models/index");
 const courseFuncs = require('./courseController');
 
 module.exports = {
-    add:function(req){
-
+    add:function(req,res){
+        console.log('inside controller' +JSON.stringify(req.body))
         db.instructor.create(req.body)
         .then(result=>{
-            console.log(`congrats on adding an instructor!: ${result}`)
+            if(result._id){
+                res.send({success:'Instructor Added', new:result})
+            }else{
+                res.send({error:"Error"})
+            }
         })
         .catch(error=>{
-            console.log(`you tried adding an instructor, but it's invalid: ${error}`)
+            if(error.errmsg.includes('email_1 dup key')){
+                res.send({error:'An Instructor with that email already exists'})
+            }else{
+                res.send({error:error})
+            }
         })
-     
+
     },
     makeAndAdd:function(newIns,course,res){
         db.instructor.create(newIns)

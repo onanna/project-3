@@ -1,24 +1,54 @@
-#courseCard {
-    /* margin-top: 10px;*/
-    /* margin-bottom: 80%;  */
-}
-
-.card {
-    /* height:775px; */
-    /* height: auto; */
-    /* height: 184%; */
-}
 
 #registerStudent{
   background-image:url('https://png.pngtree.com/thumb_back/fh260/back_pic/03/74/98/0557bd128221118.jpg');
 }
 
-#courseContent {
-    /* font-family: Verdana, Geneva, Tahoma, sans-serif;
-    padding-top: 10px;
-    padding-left: 20px; 
-    padding-bottom: 10px; 
-    line-height: 2; */
+@media only screen and (max-width : 414px) {
+    body {
+      min-height:1000px;
+    }
+}
+
+@media only screen and (min-width : 414px) {
+    body {
+      min-height:1300px;
+    }
+
+    .card .card-image img{
+        /* max-height:333px; */
+        /* max-width:705px; */
+        max-height:200px;
+    }
+}
+
+.errorMessage{
+    color:#ff5252;
+    font-weight: bold;
+    padding:0;
+    margin:0;
+}
+.errorRow{
+    margin-bottom:10px;
+}
+.successMessage{
+    color:#00e676;
+    font-weight: bold;
+    padding:0;
+    margin:0;
+}
+
+#cardTitle{
+    top:0;
+    font-weight:bold;
+    font-size:2em;
+}
+
+#submitAddStu{
+    margin-top:0px;
+    width:50%;
+}
+#existStudentSubmit2, #existInstructSubmit2{
+    display:none
 }
 
 .material-icons.check{
@@ -47,30 +77,37 @@
 .m-top{
     margin-top:5%;
 }
-#registerStudent {
-    line-height: 5;
-    text-align: center;
-    /* width: 800px; */
-    opacity:0.2;
-    background-repeat: no-repeat;
-    background-size: cover; 
-    z-index: -1;
-}
+
 .tabs .tab a.active, .tabs .tab a {
     color: #446ca8;
 }
 .rosterHeader{
     font-weight: 600;
+    margin-bottom:0px;
     color:#039be5;
 }
   
 li.indicator{
     display:none
 }
-#LightBlue {
+#LightBlue{
     background-color: #039be5;
 }
 #tabs-swipe {
     font-weight: bold;
     font-size: 30px;
+}
+
+.addPerson{
+   color:#039be5;
+}
+
+.addPersonButton{
+    margin-bottom: 10%;
+    background-color:#039be5;
+    width: 100%;
+}
+
+i.addPerson{
+    color:white
 }

@@ -3,12 +3,21 @@ const courseFuncs = require('./courseController')
 
 module.exports = {
     add:function(req,res){
+        console.log('inside controller' +JSON.stringify(req.body))
         db.student.create(req.body)
         .then(result=>{
-            res.json(result);
+            if(result._id){
+                res.send({success:'Student Added', new:result})
+            }else{
+                res.send({error:"Error"})
+            }
         })
         .catch(error=>{
-            console.log(`you tried adding a student, but it's invalid: ${error}`)
+            if(error.errmsg.includes('email_1 dup key')){
+                res.send({error:'A Student with that email already exists'})
+            }else{
+                res.send({error:error})
+            }
         })
 
     },

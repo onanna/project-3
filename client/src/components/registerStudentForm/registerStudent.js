@@ -357,21 +357,6 @@ class Register extends Component {
                 <div className="collapsible-header" id="header1">
                   <i className="material-icons">person_add</i>Existing Student(s)
                 </div>
-
-                <div className="collapsible-body">
-                  <span>
-                    <StudentSelect onChange={this.selectStudentChange} />
-                    <div id="existStudentSubmit"><Submit submitFunction={()=>this.addToRoster('students')}/></div>
-                    <div>{this.state.addExistStuNotice.length>0?
-                            this.state.addExistStuNotice.includes('Added')?
-                              <p className='successMessage'>{this.state.addExistStuNotice}</p>
-                              :
-                              <p className='errorMessage'>{this.state.addExistStuNotice}</p>
-                          :
-                          ''
-                        }</div>
-                  </span>
-                </div>
          
               </li>
 
@@ -444,6 +429,8 @@ class Register extends Component {
                     </div>
                   </span>
                 </div>
+
+
               </li>
             </ul>
           </div>
@@ -454,27 +441,6 @@ class Register extends Component {
         <div className="row" id="collapDiv">
           <div className="col s12 m6">
             <ul className="collapsible expandable">
-              <li>
-                <div className="collapsible-header" id="header1">
-                  <i className="material-icons">person_add</i>Existing Instructor(s)
-                </div>
-
-                <div className="collapsible-body">
-                  <span>
-                    <InstructorSelect onChange={this.selectInstructorChange} />
-                    <div id="existInstructSubmit"><Submit submitFunction={()=>this.addToRoster('instructors')}/></div>
-                    <div>{this.state.addExistInstNotice.length>0?
-                            this.state.addExistInstNotice.includes('Added')?
-                              <p className='successMessage'>{this.state.addExistInstNotice}</p>
-                              :
-                              <p className='errorMessage'>{this.state.addExistInstNotice}</p>
-                          :
-                          ''
-                        }</div>
-                  </span>
-                </div>
-              </li>
-
               <li>
                 <div className="collapsible-header" id="header2">
                   <i className="material-icons">person_add</i>New Instructor

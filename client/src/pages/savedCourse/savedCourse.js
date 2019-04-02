@@ -6,11 +6,16 @@ import API from "../../utils/API";
 import Header from "../../components/h1withDivider";
 import Send from "../../components/sendAttendance/sendAttendance2"
 import booksImg from "../../images/books1.jpg";
+import NightImg from '../../images/nightBanner.jpg'
 import * as date from '../../utils/dateReaders';
+import StudentSelect from "../../components/selectStudents/selectStudents";
+import InstructorSelect from "../../components/selectInstructors/selectInstructors";
+import Submit from '../../components/submitButton/index'
 const $ = window.$;
 
 
 class Course extends Component {
+    
     state={
         course:{
             instructors:[],
@@ -19,7 +24,11 @@ class Course extends Component {
         },
         instructorsToAdd:[],
         studentsToAdd:[],
-        hasBeenSent:false
+        addExistStuNotice:'',
+        addExistInstNotice:'',
+        hasBeenSent:false,
+        showStuSelect:false,
+        showInsSelect:false
     }
   
     constructor(props){
@@ -64,6 +73,124 @@ class Course extends Component {
             studentsToAdd:studentsSelected
         })
     }
+
+    selectStudentChange=(currentList)=>{
+        if(currentList.length<1){
+          $('#existStudentSubmit2').css('display','none');
+        }else{
+          $('#existStudentSubmit2').css('display','inherit')
+        }
+      
+      this.setState((prev)=>({
+        studentsToAdd:currentList
+      }))
+    }
+
+    selectInstructorChange=(currentList)=>{
+        if(currentList.length<1){
+          $('#existInstructSubmit2').css('display','none');
+        }else{
+          $('#existInstructSubmit2').css('display','inherit')
+        }
+        this.setState((prev)=>({
+          instructorsToAdd:currentList
+        }))
+    }
+
+    showSelect=(whichSelect)=>{
+
+        switch(whichSelect){
+            case "students":
+                if(this.state.showStuSelect===false){
+                    this.setState((prev)=>({
+                        showStuSelect:true
+                    }))
+                }else{
+                    this.setState((prev)=>({
+                        showStuSelect:false
+                    }))
+                }
+            break;
+
+            case "instructors":
+                if(this.state.showInsSelect===false){
+                    this.setState((prev)=>({
+                        showInsSelect:true
+                    }))
+                }else{
+                    this.setState((prev)=>({
+                        showInsSelect:false
+                    }))
+                }
+            break;
+        }
+ 
+    }
+
+    addToRoster=(roster,optionalData)=>{
+
+        let whoToAdd;
+        let data;
+        switch(roster){
+          case 'students':
+            whoToAdd=this.state.studentsToAdd;
+            data=[];
+            whoToAdd.forEach((current,i)=>{
+              data.push(current.value)
+            })
+            if(data.length<1) return;
+            API.addStudentsToCourse(this.state.course._id,data)
+            .then(result=>{
+              if(result.data.success){
+                this.setState((prev)=>({
+                  addExistStuNotice: data.length===1? `Student Added Successfully!` : 'Students Added Successfully!',
+                }))
+                this.updateCourseStudents(result.data.success.students)
+                setTimeout(()=>{
+                  this.setState((prev)=>({
+                    addExistStuNotice:'',
+                    showStuSelect:false
+                  }))
+                },1500)
+              }
+            })
+            .catch(error=>{
+              alert('error '+JSON.stringify(error))
+            })
+          break;
+    
+          case 'instructors':
+            whoToAdd=this.state.instructorsToAdd;
+            data=[];
+            whoToAdd.forEach((current,i)=>{
+              data.push(current.value)
+            })
+            if(data.length<1) return;
+            API.addInstructorsToCourse(this.state.course._id,data)
+            .then(result=>{
+              if(result.data.success){
+                this.setState((prev)=>({
+                  addExistInstNotice: data.length===1? `Instructor Added Successfully!` : 'Instructors Added Successfully!',
+                }))
+                this.updateCourseInstructors(result.data.success.instructors)
+                setTimeout(()=>{
+                  this.setState((prev)=>({
+                    addExistInstNotice:'',
+                    showInsSelect:false
+                  }))
+                },1500)
+              }
+            })
+            .catch(error=>{
+              alert('error '+JSON.stringify(error))
+            })
+          break;
+    
+          default:
+          break;
+        }
+    }
+
     componentDidMount=()=>{
         $('.modal').modal();
         $('.collapsible').collapsible();
@@ -77,12 +204,18 @@ class Course extends Component {
     render(){
         return(
             <PageContainer>
-                <Header align='center' text={this.state.course.name}/>
                 <div className="row" id="courseCard"> 
                     <div className="col s12 m6">
                         <div className="card">
                             <div className="card-image">
-                                <img src={booksImg} alt="books" /> 
+                                {/* <img src={booksImg} alt="books" /> */}
+                                <img src={NightImg} alt='Night Sky Banner'/>
+                                {/* <img src='https://www.rmg.co.uk/sites/default/files/styles/banner/public/August%20NSH%20banner.jpg?itok=tvQxyj6W' /> */}
+                                
+                                {/* <img src='https://png.pngtree.com/thumb_back/fw800/back_pic/00/01/87/34560c9a55c41fd.jpg' />
+                                <img src='https://png.pngtree.com/thumb_back/fw800/back_pic/00/01/88/99560cf3e33f5a8.jpg' />
+                                <img src='https://png.pngtree.com/thumb_back/fw800/back_pic/00/02/00/41560f3c6f9dadb.jpg'/> */}
+                                <span id='cardTitle' className='card-title flow-text'>{this.state.course.name}</span> 
                             </div>
                             <div id="registerStudent" className="modal">
                                 <h4 id="modalHeader">Register Students</h4>
@@ -106,33 +239,69 @@ class Course extends Component {
                                 <p className='bottom'><b>Location:</b> {this.state.course.location}</p>
                             </div> 
 
-                            <div id="classRoster" className="col s12 grey lighten-3 tabContent center-align courseTab">
-                            {this.state.course.students.length>0 || this.state.course.instructors.length>0?
-                                <div>
-                                    <h4 className='bold m-top'>Roster</h4>
-                                    
-                                    <p className='flow-text rosterHeader'>{this.state.course.instructors.length>0? 'Instructors':''}</p>
-                                    <ul>
-                                        {this.state.course.instructors.map((current,i)=>{
-                                            return(
-                                                <li key={i}className='flow-text light'>{`${current.firstName} ${current.lastName}`}</li>
-                                            )
-                                        })}
-                                    </ul>
-                                    
-                                    <p className='flow-text rosterHeader'>{this.state.course.students.length>0? 'Students':''}</p>
-                                    <ul className='bottom'>
-                                        {this.state.course.students.map((current,i)=>{
-                                            return(
-                                                <li key={i} className='flow-text light'>{`${current.firstName} ${current.lastName}`}</li>
-                                            )
-                                        })}
-                                    </ul>
-                                </div>
-                            :
-                                <h4>Nobody Here Yet</h4>        
-                            }
+                            <div id="classRoster" className="col s12 grey lighten-3 tabContent left-align courseTab">
+                                                                                   
+                                <h4 className='bold m-top left-align'>Roster</h4>
                                 
+                                <p className='flow-text rosterHeader left-align'>Instructors</p>
+                                <ol className='left-align'>
+                                    {this.state.course.instructors.map((current,i)=>{
+                                        return(
+                                            <li key={i}className='flow-text light'>{`${current.firstName} ${current.lastName}`}</li>
+                                        )
+                                    })}
+                                </ol>
+                                {   
+                                    this.state.course.instructors.length>0 && this.state.showInsSelect===false?
+                                    
+                                    <a className='btn-small addPersonButton' onClick={()=>this.showSelect('instructors')}><i class="addPerson flow-text material-icons right-align">add</i></a>
+                                    :
+                                    <div>
+                                        <InstructorSelect onChange={this.selectInstructorChange} />
+                                        <div id="existInstructSubmit2"><Submit submitFunction={()=>this.addToRoster('instructors')}/></div>
+                                        <div className='center-align errorRow'>
+                                        {
+                                            this.state.addExistInstNotice.length>0?
+                                            this.state.addExistInstNotice.includes('Added')?
+                                                <p className='successMessage'>{this.state.addExistInstNotice}</p>
+                                                :
+                                                <p className='errorMessage'>{this.state.addExistInstNotice}</p>
+                                            :
+                                            <div></div>
+                                        }
+                                        </div>
+                                    </div>
+                                }
+                                
+                                <p className='flow-text rosterHeader left-align'>Students</p>
+                                <ol className=' left-align'>
+                                    {this.state.course.students.map((current,i)=>{
+                                        return(
+                                            <li key={i} className='flow-text light'>{`${current.firstName} ${current.lastName}`}</li>
+                                        )
+                                    })}
+                                </ol>
+                                {
+                                    this.state.course.students.length>0 && this.state.showStuSelect===false?
+
+                                    <a className='btn-small addPersonButton' onClick={()=>this.showSelect('students')}><i class="addPerson flow-text material-icons right-align">add</i></a>
+                                    :
+                                    <div>
+                                        <StudentSelect onChange={this.selectStudentChange} />
+                                        <div id="existStudentSubmit2"><Submit submitFunction={()=>this.addToRoster('students')}/></div>
+                                        <div className='center-align errorRow'>
+                                            {
+                                            this.state.addExistStuNotice.length>0?
+                                                this.state.addExistStuNotice.includes('Added')?
+                                                    <p className='successMessage'>{this.state.addExistStuNotice}</p>
+                                                    :
+                                                    <p className='errorMessage'>{this.state.addExistStuNotice}</p>
+                                                :
+                                                ''
+                                            }
+                                        </div>
+                                    </div>
+                                }
                             </div>
 
                             <div id="test-swipe-3" className="col s12 grey lighten-3 tabContent courseTab">
@@ -165,7 +334,7 @@ class Course extends Component {
                                 {this.state.course.students.length>0 && this.state.course.instructors.length>0?
                                     <div className='bottom'>
                                         <p className='sendToText flow-text'>Send To Instructor</p>                            
-                                        <Send attendLink={`https://gentle-garden-19053.herokuapp.com/attendance/temp362019/${this.props.token}/${this.state.course._id}`} clickFunction={this.sendAttendanceForm}instructors={this.state.course.instructors}/>
+                                        <Send instructors={this.state.instructors} attendLink={`https://gentle-garden-19053.herokuapp.com/attendance/temp362019/${this.props.token}/${this.state.course._id}`} clickFunction={this.sendAttendanceForm}instructors={this.state.course.instructors}/>
                                         <a href={`/attendance/temp362019/${this.props.token}/${this.state.course._id}`} target="_blank">Attendance Form</a>
                                     </div>
                                 :
@@ -176,7 +345,7 @@ class Course extends Component {
                         </div>
                         
                         {/* Register Student/ Add Instructor Button */}
-                        <a id='LightBlue'className="btn modal-trigger tooltipped btn-large btn-floating halfway-fab waves-effect waves-light" href="#registerStudent" data-target="registerStudent" data-position="right" data-tooltip="Add Student &amp; Instructors"><i className="material-icons">add</i></a>
+                        {/* <a id='LightBlue'className="btn modal-trigger tooltipped btn-large btn-floating halfway-fab waves-effect waves-light" href="#registerStudent" data-target="registerStudent" data-position="right" data-tooltip="Add Student &amp; Instructors"><i className="material-icons">add</i></a> */}
                     </div>
                 </div>
             </PageContainer>    

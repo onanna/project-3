@@ -1,0 +1,24 @@
+#instructors{
+    width:100%;
+    margin-top:0px;
+}
+
+#instructorImgRow{
+    margin-bottom:0px;
+}
+
+.errorMessage{
+    color:#ff5252;
+    font-weight: bold;
+    padding:0;
+    margin:0;
+}
+.errorRow{
+    margin-bottom:10px;
+}
+.successMessage{
+    color:#00e676;
+    font-weight: bold;
+    padding:0;
+    margin:0;
+}
