@@ -33,8 +33,6 @@ class sendAttendance extends Component{
         this.setState((prev)=>({
             instructors:optionsArray
         }))
-
-
     }
 
     onChange=(selected)=>{
