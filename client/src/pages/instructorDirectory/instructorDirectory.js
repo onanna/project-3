@@ -50,6 +50,7 @@ class instructors extends Component{
     toggleAdd=()=>{
         this.state.addingNew?
             this.setState((prev)=>({
+                addNewInsNotice:'',
                 addingNew:false
             }))
         :
