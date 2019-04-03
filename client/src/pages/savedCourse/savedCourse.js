@@ -268,7 +268,7 @@ class Course extends Component {
                                     :
                                     <div>
                                         <p id='deleteCourseConfirm'className='flow-text' onClick={this.toggleDelete}>Deleting A course will also delete all associated attendance records and rosters. Click here to go back or click "Delete" to continue</p>
-                                        <a onClick={()=>this.deleteCourse(this.props.userId, this.state.course._id)} className='flow-text btn btn-large red white-text'>Delete Course</a>                                
+                                        <a onClick={()=>this.deleteCourse(this.props.userId, this.state.course._id)} className='flow-text btn btn-large red white-text'>Permanently Delete</a>                                
                                     </div>
                                 }
                             </div> 
