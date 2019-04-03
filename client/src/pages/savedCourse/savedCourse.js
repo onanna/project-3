@@ -222,8 +222,8 @@ class Course extends Component {
                                 <Register  updateCourseInstructors={this.updateCourseInstructors} updateCourseStudents={this.updateCourseStudents} courseId={this.state.course._id} />            
                             </div>                            
                             <ul id="tabs-swipe" className="tabs">
-                                <li className="tab col s4"><a className="active" href="#courseContent">Course Details</a></li>
-                                <li className="tab col s4"><a  href="#classRoster">Class Roster</a></li>
+                                <li className="tab col s4"><a className="active" href="#courseContent">Details</a></li>
+                                <li className="tab col s4"><a  href="#classRoster">Roster</a></li>
                                 <li className="tab col s4"><a href="#test-swipe-3">Attendance</a></li>
                             </ul>
 
@@ -231,12 +231,13 @@ class Course extends Component {
                             <div id="courseContent" className="col s12 grey lighten-3 tabContent">               
                                 {/* <h4 className='bold m-top'>{this.state.course.name}</h4>   */}
                                 <h4 className='bold m-top'>Details</h4>
-                                <p><b> Number of Seats Available:</b> {this.state.course.numberOfSeats}</p>
-                                <p><b>Start Date:</b> {this.state.course.startDate? date.readDate(this.state.course.startDate) : this.state.course.startDate}</p>
-                                <p><b>End Date:</b> {this.state.course.startDate? date.readDate(this.state.course.endDate) : this.state.course.endDate}</p>
-                                <p><b>Start Time:</b> {this.state.course.startTime}</p>
-                                <p><b>End Time:</b> {this.state.course.endTime}</p>
-                                <p className='bottom'><b>Location:</b> {this.state.course.location}</p>
+                                <p className='flow-text'><b> Number of Seats Available:</b> {this.state.course.numberOfSeats}</p>
+                                <p className='flow-text'><b>Start Date:</b> {this.state.course.startDate? date.readDate(this.state.course.startDate) : this.state.course.startDate}</p>
+                                <p className='flow-text'><b>End Date:</b> {this.state.course.startDate? date.readDate(this.state.course.endDate) : this.state.course.endDate}</p>
+                                <p className='flow-text'><b>Start Time:</b> {this.state.course.startTime}</p>
+                                <p className='flow-text'><b>End Time:</b> {this.state.course.endTime}</p>
+                                <p className='flow-text'><b>Location:</b> {this.state.course.location}</p>
+                                <a id='deleteCourseButton' className='flow-text btn btn-large red white-text'>Delete Course</a>
                             </div> 
 
                             <div id="classRoster" className="col s12 grey lighten-3 tabContent left-align courseTab">

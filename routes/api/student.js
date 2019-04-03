@@ -23,13 +23,18 @@ router.route('/new-add/:courseId')
       // res.send({newStu:newStu, course: course})
   })
 
+router.route('/delete/:user/:courseId')
+  .delete((req,res)=>{
+    student.delete(req.params.user,req.params.courseId,res)
+  })
+
 // matches with '/api/students/:id'
 router.route("/:id")
   .get((req,res)=>{
     student.getOne(req.params.id,res)
   })
   .delete((req,res)=>{
-    student.delete({"_id":req.params.id})
+    student.delete(req.params.id,res)
   })
   .put((req,res)=>{
     let {newValue,whatToChange} = req.body[0]

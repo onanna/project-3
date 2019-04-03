@@ -3,6 +3,7 @@
     margin: 0 10%; */
     /* left:300px; */
     top:2em;
+    right:3.5em;
     /* top:0; */
     /* right:13em; */
 }
@@ -17,7 +18,7 @@
     /* transform: rotate(90deg); */
     transform-origin: top right;
     /* right:150px; */
-    right:.6em;
+    right:1.25em;
     /* margin-top:7.5em; */
     margin-top:2.5em;
     font-weight:100;

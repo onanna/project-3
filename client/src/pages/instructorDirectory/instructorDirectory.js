@@ -38,9 +38,16 @@ class instructors extends Component{
             .then(this.getAllInstructors())
     }
 
-    deleteInstructor=(idToDelete)=>{
-        API.deleteInstructor(idToDelete)
-        .then(this.getInstructors())
+    deleteInstructor=(userId,instructorIdToDelete)=>{
+        API.deleteInstructor(userId,instructorIdToDelete)
+            .then(result=>{
+                if(result.data.success){
+                    this.setState((prev)=>({
+                        instructors:result.data.success
+                    }))
+                }
+                // if(result.data.success)
+            });
     }
 
     toggleAdd=()=>{
@@ -202,6 +209,7 @@ class instructors extends Component{
                                                                 })}
                                                             </ul>
                                                         </li>
+                                                            <a onClick={()=>this.deleteInstructor(this.props.userId,current._id)} class="btn-floating waves-effect waves-light red btn-small btn deleteInstructor" ><i class="material-icons">clear</i></a>
                                                         <hr></hr>
                                                     </ul>
                                                 )
