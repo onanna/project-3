@@ -21,6 +21,10 @@
     }
 }
 
+#deleteCourseButton{
+    margin-top:15%
+}
+
 .errorMessage{
     color:#ff5252;
     font-weight: bold;

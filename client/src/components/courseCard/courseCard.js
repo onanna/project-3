@@ -13,7 +13,7 @@ function courseCard(props){
 
     return(
     
-            <div className='row card-content'>
+            <div className='row card-content cardStuff'>
                 
                 <div className='left col s12 m3 center-align left-pane-course'>
                     <div className='row white-text center-align'>
@@ -32,7 +32,7 @@ function courseCard(props){
                     </div>
                     
                     <div className='row'>
-                        <div className='col s12 white-text flow-text'><p>{props.course.startTime}</p></div>
+                        <div className='col s12 white-text flow-text'><p>{dropZero(props.course.startTime)}</p></div>
                     </div>
                 
                 </div>
@@ -69,14 +69,15 @@ function courseCard(props){
                             <p className='flow-text classStudents'>Students Enrolled: {props.course.students.length}</p>
                         </div>
 
-                        <div className='col s12'>
-                            <p className='flow-text classRemaining'>Seats Remaining: {props.course.numberOfSeats - props.course.students.length}</p>
-                        </div>
+                    
                     </div>
                     <div className='row'>
                         {/* <div className='col s12'>
                             <p className='flow-text classRemaining'>Seats Remaining: {props.course.numberOfSeats - props.course.students.length}</p>
                         </div> */}
+                        <div className='col s12'>
+                            <p className='flow-text classRemaining'>Seats Remaining: {props.course.numberOfSeats - props.course.students.length}</p>
+                        </div>
                     </div>
         
                 </div>
@@ -86,6 +87,14 @@ function courseCard(props){
             </div>
 
     )
+}
+
+function dropZero(time){
+    if(time.charAt(0)==="0"){
+        return time.substring(1,time.length)
+    }else{
+        return time
+    }
 }
 
 function splitDate(date){

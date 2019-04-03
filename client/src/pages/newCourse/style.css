@@ -2,9 +2,13 @@
 .modal .datepicker-modal .open{
   z-index: 1000000000000;
 }
-.datepicker-date-display{
+.datepicker-date-display, .timepicker-digital-display{
   background-image:url('https://png.pngtree.com/thumb_back/fh260/back_pic/03/74/98/0557bd128221118.jpg');
   background-size:cover
+}
+
+.timepicker-text-container{
+  color:white;
 }
 
 .newCourseError{
@@ -12,8 +16,18 @@
   font-weight: bold;
 }
 
-.datepicker-cancel, .datepicker-clear, .datepicker-today, .datepicker-done,.datepicker-table td.is-today{
+/* .timepicker-tick { background: #0E419B !important; } */
+.timepicker-tick:hover { background:rgba(50, 102, 192, 0.363) !important; }
+.timepicker-canvas line { stroke: rgba(50, 102, 192, 0.363) !important; }
+.timepicker-canvas-bearing { fill: rgba(50, 102, 192, 0.363) !important; }
+.timepicker-canvas-bg { fill: rgba(50, 102, 192, 0.363) !important; }
+
+.datepicker-cancel, .datepicker-clear, .timepicker-clear,.timepicker-close,.datepicker-today, .datepicker-done,.datepicker-table td.is-today{
   color:#0E419B;
+}
+
+.text-primary{
+  color:rgb(142, 176, 235) !important;
 }
 
 .datepicker-table td.is-selected{

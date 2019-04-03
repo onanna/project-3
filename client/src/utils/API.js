@@ -16,8 +16,8 @@ export default {
     let dataToSendToBackend={newValue:newValue,whatToChange:whatToChange}
     return axios.put(`/api/students/${idToChange}`,[dataToSendToBackend])
   },
-  deleteStudent:function(id){
-    return axios.delete(`/api/students/${id}`)
+  deleteStudent:function(userId,idToDelete){
+    return axios.delete(`/api/students/delete/${userId}/${idToDelete}`)
   },
   newStuAndAdd:function(courseId,studentData){
     return axios.post(`/api/students/new-add/${courseId}`,studentData)
@@ -37,8 +37,8 @@ export default {
     let dataToSendToBackend={newValue:newValue,whatToChange:whatToChange}
     return axios.put(`/api/instructors/${idToChange}`,[dataToSendToBackend])
   },
-  deleteInstructor:function(id){
-    return axios.delete(`/api/instructors/${id}`)
+  deleteInstructor:function(userId,idToDelete){
+    return axios.delete(`/api/instructors/delete/${userId}/${idToDelete}`)
   },
   newInstAndAdd:function(courseId,instructorData){
     return axios.post(`/api/instructors/new-add/${courseId}`,instructorData)

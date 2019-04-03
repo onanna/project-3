@@ -6,14 +6,10 @@ class SelectInstructor extends Component{
     state={
         instructors:[]
     }
-    
-    componentDidMount=()=>{
-        this.getAllInstructors();
-    }
 
-    getAllInstructors=()=>{
-        API.getInstructors()
-        .then(res =>{
+    componentDidMount(){
+        API.getInstructors(this.props.userId)
+        .then(res => {
             let options=[]
             if(res.data.length>0){
                 res.data.forEach((element,i) => {
@@ -29,6 +25,25 @@ class SelectInstructor extends Component{
         })
         .catch(err => console.log(err));
     }
+
+    // getAllInstructors=()=>{
+    //     API.getInstructors()
+    //     .then(res =>{
+    //         let options=[]
+    //         if(res.data.length>0){
+    //             res.data.forEach((element,i) => {
+    //                 options.push({
+    //                     value:element._id,
+    //                     label:`${element.firstName} ${element.lastName}`
+    //                 })
+    //             });
+    //             this.setState({ 
+    //                 instructors: options 
+    //             })
+    //         }
+    //     })
+    //     .catch(err => console.log(err));
+    // }
 
     render (){
         return(

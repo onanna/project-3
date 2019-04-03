@@ -146,7 +146,7 @@ class App extends Component{
                 {/* <Route exact path="/students/detail" component={Student} /> */}
                 <Route exact path="/instructors/all" render={(props)=><InstDirectory {...props} userId={this.state.user.id}/>} />            
                 {/* <Route exact path="/instructors/detail" component={Instructor} /> */}
-                <Route exact path="/courses/detail/:id" render={(props)=><Course {...props} token={this.state.token}/>} />
+                <Route exact path="/courses/detail/:id" render={(props)=><Course {...props} userId={this.state.user.id} token={this.state.token}/>} />
                 {/* <Route exact path="/attendance/temp362019/:token/:courseId" component={AttendanceForm} /> */}
                 
                 <Route exact path="/newcourse" render={(props)=><NewCourse {...props} user={this.state.user.id}/>}  />

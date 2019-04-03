@@ -6,6 +6,9 @@
 #instructorImgRow{
     margin-bottom:0px;
 }
+.deleteInstructor{
+    margin-top: 2em;
+}
 
 .errorMessage{
     color:#ff5252;

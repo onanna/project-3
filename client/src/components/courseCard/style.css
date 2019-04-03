@@ -36,8 +36,14 @@
     margin-left:5%;
   }
   
-  .classStudents,.classRemaining,.classTimeLocation{
+  .classTimeLocation{
     font-size: 2.1vh;
+  }
+
+  .classStudents,.classRemaining{
+    font-size:1.1em;
+    position: absolute;
+    /* bottom:0; */
   }
   
   /* To make card responsive as sizes down */
@@ -57,7 +63,6 @@
   } */
 
 
-
   @media only screen and (min-width : 992px) {
     .mainCourseCard{
       /* height:397px; */
@@ -69,7 +74,12 @@
       /* height:387px; */
       max-height: 415.600px;
       /* height:410px; */
+      min-height: 413px;
       width:330px;
+    }
+
+    .cardStuff{
+      min-height: 420px;
     }
 }
 

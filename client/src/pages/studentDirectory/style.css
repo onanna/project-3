@@ -6,7 +6,14 @@
 #studentImgRow{
     margin-bottom:0px;
 }
-
+.deleteStudent{
+    margin-top: 2em;
+    /* position: relative;
+    left:75%; */
+    /* bottom:70%; */
+    /* margin-bottom: 20%; */
+    
+}
 .errorMessage{
     color:#ff5252;
     font-weight: bold;

@@ -23,13 +23,20 @@ router.route('/new-add/:courseId')
 
   })
 
+router.route('/delete/:user/:instructorId')
+  .delete((req,res)=>{
+    console.log(req.params.user)
+    console.log(req.params.instructorId)
+    instructor.delete(req.params.user,req.params.instructorId,res)
+  })
+
 router.route("/:id")
     .get((req,res)=>{
         console.log('instructor to get is '+req.params.id)
         instructor.getOne(req.params.id,res)
     })
     .delete((req,res)=>{
-        instructor.delete({"_id":req.params.id})
+        instructor.delete(req,res)
     })
     .put((req,res)=>{
         let {newValue,whatToChange} = req.body[0]

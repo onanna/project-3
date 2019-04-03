@@ -8,14 +8,9 @@ class SelectStudent extends Component{
         students:[]
     }
     
-    componentDidMount=()=>{
-        this.getAllStudents();
-        // $('select').formSelect();  
-    }
-
-    getAllStudents=()=>{
-        API.getAllStudents()
-        .then(res =>{
+    componentDidMount(){
+        API.getAllStudents(this.props.userId)
+        .then(res => {
             let options=[]
             if(res.data.length>0){
                 res.data.forEach((element,i) => {
@@ -31,6 +26,25 @@ class SelectStudent extends Component{
         })
         .catch(err => console.log(err));
     }
+
+    // getAllStudents=()=>{
+    //     API.getAllStudents()
+    //     .then(res =>{
+    //         let options=[]
+    //         if(res.data.length>0){
+    //             res.data.forEach((element,i) => {
+    //                 options.push({
+    //                     value:element._id,
+    //                     label:`${element.firstName} ${element.lastName}`
+    //                 })
+    //             });
+    //             this.setState({ 
+    //                 students: options 
+    //             })
+    //         }
+    //     })
+    //     .catch(err => console.log(err));
+    // }
 
     render (){
         return(
