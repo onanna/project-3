@@ -112,10 +112,25 @@ li.indicator{
    color:#039be5;
 }
 
-.addPersonButton{
+#addPersonButton{
     margin-bottom: 10%;
     background-color:#039be5;
     width: 100%;
+}
+
+.margin-b{
+    margin-bottom: 10%;
+}
+
+.roster{
+    padding-left: 20px;
+}
+@media only screen and (min-width : 450px) {
+    #addPersonButton{
+        margin-bottom: 10%;
+        background-color:#039be5;
+        width: 50%;
+    }
 }
 
 i.addPerson{

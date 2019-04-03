@@ -267,7 +267,7 @@ class Course extends Component {
                                         <a id='deleteCourseButton' onClick={this.toggleDelete} className='flow-text btn btn-large white red-text'>Delete Course</a>
                                     :
                                     <div>
-                                        <p id='deleteCourseConfirm'className='flow-text' onClick={this.toggleDelete}>Deleting A course will also delete all associated attendance records and rosters. Click here to go back or click "Delete" to continue</p>
+                                        <p id='deleteCourseConfirm'className='flow-text' onClick={this.toggleDelete}>Deleting a course will also delete its attendance records and rosters.<br/>Click here to go back or click "Delete" to continue</p>
                                         <a onClick={()=>this.deleteCourse(this.props.userId, this.state.course._id)} className='flow-text btn btn-large red white-text'>Permanently Delete</a>                                
                                     </div>
                                 }
@@ -278,7 +278,7 @@ class Course extends Component {
                                 <h4 className='bold m-top left-align'>Roster</h4>
                                 
                                 <p className='flow-text rosterHeader left-align'>Instructors</p>
-                                <ol className='left-align'>
+                                <ol className='left-align roster'>
                                     {this.state.course.instructors.map((current,i)=>{
                                         return(
                                             <li key={i}className='flow-text light'>{`${current.firstName} ${current.lastName}`}</li>
@@ -288,9 +288,9 @@ class Course extends Component {
                                 {   
                                     this.state.course.instructors.length>0 && this.state.showInsSelect===false?
                                     
-                                    <a className='btn-small addPersonButton' onClick={()=>this.showSelect('instructors')}><i class="addPerson flow-text material-icons right-align">add</i></a>
+                                    <a id='addPersonButton' className='btn btn-small' onClick={()=>this.showSelect('instructors')}><i class="addPerson flow-text material-icons right-align">add</i></a>
                                     :
-                                    <div>
+                                    <div className='margin-b'>
                                         <InstructorSelect userId={this.props.userId} onChange={this.selectInstructorChange} />
                                         <div id="existInstructSubmit2"><Submit submitFunction={()=>this.addToRoster('instructors')}/></div>
                                         <div className='center-align errorRow'>
@@ -308,7 +308,7 @@ class Course extends Component {
                                 }
                                 
                                 <p className='flow-text rosterHeader left-align'>Students</p>
-                                <ol className=' left-align'>
+                                <ol className='roster left-align'>
                                     {this.state.course.students.map((current,i)=>{
                                         return(
                                             <li key={i} className='flow-text light'>{`${current.firstName} ${current.lastName}`}</li>
@@ -318,9 +318,9 @@ class Course extends Component {
                                 {
                                     this.state.course.students.length>0 && this.state.showStuSelect===false?
 
-                                    <a className='btn-small addPersonButton' onClick={()=>this.showSelect('students')}><i class="addPerson flow-text material-icons right-align">add</i></a>
+                                    <a id='addPersonButton' className='btn btn-small' onClick={()=>this.showSelect('students')}><i class="addPerson flow-text material-icons right-align">add</i></a>
                                     :
-                                    <div>
+                                    <div  className='margin-b'>
                                         <StudentSelect userId={this.props.userId} onChange={this.selectStudentChange} />
                                         <div id="existStudentSubmit2"><Submit submitFunction={()=>this.addToRoster('students')}/></div>
                                         <div className='center-align errorRow'>
