@@ -47,7 +47,7 @@ class SelectInstructor extends Component{
 
     render (){
         return(
-            <Select placeholder="Add Instructors" isMulti closeMenuOnSelect={false} isSearchable={false} onChange={this.props.onChange} id="instructorSelect" options={this.state.instructors}/>
+            <Select readonly="true" isSearchable={false} placeholder="Add Instructors" isMulti closeMenuOnSelect={false} isSearchable={false} onChange={this.props.onChange} id="instructorSelect" options={this.state.instructors}/>
         )
     }
 }
