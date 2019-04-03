@@ -6,8 +6,8 @@ export default {
   addStudent:function(stuObject){
     return axios.post(`/api/students/`,stuObject);
   },
-  getAllStudents: function() {
-    return axios.get("/api/students");
+  getAllStudents: function(user) {
+    return axios.get(`/api/students/user/${user}`);
   },
   getOneStudent:function(studentId){
     return axios.get(`/api/students/${studentId}`)
@@ -27,8 +27,8 @@ export default {
   addInstructor:function(insObject){
     return axios.post(`/api/instructors/`,insObject);
   },
-  getInstructors:function(){
-    return axios.get("/api/instructors")
+  getInstructors:function(user){
+    return axios.get(`/api/instructors/user/${user}`)
   },
   getOneinstructor:function(instructorId){
     return axios.get(`/api/instructors/${instructorId}`)
@@ -46,8 +46,8 @@ export default {
    
 // ---------------------------COURSE FUNCTIONS---------------------------
 
-  getAllCourses:function(){
-    return axios.get("/api/courses")
+  getAllCourses:function(user){
+    return axios.get(`/api/courses/user/${user}`)
   },
   getOneCourse:function(id){
     return axios.get(`/api/courses/${id}`)

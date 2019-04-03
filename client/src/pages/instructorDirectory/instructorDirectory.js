@@ -22,7 +22,9 @@ class instructors extends Component{
     }
 
     componentDidMount(){
-        this.getAllInstructors();
+        API.getInstructors(this.props.userId)
+        .then(res => this.setState({ instructors: res.data }))
+        .catch(err => console.log(err));
     }
 
     updateInstructor=(idOfInstructorToUpdate,whatToChange,newValue)=>{
@@ -36,12 +38,6 @@ class instructors extends Component{
             .then(this.getAllInstructors())
     }
 
-    getAllInstructors=()=>{
-        API.getInstructors()
-        .then(res => this.setState({ instructors: res.data }))
-        .catch(err => console.log(err));
-    }
-
     deleteInstructor=(idToDelete)=>{
         API.deleteInstructor(idToDelete)
         .then(this.getInstructors())
@@ -50,6 +46,7 @@ class instructors extends Component{
     toggleAdd=()=>{
         this.state.addingNew?
             this.setState((prev)=>({
+                addNewInsNotice:'',
                 addingNew:false
             }))
         :
@@ -134,6 +131,7 @@ class instructors extends Component{
           }))
         }else{
           var newInstructor = {
+            user:this.props.userId,
             firstName: this.state.firstInstructorName,
             lastName: this.state.lastInstructorName,
             email: this.state.emailInstructor,

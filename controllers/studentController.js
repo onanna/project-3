@@ -43,10 +43,8 @@ module.exports = {
         .then(dbModel => res.json(dbModel))
         .catch(err => res.status(422).json(err));
     },
-    getAll:function(req,res){
-
-        db.student.find(req.query)
-        // .sort({ date: -1 })
+    getAll:function(userId,res){
+        db.student.find({user:userId})
         .populate('currentlyEnrolled')
         .then(dbModel => res.json(dbModel))
         .catch(err => res.status(422).json(err));

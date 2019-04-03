@@ -55,7 +55,7 @@ function adjustInstructorRosters(instructorsToFix,operation,course){
 // Defining methods for the courseController
 module.exports = {
     new:function(req,res){
-        console.log("about to add this to courses: "+JSON.stringify(req.body))
+        // console.log("about to add this to courses: "+JSON.stringify(req.body))
         db.course.create(req.body)
         .then(result=>{
             console.log(`congrats on adding a course!: ${result}`)
@@ -78,10 +78,9 @@ module.exports = {
         .then(res=>console.log(res))
         .catch(res=>console.log(res))
     },
-    getAll:function(req,res){
-        db.course.find(req.query)
+    getAll:function(userId,res){
+        db.course.find({user:userId})
         .sort({_id: -1 })
-        .populate('students')
         .then(data => res.json(data))
         .catch(err => res.status(422).json(err));
     },

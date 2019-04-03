@@ -4,7 +4,15 @@ const course = require("../../controllers/courseController");
 //matches with "/api/courses" 
 router.route("/")
     .get(course.getAll)
-    .post(course.new)
+    .post((req,res)=>{
+        course.new(req,res)
+    })
+
+router.route('/user/:id')
+    .get((req,res)=>{
+        console.log('getting courses that belong only to '+req.params.id)
+        course.getAll(req.params.id,res)
+    })
 
 router.route("/:courseId")
     .delete((req,res)=>{

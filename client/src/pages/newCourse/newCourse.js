@@ -80,6 +80,7 @@ class Newcourse extends Component {
       // let enddateChosen = y.value;
 
       let dataToSend={
+        user:this.props.user,
         name: this.state.name,
         numberOfSeats: this.state.numberOfSeats,
         startDate: startdateChosen,
@@ -128,7 +129,7 @@ class Newcourse extends Component {
           error:'All Fields Are Required'
         }))
       }else{
-        API.addCourse(dataToSend)
+        API.addCourse(dataToSend, this.props.user)
         .then(result=>{
           if(result.data._id){
             window.location.href = "/";
