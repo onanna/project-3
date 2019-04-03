@@ -47,6 +47,7 @@ class Home extends Component{
     toggleAdd=()=>{
         this.state.addingNew?
             this.setState((prev)=>({
+                addNewStuNotice:'',
                 addingNew:false
             }))
         :
