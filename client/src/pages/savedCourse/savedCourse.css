@@ -21,8 +21,14 @@
     }
 }
 
-#deleteCourseButton{
+#deleteCourseButton,#deleteCourseConfirm{
     margin-top:15%
+}
+#deleteCourseConfirm{
+    margin-bottom: 10%;
+    color:#ff5252;
+    font-weight: 600;
+    text-align: center;
 }
 
 .errorMessage{

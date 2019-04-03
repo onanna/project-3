@@ -70,8 +70,14 @@ module.exports = {
             res.send(error)
         })
     },
-    delete:function(courseId){
-        return db.course.findByIdAndDelete(courseId)
+    delete:function(courseId,response){
+        db.course.findByIdAndDelete(courseId)
+        .then(result=>{
+            if(result._id){
+                response.send({success:"Course Deleted"})
+            }
+        })
+        .catch(res=>console.log(res))
     },
     update:function(courseId,update){
         db.course.findByIdAndUpdate(courseId,update)

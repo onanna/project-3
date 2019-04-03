@@ -30,4 +30,8 @@
     #buttonLabel{
         display:none;
     }
+    #courseAddButton{
+        bottom:0;
+        right:3.5em;
+    }
 }
