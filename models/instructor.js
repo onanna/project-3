@@ -24,7 +24,6 @@ const instructorSchema = new Schema({
     },
     email:{
         trim:true,
-        unique:true,
         type:String,
         required: true,
         validate: [validateEmail, 'Please fill a valid email address'],
@@ -37,13 +36,11 @@ const instructorSchema = new Schema({
     currentlyTeaching:[{
         type: Schema.Types.ObjectId, 
         ref: "course",
-        required:true,
         default:[]
     }],
     pastCourses:[{
         type: Schema.Types.ObjectId, 
         ref: "course",
-        required:true,
         default:[]
     }]
 
