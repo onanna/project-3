@@ -226,9 +226,7 @@ class Home extends Component{
                                                             })}
                                                         </ul>
                                                     </li>
-                                                    {/* <li><i class="material-icons">delete</i></li> */}
-                                                        {/* <a className='btn floating-btn'><i class="material-icons small deleteClass">delete</i></a> */}
-                                                        <a onClick={()=>this.deleteStudent(this.props.userId,current._id)} class="btn-floating waves-effect waves-light red btn-small btn deleteStudent" ><i class="material-icons">clear</i></a>
+                                                        <a onClick={()=>this.deleteStudent(this.props.userId,current._id)} className="btn-floating waves-effect waves-light red btn-small btn deleteStudent" ><i className="material-icons">clear</i></a>
                                                     <hr></hr>
                                                 </ul>
                                             )

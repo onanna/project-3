@@ -29,7 +29,7 @@ class SelectCourses extends Component{
 
     render (){
         return(
-            <Select readonly="true" isSearchable={false} placeholder="Select Courses" isMulti closeMenuOnSelect={false} onChange={this.props.onChange} id="courseSelect" options={this.state.courses}/>
+            <Select id='courseSelect' readonly="true" isSearchable={false} placeholder="Select Courses" isMulti closeMenuOnSelect={false} onChange={this.props.onChange} options={this.state.courses}/>
         )
     }
 }

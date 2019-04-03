@@ -3,6 +3,8 @@ import Pagecontainer from "../../components/pageContainer"
 import API from "../../utils/API";
 import Header from "../../components/h1withDivider";
 import CourseCard from '../../components/courseCard/courseCard'
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Course from '../../pages/savedCourse/savedCourse';
 import './style.css'
 
 class Home extends Component{
