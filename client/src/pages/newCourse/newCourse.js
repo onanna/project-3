@@ -54,6 +54,9 @@ class Newcourse extends Component {
         format: "mm-dd-yyyy",
         autoClose: true
       });
+      $('.timepicker').timepicker({
+        autoClose: true
+      })
     }
 
     this.handleInputChange = event =>{
@@ -197,21 +200,12 @@ class Newcourse extends Component {
           
         <div className='input-field'>     
           <label className='forColorClear' id='startTimeLabel' htmlFor='startTime'>Start Time:</label>
-        
-        <input type="text" className="timepicker" name="starttime" id='startTime' />
+          <input type="text" className="timepicker" name="starttime" id='startTime' />
         </div>
 
         <div className='input-field'>     
-           <label className='forColorClear' id='endTimeLabel' htmlFor='endTime'> 
-            End Time:
-          </label>
-          <input
-              
-              type="text"
-              id='endTime'
-          class="timepicker"
-          />
-         
+          <label className='forColorClear' id='endTimeLabel' htmlFor='endTime'>End Time:</label>
+          <input type="text" id='endTime' class="timepicker"/>
         </div>
           
         <div className='input-field'>     
@@ -224,8 +218,8 @@ class Newcourse extends Component {
           <input type="text" id='endDatePicker' className="datepicker"/>
         </div>
 
-        <SelectInstructor onChange={this.getSelectedInstructors} />
-        <SelectStudent onChange={this.getSelectedStudents} />
+        <SelectInstructor userId={this.props.user} onChange={this.getSelectedInstructors} />
+        <SelectStudent userId={this.props.user} onChange={this.getSelectedStudents} />
 
         {this.state.error.length>0? <p className='newCourseError center-align'>{this.state.error}</p> : <div></div>}
         <div id="newCourseSubmit"><Submit submitFunction={this.handleFormSubmit}/></div>

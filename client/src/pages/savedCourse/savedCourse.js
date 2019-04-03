@@ -257,7 +257,7 @@ class Course extends Component {
                                     <a className='btn-small addPersonButton' onClick={()=>this.showSelect('instructors')}><i class="addPerson flow-text material-icons right-align">add</i></a>
                                     :
                                     <div>
-                                        <InstructorSelect onChange={this.selectInstructorChange} />
+                                        <InstructorSelect userId={this.props.userId} onChange={this.selectInstructorChange} />
                                         <div id="existInstructSubmit2"><Submit submitFunction={()=>this.addToRoster('instructors')}/></div>
                                         <div className='center-align errorRow'>
                                         {
@@ -287,7 +287,7 @@ class Course extends Component {
                                     <a className='btn-small addPersonButton' onClick={()=>this.showSelect('students')}><i class="addPerson flow-text material-icons right-align">add</i></a>
                                     :
                                     <div>
-                                        <StudentSelect onChange={this.selectStudentChange} />
+                                        <StudentSelect userId={this.props.userId} onChange={this.selectStudentChange} />
                                         <div id="existStudentSubmit2"><Submit submitFunction={()=>this.addToRoster('students')}/></div>
                                         <div className='center-align errorRow'>
                                             {
