@@ -24,16 +24,7 @@ class Home extends Component{
             .catch(err => console.log(err));
     }
 
-    deleteCourse=(courseId)=>{
-        let tempCourses=this.state.allCourses
-       
-        API.deleteCourse(courseId)
-            .then((res)=>{
-                tempCourses.splice(tempCourses.indexOf(courseId),1)
-                this.setState({allCourses:tempCourses})
-            })
-            .catch(err => console.log(err));
-    }
+
     updateCourse=(courseId,whatToChange,newValue)=>{
         //validate
 

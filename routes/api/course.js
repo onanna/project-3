@@ -14,6 +14,11 @@ router.route('/user/:id')
         course.getAll(req.params.id,res)
     })
 
+router.route('/delete/:user/:courseId')
+    .delete((req,res)=>{
+        course.delete(req.params.courseId,res)
+    })
+
 router.route("/:courseId")
     .delete((req,res)=>{
         course.delete(req.params.courseId)

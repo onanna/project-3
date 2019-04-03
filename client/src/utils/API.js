@@ -55,8 +55,8 @@ export default {
   addCourse:function(courseInfo){
     return axios.post(`/api/courses`,courseInfo);
   },
-  deleteCourse:function(courseId){
-    return axios.delete(`/api/courses/${courseId}`)
+  deleteCourse:function(userId,courseId){
+    return axios.delete(`/api/courses/delete/${userId}/${courseId}`)
   },
   updateCourse:function(courseId,whatToChange,newValue){
     let data={whatToChange:whatToChange,newValue:newValue}

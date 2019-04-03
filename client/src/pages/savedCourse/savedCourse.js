@@ -28,7 +28,8 @@ class Course extends Component {
         addExistInstNotice:'',
         hasBeenSent:false,
         showStuSelect:false,
-        showInsSelect:false
+        showInsSelect:false,
+        wantsToDelete:false
     }
   
     constructor(props){
@@ -191,6 +192,30 @@ class Course extends Component {
         }
     }
 
+    toggleDelete=()=>{
+        if(this.state.wantsToDelete===false){
+            this.setState((prev)=>({
+                wantsToDelete:true
+            }))
+        }else{
+            this.setState((prev)=>({
+                wantsToDelete:false
+            }))
+        }
+    }
+
+    deleteCourse=(userId,courseId)=>{
+        API.deleteCourse(userId,courseId)
+            .then((result)=>{
+                if(result.data.success){
+                    window.location.replace('/')
+                }else{
+                    alert('course could not be deleted')
+                }
+            })
+            .catch(err => console.log(err));
+    }
+
     componentDidMount=()=>{
         $('.modal').modal();
         $('.collapsible').collapsible();
@@ -237,7 +262,15 @@ class Course extends Component {
                                 <p className='flow-text'><b>Start Time:</b> {this.state.course.startTime}</p>
                                 <p className='flow-text'><b>End Time:</b> {this.state.course.endTime}</p>
                                 <p className='flow-text'><b>Location:</b> {this.state.course.location}</p>
-                                <a id='deleteCourseButton' className='flow-text btn btn-large red white-text'>Delete Course</a>
+                                {
+                                    this.state.wantsToDelete===false?
+                                        <a id='deleteCourseButton' onClick={this.toggleDelete} className='flow-text btn btn-large white red-text'>Delete Course</a>
+                                    :
+                                    <div>
+                                        <p id='deleteCourseConfirm'className='flow-text' onClick={this.toggleDelete}>Deleting A course will also delete all associated attendance records and rosters. Click here to go back or click "Delete" to continue</p>
+                                        <a onClick={()=>this.deleteCourse(this.props.userId, this.state.course._id)} className='flow-text btn btn-large red white-text'>Permanently Delete</a>                                
+                                    </div>
+                                }
                             </div> 
 
                             <div id="classRoster" className="col s12 grey lighten-3 tabContent left-align courseTab">
