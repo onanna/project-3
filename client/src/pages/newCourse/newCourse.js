@@ -73,6 +73,8 @@ class Newcourse extends Component {
 
       let startdateChosen = document.getElementById("startDatePicker").value
       let enddateChosen = document.getElementById("endDatePicker").value
+      let startTimeChosen = document.getElementById("startTime").value
+      let endTimeChosen = document.getElementById("endTime").value
 
       // let startdateChosen = x.value;
       // let enddateChosen = y.value;
@@ -83,8 +85,8 @@ class Newcourse extends Component {
         numberOfSeats: this.state.numberOfSeats,
         startDate: startdateChosen,
         endDate: enddateChosen,
-        startTime: this.state.startTime,
-        endTime: this.state.endTime,
+        startTime: startTimeChosen,
+        endTime: endTimeChosen,
         location: this.state.location,
         instructors: this.state.instructors,
         students:this.state.students
@@ -195,13 +197,8 @@ class Newcourse extends Component {
           
         <div className='input-field'>     
           <label className='forColorClear' id='startTimeLabel' htmlFor='startTime'>Start Time:</label>
-          <input type="text"  
-          name="starttime" 
-          value={this.state.startTime}
-          id='startTime'
-          onChange={(ev) => {this.setState({startTime:ev.target.value})}}
-         pattern ={/^([01]?[0-9]|2[0-3]):[0-5][0-9]$/}
-        required />
+        
+        <input type="text" className="timepicker" name="starttime" id='startTime' />
         </div>
 
         <div className='input-field'>     
@@ -209,12 +206,12 @@ class Newcourse extends Component {
             End Time:
           </label>
           <input
-              value={this.state.endTime}
-              name="endtime"
-              onChange={(ev) => {this.setState({endTime:ev.target.value})}}
+              
               type="text"
               id='endTime'
+          class="timepicker"
           />
+         
         </div>
           
         <div className='input-field'>     
