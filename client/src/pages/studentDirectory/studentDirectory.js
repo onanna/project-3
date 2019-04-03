@@ -20,7 +20,9 @@ class Home extends Component{
     }
 
     componentDidMount(){
-        this.getAllStudents();
+        API.getAllStudents(this.props.userId)
+        .then(res => this.setState({ students: res.data }))
+        .catch(err => console.log(err));
     }
 
     addStudent=(studentToAdd)=>{
@@ -36,11 +38,7 @@ class Home extends Component{
     //   alert( JSON.stringify( this.state.students[indexOfStudentToGet]))
     //   let chosen=this.state.students[indexOfStudentToGet];
     // }
-    getAllStudents=()=>{
-        API.getAllStudents()
-            .then(res => this.setState({ students: res.data }))
-            .catch(err => console.log(err));
-    }
+
     deleteStudent=(idToDelete)=>{
         API.deleteStudent(idToDelete)
             .then(this.getAllStudents());
@@ -133,10 +131,11 @@ class Home extends Component{
         }))
     }else{
         var newStudent = {
-        firstName: this.state.firstName,
-        lastName: this.state.lastName,
-        email: this.state.email,
-        phone: this.state.phone
+            user:this.props.userId,
+            firstName: this.state.firstName,
+            lastName: this.state.lastName,
+            email: this.state.email,
+            phone: this.state.phone
         };
 
         // alert('adding '+JSON.stringify(newStudent)+' to '+this.props.courseId)

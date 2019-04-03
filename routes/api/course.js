@@ -10,7 +10,8 @@ router.route("/")
 
 router.route('/user/:id')
     .get((req,res)=>{
-        course.getAll(req,res)
+        console.log('getting courses that belong only to '+req.params.id)
+        course.getAll(req.params.id,res)
     })
 
 router.route("/:courseId")

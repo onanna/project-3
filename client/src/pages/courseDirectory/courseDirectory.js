@@ -13,55 +13,17 @@ class Home extends Component{
     }
 
     componentDidMount(){
-        this.getCourses(this.props.user);
-        // this.getAllStudents();
-        // this.getInstructors();
-    }
-    
-    getInstructors=()=>{
-        API.getInstructors()
-            .then(res => this.setState({ instructors: res.data }))
-            .catch(err => console.log(err));
-    }
-    getAllStudents=()=>{
-        API.getAllStudents()
-            .then(res => this.setState({ students: res.data }))
-            .catch(err => console.log(err));
-    }
-
-    getCourses=(userId)=>{
-        API.getAllCourses(userId)
+        API.getAllCourses(this.props.userId)
             .then(res => this.setState({allCourses:res.data}))
             .catch(err => console.log(err));
     }
+
     getACourse=(courseId)=>{
         API.getACourse(courseId)
             .then(res => this.setState({allCourses:res.data}))
             .catch(err => console.log(err));
     }
 
-
-    addNewCourse=()=>{
-    
-        let testCourse={
-            name:"newCdfosdsfurse2",
-            startDate:new Date(),
-            endDate: new Date(),
-            startTime:"no",
-            endTime:"10pm",
-            numberOfSeats:9,
-            location:"heyyy at newark nj",
-            instructors:[],
-            students:[]
-        }
-        API.addCourse(testCourse)
-            .then((response)=>{
-                let tempCourses=this.state.allCourses;
-                tempCourses.push(response.data);
-                this.setState({allCourses:tempCourses})
-            })
-            .catch(err => console.log(err));
-    }
     deleteCourse=(courseId)=>{
         let tempCourses=this.state.allCourses
        

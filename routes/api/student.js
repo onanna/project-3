@@ -8,6 +8,12 @@ router.route("/")
     student.add(req,res)
   })
 
+router.route('/user/:id')
+  .get((req,res)=>{
+      console.log('getting students that belong only to '+req.params.id)
+      student.getAll(req.params.id,res)
+  })
+
 router.route('/new-add/:courseId')
   .post((req,res)=>{
       let course =req.params.courseId;

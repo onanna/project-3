@@ -97,7 +97,7 @@ class App extends Component{
       token:'',
       user:{}
     }))
-    // window.location.replace('/')
+    window.location.replace('/')
   }
 
   render(){
@@ -139,12 +139,12 @@ class App extends Component{
             <div>
               <Sidenav userName={this.state.user.userName} deleteToken={this.deleteToken} />
               <Switch>
-                <Route exact path="/" render={(props)=><AllCourses {...props} user={this.state.user.id}/>} />
+                <Route exact path="/" render={(props)=><AllCourses {...props} userId={this.state.user.id}/>} />
                 <Route exact path="/profile" render={(props)=><UserProfile {...props} user={this.state.user}/>} />
                 
-                <Route exact path="/students/all" component={StuDirectory} />
+                <Route exact path="/students/all" render={(props)=><StuDirectory {...props} userId={this.state.user.id}/>} />
                 {/* <Route exact path="/students/detail" component={Student} /> */}
-                <Route exact path="/instructors/all" component={InstDirectory} />            
+                <Route exact path="/instructors/all" render={(props)=><InstDirectory {...props} userId={this.state.user.id}/>} />            
                 {/* <Route exact path="/instructors/detail" component={Instructor} /> */}
                 <Route exact path="/courses/detail/:id" render={(props)=><Course {...props} token={this.state.token}/>} />
                 {/* <Route exact path="/attendance/temp362019/:token/:courseId" component={AttendanceForm} /> */}

@@ -78,10 +78,9 @@ module.exports = {
         .then(res=>console.log(res))
         .catch(res=>console.log(res))
     },
-    getAll:function(req,res){
-        db.course.find(req.body)
+    getAll:function(userId,res){
+        db.course.find({user:userId})
         .sort({_id: -1 })
-        // .populate('students')
         .then(data => res.json(data))
         .catch(err => res.status(422).json(err));
     },

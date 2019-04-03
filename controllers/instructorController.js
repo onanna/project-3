@@ -38,9 +38,8 @@ module.exports = {
                 }
             })
     },
-    getAll:function(req,res){
-        db.instructor.find(req.query)
-        // .sort({ date: -1 })
+    getAll:function(userId,res){
+        db.instructor.find({user:userId})
         .populate('currentlyTeaching')
         .then(dbModel => res.json(dbModel))
         .catch(err => res.status(422).json(err));

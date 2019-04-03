@@ -7,6 +7,11 @@ validateEmail = (email)=>{
 };
 
 const stuSchema = new Schema({
+    user:{
+        type: Schema.Types.ObjectId,
+        ref: "user",
+        required:true
+    },
     firstName:{
         type: String,
         required:true,
