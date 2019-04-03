@@ -7,17 +7,25 @@ module.exports = {
         db.student.create(req.body)
         .then(result=>{
             if(result._id){
-                res.send({success:'Student Added', new:result})
+                //since there is no way to populate a subdocument after "create" query, we need to run a "find" query and populate there
+                db.student.findById(result._id)
+                .lean()
+                .populate('currentlyEnrolled', 'name _id')
+                .then((student)=>{
+                    student.currentlyEnrolled.forEach((element,i) => {
+                        courseFuncs.addToRoster(element,'students',student._id,(response)=>{
+                            console.log('response for this add to course is: '+ response)
+                        })
+                    });
+                    res.send({success:'Student Added', new:student})
+                })
+                
             }else{
                 res.send({error:"Error"})
             }
         })
         .catch(error=>{
-            if(error.errmsg.includes('email_1 dup key')){
-                res.send({error:'A Student with that email already exists'})
-            }else{
-                res.send({error:error})
-            }
+            res.send({error:error})
         })
 
     },
@@ -54,6 +62,7 @@ module.exports = {
         .then(result=>{
 
             db.student.find({user:userId})
+            .populate('currentlyEnrolled')
             .then(result=>{
                 res.send({success:result})
             })

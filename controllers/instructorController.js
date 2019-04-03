@@ -7,17 +7,25 @@ module.exports = {
         db.instructor.create(req.body)
         .then(result=>{
             if(result._id){
-                res.send({success:'Instructor Added', new:result})
+                db.instructor.findById(result._id)
+                .lean()
+                .populate('currentlyTeaching', 'name _id')
+                .then((instructor)=>{
+
+                    instructor.currentlyTeaching.forEach((element,i) => {
+                        courseFuncs.addToRoster(element,'instructors',instructor._id,(response)=>{
+                            console.log('response for this add to course is: '+ response)
+                        })
+                    });
+                    res.send({success:'Instructor Added', new:instructor})
+                })
+
             }else{
                 res.send({error:"Error"})
             }
         })
         .catch(error=>{
-            if(error.errmsg.includes('email_1 dup key')){
-                res.send({error:'An Instructor with that email already exists'})
-            }else{
-                res.send({error:error})
-            }
+            res.send({error:error})
         })
 
     },
@@ -54,6 +62,7 @@ module.exports = {
         .then(result=>{
 
             db.instructor.find({user:userId})
+            .populate('currentlyTeaching')
             .then(result=>{
                 res.send({success:result})
             })

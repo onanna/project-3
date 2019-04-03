@@ -4,7 +4,8 @@ import Pagecontainer from "../../components/pageContainer/index"
 import API from "../../utils/API"
 import learningImg from '../../images/learning.jpg';
 import SkyImg from '../../images/skyBanner.jpg'
-import Submit from '../../components/submitButton/index'
+import Submit from '../../components/submitButton/index';
+import SelectCourses from '../../components/selectCourses/selectCourses'
 import './style.css';
 const $ = window.$;
 
@@ -17,6 +18,7 @@ class Home extends Component{
         email: "",
         phone: "",
         addNewStuNotice:'',
+        coursesChosen:[]
     }
 
     componentDidMount(){
@@ -34,10 +36,6 @@ class Home extends Component{
             .then(this.getAllStudents())
             .catch(err => console.log(err));
     }
-    // getAStudent=(indexOfStudentToGet)=>{
-    //   alert( JSON.stringify( this.state.students[indexOfStudentToGet]))
-    //   let chosen=this.state.students[indexOfStudentToGet];
-    // }
 
     deleteStudent=(userId,studentIdToDelete)=>{
         API.deleteStudent(userId,studentIdToDelete)
@@ -46,8 +44,8 @@ class Home extends Component{
                     this.setState((prev)=>({
                         students:result.data.success
                     }))
+                    // M.toast({html: 'Student Deleted'})
                 }
-                // if(result.data.success)
             });
     }
    
@@ -61,6 +59,16 @@ class Home extends Component{
         this.setState((prev)=>({
             addingNew:true
         }))
+    }
+
+    courseSelectOnChange=(selected)=>{
+        let coursesSelected =[]
+        selected.forEach((element,i) => {
+            coursesSelected.push(element.value)
+        });
+        this.setState({
+            coursesChosen:coursesSelected
+        })
     }
 
     handleFirstNameChange=(e)=> {
@@ -143,7 +151,8 @@ class Home extends Component{
             firstName: this.state.firstName,
             lastName: this.state.lastName,
             email: this.state.email,
-            phone: this.state.phone
+            phone: this.state.phone,
+            currentlyEnrolled:this.state.coursesChosen
         };
 
         // alert('adding '+JSON.stringify(newStudent)+' to '+this.props.courseId)
@@ -163,8 +172,9 @@ class Home extends Component{
             setTimeout(()=>{
                 this.setState((prev)=>({
                     addingNew:false,
-                    students:currentStudents,
-                    addNewStuNotice:''
+                    addNewStuNotice:'',
+                    coursesChosen:[],
+                    students:currentStudents
                 }))
             },1500)
             } 
@@ -254,28 +264,29 @@ class Home extends Component{
                                             </div>
 
                                             <div className="row">
-                                            <div className="input-field col s6">
-                                                <i className="material-icons prefix forColorClear"id='stuEmail'>email</i>
-                                                <input
-                                                id="email"
-                                                type="text"
-                                                placeholder="Email"
-                                                value={this.state.email}
-                                                onChange={this.handleEmailChange}
-                                                />
-                                            </div>
+                                                <div className="input-field col s6">
+                                                    <i className="material-icons prefix forColorClear"id='stuEmail'>email</i>
+                                                    <input
+                                                    id="email"
+                                                    type="text"
+                                                    placeholder="Email"
+                                                    value={this.state.email}
+                                                    onChange={this.handleEmailChange}
+                                                    />
+                                                </div>
 
-                                            <div className="input-field col s6">
-                                                <i className="material-icons prefix forColorClear"id='stuPhone'>phone</i>
-                                                <input
-                                                id="phone"
-                                                type="text"
-                                                placeholder="Phone"
-                                                value={this.state.phone}
-                                                onChange={this.handlePhoneChange}
-                                                />
+                                                <div className="input-field col s6">
+                                                    <i className="material-icons prefix forColorClear"id='stuPhone'>phone</i>
+                                                    <input
+                                                    id="phone"
+                                                    type="text"
+                                                    placeholder="Phone"
+                                                    value={this.state.phone}
+                                                    onChange={this.handlePhoneChange}
+                                                    />
+                                                </div>
                                             </div>
-                                            </div>
+                                            <SelectCourses id='courseSelect' userId={this.props.userId} onChange={this.courseSelectOnChange}/>
                                             <div className='center-align errorRow'>{this.state.addNewStuNotice.length>0?
                                                 this.state.addNewStuNotice.includes('Added')?
                                                 <p className='successMessage'>{this.state.addNewStuNotice}</p>

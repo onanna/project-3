@@ -6,6 +6,7 @@ import instructorImg from "../../images/instructor.gif";
 import './style.css';
 import Submit from '../../components/submitButton/index'
 import ForestImg from '../../images/forestBanner.jpg'
+import SelectCourses from '../../components/selectCourses/selectCourses'
 const $ = window.$;
 
 
@@ -18,7 +19,8 @@ class instructors extends Component{
         lastInstructorName: "",
         emailInstructor: "",
         phoneInstructor: '',
-        addNewInsNotice:'',  
+        addNewInsNotice:'',
+        coursesChosen:[]
     }
 
     componentDidMount(){
@@ -46,8 +48,17 @@ class instructors extends Component{
                         instructors:result.data.success
                     }))
                 }
-                // if(result.data.success)
             });
+    }
+
+    courseSelectOnChange=(selected)=>{
+        let coursesSelected =[]
+        selected.forEach((element,i) => {
+            coursesSelected.push(element.value)
+        });
+        this.setState({
+            coursesChosen:coursesSelected
+        })
     }
 
     toggleAdd=()=>{
@@ -61,6 +72,7 @@ class instructors extends Component{
             addingNew:true
         }))
     }
+
     
     handleFirstNameChangeinst=(e)=> {
         e.preventDefault();
@@ -142,7 +154,8 @@ class instructors extends Component{
             firstName: this.state.firstInstructorName,
             lastName: this.state.lastInstructorName,
             email: this.state.emailInstructor,
-            phone: this.state.phoneInstructor
+            phone: this.state.phoneInstructor,
+            currentlyTeaching:this.state.coursesChosen
           };
     
           API.addInstructor(newInstructor)
@@ -161,7 +174,8 @@ class instructors extends Component{
                     this.setState((prev)=>({
                         addingNew:false,
                         instructors:currentInstructors,
-                        addNewInsNotice:''
+                        addNewInsNotice:'',
+                        coursesChosen:[],
                     }))
                 },1500)
               } 
@@ -268,6 +282,7 @@ class instructors extends Component{
                                                         />
                                                     </div>
                                                     </div>
+                                                    <SelectCourses id='courseSelect' userId={this.props.userId} onChange={this.courseSelectOnChange}/>
                                                     <div className='center-align errorRow'>{this.state.addNewInsNotice.length>0?
                                                         this.state.addNewInsNotice.includes('Added')?
                                                         <p className='successMessage'>{this.state.addNewInsNotice}</p>
