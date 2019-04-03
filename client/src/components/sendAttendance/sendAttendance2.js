@@ -64,7 +64,7 @@ class sendAttendance extends Component{
                 <div>
                     <div className='row'>
                         <div className='col s12'>
-                            <Select placeholder="Choose Instructor..." onChange={this.onChange} id="sendAttendanceSelect" options={this.state.instructors}/>
+                            <Select readonly="true" isSearchable={false} placeholder="Choose Instructor..." onChange={this.onChange} id="sendAttendanceSelect" options={this.state.instructors}/>
                         </div>
                     </div>
 
