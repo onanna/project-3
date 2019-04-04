@@ -20,7 +20,9 @@ class Course extends Component {
         course:{
             instructors:[],
             attendanceRecords:[],
-            students:[]
+            students:[],
+            startTime:"",
+            endTime:""
         },
         instructorsToAdd:[],
         studentsToAdd:[],
@@ -259,8 +261,10 @@ class Course extends Component {
                                 <p className='flow-text'><b> Number of Seats Available:</b> {this.state.course.numberOfSeats}</p>
                                 <p className='flow-text'><b>Start Date:</b> {this.state.course.startDate? date.readDate(this.state.course.startDate) : this.state.course.startDate}</p>
                                 <p className='flow-text'><b>End Date:</b> {this.state.course.startDate? date.readDate(this.state.course.endDate) : this.state.course.endDate}</p>
-                                <p className='flow-text'><b>Start Time:</b> {this.state.course.startTime}</p>
-                                <p className='flow-text'><b>End Time:</b> {this.state.course.endTime}</p>
+                                <p className='flow-text'><b>Start Time:</b> {date.dropTimeZero(this.state.course.startTime)}</p>
+                                <p className='flow-text'><b>End Time:</b> {date.dropTimeZero(this.state.course.endTime)}</p>
+                                {/* <p className='flow-text'><b>Start Time:</b> {this.state.course.startTime}</p>
+                                <p className='flow-text'><b>End Time:</b> {this.state.course.endTime}</p> */}
                                 <p className='flow-text'><b>Location:</b> {this.state.course.location}</p>
                                 {
                                     this.state.wantsToDelete===false?

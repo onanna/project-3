@@ -169,14 +169,14 @@ class Home extends Component{
             }))
             let currentStudents=this.state.students
             currentStudents.push(result.data.new)
-            setTimeout(()=>{
+            // setTimeout(()=>{
                 this.setState((prev)=>({
                     addingNew:false,
                     addNewStuNotice:'',
                     coursesChosen:[],
                     students:currentStudents
                 }))
-            },1500)
+            // },1500)
             } 
             if(result.data.error) this.setState({addNewStuNotice:result.data.error})
         })

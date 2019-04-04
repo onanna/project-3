@@ -170,14 +170,14 @@ class instructors extends Component{
                 }))
                 let currentInstructors=this.state.instructors
                 currentInstructors.push(result.data.new)
-                setTimeout(()=>{
+                // setTimeout(()=>{
                     this.setState((prev)=>({
                         addingNew:false,
                         instructors:currentInstructors,
                         addNewInsNotice:'',
                         coursesChosen:[],
                     }))
-                },1500)
+                // },1500)
               } 
               if(result.data.error) this.setState({addNewInsNotice:result.data.error})
             })

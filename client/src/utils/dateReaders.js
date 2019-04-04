@@ -1,9 +1,17 @@
 export function splitDate(date){
-    let mm = date.split("-")[0];
-    let dd = date.split("-")[1];
-    let yyyy = date.split("-")[2];
+  let mm = date.split("-")[0];
+  let dd = date.split("-")[1];
+  let yyyy = date.split("-")[2];
 
-    return [mm,dd,yyyy]
+  return [mm,dd,yyyy]
+}
+
+export function dropTimeZero(time){
+  if(time.charAt(0)==="0"){
+      return time.substring(1,time.length)
+  }else{
+      return time
+  }
 }
 
 export function readMonth(month){
@@ -98,11 +106,12 @@ export function readDate(dateToRead){
     let newMonth;
     let newDay = dd;
 
+    //month is checked without the 0 below so not necessary in mm
     if(mm.charAt(0)==="0"){
         mm=mm.charAt(1);
     }
   
-    //not necessary because date not saving with 0 in front of 1-9
+    //newDay is just what's displayed before the suffix. evaluations on dd still rely on 01 format.
     if(dd.charAt(0)==="0"){
       newDay=dd.charAt(1);
     }
@@ -110,6 +119,8 @@ export function readDate(dateToRead){
 
     //if dd is 11, 12, or 13, suffix remains as "th". If not, check second number for 1, 2, or 3 to change the suffix
     if(dd==="11"||dd==="12"||dd==="13"){
+      
+    }else{
       switch(dd.charAt(1)){
         case "1":
         suffix="st"
@@ -127,7 +138,7 @@ export function readDate(dateToRead){
         break;
       }
     }
-  
+
     switch(mm){
       case "1":
       newMonth="January"
@@ -172,7 +183,6 @@ export function readDate(dateToRead){
       break;
     }
     
-    // return(newMonth+" "+newDay+suffix+", "+yyyy)
     return(`${newMonth} ${newDay+suffix}, ${yyyy}`)
 }
 
