@@ -11,7 +11,9 @@ import * as date from '../../utils/dateReaders';
 import StudentSelect from "../../components/selectStudents/selectStudents";
 import InstructorSelect from "../../components/selectInstructors/selectInstructors";
 import Submit from '../../components/submitButton/index'
+import M from 'materialize-css';
 const $ = window.$;
+
 
 
 class Course extends Component {
@@ -210,7 +212,8 @@ class Course extends Component {
         API.deleteCourse(userId,courseId)
             .then((result)=>{
                 if(result.data.success){
-                    window.location.replace('/')
+                    M.toast({html: 'Course Deleted',displayLength:1000,classes: 'rounded green white-text',completeCallback: function(){ window.location.replace('/')}})
+                    // window.location.replace('/')
                 }else{
                     alert('course could not be deleted')
                 }

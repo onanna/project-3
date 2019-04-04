@@ -7,6 +7,7 @@ import SkyImg from '../../images/skyBanner.jpg'
 import Submit from '../../components/submitButton/index';
 import SelectCourses from '../../components/selectCourses/selectCourses'
 import './style.css';
+import M from 'materialize-css';
 const $ = window.$;
 
 class Home extends Component{
@@ -44,6 +45,8 @@ class Home extends Component{
                     this.setState((prev)=>({
                         students:result.data.success
                     }))
+
+                    M.toast({html: 'Student Deleted',displayLength:1500,classes: 'rounded green white-text'})
                     // M.toast({html: 'Student Deleted'})
                 }
             });
@@ -177,6 +180,7 @@ class Home extends Component{
                     students:currentStudents
                 }))
             // },1500)
+            M.toast({html: 'Student Added',displayLength:1500,classes: 'rounded green white-text'})
             } 
             if(result.data.error) this.setState({addNewStuNotice:result.data.error})
         })

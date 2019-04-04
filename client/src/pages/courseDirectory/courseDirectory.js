@@ -68,9 +68,6 @@ class Home extends Component{
     goToCourse=(courseId)=>{
         window.location.href=`/courses/detail/${courseId}`;
     }
-   
-    linkToCourse=(courseId)=>{
-    }
 
     arrayPassOrMake=(data)=>{
         let arrayToReturn=[];

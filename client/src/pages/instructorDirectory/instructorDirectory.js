@@ -7,8 +7,8 @@ import './style.css';
 import Submit from '../../components/submitButton/index'
 import ForestImg from '../../images/forestBanner.jpg'
 import SelectCourses from '../../components/selectCourses/selectCourses'
+import M from 'materialize-css';
 const $ = window.$;
-
 
 
 class instructors extends Component{
@@ -47,6 +47,9 @@ class instructors extends Component{
                     this.setState((prev)=>({
                         instructors:result.data.success
                     }))
+                    // M.toast({html: 'Instructor Deleted',classes: 'rounded red white-text'})
+                    M.toast({html: 'Instructor Deleted',displayLength:1500,classes: 'rounded green white-text'})
+                    // M.toast({html: 'Instructor Deleted'})
                 }
             });
     }
@@ -177,6 +180,7 @@ class instructors extends Component{
                         addNewInsNotice:'',
                         coursesChosen:[],
                     }))
+                M.toast({html: 'Instructor Added',displayLength:1500,classes: 'rounded green white-text'})
                 // },1500)
               } 
               if(result.data.error) this.setState({addNewInsNotice:result.data.error})

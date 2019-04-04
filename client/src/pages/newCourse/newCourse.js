@@ -6,6 +6,7 @@ import SelectInstructor from "../../components/selectInstructors/selectInstructo
 import SelectStudent from "../../components/selectStudents/selectStudents"
 import Submit from '../../components/submitButton/index'
 import Header from '../../components/h1withDivider/index'
+import M from 'materialize-css';
 //import $ from "jquery"
 const $ = window.$;
 
@@ -135,7 +136,7 @@ class Newcourse extends Component {
         API.addCourse(dataToSend, this.props.user)
         .then(result=>{
           if(result.data._id){
-            window.location.href = "/";
+            window.location.href = `/courses/detail/${result.data._id}`;
           }else{
             $('#courseNameLabel').css('color','#ff5252')
             this.setState((prevState)=>({
